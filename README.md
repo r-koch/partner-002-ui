@@ -18,10 +18,12 @@ person.
    matches).
 2. **Gender + sought-gender (Core).** "Your gender" (enum + *Prefer not to say*) and
    "Gender(s) you're looking for" (multi-select + *Prefer not to say* + *Any*).
-3. **Height in Core (enum ranges); weight absent everywhere; body-type in Extended only.**
-   Height is a set of range choices; there is no weight item in any tier; Extended gains an
-   optional body-type enum (slim / average / athletic / fuller / prefer-not-to-say) as the
-   less-loaded proxy.
+3. **Height in Core (Looking-for is a free-form min/max cm range, like age; weight absent
+   everywhere; body-type in Extended only).** Your own height stays a set of range choices;
+   what you're **looking for** is two free-form numeric fields (min cm / max cm, 120–250,
+   empty = no constraint, open ends allowed, min ≤ max validated). There is no weight item
+   in any tier; Extended gains an optional body-type enum (slim / average / athletic /
+   fuller / prefer-not-to-say) as the less-loaded proxy.
 4. **Extended / Deep are opt-in at creation AND the reveal ladder's rung 2 material.**
    Offered as toggles in the questionnaire, addable anytime from "Your profile"; the same
    answers become shareable after a mutual match (ladder rung 2 explicitly links them).

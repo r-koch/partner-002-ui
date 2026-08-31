@@ -325,8 +325,11 @@ select, input[type="number"], input[type="text"] {
   max-width: 320px;
 }
 select:focus-visible, input:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+input[type="number"].is-invalid { border-color: var(--bad); color: var(--bad); }
+.field-hint.is-error { color: var(--bad); }
 
-.range-minmax { display: flex; gap: var(--sp-3); align-items: center; }
+.range-minmax { display: flex; gap: var(--sp-3); align-items: center; flex-wrap: wrap; }
+.range-minmax input[type="number"] { width: 110px; }
 
 /* Importance rating */
 .importance { display: flex; align-items: center; gap: var(--sp-2); margin-top: var(--sp-2); }
