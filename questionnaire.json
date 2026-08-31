@@ -1,0 +1,446 @@
+{
+  "_editingGuide": {
+    "purpose": "This file is the single master for the questionnaire the UI prototype renders. It is the literal input: every question, every answer option, and their order lives here and nowhere else. Edit this file, reload the page, done.",
+    "how_order_works": "Question numbers (1..N) are derived automatically from the order of the entries in the items array. To reorder questions, move whole item objects up or down in items. To add a question, append a new item object. To remove one, delete its item object. Do not hand-number anything.",
+    "how_to_add_an_item": "Copy any existing item object, change id (must be unique) and label, then edit you/seek options. Required fields per item: id, label, axis. An item with axis \"you\" or \"both\" needs a you object; axis \"seek\" or \"both\" needs a seek object.",
+    "fields": {
+      "id": "Stable identifier, also used as the HTML name attribute. Never rename an existing id once real users have answered into it.",
+      "label": "Human text shown next to the question number.",
+      "axis": "one of you (About you only), seek (Looking for only), both (symmetric: shows both sides).",
+      "you": "About-you side. type radio (enum answer) or number (your age). options = list of value/label; the option with checked=true is the default. An option with checked omitted defaults to unchecked.",
+      "seek": "Looking-for side. type radio (one choice), multi (several choices), or range (free-form min/max numbers). importance=true means it shows the 1-5 importance scale; importanceDefault is which dot is pre-selected. redflag=true means each option gets a private red-flag toggle. For type range, redflag renders a single outside-range flag.",
+      "conditional": "null for normal items, or {when, showUnless} for items that hide based on another answer. The item is hidden whenever the When answer's value is in showUnless. Currently only the Kids item is conditional on the Looking-for goal being casual or undecided.",
+      "hint": "Optional extra wording. On a you or seek side it renders right below that side; on the item itself it renders beneath the whole question."
+    },
+    "values_are_stable": "A value (for example woman, lt160, must-love) is a stable identifier. If you relabel an option (change label only), leave value unchanged so existing answers keep working. Change value only if you intend to break old answers.",
+    "relabel_rule": "To relabel, edit the label string only. Labels may contain unicode characters (en-dash -, em-dash -, less-than sign). Keep option values as plain letters/digits/hyphens."
+  },
+  "_validation": {
+    "age_bounds_18_99": "your-age and the age range keep min 18, max 99.",
+    "height_bounds_120_250": "the height range keeps min 120, max 250 (centimetres).",
+    "range_min_le_max": "For range items, min must not be greater than max. Empty bounds are allowed (open end). The UI checks this live.",
+    "cannot_flag_all": "A Looking-for item cannot be red-flagged on every option; at least one choice must stay un-flagged. The UI enforces this on click.",
+    "importance_1_to_5": "importanceDefault must be an integer from 1 to 5."
+  },
+  "items": [
+    {
+      "id": "gender",
+      "label": "Gender",
+      "axis": "both",
+      "you": {
+        "type": "radio",
+        "options": [
+          { "value": "woman", "label": "Woman" },
+          { "value": "man", "label": "Man" },
+          { "value": "non-binary", "label": "Non-binary" },
+          { "value": "prefer-not-to-say", "label": "Prefer not to say", "checked": true }
+        ]
+      },
+      "seek": {
+        "type": "multi",
+        "options": [
+          { "value": "women", "label": "Women" },
+          { "value": "men", "label": "Men" },
+          { "value": "non-binary-people", "label": "Non-binary people" },
+          { "value": "prefer-not-to-say", "label": "Prefer not to say" },
+          { "value": "any", "label": "Any", "checked": true, "redflag": false }
+        ],
+        "hint": "Pick all that apply, or \"Any\".",
+        "importance": true,
+        "importanceDefault": 3,
+        "importanceAriaLabel": "how much this matters",
+        "redflag": true
+      },
+      "conditional": null
+    },
+    {
+      "id": "your-age",
+      "label": "Your age",
+      "axis": "you",
+      "you": {
+        "type": "number",
+        "min": 18,
+        "max": 99,
+        "required": true,
+        "ariaLabel": "your age in years",
+        "hint": "Your own age in years (18\u201399)."
+      },
+      "conditional": null
+    },
+    {
+      "id": "height",
+      "label": "Height",
+      "axis": "both",
+      "you": {
+        "type": "radio",
+        "options": [
+          { "value": "lt160", "label": "Under 160 cm" },
+          { "value": "160-170", "label": "160\u2013170 cm" },
+          { "value": "171-180", "label": "171\u2013180 cm" },
+          { "value": "181-190", "label": "181\u2013190 cm" },
+          { "value": "gt190", "label": "Over 190 cm" },
+          { "value": "prefer-not-to-say", "label": "Prefer not to say", "checked": true }
+        ]
+      },
+      "seek": {
+        "type": "range",
+        "min": 120,
+        "max": 250,
+        "minDefault": null,
+        "maxDefault": null,
+        "minPlaceholder": "e.g. 165",
+        "maxPlaceholder": "e.g. 190",
+        "unit": "cm",
+        "minAriaLabel": "minimum height in centimetres",
+        "maxAriaLabel": "maximum height in centimetres",
+        "hint": "Free-form range in cm (120\u2013250). Leave both empty for any height; leave one empty for an open end. Min must not exceed max.",
+        "importance": true,
+        "importanceDefault": 3,
+        "importanceAriaLabel": "how much height matters",
+        "redflag": true,
+        "rangeFlagTitle": "Red flag \u2014 anyone outside this height range never matches. Private."
+      },
+      "conditional": null
+    },
+    {
+      "id": "body-type",
+      "label": "Body type",
+      "axis": "both",
+      "you": {
+        "type": "radio",
+        "options": [
+          { "value": "slim", "label": "Slim" },
+          { "value": "average", "label": "Average" },
+          { "value": "athletic", "label": "Athletic" },
+          { "value": "fuller", "label": "Fuller" },
+          { "value": "prefer-not-to-say", "label": "Prefer not to say", "checked": true }
+        ]
+      },
+      "seek": {
+        "type": "multi",
+        "options": [
+          { "value": "slim", "label": "Slim" },
+          { "value": "average", "label": "Average" },
+          { "value": "athletic", "label": "Athletic", "checked": true },
+          { "value": "fuller", "label": "Fuller" },
+          { "value": "prefer-not-to-say", "label": "Prefer not to say" }
+        ],
+        "importance": true,
+        "importanceDefault": 3,
+        "importanceAriaLabel": "how much body type matters",
+        "redflag": true
+      },
+      "conditional": null
+    },
+    {
+      "id": "goal",
+      "label": "Relationship goal",
+      "axis": "both",
+      "you": {
+        "type": "radio",
+        "options": [
+          { "value": "long-term", "label": "Long-term", "checked": true },
+          { "value": "marriage-oriented", "label": "Marriage" },
+          { "value": "open", "label": "Open" },
+          { "value": "casual", "label": "Casual" },
+          { "value": "undecided", "label": "Not sure yet" }
+        ]
+      },
+      "seek": {
+        "type": "radio",
+        "options": [
+          { "value": "long-term", "label": "Long-term", "checked": true },
+          { "value": "marriage-oriented", "label": "Marriage" },
+          { "value": "open", "label": "Open" },
+          { "value": "casual", "label": "Casual" },
+          { "value": "undecided", "label": "Not sure yet" }
+        ],
+        "importance": true,
+        "importanceDefault": 5,
+        "importanceAriaLabel": "how much this matters",
+        "redflag": true
+      },
+      "conditional": null
+    },
+    {
+      "id": "children",
+      "label": "Kids",
+      "axis": "both",
+      "you": {
+        "type": "radio",
+        "options": [
+          { "value": "yes", "label": "Want kids", "checked": true },
+          { "value": "no", "label": "Don't want" },
+          { "value": "open", "label": "Open" },
+          { "value": "already-have", "label": "Already have" }
+        ]
+      },
+      "seek": {
+        "type": "radio",
+        "options": [
+          { "value": "yes", "label": "Wants kids", "checked": true },
+          { "value": "no", "label": "Doesn't want kids" },
+          { "value": "open", "label": "Open" },
+          { "value": "already-have", "label": "Already have" }
+        ],
+        "importance": true,
+        "importanceDefault": 4,
+        "importanceAriaLabel": "how much kids matter",
+        "redflag": true
+      },
+      "hint": "This one shows because of your \"Looking for\" goal above.",
+      "conditional": { "when": "goal", "showUnless": ["casual", "undecided"] }
+    },
+    {
+      "id": "monogamy",
+      "label": "Monogamy",
+      "axis": "both",
+      "you": {
+        "type": "radio",
+        "options": [
+          { "value": "strictly", "label": "Strictly", "checked": true },
+          { "value": "open-relationship", "label": "Open to open" },
+          { "value": "undecided", "label": "Not sure" }
+        ]
+      },
+      "seek": {
+        "type": "radio",
+        "options": [
+          { "value": "strictly", "label": "Strictly", "checked": true },
+          { "value": "open-relationship", "label": "Open to open" },
+          { "value": "undecided", "label": "Not sure" }
+        ],
+        "importance": true,
+        "importanceDefault": 5,
+        "importanceAriaLabel": "how much monogamy matters",
+        "redflag": true
+      },
+      "conditional": null
+    },
+    {
+      "id": "smoking",
+      "label": "Smoking",
+      "axis": "both",
+      "you": {
+        "type": "radio",
+        "options": [
+          { "value": "never", "label": "Never", "checked": true },
+          { "value": "socially", "label": "Sometimes" },
+          { "value": "regularly", "label": "Regularly" }
+        ]
+      },
+      "seek": {
+        "type": "radio",
+        "options": [
+          { "value": "never", "label": "Never", "checked": true },
+          { "value": "socially", "label": "Sometimes" },
+          { "value": "regularly", "label": "Regularly" }
+        ],
+        "importance": true,
+        "importanceDefault": 4,
+        "importanceAriaLabel": "how much smoking matters",
+        "redflag": true
+      },
+      "conditional": null
+    },
+    {
+      "id": "religion",
+      "label": "Religion",
+      "axis": "both",
+      "you": {
+        "type": "radio",
+        "options": [
+          { "value": "none", "label": "None", "checked": true },
+          { "value": "christian", "label": "Christian" },
+          { "value": "muslim", "label": "Muslim" },
+          { "value": "jewish", "label": "Jewish" },
+          { "value": "hindu", "label": "Hindu" },
+          { "value": "other", "label": "Other" }
+        ]
+      },
+      "seek": {
+        "type": "radio",
+        "options": [
+          { "value": "none", "label": "None", "checked": true },
+          { "value": "christian", "label": "Christian" },
+          { "value": "muslim", "label": "Muslim" },
+          { "value": "jewish", "label": "Jewish" },
+          { "value": "hindu", "label": "Hindu" },
+          { "value": "other", "label": "Other" }
+        ],
+        "importance": true,
+        "importanceDefault": 3,
+        "importanceAriaLabel": "how much religion matters",
+        "redflag": true
+      },
+      "conditional": null
+    },
+    {
+      "id": "distance",
+      "label": "How far is OK?",
+      "axis": "seek",
+      "seek": {
+        "type": "radio",
+        "options": [
+          { "value": "lt15km", "label": "< 15 km" },
+          { "value": "city", "label": "Same city", "checked": true },
+          { "value": "regional", "label": "Regional" },
+          { "value": "long-distance", "label": "Far is fine" }
+        ],
+        "importance": true,
+        "importanceDefault": 2,
+        "importanceAriaLabel": "how much distance matters",
+        "redflag": true
+      },
+      "conditional": null
+    },
+    {
+      "id": "age",
+      "label": "Age range",
+      "axis": "seek",
+      "seek": {
+        "type": "range",
+        "min": 18,
+        "max": 99,
+        "minDefault": 27,
+        "maxDefault": 38,
+        "minAriaLabel": "minimum age",
+        "maxAriaLabel": "maximum age",
+        "importance": true,
+        "importanceDefault": 3,
+        "importanceAriaLabel": "how much age matters",
+        "redflag": true,
+        "rangeFlagTitle": "Red flag \u2014 anyone outside this age range never matches. Private."
+      },
+      "conditional": null
+    },
+    {
+      "id": "living",
+      "label": "Where do you live?",
+      "axis": "both",
+      "you": {
+        "type": "radio",
+        "options": [
+          { "value": "alone", "label": "Alone", "checked": true },
+          { "value": "flatmates", "label": "Flatmates" },
+          { "value": "family", "label": "Family" },
+          { "value": "other", "label": "Other" }
+        ]
+      },
+      "seek": {
+        "type": "multi",
+        "options": [
+          { "value": "alone", "label": "Alone", "checked": true },
+          { "value": "flatmates", "label": "Flatmates" },
+          { "value": "family", "label": "Family" },
+          { "value": "other", "label": "Other" }
+        ],
+        "importance": true,
+        "importanceDefault": 3,
+        "importanceAriaLabel": "how much living matters",
+        "redflag": true
+      },
+      "conditional": null
+    },
+    {
+      "id": "work",
+      "label": "Work rhythm",
+      "axis": "both",
+      "you": {
+        "type": "radio",
+        "options": [
+          { "value": "9to5", "label": "9\u20135" },
+          { "value": "flexible", "label": "Flexible", "checked": true },
+          { "value": "irregular", "label": "Irregular" },
+          { "value": "shift", "label": "Shifts" }
+        ]
+      },
+      "seek": {
+        "type": "multi",
+        "options": [
+          { "value": "9to5", "label": "9\u20135" },
+          { "value": "flexible", "label": "Flexible", "checked": true },
+          { "value": "irregular", "label": "Irregular" },
+          { "value": "shift", "label": "Shifts" }
+        ],
+        "importance": true,
+        "importanceDefault": 3,
+        "importanceAriaLabel": "how much work matters",
+        "redflag": true
+      },
+      "conditional": null
+    },
+    {
+      "id": "pets",
+      "label": "Pets",
+      "axis": "both",
+      "you": {
+        "type": "radio",
+        "options": [
+          { "value": "love", "label": "Love them", "checked": true },
+          { "value": "tolerate", "label": "Tolerate" },
+          { "value": "allergic", "label": "Allergic" },
+          { "value": "none", "label": "None" }
+        ]
+      },
+      "seek": {
+        "type": "radio",
+        "options": [
+          { "value": "must-love", "label": "Must love them", "checked": true },
+          { "value": "pets-ok", "label": "Pets ok" },
+          { "value": "no-pets", "label": "No pets" },
+          { "value": "doesnt-matter", "label": "Doesn't matter" }
+        ],
+        "importance": true,
+        "importanceDefault": 2,
+        "importanceAriaLabel": "how much pets matters",
+        "redflag": true
+      },
+      "conditional": null
+    },
+    {
+      "id": "politics",
+      "label": "Politics \u2014 rough direction",
+      "axis": "both",
+      "you": {
+        "type": "radio",
+        "options": [
+          { "value": "liberal", "label": "Liberal", "checked": true },
+          { "value": "conservative", "label": "Conservative" },
+          { "value": "center", "label": "Center" },
+          { "value": "apolitical", "label": "Not into it" }
+        ]
+      },
+      "seek": {
+        "type": "radio",
+        "options": [
+          { "value": "liberal", "label": "Liberal", "checked": true },
+          { "value": "conservative", "label": "Conservative" },
+          { "value": "center", "label": "Center" },
+          { "value": "apolitical", "label": "Not into it" }
+        ],
+        "importance": true,
+        "importanceDefault": 3,
+        "importanceAriaLabel": "how much politics matters",
+        "redflag": true
+      },
+      "conditional": null
+    },
+    {
+      "id": "freetime",
+      "label": "Free-time style",
+      "axis": "you",
+      "you": {
+        "type": "radio",
+        "options": [
+          { "value": "homebody", "label": "Homebody" },
+          { "value": "active-outdoors", "label": "Active outdoors", "checked": true },
+          { "value": "city-culture", "label": "City culture" },
+          { "value": "travel", "label": "Travel" },
+          { "value": "mixed", "label": "A bit of everything" }
+        ]
+      },
+      "conditional": null
+    }
+  ]
+}

@@ -90,437 +90,8 @@
           told why. It's private. (There are no flags on <em>About you</em> answers — that side
           just describes you.)</p>
 
-          <!-- Q1 gender — BOTH (single symmetric item; owner steer: merge your-gender + sought-gender) -->
-          <div class="field-group" data-question="gender" data-axis="both">
-            <span class="field-label">1. Gender</span>
-            <div class="axis-side axis-side--you" data-axis="you">
-              <span class="axis__tag axis__tag--you">&#128101; About you</span>
-              <div class="chip-row">
-                <label class="chip"><input type="radio" name="gender-you" value="woman"><span class="chip__label">Woman</span></label>
-                <label class="chip"><input type="radio" name="gender-you" value="man"><span class="chip__label">Man</span></label>
-                <label class="chip"><input type="radio" name="gender-you" value="non-binary"><span class="chip__label">Non-binary</span></label>
-                <label class="chip"><input type="radio" name="gender-you" value="prefer-not-to-say" checked><span class="chip__label">Prefer not to say</span></label>
-              </div>
-            </div>
-            <div class="axis-side axis-side--seek" data-axis="seek">
-              <span class="axis__tag axis__tag--seek">&#127919; Looking for</span>
-              <div class="chip-row">
-                <span class="choice"><label class="chip"><input type="checkbox" name="gender" value="women"><span class="chip__label">Women</span></label><button class="flag" type="button" data-flag="gender" data-flag-value="women" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-                <span class="choice"><label class="chip"><input type="checkbox" name="gender" value="men"><span class="chip__label">Men</span></label><button class="flag" type="button" data-flag="gender" data-flag-value="men" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-                <span class="choice"><label class="chip"><input type="checkbox" name="gender" value="non-binary-people"><span class="chip__label">Non-binary people</span></label><button class="flag" type="button" data-flag="gender" data-flag-value="non-binary-people" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-                <span class="choice"><label class="chip"><input type="checkbox" name="gender" value="prefer-not-to-say"><span class="chip__label">Prefer not to say</span></label><button class="flag" type="button" data-flag="gender" data-flag-value="prefer-not-to-say" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-                <span class="choice"><label class="chip"><input type="checkbox" name="gender" value="any" checked><span class="chip__label">Any</span></label></span>
-              </div>
-              <div class="field-hint">Pick all that apply, or "Any".</div>
-              <div class="importance" role="radiogroup" aria-label="how much this matters">
-                <span class="importance__label">How much does this matter?</span>
-                <label class="importance"><input type="radio" name="gender-imp" value="1"><span class="importance__dot">1</span></label>
-                <label class="importance"><input type="radio" name="gender-imp" value="2"><span class="importance__dot">2</span></label>
-                <label class="importance"><input type="radio" name="gender-imp" value="3" checked><span class="importance__dot">3</span></label>
-                <label class="importance"><input type="radio" name="gender-imp" value="4"><span class="importance__dot">4</span></label>
-                <label class="importance"><input type="radio" name="gender-imp" value="5"><span class="importance__dot">5</span></label>
-              </div>
-            </div>
-          </div>
+          <div id="questionnaire-items"></div>
 
-          <!-- Q2 your age — About you (numeric, required) [owner steer I] -->
-          <div class="field-group" data-question="your-age" data-axis="you">
-            <span class="axis__tag axis__tag--you">&#128101; About you</span>
-            <span class="field-label">2. Your age</span>
-            <input type="number" id="your-age" name="your-age" min="18" max="99" required inputmode="numeric" aria-label="your age in years">
-            <div class="field-hint">Your own age in years (18&ndash;99).</div>
-          </div>
-
-          <!-- Q3 height — BOTH -->
-          <div class="field-group" data-question="height" data-axis="both">
-            <span class="field-label">3. Height</span>
-            <div class="axis-side axis-side--you" data-axis="you">
-              <span class="axis__tag axis__tag--you">&#128101; About you</span>
-              <div class="chip-row">
-                <label class="chip"><input type="radio" name="height-you" value="lt160"><span class="chip__label">Under 160 cm</span></label>
-                <label class="chip"><input type="radio" name="height-you" value="160-170"><span class="chip__label">160&ndash;170 cm</span></label>
-                <label class="chip"><input type="radio" name="height-you" value="171-180"><span class="chip__label">171&ndash;180 cm</span></label>
-                <label class="chip"><input type="radio" name="height-you" value="181-190"><span class="chip__label">181&ndash;190 cm</span></label>
-                <label class="chip"><input type="radio" name="height-you" value="gt190"><span class="chip__label">Over 190 cm</span></label>
-                <label class="chip"><input type="radio" name="height-you" value="prefer-not-to-say" checked><span class="chip__label">Prefer not to say</span></label>
-              </div>
-            </div>
-            <div class="axis-side axis-side--seek" data-axis="seek">
-              <span class="axis__tag axis__tag--seek">&#127919; Looking for</span>
-              <div class="range-minmax">
-                <input type="number" id="height-min" name="height-min" min="120" max="250" inputmode="numeric" placeholder="e.g. 165" aria-label="minimum height in centimetres">
-                <span class="muted">to</span>
-                <input type="number" id="height-max" name="height-max" min="120" max="250" inputmode="numeric" placeholder="e.g. 190" aria-label="maximum height in centimetres">
-                <span class="muted">(cm)</span>
-                <button class="flag flag--item" type="button" data-flag="height" data-flag-value="strict" aria-pressed="false" title="Red flag — anyone outside this height range never matches. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">outside range = never</span></button>
-              </div>
-              <div class="field-hint" data-hint-for="height" data-default-text="Free-form range in cm (120&ndash;250). Leave both empty for any height; leave one empty for an open end. Min must not exceed max.">Free-form range in cm (120&ndash;250). Leave both empty for any height; leave one empty for an open end. Min must not exceed max.</div>
-              <div class="importance" role="radiogroup" aria-label="how much height matters">
-                <span class="importance__label">How much does this matter?</span>
-                <label class="importance"><input type="radio" name="height-imp" value="1"><span class="importance__dot">1</span></label><label class="importance"><input type="radio" name="height-imp" value="2"><span class="importance__dot">2</span></label><label class="importance"><input type="radio" name="height-imp" value="3" checked><span class="importance__dot">3</span></label><label class="importance"><input type="radio" name="height-imp" value="4"><span class="importance__dot">4</span></label><label class="importance"><input type="radio" name="height-imp" value="5"><span class="importance__dot">5</span></label>
-              </div>
-            </div>
-          </div>
-
-          <!-- Q4 body type — BOTH -->
-          <div class="field-group" data-question="body-type" data-axis="both">
-            <span class="field-label">4. Body type</span>
-            <div class="axis-side axis-side--you" data-axis="you">
-              <span class="axis__tag axis__tag--you">&#128101; About you</span>
-              <div class="chip-row">
-                <label class="chip"><input type="radio" name="body-type-you" value="slim"><span class="chip__label">Slim</span></label><label class="chip"><input type="radio" name="body-type-you" value="average"><span class="chip__label">Average</span></label><label class="chip"><input type="radio" name="body-type-you" value="athletic"><span class="chip__label">Athletic</span></label><label class="chip"><input type="radio" name="body-type-you" value="fuller"><span class="chip__label">Fuller</span></label><label class="chip"><input type="radio" name="body-type-you" value="prefer-not-to-say" checked><span class="chip__label">Prefer not to say</span></label>
-              </div>
-            </div>
-            <div class="axis-side axis-side--seek" data-axis="seek">
-              <span class="axis__tag axis__tag--seek">&#127919; Looking for</span>
-              <div class="chip-row">
-                <span class="choice"><label class="chip"><input type="checkbox" name="body-type" value="slim"><span class="chip__label">Slim</span></label><button class="flag" type="button" data-flag="body-type" data-flag-value="slim" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-                <span class="choice"><label class="chip"><input type="checkbox" name="body-type" value="average"><span class="chip__label">Average</span></label><button class="flag" type="button" data-flag="body-type" data-flag-value="average" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-                <span class="choice"><label class="chip"><input type="checkbox" name="body-type" value="athletic" checked><span class="chip__label">Athletic</span></label><button class="flag" type="button" data-flag="body-type" data-flag-value="athletic" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-                <span class="choice"><label class="chip"><input type="checkbox" name="body-type" value="fuller"><span class="chip__label">Fuller</span></label><button class="flag" type="button" data-flag="body-type" data-flag-value="fuller" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-                <span class="choice"><label class="chip"><input type="checkbox" name="body-type" value="prefer-not-to-say"><span class="chip__label">Prefer not to say</span></label><button class="flag" type="button" data-flag="body-type" data-flag-value="prefer-not-to-say" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-              </div>
-              <div class="importance" role="radiogroup" aria-label="how much body type matters">
-                <span class="importance__label">How much does this matter?</span>
-                <label class="importance"><input type="radio" name="body-type-imp" value="1"><span class="importance__dot">1</span></label><label class="importance"><input type="radio" name="body-type-imp" value="2"><span class="importance__dot">2</span></label><label class="importance"><input type="radio" name="body-type-imp" value="3" checked><span class="importance__dot">3</span></label><label class="importance"><input type="radio" name="body-type-imp" value="4"><span class="importance__dot">4</span></label><label class="importance"><input type="radio" name="body-type-imp" value="5"><span class="importance__dot">5</span></label>
-              </div>
-            </div>
-          </div>
-
-          <!-- Q4 relationship goal — BOTH -->
-          <div class="field-group" data-question="goal" data-axis="both">
-            <span class="field-label">5. Relationship goal</span>
-            <div class="axis-side axis-side--you" data-axis="you">
-              <span class="axis__tag axis__tag--you">&#128101; About you</span>
-              <div class="chip-row">
-                <label class="chip"><input type="radio" name="goal-you" value="long-term" checked><span class="chip__label">Long-term</span></label>
-                <label class="chip"><input type="radio" name="goal-you" value="marriage-oriented"><span class="chip__label">Marriage</span></label>
-                <label class="chip"><input type="radio" name="goal-you" value="open"><span class="chip__label">Open</span></label>
-                <label class="chip"><input type="radio" name="goal-you" value="casual"><span class="chip__label">Casual</span></label>
-                <label class="chip"><input type="radio" name="goal-you" value="undecided"><span class="chip__label">Not sure yet</span></label>
-              </div>
-            </div>
-            <div class="axis-side axis-side--seek" data-axis="seek">
-              <span class="axis__tag axis__tag--seek">&#127919; Looking for</span>
-              <div class="chip-row">
-                <span class="choice"><label class="chip"><input type="radio" name="goal" value="long-term" checked><span class="chip__label">Long-term</span></label><button class="flag" type="button" data-flag="goal" data-flag-value="long-term" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-                <span class="choice"><label class="chip"><input type="radio" name="goal" value="marriage-oriented"><span class="chip__label">Marriage</span></label><button class="flag" type="button" data-flag="goal" data-flag-value="marriage-oriented" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-                <span class="choice"><label class="chip"><input type="radio" name="goal" value="open"><span class="chip__label">Open</span></label><button class="flag" type="button" data-flag="goal" data-flag-value="open" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-                <span class="choice"><label class="chip"><input type="radio" name="goal" value="casual"><span class="chip__label">Casual</span></label><button class="flag" type="button" data-flag="goal" data-flag-value="casual" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-                <span class="choice"><label class="chip"><input type="radio" name="goal" value="undecided"><span class="chip__label">Not sure yet</span></label><button class="flag" type="button" data-flag="goal" data-flag-value="undecided" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-              </div>
-              <div class="importance" role="radiogroup" aria-label="how much this matters">
-                <span class="importance__label">How much does this matter?</span>
-                <label class="importance"><input type="radio" name="goal-imp" value="1"><span class="importance__dot">1</span></label>
-                <label class="importance"><input type="radio" name="goal-imp" value="2"><span class="importance__dot">2</span></label>
-                <label class="importance"><input type="radio" name="goal-imp" value="3"><span class="importance__dot">3</span></label>
-                <label class="importance"><input type="radio" name="goal-imp" value="4"><span class="importance__dot">4</span></label>
-                <label class="importance"><input type="radio" name="goal-imp" value="5" checked><span class="importance__dot">5</span></label>
-              </div>
-            </div>
-          </div>
-
-          <!-- Q5 children — BOTH, CONDITIONAL (shown when seek-goal != casual/undecided) -->
-          <div class="field-group conditional-q" id="q2-wrap" data-question="children" data-axis="both" data-conditional="goal" data-show-unless="casual,undecided">
-            <span class="field-label">6. Kids</span>
-            <div class="axis-side axis-side--you" data-axis="you">
-              <span class="axis__tag axis__tag--you">&#128101; About you</span>
-              <div class="chip-row">
-                <label class="chip"><input type="radio" name="children-you" value="yes" checked><span class="chip__label">Want kids</span></label>
-                <label class="chip"><input type="radio" name="children-you" value="no"><span class="chip__label">Don't want</span></label>
-                <label class="chip"><input type="radio" name="children-you" value="open"><span class="chip__label">Open</span></label>
-                <label class="chip"><input type="radio" name="children-you" value="already-have"><span class="chip__label">Already have</span></label>
-              </div>
-            </div>
-            <div class="axis-side axis-side--seek" data-axis="seek">
-              <span class="axis__tag axis__tag--seek">&#127919; Looking for</span>
-              <div class="chip-row">
-                <span class="choice"><label class="chip"><input type="radio" name="children" value="yes" checked><span class="chip__label">Wants kids</span></label><button class="flag" type="button" data-flag="children" data-flag-value="yes" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-                <span class="choice"><label class="chip"><input type="radio" name="children" value="no"><span class="chip__label">Doesn't want kids</span></label><button class="flag" type="button" data-flag="children" data-flag-value="no" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-                <span class="choice"><label class="chip"><input type="radio" name="children" value="open"><span class="chip__label">Open</span></label><button class="flag" type="button" data-flag="children" data-flag-value="open" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-                <span class="choice"><label class="chip"><input type="radio" name="children" value="already-have"><span class="chip__label">Already have</span></label><button class="flag" type="button" data-flag="children" data-flag-value="already-have" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-              </div>
-              <div class="importance" role="radiogroup" aria-label="how much kids matter">
-                <span class="importance__label">How much does this matter?</span>
-                <label class="importance"><input type="radio" name="children-imp" value="1"><span class="importance__dot">1</span></label>
-                <label class="importance"><input type="radio" name="children-imp" value="2"><span class="importance__dot">2</span></label>
-                <label class="importance"><input type="radio" name="children-imp" value="3"><span class="importance__dot">3</span></label>
-                <label class="importance"><input type="radio" name="children-imp" value="4" checked><span class="importance__dot">4</span></label>
-                <label class="importance"><input type="radio" name="children-imp" value="5"><span class="importance__dot">5</span></label>
-              </div>
-            </div>
-            <div class="field-hint">This one shows because of your "Looking for" goal above.</div>
-          </div>
-
-          <!-- Q6 monogamy — BOTH -->
-          <div class="field-group" data-question="monogamy" data-axis="both">
-            <span class="field-label">7. Monogamy</span>
-            <div class="axis-side axis-side--you" data-axis="you">
-              <span class="axis__tag axis__tag--you">&#128101; About you</span>
-              <div class="chip-row">
-                <label class="chip"><input type="radio" name="monogamy-you" value="strictly" checked><span class="chip__label">Strictly</span></label>
-                <label class="chip"><input type="radio" name="monogamy-you" value="open-relationship"><span class="chip__label">Open to open</span></label>
-                <label class="chip"><input type="radio" name="monogamy-you" value="undecided"><span class="chip__label">Not sure</span></label>
-              </div>
-            </div>
-            <div class="axis-side axis-side--seek" data-axis="seek">
-              <span class="axis__tag axis__tag--seek">&#127919; Looking for</span>
-              <div class="chip-row">
-                <span class="choice"><label class="chip"><input type="radio" name="monogamy" value="strictly" checked><span class="chip__label">Strictly</span></label><button class="flag" type="button" data-flag="monogamy" data-flag-value="strictly" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-                <span class="choice"><label class="chip"><input type="radio" name="monogamy" value="open-relationship"><span class="chip__label">Open to open</span></label><button class="flag" type="button" data-flag="monogamy" data-flag-value="open-relationship" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-                <span class="choice"><label class="chip"><input type="radio" name="monogamy" value="undecided"><span class="chip__label">Not sure</span></label><button class="flag" type="button" data-flag="monogamy" data-flag-value="undecided" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-              </div>
-              <div class="importance" role="radiogroup" aria-label="how much monogamy matters">
-                <span class="importance__label">How much does this matter?</span>
-                <label class="importance"><input type="radio" name="monogamy-imp" value="1"><span class="importance__dot">1</span></label>
-                <label class="importance"><input type="radio" name="monogamy-imp" value="2"><span class="importance__dot">2</span></label>
-                <label class="importance"><input type="radio" name="monogamy-imp" value="3"><span class="importance__dot">3</span></label>
-                <label class="importance"><input type="radio" name="monogamy-imp" value="4"><span class="importance__dot">4</span></label>
-                <label class="importance"><input type="radio" name="monogamy-imp" value="5" checked><span class="importance__dot">5</span></label>
-              </div>
-            </div>
-          </div>
-
-          <!-- Q7 smoking — BOTH -->
-          <div class="field-group" data-question="smoking" data-axis="both">
-            <span class="field-label">8. Smoking</span>
-            <div class="axis-side axis-side--you" data-axis="you">
-              <span class="axis__tag axis__tag--you">&#128101; About you</span>
-              <div class="chip-row">
-                <label class="chip"><input type="radio" name="smoking-you" value="never" checked><span class="chip__label">Never</span></label>
-                <label class="chip"><input type="radio" name="smoking-you" value="socially"><span class="chip__label">Sometimes</span></label>
-                <label class="chip"><input type="radio" name="smoking-you" value="regularly"><span class="chip__label">Regularly</span></label>
-              </div>
-            </div>
-            <div class="axis-side axis-side--seek" data-axis="seek">
-              <span class="axis__tag axis__tag--seek">&#127919; Looking for</span>
-              <div class="chip-row">
-                <span class="choice"><label class="chip"><input type="radio" name="smoking" value="never" checked><span class="chip__label">Never</span></label><button class="flag" type="button" data-flag="smoking" data-flag-value="never" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-                <span class="choice"><label class="chip"><input type="radio" name="smoking" value="socially"><span class="chip__label">Sometimes</span></label><button class="flag" type="button" data-flag="smoking" data-flag-value="socially" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-                <span class="choice"><label class="chip"><input type="radio" name="smoking" value="regularly"><span class="chip__label">Regularly</span></label><button class="flag" type="button" data-flag="smoking" data-flag-value="regularly" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-              </div>
-              <div class="importance" role="radiogroup" aria-label="how much smoking matters">
-                <span class="importance__label">How much does this matter?</span>
-                <label class="importance"><input type="radio" name="smoking-imp" value="1"><span class="importance__dot">1</span></label>
-                <label class="importance"><input type="radio" name="smoking-imp" value="2"><span class="importance__dot">2</span></label>
-                <label class="importance"><input type="radio" name="smoking-imp" value="3"><span class="importance__dot">3</span></label>
-                <label class="importance"><input type="radio" name="smoking-imp" value="4" checked><span class="importance__dot">4</span></label>
-                <label class="importance"><input type="radio" name="smoking-imp" value="5"><span class="importance__dot">5</span></label>
-              </div>
-            </div>
-          </div>
-
-          <!-- Q8 religion — BOTH -->
-          <div class="field-group" data-question="religion" data-axis="both">
-            <span class="field-label">9. Religion</span>
-            <div class="axis-side axis-side--you" data-axis="you">
-              <span class="axis__tag axis__tag--you">&#128101; About you</span>
-              <div class="chip-row">
-                <label class="chip"><input type="radio" name="religion-you" value="none" checked><span class="chip__label">None</span></label>
-                <label class="chip"><input type="radio" name="religion-you" value="christian"><span class="chip__label">Christian</span></label>
-                <label class="chip"><input type="radio" name="religion-you" value="muslim"><span class="chip__label">Muslim</span></label>
-                <label class="chip"><input type="radio" name="religion-you" value="jewish"><span class="chip__label">Jewish</span></label>
-                <label class="chip"><input type="radio" name="religion-you" value="hindu"><span class="chip__label">Hindu</span></label>
-                <label class="chip"><input type="radio" name="religion-you" value="other"><span class="chip__label">Other</span></label>
-              </div>
-            </div>
-            <div class="axis-side axis-side--seek" data-axis="seek">
-              <span class="axis__tag axis__tag--seek">&#127919; Looking for</span>
-              <div class="chip-row">
-                <span class="choice"><label class="chip"><input type="radio" name="religion" value="none" checked><span class="chip__label">None</span></label><button class="flag" type="button" data-flag="religion" data-flag-value="none" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-                <span class="choice"><label class="chip"><input type="radio" name="religion" value="christian"><span class="chip__label">Christian</span></label><button class="flag" type="button" data-flag="religion" data-flag-value="christian" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-                <span class="choice"><label class="chip"><input type="radio" name="religion" value="muslim"><span class="chip__label">Muslim</span></label><button class="flag" type="button" data-flag="religion" data-flag-value="muslim" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-                <span class="choice"><label class="chip"><input type="radio" name="religion" value="jewish"><span class="chip__label">Jewish</span></label><button class="flag" type="button" data-flag="religion" data-flag-value="jewish" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-                <span class="choice"><label class="chip"><input type="radio" name="religion" value="hindu"><span class="chip__label">Hindu</span></label><button class="flag" type="button" data-flag="religion" data-flag-value="hindu" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-                <span class="choice"><label class="chip"><input type="radio" name="religion" value="other"><span class="chip__label">Other</span></label><button class="flag" type="button" data-flag="religion" data-flag-value="other" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-              </div>
-              <div class="importance" role="radiogroup" aria-label="how much religion matters">
-                <span class="importance__label">How much does this matter?</span>
-                <label class="importance"><input type="radio" name="religion-imp" value="1"><span class="importance__dot">1</span></label>
-                <label class="importance"><input type="radio" name="religion-imp" value="2"><span class="importance__dot">2</span></label>
-                <label class="importance"><input type="radio" name="religion-imp" value="3" checked><span class="importance__dot">3</span></label>
-                <label class="importance"><input type="radio" name="religion-imp" value="4"><span class="importance__dot">4</span></label>
-                <label class="importance"><input type="radio" name="religion-imp" value="5"><span class="importance__dot">5</span></label>
-              </div>
-            </div>
-          </div>
-
-          <!-- Q9 distance — Looking for -->
-          <div class="field-group" data-question="distance" data-axis="seek">
-            <span class="axis__tag axis__tag--seek">&#127919; Looking for</span>
-            <span class="field-label">10. How far is OK?</span>
-            <div class="chip-row">
-              <span class="choice"><label class="chip"><input type="radio" name="distance" value="lt15km"><span class="chip__label">&lt; 15 km</span></label><button class="flag" type="button" data-flag="distance" data-flag-value="lt15km" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-              <span class="choice"><label class="chip"><input type="radio" name="distance" value="city" checked><span class="chip__label">Same city</span></label><button class="flag" type="button" data-flag="distance" data-flag-value="city" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-              <span class="choice"><label class="chip"><input type="radio" name="distance" value="regional"><span class="chip__label">Regional</span></label><button class="flag" type="button" data-flag="distance" data-flag-value="regional" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-              <span class="choice"><label class="chip"><input type="radio" name="distance" value="long-distance"><span class="chip__label">Far is fine</span></label><button class="flag" type="button" data-flag="distance" data-flag-value="long-distance" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-            </div>
-            <div class="importance" role="radiogroup" aria-label="how much distance matters">
-              <span class="importance__label">How much does this matter?</span>
-              <label class="importance"><input type="radio" name="distance-imp" value="1"><span class="importance__dot">1</span></label>
-              <label class="importance"><input type="radio" name="distance-imp" value="2" checked><span class="importance__dot">2</span></label>
-              <label class="importance"><input type="radio" name="distance-imp" value="3"><span class="importance__dot">3</span></label>
-              <label class="importance"><input type="radio" name="distance-imp" value="4"><span class="importance__dot">4</span></label>
-              <label class="importance"><input type="radio" name="distance-imp" value="5"><span class="importance__dot">5</span></label>
-            </div>
-          </div>
-
-          <!-- Q10 age range — Looking for -->
-          <div class="field-group" data-question="age" data-axis="seek">
-            <span class="axis__tag axis__tag--seek">&#127919; Looking for</span>
-            <span class="field-label">11. Age range</span>
-            <div class="range-minmax">
-              <input type="number" id="age-min" name="age-min" min="18" max="99" value="27" aria-label="minimum age">
-              <span class="muted">to</span>
-              <input type="number" id="age-max" name="age-max" min="18" max="99" value="38" aria-label="maximum age">
-              <button class="flag flag--item" type="button" data-flag="age" data-flag-value="strict" aria-pressed="false" title="Red flag — anyone outside this age range never matches. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">outside range = never</span></button>
-            </div>
-            <div class="importance" role="radiogroup" aria-label="how much age matters">
-              <span class="importance__label">How much does this matter?</span>
-              <label class="importance"><input type="radio" name="age-imp" value="1"><span class="importance__dot">1</span></label>
-              <label class="importance"><input type="radio" name="age-imp" value="2"><span class="importance__dot">2</span></label>
-              <label class="importance"><input type="radio" name="age-imp" value="3" checked><span class="importance__dot">3</span></label>
-              <label class="importance"><input type="radio" name="age-imp" value="4"><span class="importance__dot">4</span></label>
-              <label class="importance"><input type="radio" name="age-imp" value="5"><span class="importance__dot">5</span></label>
-            </div>
-          </div>
-
-          <!-- Q12 living — BOTH (owner steer H) -->
-          <div class="field-group" data-question="living" data-axis="both">
-            <span class="field-label">12. Where do you live?</span>
-            <div class="axis-side axis-side--you" data-axis="you">
-              <span class="axis__tag axis__tag--you">&#128101; About you</span>
-              <div class="chip-row">
-                <label class="chip"><input type="radio" name="living-you" value="alone" checked><span class="chip__label">Alone</span></label>
-                <label class="chip"><input type="radio" name="living-you" value="flatmates"><span class="chip__label">Flatmates</span></label>
-                <label class="chip"><input type="radio" name="living-you" value="family"><span class="chip__label">Family</span></label>
-                <label class="chip"><input type="radio" name="living-you" value="other"><span class="chip__label">Other</span></label>
-              </div>
-            </div>
-            <div class="axis-side axis-side--seek" data-axis="seek">
-              <span class="axis__tag axis__tag--seek">&#127919; Looking for</span>
-              <div class="chip-row">
-                <span class="choice"><label class="chip"><input type="checkbox" name="living" value="alone" checked><span class="chip__label">Alone</span></label><button class="flag" type="button" data-flag="living" data-flag-value="alone" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-                <span class="choice"><label class="chip"><input type="checkbox" name="living" value="flatmates"><span class="chip__label">Flatmates</span></label><button class="flag" type="button" data-flag="living" data-flag-value="flatmates" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-                <span class="choice"><label class="chip"><input type="checkbox" name="living" value="family"><span class="chip__label">Family</span></label><button class="flag" type="button" data-flag="living" data-flag-value="family" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-                <span class="choice"><label class="chip"><input type="checkbox" name="living" value="other"><span class="chip__label">Other</span></label><button class="flag" type="button" data-flag="living" data-flag-value="other" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-              </div>
-              <div class="importance" role="radiogroup" aria-label="how much living matters">
-                <span class="importance__label">How much does this matter?</span>
-                <label class="importance"><input type="radio" name="living-imp" value="1"><span class="importance__dot">1</span></label>
-                <label class="importance"><input type="radio" name="living-imp" value="2"><span class="importance__dot">2</span></label>
-                <label class="importance"><input type="radio" name="living-imp" value="3" checked><span class="importance__dot">3</span></label>
-                <label class="importance"><input type="radio" name="living-imp" value="4"><span class="importance__dot">4</span></label>
-                <label class="importance"><input type="radio" name="living-imp" value="5"><span class="importance__dot">5</span></label>
-              </div>
-            </div>
-          </div>
-
-          <!-- Q13 work rhythm — BOTH (owner steer H) -->
-          <div class="field-group" data-question="work" data-axis="both">
-            <span class="field-label">13. Work rhythm</span>
-            <div class="axis-side axis-side--you" data-axis="you">
-              <span class="axis__tag axis__tag--you">&#128101; About you</span>
-              <div class="chip-row">
-                <label class="chip"><input type="radio" name="work-you" value="9to5"><span class="chip__label">9&ndash;5</span></label>
-                <label class="chip"><input type="radio" name="work-you" value="flexible" checked><span class="chip__label">Flexible</span></label>
-                <label class="chip"><input type="radio" name="work-you" value="irregular"><span class="chip__label">Irregular</span></label>
-                <label class="chip"><input type="radio" name="work-you" value="shift"><span class="chip__label">Shifts</span></label>
-              </div>
-            </div>
-            <div class="axis-side axis-side--seek" data-axis="seek">
-              <span class="axis__tag axis__tag--seek">&#127919; Looking for</span>
-              <div class="chip-row">
-                <span class="choice"><label class="chip"><input type="checkbox" name="work" value="9to5"><span class="chip__label">9&ndash;5</span></label><button class="flag" type="button" data-flag="work" data-flag-value="9to5" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-                <span class="choice"><label class="chip"><input type="checkbox" name="work" value="flexible" checked><span class="chip__label">Flexible</span></label><button class="flag" type="button" data-flag="work" data-flag-value="flexible" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-                <span class="choice"><label class="chip"><input type="checkbox" name="work" value="irregular"><span class="chip__label">Irregular</span></label><button class="flag" type="button" data-flag="work" data-flag-value="irregular" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-                <span class="choice"><label class="chip"><input type="checkbox" name="work" value="shift"><span class="chip__label">Shifts</span></label><button class="flag" type="button" data-flag="work" data-flag-value="shift" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-              </div>
-              <div class="importance" role="radiogroup" aria-label="how much work matters">
-                <span class="importance__label">How much does this matter?</span>
-                <label class="importance"><input type="radio" name="work-imp" value="1"><span class="importance__dot">1</span></label>
-                <label class="importance"><input type="radio" name="work-imp" value="2"><span class="importance__dot">2</span></label>
-                <label class="importance"><input type="radio" name="work-imp" value="3" checked><span class="importance__dot">3</span></label>
-                <label class="importance"><input type="radio" name="work-imp" value="4"><span class="importance__dot">4</span></label>
-                <label class="importance"><input type="radio" name="work-imp" value="5"><span class="importance__dot">5</span></label>
-              </div>
-            </div>
-          </div>
-
-          <!-- Q13 pets — BOTH -->
-          <div class="field-group" data-question="pets" data-axis="both">
-            <span class="field-label">14. Pets</span>
-            <div class="axis-side axis-side--you" data-axis="you">
-              <span class="axis__tag axis__tag--you">&#128101; About you</span>
-              <div class="chip-row">
-                <label class="chip"><input type="radio" name="pets-you" value="love" checked><span class="chip__label">Love them</span></label>
-                <label class="chip"><input type="radio" name="pets-you" value="tolerate"><span class="chip__label">Tolerate</span></label>
-                <label class="chip"><input type="radio" name="pets-you" value="allergic"><span class="chip__label">Allergic</span></label>
-                <label class="chip"><input type="radio" name="pets-you" value="none"><span class="chip__label">None</span></label>
-              </div>
-            </div>
-            <div class="axis-side axis-side--seek" data-axis="seek">
-              <span class="axis__tag axis__tag--seek">&#127919; Looking for</span>
-              <div class="chip-row">
-                                <span class="choice"><label class="chip"><input type="radio" name="pets" value="must-love" checked><span class="chip__label">Must love them</span></label><button class="flag" type="button" data-flag="pets" data-flag-value="must-love" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-                <span class="choice"><label class="chip"><input type="radio" name="pets" value="pets-ok"><span class="chip__label">Pets ok</span></label><button class="flag" type="button" data-flag="pets" data-flag-value="pets-ok" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-                <span class="choice"><label class="chip"><input type="radio" name="pets" value="no-pets"><span class="chip__label">No pets</span></label><button class="flag" type="button" data-flag="pets" data-flag-value="no-pets" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-                <span class="choice"><label class="chip"><input type="radio" name="pets" value="doesnt-matter"><span class="chip__label">Doesn't matter</span></label><button class="flag" type="button" data-flag="pets" data-flag-value="doesnt-matter" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-              </div>
-              <div class="importance" role="radiogroup" aria-label="how much pets matter">
-                <span class="importance__label">How much does this matter?</span>
-                <label class="importance"><input type="radio" name="pets-imp" value="1"><span class="importance__dot">1</span></label>
-                <label class="importance"><input type="radio" name="pets-imp" value="2" checked><span class="importance__dot">2</span></label>
-                <label class="importance"><input type="radio" name="pets-imp" value="3"><span class="importance__dot">3</span></label>
-                <label class="importance"><input type="radio" name="pets-imp" value="4"><span class="importance__dot">4</span></label>
-                <label class="importance"><input type="radio" name="pets-imp" value="5"><span class="importance__dot">5</span></label>
-              </div>
-            </div>
-          </div>
-
-          <!-- Q14 politics — BOTH -->
-          <div class="field-group" data-question="politics" data-axis="both">
-            <span class="field-label">15. Politics &mdash; rough direction</span>
-            <div class="axis-side axis-side--you" data-axis="you">
-              <span class="axis__tag axis__tag--you">&#128101; About you</span>
-              <div class="chip-row">
-                <label class="chip"><input type="radio" name="politics-you" value="liberal" checked><span class="chip__label">Liberal</span></label>
-                <label class="chip"><input type="radio" name="politics-you" value="conservative"><span class="chip__label">Conservative</span></label>
-                <label class="chip"><input type="radio" name="politics-you" value="center"><span class="chip__label">Center</span></label>
-                <label class="chip"><input type="radio" name="politics-you" value="apolitical"><span class="chip__label">Not into it</span></label>
-              </div>
-            </div>
-            <div class="axis-side axis-side--seek" data-axis="seek">
-              <span class="axis__tag axis__tag--seek">&#127919; Looking for</span>
-              <div class="chip-row">
-                <span class="choice"><label class="chip"><input type="radio" name="politics" value="liberal" checked><span class="chip__label">Liberal</span></label><button class="flag" type="button" data-flag="politics" data-flag-value="liberal" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-                <span class="choice"><label class="chip"><input type="radio" name="politics" value="conservative"><span class="chip__label">Conservative</span></label><button class="flag" type="button" data-flag="politics" data-flag-value="conservative" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-                <span class="choice"><label class="chip"><input type="radio" name="politics" value="center"><span class="chip__label">Center</span></label><button class="flag" type="button" data-flag="politics" data-flag-value="center" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-                <span class="choice"><label class="chip"><input type="radio" name="politics" value="apolitical"><span class="chip__label">Not into it</span></label><button class="flag" type="button" data-flag="politics" data-flag-value="apolitical" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-              </div>
-              <div class="importance" role="radiogroup" aria-label="how much politics matters">
-                <span class="importance__label">How much does this matter?</span>
-                <label class="importance"><input type="radio" name="politics-imp" value="1"><span class="importance__dot">1</span></label>
-                <label class="importance"><input type="radio" name="politics-imp" value="2"><span class="importance__dot">2</span></label>
-                <label class="importance"><input type="radio" name="politics-imp" value="3" checked><span class="importance__dot">3</span></label>
-                <label class="importance"><input type="radio" name="politics-imp" value="4"><span class="importance__dot">4</span></label>
-                <label class="importance"><input type="radio" name="politics-imp" value="5"><span class="importance__dot">5</span></label>
-              </div>
-            </div>
-          </div>
-
-          <!-- Q15 freetime — About you -->
-          <div class="field-group" data-question="freetime" data-axis="you">
-            <span class="axis__tag axis__tag--you">&#128101; About you</span>
-            <span class="field-label">16. Free-time style</span>
-            <div class="chip-row">
-              <label class="chip"><input type="radio" name="freetime" value="homebody"><span class="chip__label">Homebody</span></label>
-              <label class="chip"><input type="radio" name="freetime" value="active-outdoors" checked><span class="chip__label">Active outdoors</span></label>
-              <label class="chip"><input type="radio" name="freetime" value="city-culture"><span class="chip__label">City culture</span></label>
-              <label class="chip"><input type="radio" name="freetime" value="travel"><span class="chip__label">Travel</span></label>
-              <label class="chip"><input type="radio" name="freetime" value="mixed"><span class="chip__label">A bit of everything</span></label>
-            </div>
-          </div>
         </details>
 
         <!-- Optional tiers (opt-in at creation, addable anytime; also ladder rung 2) -->
@@ -1276,6 +847,456 @@
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+<script type="application/json" id="questionnaire-data">
+{
+  "_editingGuide": {
+    "purpose": "This file is the single master for the questionnaire the UI prototype renders. It is the literal input: every question, every answer option, and their order lives here and nowhere else. Edit this file, reload the page, done.",
+    "how_order_works": "Question numbers (1..N) are derived automatically from the order of the entries in the items array. To reorder questions, move whole item objects up or down in items. To add a question, append a new item object. To remove one, delete its item object. Do not hand-number anything.",
+    "how_to_add_an_item": "Copy any existing item object, change id (must be unique) and label, then edit you/seek options. Required fields per item: id, label, axis. An item with axis \"you\" or \"both\" needs a you object; axis \"seek\" or \"both\" needs a seek object.",
+    "fields": {
+      "id": "Stable identifier, also used as the HTML name attribute. Never rename an existing id once real users have answered into it.",
+      "label": "Human text shown next to the question number.",
+      "axis": "one of you (About you only), seek (Looking for only), both (symmetric: shows both sides).",
+      "you": "About-you side. type radio (enum answer) or number (your age). options = list of value/label; the option with checked=true is the default. An option with checked omitted defaults to unchecked.",
+      "seek": "Looking-for side. type radio (one choice), multi (several choices), or range (free-form min/max numbers). importance=true means it shows the 1-5 importance scale; importanceDefault is which dot is pre-selected. redflag=true means each option gets a private red-flag toggle. For type range, redflag renders a single outside-range flag.",
+      "conditional": "null for normal items, or {when, showUnless} for items that hide based on another answer. The item is hidden whenever the When answer's value is in showUnless. Currently only the Kids item is conditional on the Looking-for goal being casual or undecided.",
+      "hint": "Optional extra wording. On a you or seek side it renders right below that side; on the item itself it renders beneath the whole question."
+    },
+    "values_are_stable": "A value (for example woman, lt160, must-love) is a stable identifier. If you relabel an option (change label only), leave value unchanged so existing answers keep working. Change value only if you intend to break old answers.",
+    "relabel_rule": "To relabel, edit the label string only. Labels may contain unicode characters (en-dash -, em-dash -, less-than sign). Keep option values as plain letters/digits/hyphens."
+  },
+  "_validation": {
+    "age_bounds_18_99": "your-age and the age range keep min 18, max 99.",
+    "height_bounds_120_250": "the height range keeps min 120, max 250 (centimetres).",
+    "range_min_le_max": "For range items, min must not be greater than max. Empty bounds are allowed (open end). The UI checks this live.",
+    "cannot_flag_all": "A Looking-for item cannot be red-flagged on every option; at least one choice must stay un-flagged. The UI enforces this on click.",
+    "importance_1_to_5": "importanceDefault must be an integer from 1 to 5."
+  },
+  "items": [
+    {
+      "id": "gender",
+      "label": "Gender",
+      "axis": "both",
+      "you": {
+        "type": "radio",
+        "options": [
+          { "value": "woman", "label": "Woman" },
+          { "value": "man", "label": "Man" },
+          { "value": "non-binary", "label": "Non-binary" },
+          { "value": "prefer-not-to-say", "label": "Prefer not to say", "checked": true }
+        ]
+      },
+      "seek": {
+        "type": "multi",
+        "options": [
+          { "value": "women", "label": "Women" },
+          { "value": "men", "label": "Men" },
+          { "value": "non-binary-people", "label": "Non-binary people" },
+          { "value": "prefer-not-to-say", "label": "Prefer not to say" },
+          { "value": "any", "label": "Any", "checked": true, "redflag": false }
+        ],
+        "hint": "Pick all that apply, or \"Any\".",
+        "importance": true,
+        "importanceDefault": 3,
+        "importanceAriaLabel": "how much this matters",
+        "redflag": true
+      },
+      "conditional": null
+    },
+    {
+      "id": "your-age",
+      "label": "Your age",
+      "axis": "you",
+      "you": {
+        "type": "number",
+        "min": 18,
+        "max": 99,
+        "required": true,
+        "ariaLabel": "your age in years",
+        "hint": "Your own age in years (18\u201399)."
+      },
+      "conditional": null
+    },
+    {
+      "id": "height",
+      "label": "Height",
+      "axis": "both",
+      "you": {
+        "type": "radio",
+        "options": [
+          { "value": "lt160", "label": "Under 160 cm" },
+          { "value": "160-170", "label": "160\u2013170 cm" },
+          { "value": "171-180", "label": "171\u2013180 cm" },
+          { "value": "181-190", "label": "181\u2013190 cm" },
+          { "value": "gt190", "label": "Over 190 cm" },
+          { "value": "prefer-not-to-say", "label": "Prefer not to say", "checked": true }
+        ]
+      },
+      "seek": {
+        "type": "range",
+        "min": 120,
+        "max": 250,
+        "minDefault": null,
+        "maxDefault": null,
+        "minPlaceholder": "e.g. 165",
+        "maxPlaceholder": "e.g. 190",
+        "unit": "cm",
+        "minAriaLabel": "minimum height in centimetres",
+        "maxAriaLabel": "maximum height in centimetres",
+        "hint": "Free-form range in cm (120\u2013250). Leave both empty for any height; leave one empty for an open end. Min must not exceed max.",
+        "importance": true,
+        "importanceDefault": 3,
+        "importanceAriaLabel": "how much height matters",
+        "redflag": true,
+        "rangeFlagTitle": "Red flag \u2014 anyone outside this height range never matches. Private."
+      },
+      "conditional": null
+    },
+    {
+      "id": "body-type",
+      "label": "Body type",
+      "axis": "both",
+      "you": {
+        "type": "radio",
+        "options": [
+          { "value": "slim", "label": "Slim" },
+          { "value": "average", "label": "Average" },
+          { "value": "athletic", "label": "Athletic" },
+          { "value": "fuller", "label": "Fuller" },
+          { "value": "prefer-not-to-say", "label": "Prefer not to say", "checked": true }
+        ]
+      },
+      "seek": {
+        "type": "multi",
+        "options": [
+          { "value": "slim", "label": "Slim" },
+          { "value": "average", "label": "Average" },
+          { "value": "athletic", "label": "Athletic", "checked": true },
+          { "value": "fuller", "label": "Fuller" },
+          { "value": "prefer-not-to-say", "label": "Prefer not to say" }
+        ],
+        "importance": true,
+        "importanceDefault": 3,
+        "importanceAriaLabel": "how much body type matters",
+        "redflag": true
+      },
+      "conditional": null
+    },
+    {
+      "id": "goal",
+      "label": "Relationship goal",
+      "axis": "both",
+      "you": {
+        "type": "radio",
+        "options": [
+          { "value": "long-term", "label": "Long-term", "checked": true },
+          { "value": "marriage-oriented", "label": "Marriage" },
+          { "value": "open", "label": "Open" },
+          { "value": "casual", "label": "Casual" },
+          { "value": "undecided", "label": "Not sure yet" }
+        ]
+      },
+      "seek": {
+        "type": "radio",
+        "options": [
+          { "value": "long-term", "label": "Long-term", "checked": true },
+          { "value": "marriage-oriented", "label": "Marriage" },
+          { "value": "open", "label": "Open" },
+          { "value": "casual", "label": "Casual" },
+          { "value": "undecided", "label": "Not sure yet" }
+        ],
+        "importance": true,
+        "importanceDefault": 5,
+        "importanceAriaLabel": "how much this matters",
+        "redflag": true
+      },
+      "conditional": null
+    },
+    {
+      "id": "children",
+      "label": "Kids",
+      "axis": "both",
+      "you": {
+        "type": "radio",
+        "options": [
+          { "value": "yes", "label": "Want kids", "checked": true },
+          { "value": "no", "label": "Don't want" },
+          { "value": "open", "label": "Open" },
+          { "value": "already-have", "label": "Already have" }
+        ]
+      },
+      "seek": {
+        "type": "radio",
+        "options": [
+          { "value": "yes", "label": "Wants kids", "checked": true },
+          { "value": "no", "label": "Doesn't want kids" },
+          { "value": "open", "label": "Open" },
+          { "value": "already-have", "label": "Already have" }
+        ],
+        "importance": true,
+        "importanceDefault": 4,
+        "importanceAriaLabel": "how much kids matter",
+        "redflag": true
+      },
+      "hint": "This one shows because of your \"Looking for\" goal above.",
+      "conditional": { "when": "goal", "showUnless": ["casual", "undecided"] }
+    },
+    {
+      "id": "monogamy",
+      "label": "Monogamy",
+      "axis": "both",
+      "you": {
+        "type": "radio",
+        "options": [
+          { "value": "strictly", "label": "Strictly", "checked": true },
+          { "value": "open-relationship", "label": "Open to open" },
+          { "value": "undecided", "label": "Not sure" }
+        ]
+      },
+      "seek": {
+        "type": "radio",
+        "options": [
+          { "value": "strictly", "label": "Strictly", "checked": true },
+          { "value": "open-relationship", "label": "Open to open" },
+          { "value": "undecided", "label": "Not sure" }
+        ],
+        "importance": true,
+        "importanceDefault": 5,
+        "importanceAriaLabel": "how much monogamy matters",
+        "redflag": true
+      },
+      "conditional": null
+    },
+    {
+      "id": "smoking",
+      "label": "Smoking",
+      "axis": "both",
+      "you": {
+        "type": "radio",
+        "options": [
+          { "value": "never", "label": "Never", "checked": true },
+          { "value": "socially", "label": "Sometimes" },
+          { "value": "regularly", "label": "Regularly" }
+        ]
+      },
+      "seek": {
+        "type": "radio",
+        "options": [
+          { "value": "never", "label": "Never", "checked": true },
+          { "value": "socially", "label": "Sometimes" },
+          { "value": "regularly", "label": "Regularly" }
+        ],
+        "importance": true,
+        "importanceDefault": 4,
+        "importanceAriaLabel": "how much smoking matters",
+        "redflag": true
+      },
+      "conditional": null
+    },
+    {
+      "id": "religion",
+      "label": "Religion",
+      "axis": "both",
+      "you": {
+        "type": "radio",
+        "options": [
+          { "value": "none", "label": "None", "checked": true },
+          { "value": "christian", "label": "Christian" },
+          { "value": "muslim", "label": "Muslim" },
+          { "value": "jewish", "label": "Jewish" },
+          { "value": "hindu", "label": "Hindu" },
+          { "value": "other", "label": "Other" }
+        ]
+      },
+      "seek": {
+        "type": "radio",
+        "options": [
+          { "value": "none", "label": "None", "checked": true },
+          { "value": "christian", "label": "Christian" },
+          { "value": "muslim", "label": "Muslim" },
+          { "value": "jewish", "label": "Jewish" },
+          { "value": "hindu", "label": "Hindu" },
+          { "value": "other", "label": "Other" }
+        ],
+        "importance": true,
+        "importanceDefault": 3,
+        "importanceAriaLabel": "how much religion matters",
+        "redflag": true
+      },
+      "conditional": null
+    },
+    {
+      "id": "distance",
+      "label": "How far is OK?",
+      "axis": "seek",
+      "seek": {
+        "type": "radio",
+        "options": [
+          { "value": "lt15km", "label": "< 15 km" },
+          { "value": "city", "label": "Same city", "checked": true },
+          { "value": "regional", "label": "Regional" },
+          { "value": "long-distance", "label": "Far is fine" }
+        ],
+        "importance": true,
+        "importanceDefault": 2,
+        "importanceAriaLabel": "how much distance matters",
+        "redflag": true
+      },
+      "conditional": null
+    },
+    {
+      "id": "age",
+      "label": "Age range",
+      "axis": "seek",
+      "seek": {
+        "type": "range",
+        "min": 18,
+        "max": 99,
+        "minDefault": 27,
+        "maxDefault": 38,
+        "minAriaLabel": "minimum age",
+        "maxAriaLabel": "maximum age",
+        "importance": true,
+        "importanceDefault": 3,
+        "importanceAriaLabel": "how much age matters",
+        "redflag": true,
+        "rangeFlagTitle": "Red flag \u2014 anyone outside this age range never matches. Private."
+      },
+      "conditional": null
+    },
+    {
+      "id": "living",
+      "label": "Where do you live?",
+      "axis": "both",
+      "you": {
+        "type": "radio",
+        "options": [
+          { "value": "alone", "label": "Alone", "checked": true },
+          { "value": "flatmates", "label": "Flatmates" },
+          { "value": "family", "label": "Family" },
+          { "value": "other", "label": "Other" }
+        ]
+      },
+      "seek": {
+        "type": "multi",
+        "options": [
+          { "value": "alone", "label": "Alone", "checked": true },
+          { "value": "flatmates", "label": "Flatmates" },
+          { "value": "family", "label": "Family" },
+          { "value": "other", "label": "Other" }
+        ],
+        "importance": true,
+        "importanceDefault": 3,
+        "importanceAriaLabel": "how much living matters",
+        "redflag": true
+      },
+      "conditional": null
+    },
+    {
+      "id": "work",
+      "label": "Work rhythm",
+      "axis": "both",
+      "you": {
+        "type": "radio",
+        "options": [
+          { "value": "9to5", "label": "9\u20135" },
+          { "value": "flexible", "label": "Flexible", "checked": true },
+          { "value": "irregular", "label": "Irregular" },
+          { "value": "shift", "label": "Shifts" }
+        ]
+      },
+      "seek": {
+        "type": "multi",
+        "options": [
+          { "value": "9to5", "label": "9\u20135" },
+          { "value": "flexible", "label": "Flexible", "checked": true },
+          { "value": "irregular", "label": "Irregular" },
+          { "value": "shift", "label": "Shifts" }
+        ],
+        "importance": true,
+        "importanceDefault": 3,
+        "importanceAriaLabel": "how much work matters",
+        "redflag": true
+      },
+      "conditional": null
+    },
+    {
+      "id": "pets",
+      "label": "Pets",
+      "axis": "both",
+      "you": {
+        "type": "radio",
+        "options": [
+          { "value": "love", "label": "Love them", "checked": true },
+          { "value": "tolerate", "label": "Tolerate" },
+          { "value": "allergic", "label": "Allergic" },
+          { "value": "none", "label": "None" }
+        ]
+      },
+      "seek": {
+        "type": "radio",
+        "options": [
+          { "value": "must-love", "label": "Must love them", "checked": true },
+          { "value": "pets-ok", "label": "Pets ok" },
+          { "value": "no-pets", "label": "No pets" },
+          { "value": "doesnt-matter", "label": "Doesn't matter" }
+        ],
+        "importance": true,
+        "importanceDefault": 2,
+        "importanceAriaLabel": "how much pets matters",
+        "redflag": true
+      },
+      "conditional": null
+    },
+    {
+      "id": "politics",
+      "label": "Politics \u2014 rough direction",
+      "axis": "both",
+      "you": {
+        "type": "radio",
+        "options": [
+          { "value": "liberal", "label": "Liberal", "checked": true },
+          { "value": "conservative", "label": "Conservative" },
+          { "value": "center", "label": "Center" },
+          { "value": "apolitical", "label": "Not into it" }
+        ]
+      },
+      "seek": {
+        "type": "radio",
+        "options": [
+          { "value": "liberal", "label": "Liberal", "checked": true },
+          { "value": "conservative", "label": "Conservative" },
+          { "value": "center", "label": "Center" },
+          { "value": "apolitical", "label": "Not into it" }
+        ],
+        "importance": true,
+        "importanceDefault": 3,
+        "importanceAriaLabel": "how much politics matters",
+        "redflag": true
+      },
+      "conditional": null
+    },
+    {
+      "id": "freetime",
+      "label": "Free-time style",
+      "axis": "you",
+      "you": {
+        "type": "radio",
+        "options": [
+          { "value": "homebody", "label": "Homebody" },
+          { "value": "active-outdoors", "label": "Active outdoors", "checked": true },
+          { "value": "city-culture", "label": "City culture" },
+          { "value": "travel", "label": "Travel" },
+          { "value": "mixed", "label": "A bit of everything" }
+        ]
+      },
+      "conditional": null
+    }
+  ]
+}
+
+</script>
+<script src="questionnaire-render.js"></script>
 <script src="matching.js"></script>
 <script src="app.js"></script>
 </body>

@@ -114,23 +114,31 @@
     if (views[id]) show(id);
   });
 
-  /* ---- conditional Q2 (children) — shown iff Q1 not in {casual, undecided} */
-  var Q1_NAME = "goal";
-  var CHILDREN_UNAVAILABLE = ["casual", "undecided"];
-  var q2Wrap = document.getElementById("q2-wrap");
-
-  function updateConditionalQ2() {
-    var checked = document.querySelector('input[name="' + Q1_NAME + '"]:checked');
-    if (!checked) { q2Wrap.hidden = true; return; }
-    var hide = CHILDREN_UNAVAILABLE.indexOf(checked.value) !== -1;
-    q2Wrap.hidden = hide;
+  /* ---- conditional items (rendered from questionnaire.json) ------------- */
+  /* A conditional item hides whenever its `when` answer's value is in `showUnless`.
+     Registration reads the data from the JSON (not hardcoded), so reordering or
+     adding a conditional item in questionnaire.json keeps working. */
+  function registerConditionals(items) {
+    items.forEach(function (item) {
+      if (!item.conditional) return;
+      var wrap = document.querySelector('[data-question="' + item.id + '"]');
+      if (!wrap) return;
+      var showUnless = item.conditional.showUnless || [];
+      function update() {
+        var checked = document.querySelector('input[name="' + item.conditional.when + '"]:checked');
+        if (!checked) { wrap.hidden = true; return; }
+        wrap.hidden = showUnless.indexOf(checked.value) !== -1;
+      }
+      document.addEventListener("change", function (e) {
+        if (e.target && e.target.name === item.conditional.when) update();
+      });
+      update();
+    });
   }
 
   document.addEventListener("change", function (e) {
-    if (e.target && e.target.name === Q1_NAME) updateConditionalQ2();
     if (window.Matching) window.Matching.refresh();
   });
-  updateConditionalQ2();
 
   /* ---- red-flag toggles (slice 7c) — per-choice, private hard exclusions */
   function countFlagged(item) {
@@ -337,6 +345,18 @@
   document.addEventListener("click", function (e) {
     if (e.target.closest("#withdraw") || e.target.closest("#withdraw-safety")) withdrawConsent();
   });
+
+  /* ---- questionnaire rendering (slice 9) --------------------------------- */
+  /* index.html's questionnaire section is an empty render target. The items are
+     the data in questionnaire.json (embedded as a JSON script block). We parse it
+     and hand it to the pure renderer, then wire up conditional items. */
+  var qDataEl = document.getElementById("questionnaire-data");
+  var qRoot = document.getElementById("questionnaire-items");
+  if (qDataEl && qRoot && window.QuestionnaireRender) {
+    var QUESTIONNAIRE = JSON.parse(qDataEl.textContent);
+    qRoot.innerHTML = window.QuestionnaireRender.build(QUESTIONNAIRE.items);
+    registerConditionals(QUESTIONNAIRE.items);
+  }
 
   /* ---- boot --------------------------------------------------------------- */
   var start = (location.hash ? location.hash.replace("#v-", "") : "welcome");
