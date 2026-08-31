@@ -1,0 +1,1240 @@
+ <!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PARTNER-002 — UI prototype (slice 8)</title>
+  <meta name="description" content="Clickable UI prototype of the PARTNER-002 flow — synthetic only, no real data.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- Brand header -->
+  <header class="brand" aria-label="prototype header">
+    <a class="brand__link" href="#v-welcome" data-nav="welcome" aria-label="home">
+      <span class="brand__mark">P2</span>
+      <span class="brand__name">Partner&middot;002</span>
+    </a>
+    <div class="brand__spacer"></div>
+    <button class="btn btn--ghost btn--sm" id="theme-toggle" type="button" aria-label="toggle light/dark theme">&#9789; theme</button>
+    <span class="brand__demo">demo</span>
+  </header>
+
+  <!-- Persistent main nav (in-app) -->
+  <nav class="main-nav" aria-label="main navigation">
+    <a class="main-nav__item" href="#v-discover" data-nav="discover" data-nav-key="discover">Discover</a>
+    <a class="main-nav__item" href="#v-profile" data-nav="profile" data-nav-key="profile">Your profile</a>
+    <a class="main-nav__item" href="#v-matches" data-nav="matches" data-nav-key="matches">Matches</a>
+    <a class="main-nav__item" href="#v-safety" data-nav="safety" data-nav-key="safety">Safety</a>
+    <a class="main-nav__item" href="#v-legal" data-nav="legal" data-nav-key="legal">Before you join</a>
+  </nav>
+
+  <!-- Onboarding progress bar (visible only during onboarding) -->
+  <nav class="progress" id="progress" aria-label="onboarding progress"></nav>
+
+  <main>
+
+    <!-- ================================================================ -->
+    <!-- STEP 1/4 · WELCOME (onboarding)                                    -->
+    <!-- ================================================================ -->
+    <section class="view is-active" id="v-welcome" data-view="welcome" data-title="Welcome" data-onboarding="true">
+      <div class="page page--narrow center">
+        <h1>Meet people by what they answer, not what they post.</h1>
+        <p class="lead">No photos. No bios. No public profile. Just a few honest answers,
+        quietly compared with someone else's.</p>
+        <p class="muted">This is a clickable demo with made-up data. It shows the flow,
+        not a finished product.</p>
+        <div class="btn-row center" style="justify-content:center;">
+          <a class="btn btn--primary btn--pill" href="#v-questionnaire" data-nav="questionnaire">Start &rarr;</a>
+        </div>
+        <p class="faint" style="margin-top: var(--sp-4);">
+          <a href="#v-legal" data-nav="legal">Read the draft terms, privacy notice &amp; consent first &rarr;</a>
+        </p>
+        <p class="faint" style="margin-top: var(--sp-5);">
+          Bits marked <span class="badge badge--later">later</span> are planned for down the
+          road, not working yet. That's on purpose.
+        </p>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- STEP 2/4 · QUESTIONNAIRE (onboarding) — Core + Extended/Deep offered -->
+    <!-- ================================================================= -->
+    <section class="view" id="v-questionnaire" data-view="questionnaire" data-title="Questionnaire" data-onboarding="true">
+      <div class="page page--narrow">
+        <h2>Your profile</h2>
+        <p class="lead">Answer a few questions. Each one is marked <strong>About you</strong>
+        (who you are) or <strong>Looking&nbsp;for</strong> (what you want in a partner) —
+        some ask both. Everything here is yours to see and edit.</p>
+
+        <div class="axis-legend">
+          <span class="axis__tag axis__tag--you">&#128101; About you</span>
+          <span class="faint">= an attribute of yours (your gender, height, habits).</span>
+          <span class="axis__tag axis__tag--seek">&#127919; Looking for</span>
+          <span class="faint">= what you seek in someone else. <span class="flag flag--inline"><span class="flag__icon">&#9873;</span></span> red flags live here only.</span>
+        </div>
+
+        <!-- Core tier (mandatory, expandable sections) -->
+        <details class="profile-section" data-tier="core" open>
+          <summary>
+            <strong>Core</strong>
+            <span class="badge">needed</span>
+            <span class="faint">&mdash; about 4 min</span>
+          </summary>
+
+          <p class="faint" style="margin-top:var(--sp-2);">On any <em>Looking for</em> answer,
+          tap the little <span class="flag flag--inline"><span class="flag__icon">&#9873;</span></span> to make it a
+          <strong>red flag</strong>: people who answer that way never show up, and they're never
+          told why. It's private. (There are no flags on <em>About you</em> answers — that side
+          just describes you.)</p>
+
+          <!-- Q1 gender — About you -->
+          <div class="field-group" data-question="gender" data-axis="you">
+            <span class="axis__tag axis__tag--you">&#128101; About you</span>
+            <span class="field-label">1. Your gender</span>
+            <div class="chip-row">
+              <label class="chip"><input type="radio" name="gender" value="woman"><span class="chip__label">Woman</span></label>
+              <label class="chip"><input type="radio" name="gender" value="man"><span class="chip__label">Man</span></label>
+              <label class="chip"><input type="radio" name="gender" value="non-binary"><span class="chip__label">Non-binary</span></label>
+              <label class="chip"><input type="radio" name="gender" value="prefer-not-to-say" checked><span class="chip__label">Prefer not to say</span></label>
+            </div>
+          </div>
+
+          <!-- Q2 sought gender — Looking for (multi-select) -->
+          <div class="field-group" data-question="gender-seek" data-axis="seek">
+            <span class="axis__tag axis__tag--seek">&#127919; Looking for</span>
+            <span class="field-label">2. Gender(s) you're looking for</span>
+            <div class="chip-row">
+              <label class="chip"><input type="checkbox" name="gender-seek" value="women"><span class="chip__label">Women</span></label>
+              <label class="chip"><input type="checkbox" name="gender-seek" value="men"><span class="chip__label">Men</span></label>
+              <label class="chip"><input type="checkbox" name="gender-seek" value="non-binary-people"><span class="chip__label">Non-binary people</span></label>
+              <label class="chip"><input type="checkbox" name="gender-seek" value="prefer-not-to-say"><span class="chip__label">Prefer not to say</span></label>
+              <label class="chip"><input type="checkbox" name="gender-seek" value="any" checked><span class="chip__label">Any</span></label>
+            </div>
+            <div class="field-hint">Pick all that apply, or "Any".</div>
+            <div class="importance" role="radiogroup" aria-label="how much this matters">
+              <span class="importance__label">How much does this matter?</span>
+              <label class="importance"><input type="radio" name="gender-seek-imp" value="1"><span class="importance__dot">1</span></label>
+              <label class="importance"><input type="radio" name="gender-seek-imp" value="2"><span class="importance__dot">2</span></label>
+              <label class="importance"><input type="radio" name="gender-seek-imp" value="3" checked><span class="importance__dot">3</span></label>
+              <label class="importance"><input type="radio" name="gender-seek-imp" value="4"><span class="importance__dot">4</span></label>
+              <label class="importance"><input type="radio" name="gender-seek-imp" value="5"><span class="importance__dot">5</span></label>
+            </div>
+          </div>
+
+          <!-- Q3 height — BOTH -->
+          <div class="field-group" data-question="height" data-axis="both">
+            <span class="field-label">3. Height</span>
+            <div class="axis-side axis-side--you" data-axis="you">
+              <span class="axis__tag axis__tag--you">&#128101; About you</span>
+              <div class="chip-row">
+                <label class="chip"><input type="radio" name="height-you" value="lt160"><span class="chip__label">Under 160 cm</span></label>
+                <label class="chip"><input type="radio" name="height-you" value="160-170"><span class="chip__label">160&ndash;170 cm</span></label>
+                <label class="chip"><input type="radio" name="height-you" value="171-180"><span class="chip__label">171&ndash;180 cm</span></label>
+                <label class="chip"><input type="radio" name="height-you" value="181-190"><span class="chip__label">181&ndash;190 cm</span></label>
+                <label class="chip"><input type="radio" name="height-you" value="gt190"><span class="chip__label">Over 190 cm</span></label>
+                <label class="chip"><input type="radio" name="height-you" value="prefer-not-to-say" checked><span class="chip__label">Prefer not to say</span></label>
+              </div>
+            </div>
+            <div class="axis-side axis-side--seek" data-axis="seek">
+              <span class="axis__tag axis__tag--seek">&#127919; Looking for</span>
+              <div class="chip-row">
+                <span class="choice"><label class="chip"><input type="radio" name="height" value="lt160"><span class="chip__label">Under 160 cm</span></label><button class="flag" type="button" data-flag="height" data-flag-value="lt160" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                <span class="choice"><label class="chip"><input type="radio" name="height" value="160-170"><span class="chip__label">160&ndash;170 cm</span></label><button class="flag" type="button" data-flag="height" data-flag-value="160-170" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                <span class="choice"><label class="chip"><input type="radio" name="height" value="171-180" checked><span class="chip__label">171&ndash;180 cm</span></label><button class="flag" type="button" data-flag="height" data-flag-value="171-180" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                <span class="choice"><label class="chip"><input type="radio" name="height" value="181-190"><span class="chip__label">181&ndash;190 cm</span></label><button class="flag" type="button" data-flag="height" data-flag-value="181-190" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                <span class="choice"><label class="chip"><input type="radio" name="height" value="gt190"><span class="chip__label">Over 190 cm</span></label><button class="flag" type="button" data-flag="height" data-flag-value="gt190" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+              </div>
+              <div class="importance" role="radiogroup" aria-label="how much height matters">
+                <span class="importance__label">How much does this matter?</span>
+                <label class="importance"><input type="radio" name="height-imp" value="1"><span class="importance__dot">1</span></label><label class="importance"><input type="radio" name="height-imp" value="2"><span class="importance__dot">2</span></label><label class="importance"><input type="radio" name="height-imp" value="3" checked><span class="importance__dot">3</span></label><label class="importance"><input type="radio" name="height-imp" value="4"><span class="importance__dot">4</span></label><label class="importance"><input type="radio" name="height-imp" value="5"><span class="importance__dot">5</span></label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q4 body type — BOTH -->
+          <div class="field-group" data-question="body-type" data-axis="both">
+            <span class="field-label">4. Body type</span>
+            <div class="axis-side axis-side--you" data-axis="you">
+              <span class="axis__tag axis__tag--you">&#128101; About you</span>
+              <div class="chip-row">
+                <label class="chip"><input type="radio" name="body-type-you" value="slim"><span class="chip__label">Slim</span></label><label class="chip"><input type="radio" name="body-type-you" value="average"><span class="chip__label">Average</span></label><label class="chip"><input type="radio" name="body-type-you" value="athletic"><span class="chip__label">Athletic</span></label><label class="chip"><input type="radio" name="body-type-you" value="fuller"><span class="chip__label">Fuller</span></label><label class="chip"><input type="radio" name="body-type-you" value="prefer-not-to-say" checked><span class="chip__label">Prefer not to say</span></label>
+              </div>
+            </div>
+            <div class="axis-side axis-side--seek" data-axis="seek">
+              <span class="axis__tag axis__tag--seek">&#127919; Looking for</span>
+              <div class="chip-row">
+                <span class="choice"><label class="chip"><input type="checkbox" name="body-type" value="slim"><span class="chip__label">Slim</span></label><button class="flag" type="button" data-flag="body-type" data-flag-value="slim" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                <span class="choice"><label class="chip"><input type="checkbox" name="body-type" value="average"><span class="chip__label">Average</span></label><button class="flag" type="button" data-flag="body-type" data-flag-value="average" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                <span class="choice"><label class="chip"><input type="checkbox" name="body-type" value="athletic" checked><span class="chip__label">Athletic</span></label><button class="flag" type="button" data-flag="body-type" data-flag-value="athletic" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                <span class="choice"><label class="chip"><input type="checkbox" name="body-type" value="fuller"><span class="chip__label">Fuller</span></label><button class="flag" type="button" data-flag="body-type" data-flag-value="fuller" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                <span class="choice"><label class="chip"><input type="checkbox" name="body-type" value="prefer-not-to-say"><span class="chip__label">Prefer not to say</span></label><button class="flag" type="button" data-flag="body-type" data-flag-value="prefer-not-to-say" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+              </div>
+              <div class="importance" role="radiogroup" aria-label="how much body type matters">
+                <span class="importance__label">How much does this matter?</span>
+                <label class="importance"><input type="radio" name="body-type-imp" value="1"><span class="importance__dot">1</span></label><label class="importance"><input type="radio" name="body-type-imp" value="2"><span class="importance__dot">2</span></label><label class="importance"><input type="radio" name="body-type-imp" value="3" checked><span class="importance__dot">3</span></label><label class="importance"><input type="radio" name="body-type-imp" value="4"><span class="importance__dot">4</span></label><label class="importance"><input type="radio" name="body-type-imp" value="5"><span class="importance__dot">5</span></label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q4 relationship goal — BOTH -->
+          <div class="field-group" data-question="goal" data-axis="both">
+            <span class="field-label">5. Relationship goal</span>
+            <div class="axis-side axis-side--you" data-axis="you">
+              <span class="axis__tag axis__tag--you">&#128101; About you</span>
+              <div class="chip-row">
+                <label class="chip"><input type="radio" name="goal-you" value="long-term" checked><span class="chip__label">Long-term</span></label>
+                <label class="chip"><input type="radio" name="goal-you" value="marriage-oriented"><span class="chip__label">Marriage</span></label>
+                <label class="chip"><input type="radio" name="goal-you" value="open"><span class="chip__label">Open</span></label>
+                <label class="chip"><input type="radio" name="goal-you" value="casual"><span class="chip__label">Casual</span></label>
+                <label class="chip"><input type="radio" name="goal-you" value="undecided"><span class="chip__label">Not sure yet</span></label>
+              </div>
+            </div>
+            <div class="axis-side axis-side--seek" data-axis="seek">
+              <span class="axis__tag axis__tag--seek">&#127919; Looking for</span>
+              <div class="chip-row">
+                <span class="choice"><label class="chip"><input type="radio" name="goal" value="long-term" checked><span class="chip__label">Long-term</span></label><button class="flag" type="button" data-flag="goal" data-flag-value="long-term" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                <span class="choice"><label class="chip"><input type="radio" name="goal" value="marriage-oriented"><span class="chip__label">Marriage</span></label><button class="flag" type="button" data-flag="goal" data-flag-value="marriage-oriented" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                <span class="choice"><label class="chip"><input type="radio" name="goal" value="open"><span class="chip__label">Open</span></label><button class="flag" type="button" data-flag="goal" data-flag-value="open" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                <span class="choice"><label class="chip"><input type="radio" name="goal" value="casual"><span class="chip__label">Casual</span></label><button class="flag" type="button" data-flag="goal" data-flag-value="casual" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                <span class="choice"><label class="chip"><input type="radio" name="goal" value="undecided"><span class="chip__label">Not sure yet</span></label><button class="flag" type="button" data-flag="goal" data-flag-value="undecided" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+              </div>
+              <div class="importance" role="radiogroup" aria-label="how much this matters">
+                <span class="importance__label">How much does this matter?</span>
+                <label class="importance"><input type="radio" name="goal-imp" value="1"><span class="importance__dot">1</span></label>
+                <label class="importance"><input type="radio" name="goal-imp" value="2"><span class="importance__dot">2</span></label>
+                <label class="importance"><input type="radio" name="goal-imp" value="3"><span class="importance__dot">3</span></label>
+                <label class="importance"><input type="radio" name="goal-imp" value="4"><span class="importance__dot">4</span></label>
+                <label class="importance"><input type="radio" name="goal-imp" value="5" checked><span class="importance__dot">5</span></label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q5 children — BOTH, CONDITIONAL (shown when seek-goal != casual/undecided) -->
+          <div class="field-group conditional-q" id="q2-wrap" data-question="children" data-axis="both" data-conditional="goal" data-show-unless="casual,undecided">
+            <span class="field-label">6. Kids</span>
+            <div class="axis-side axis-side--you" data-axis="you">
+              <span class="axis__tag axis__tag--you">&#128101; About you</span>
+              <div class="chip-row">
+                <label class="chip"><input type="radio" name="children-you" value="yes" checked><span class="chip__label">Want kids</span></label>
+                <label class="chip"><input type="radio" name="children-you" value="no"><span class="chip__label">Don't want</span></label>
+                <label class="chip"><input type="radio" name="children-you" value="open"><span class="chip__label">Open</span></label>
+                <label class="chip"><input type="radio" name="children-you" value="already-have"><span class="chip__label">Already have</span></label>
+              </div>
+            </div>
+            <div class="axis-side axis-side--seek" data-axis="seek">
+              <span class="axis__tag axis__tag--seek">&#127919; Looking for</span>
+              <div class="chip-row">
+                <span class="choice"><label class="chip"><input type="radio" name="children" value="yes" checked><span class="chip__label">Wants kids</span></label><button class="flag" type="button" data-flag="children" data-flag-value="yes" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                <span class="choice"><label class="chip"><input type="radio" name="children" value="no"><span class="chip__label">Doesn't want kids</span></label><button class="flag" type="button" data-flag="children" data-flag-value="no" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                <span class="choice"><label class="chip"><input type="radio" name="children" value="open"><span class="chip__label">Open</span></label><button class="flag" type="button" data-flag="children" data-flag-value="open" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                <span class="choice"><label class="chip"><input type="radio" name="children" value="already-have"><span class="chip__label">Already have</span></label><button class="flag" type="button" data-flag="children" data-flag-value="already-have" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+              </div>
+              <div class="importance" role="radiogroup" aria-label="how much kids matter">
+                <span class="importance__label">How much does this matter?</span>
+                <label class="importance"><input type="radio" name="children-imp" value="1"><span class="importance__dot">1</span></label>
+                <label class="importance"><input type="radio" name="children-imp" value="2"><span class="importance__dot">2</span></label>
+                <label class="importance"><input type="radio" name="children-imp" value="3"><span class="importance__dot">3</span></label>
+                <label class="importance"><input type="radio" name="children-imp" value="4" checked><span class="importance__dot">4</span></label>
+                <label class="importance"><input type="radio" name="children-imp" value="5"><span class="importance__dot">5</span></label>
+              </div>
+            </div>
+            <div class="field-hint">This one shows because of your "Looking for" goal above.</div>
+          </div>
+
+          <!-- Q6 monogamy — BOTH -->
+          <div class="field-group" data-question="monogamy" data-axis="both">
+            <span class="field-label">7. Monogamy</span>
+            <div class="axis-side axis-side--you" data-axis="you">
+              <span class="axis__tag axis__tag--you">&#128101; About you</span>
+              <div class="chip-row">
+                <label class="chip"><input type="radio" name="monogamy-you" value="strictly" checked><span class="chip__label">Strictly</span></label>
+                <label class="chip"><input type="radio" name="monogamy-you" value="open-relationship"><span class="chip__label">Open to open</span></label>
+                <label class="chip"><input type="radio" name="monogamy-you" value="undecided"><span class="chip__label">Not sure</span></label>
+              </div>
+            </div>
+            <div class="axis-side axis-side--seek" data-axis="seek">
+              <span class="axis__tag axis__tag--seek">&#127919; Looking for</span>
+              <div class="chip-row">
+                <span class="choice"><label class="chip"><input type="radio" name="monogamy" value="strictly" checked><span class="chip__label">Strictly</span></label><button class="flag" type="button" data-flag="monogamy" data-flag-value="strictly" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                <span class="choice"><label class="chip"><input type="radio" name="monogamy" value="open-relationship"><span class="chip__label">Open to open</span></label><button class="flag" type="button" data-flag="monogamy" data-flag-value="open-relationship" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                <span class="choice"><label class="chip"><input type="radio" name="monogamy" value="undecided"><span class="chip__label">Not sure</span></label><button class="flag" type="button" data-flag="monogamy" data-flag-value="undecided" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+              </div>
+              <div class="importance" role="radiogroup" aria-label="how much monogamy matters">
+                <span class="importance__label">How much does this matter?</span>
+                <label class="importance"><input type="radio" name="monogamy-imp" value="1"><span class="importance__dot">1</span></label>
+                <label class="importance"><input type="radio" name="monogamy-imp" value="2"><span class="importance__dot">2</span></label>
+                <label class="importance"><input type="radio" name="monogamy-imp" value="3"><span class="importance__dot">3</span></label>
+                <label class="importance"><input type="radio" name="monogamy-imp" value="4"><span class="importance__dot">4</span></label>
+                <label class="importance"><input type="radio" name="monogamy-imp" value="5" checked><span class="importance__dot">5</span></label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q7 smoking — BOTH -->
+          <div class="field-group" data-question="smoking" data-axis="both">
+            <span class="field-label">8. Smoking</span>
+            <div class="axis-side axis-side--you" data-axis="you">
+              <span class="axis__tag axis__tag--you">&#128101; About you</span>
+              <div class="chip-row">
+                <label class="chip"><input type="radio" name="smoking-you" value="never" checked><span class="chip__label">Never</span></label>
+                <label class="chip"><input type="radio" name="smoking-you" value="socially"><span class="chip__label">Sometimes</span></label>
+                <label class="chip"><input type="radio" name="smoking-you" value="regularly"><span class="chip__label">Regularly</span></label>
+              </div>
+            </div>
+            <div class="axis-side axis-side--seek" data-axis="seek">
+              <span class="axis__tag axis__tag--seek">&#127919; Looking for</span>
+              <div class="chip-row">
+                <span class="choice"><label class="chip"><input type="radio" name="smoking" value="never" checked><span class="chip__label">Never</span></label><button class="flag" type="button" data-flag="smoking" data-flag-value="never" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                <span class="choice"><label class="chip"><input type="radio" name="smoking" value="socially"><span class="chip__label">Sometimes</span></label><button class="flag" type="button" data-flag="smoking" data-flag-value="socially" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                <span class="choice"><label class="chip"><input type="radio" name="smoking" value="regularly"><span class="chip__label">Regularly</span></label><button class="flag" type="button" data-flag="smoking" data-flag-value="regularly" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+              </div>
+              <div class="importance" role="radiogroup" aria-label="how much smoking matters">
+                <span class="importance__label">How much does this matter?</span>
+                <label class="importance"><input type="radio" name="smoking-imp" value="1"><span class="importance__dot">1</span></label>
+                <label class="importance"><input type="radio" name="smoking-imp" value="2"><span class="importance__dot">2</span></label>
+                <label class="importance"><input type="radio" name="smoking-imp" value="3"><span class="importance__dot">3</span></label>
+                <label class="importance"><input type="radio" name="smoking-imp" value="4" checked><span class="importance__dot">4</span></label>
+                <label class="importance"><input type="radio" name="smoking-imp" value="5"><span class="importance__dot">5</span></label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q8 religion — BOTH -->
+          <div class="field-group" data-question="religion" data-axis="both">
+            <span class="field-label">9. Religion</span>
+            <div class="axis-side axis-side--you" data-axis="you">
+              <span class="axis__tag axis__tag--you">&#128101; About you</span>
+              <div class="chip-row">
+                <label class="chip"><input type="radio" name="religion-you" value="none" checked><span class="chip__label">None</span></label>
+                <label class="chip"><input type="radio" name="religion-you" value="christian"><span class="chip__label">Christian</span></label>
+                <label class="chip"><input type="radio" name="religion-you" value="muslim"><span class="chip__label">Muslim</span></label>
+                <label class="chip"><input type="radio" name="religion-you" value="jewish"><span class="chip__label">Jewish</span></label>
+                <label class="chip"><input type="radio" name="religion-you" value="hindu"><span class="chip__label">Hindu</span></label>
+                <label class="chip"><input type="radio" name="religion-you" value="other"><span class="chip__label">Other</span></label>
+              </div>
+            </div>
+            <div class="axis-side axis-side--seek" data-axis="seek">
+              <span class="axis__tag axis__tag--seek">&#127919; Looking for</span>
+              <div class="chip-row">
+                <span class="choice"><label class="chip"><input type="radio" name="religion" value="none" checked><span class="chip__label">None</span></label><button class="flag" type="button" data-flag="religion" data-flag-value="none" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                <span class="choice"><label class="chip"><input type="radio" name="religion" value="christian"><span class="chip__label">Christian</span></label><button class="flag" type="button" data-flag="religion" data-flag-value="christian" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                <span class="choice"><label class="chip"><input type="radio" name="religion" value="muslim"><span class="chip__label">Muslim</span></label><button class="flag" type="button" data-flag="religion" data-flag-value="muslim" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                <span class="choice"><label class="chip"><input type="radio" name="religion" value="jewish"><span class="chip__label">Jewish</span></label><button class="flag" type="button" data-flag="religion" data-flag-value="jewish" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                <span class="choice"><label class="chip"><input type="radio" name="religion" value="hindu"><span class="chip__label">Hindu</span></label><button class="flag" type="button" data-flag="religion" data-flag-value="hindu" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                <span class="choice"><label class="chip"><input type="radio" name="religion" value="other"><span class="chip__label">Other</span></label><button class="flag" type="button" data-flag="religion" data-flag-value="other" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+              </div>
+              <div class="importance" role="radiogroup" aria-label="how much religion matters">
+                <span class="importance__label">How much does this matter?</span>
+                <label class="importance"><input type="radio" name="religion-imp" value="1"><span class="importance__dot">1</span></label>
+                <label class="importance"><input type="radio" name="religion-imp" value="2"><span class="importance__dot">2</span></label>
+                <label class="importance"><input type="radio" name="religion-imp" value="3" checked><span class="importance__dot">3</span></label>
+                <label class="importance"><input type="radio" name="religion-imp" value="4"><span class="importance__dot">4</span></label>
+                <label class="importance"><input type="radio" name="religion-imp" value="5"><span class="importance__dot">5</span></label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q9 distance — Looking for -->
+          <div class="field-group" data-question="distance" data-axis="seek">
+            <span class="axis__tag axis__tag--seek">&#127919; Looking for</span>
+            <span class="field-label">10. How far is OK?</span>
+            <div class="chip-row">
+              <span class="choice"><label class="chip"><input type="radio" name="distance" value="lt15km"><span class="chip__label">&lt; 15 km</span></label><button class="flag" type="button" data-flag="distance" data-flag-value="lt15km" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+              <span class="choice"><label class="chip"><input type="radio" name="distance" value="city" checked><span class="chip__label">Same city</span></label><button class="flag" type="button" data-flag="distance" data-flag-value="city" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+              <span class="choice"><label class="chip"><input type="radio" name="distance" value="regional"><span class="chip__label">Regional</span></label><button class="flag" type="button" data-flag="distance" data-flag-value="regional" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+              <span class="choice"><label class="chip"><input type="radio" name="distance" value="long-distance"><span class="chip__label">Far is fine</span></label><button class="flag" type="button" data-flag="distance" data-flag-value="long-distance" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+            </div>
+            <div class="importance" role="radiogroup" aria-label="how much distance matters">
+              <span class="importance__label">How much does this matter?</span>
+              <label class="importance"><input type="radio" name="distance-imp" value="1"><span class="importance__dot">1</span></label>
+              <label class="importance"><input type="radio" name="distance-imp" value="2" checked><span class="importance__dot">2</span></label>
+              <label class="importance"><input type="radio" name="distance-imp" value="3"><span class="importance__dot">3</span></label>
+              <label class="importance"><input type="radio" name="distance-imp" value="4"><span class="importance__dot">4</span></label>
+              <label class="importance"><input type="radio" name="distance-imp" value="5"><span class="importance__dot">5</span></label>
+            </div>
+          </div>
+
+          <!-- Q10 age range — Looking for -->
+          <div class="field-group" data-question="age" data-axis="seek">
+            <span class="axis__tag axis__tag--seek">&#127919; Looking for</span>
+            <span class="field-label">11. Age range</span>
+            <div class="range-minmax">
+              <input type="number" id="age-min" name="age-min" min="18" max="99" value="27" aria-label="minimum age">
+              <span class="muted">to</span>
+              <input type="number" id="age-max" name="age-max" min="18" max="99" value="38" aria-label="maximum age">
+              <button class="flag flag--item" type="button" data-flag="age" data-flag-value="strict" aria-pressed="false" title="Red flag — anyone outside this age range never matches. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">outside range = never</span></button>
+            </div>
+            <div class="importance" role="radiogroup" aria-label="how much age matters">
+              <span class="importance__label">How much does this matter?</span>
+              <label class="importance"><input type="radio" name="age-imp" value="1"><span class="importance__dot">1</span></label>
+              <label class="importance"><input type="radio" name="age-imp" value="2"><span class="importance__dot">2</span></label>
+              <label class="importance"><input type="radio" name="age-imp" value="3" checked><span class="importance__dot">3</span></label>
+              <label class="importance"><input type="radio" name="age-imp" value="4"><span class="importance__dot">4</span></label>
+              <label class="importance"><input type="radio" name="age-imp" value="5"><span class="importance__dot">5</span></label>
+            </div>
+          </div>
+
+          <!-- Q11 living — About you -->
+          <div class="field-group" data-question="living" data-axis="you">
+            <span class="axis__tag axis__tag--you">&#128101; About you</span>
+            <span class="field-label">12. Where do you live?</span>
+            <div class="chip-row">
+              <label class="chip"><input type="radio" name="living" value="alone" checked><span class="chip__label">Alone</span></label>
+              <label class="chip"><input type="radio" name="living" value="flatmates"><span class="chip__label">Flatmates</span></label>
+              <label class="chip"><input type="radio" name="living" value="family"><span class="chip__label">Family</span></label>
+              <label class="chip"><input type="radio" name="living" value="other"><span class="chip__label">Other</span></label>
+            </div>
+          </div>
+
+          <!-- Q12 work rhythm — About you -->
+          <div class="field-group" data-question="work" data-axis="you">
+            <span class="axis__tag axis__tag--you">&#128101; About you</span>
+            <span class="field-label">13. Work rhythm</span>
+            <div class="chip-row">
+              <label class="chip"><input type="radio" name="work" value="9to5"><span class="chip__label">9&ndash;5</span></label>
+              <label class="chip"><input type="radio" name="work" value="flexible" checked><span class="chip__label">Flexible</span></label>
+              <label class="chip"><input type="radio" name="work" value="irregular"><span class="chip__label">Irregular</span></label>
+              <label class="chip"><input type="radio" name="work" value="shift"><span class="chip__label">Shifts</span></label>
+            </div>
+          </div>
+
+          <!-- Q13 pets — BOTH -->
+          <div class="field-group" data-question="pets" data-axis="both">
+            <span class="field-label">14. Pets</span>
+            <div class="axis-side axis-side--you" data-axis="you">
+              <span class="axis__tag axis__tag--you">&#128101; About you</span>
+              <div class="chip-row">
+                <label class="chip"><input type="radio" name="pets-you" value="love" checked><span class="chip__label">Love them</span></label>
+                <label class="chip"><input type="radio" name="pets-you" value="tolerate"><span class="chip__label">Tolerate</span></label>
+                <label class="chip"><input type="radio" name="pets-you" value="allergic"><span class="chip__label">Allergic</span></label>
+                <label class="chip"><input type="radio" name="pets-you" value="none"><span class="chip__label">None</span></label>
+              </div>
+            </div>
+            <div class="axis-side axis-side--seek" data-axis="seek">
+              <span class="axis__tag axis__tag--seek">&#127919; Looking for</span>
+              <div class="chip-row">
+                <span class="choice"><label class="chip"><input type="radio" name="pets" value="love" checked><span class="chip__label">Loves them</span></label><button class="flag" type="button" data-flag="pets" data-flag-value="love" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                <span class="choice"><label class="chip"><input type="radio" name="pets" value="tolerate"><span class="chip__label">Tolerates</span></label><button class="flag" type="button" data-flag="pets" data-flag-value="tolerate" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                <span class="choice"><label class="chip"><input type="radio" name="pets" value="allergic"><span class="chip__label">Allergic</span></label><button class="flag" type="button" data-flag="pets" data-flag-value="allergic" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                <span class="choice"><label class="chip"><input type="radio" name="pets" value="none"><span class="chip__label">None</span></label><button class="flag" type="button" data-flag="pets" data-flag-value="none" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+              </div>
+              <div class="importance" role="radiogroup" aria-label="how much pets matter">
+                <span class="importance__label">How much does this matter?</span>
+                <label class="importance"><input type="radio" name="pets-imp" value="1"><span class="importance__dot">1</span></label>
+                <label class="importance"><input type="radio" name="pets-imp" value="2" checked><span class="importance__dot">2</span></label>
+                <label class="importance"><input type="radio" name="pets-imp" value="3"><span class="importance__dot">3</span></label>
+                <label class="importance"><input type="radio" name="pets-imp" value="4"><span class="importance__dot">4</span></label>
+                <label class="importance"><input type="radio" name="pets-imp" value="5"><span class="importance__dot">5</span></label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q14 politics — BOTH -->
+          <div class="field-group" data-question="politics" data-axis="both">
+            <span class="field-label">15. Politics &mdash; rough direction</span>
+            <div class="axis-side axis-side--you" data-axis="you">
+              <span class="axis__tag axis__tag--you">&#128101; About you</span>
+              <div class="chip-row">
+                <label class="chip"><input type="radio" name="politics-you" value="liberal" checked><span class="chip__label">Liberal</span></label>
+                <label class="chip"><input type="radio" name="politics-you" value="conservative"><span class="chip__label">Conservative</span></label>
+                <label class="chip"><input type="radio" name="politics-you" value="center"><span class="chip__label">Center</span></label>
+                <label class="chip"><input type="radio" name="politics-you" value="apolitical"><span class="chip__label">Not into it</span></label>
+              </div>
+            </div>
+            <div class="axis-side axis-side--seek" data-axis="seek">
+              <span class="axis__tag axis__tag--seek">&#127919; Looking for</span>
+              <div class="chip-row">
+                <span class="choice"><label class="chip"><input type="radio" name="politics" value="liberal" checked><span class="chip__label">Liberal</span></label><button class="flag" type="button" data-flag="politics" data-flag-value="liberal" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                <span class="choice"><label class="chip"><input type="radio" name="politics" value="conservative"><span class="chip__label">Conservative</span></label><button class="flag" type="button" data-flag="politics" data-flag-value="conservative" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                <span class="choice"><label class="chip"><input type="radio" name="politics" value="center"><span class="chip__label">Center</span></label><button class="flag" type="button" data-flag="politics" data-flag-value="center" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                <span class="choice"><label class="chip"><input type="radio" name="politics" value="apolitical"><span class="chip__label">Not into it</span></label><button class="flag" type="button" data-flag="politics" data-flag-value="apolitical" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+              </div>
+              <div class="importance" role="radiogroup" aria-label="how much politics matters">
+                <span class="importance__label">How much does this matter?</span>
+                <label class="importance"><input type="radio" name="politics-imp" value="1"><span class="importance__dot">1</span></label>
+                <label class="importance"><input type="radio" name="politics-imp" value="2"><span class="importance__dot">2</span></label>
+                <label class="importance"><input type="radio" name="politics-imp" value="3" checked><span class="importance__dot">3</span></label>
+                <label class="importance"><input type="radio" name="politics-imp" value="4"><span class="importance__dot">4</span></label>
+                <label class="importance"><input type="radio" name="politics-imp" value="5"><span class="importance__dot">5</span></label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q15 freetime — About you -->
+          <div class="field-group" data-question="freetime" data-axis="you">
+            <span class="axis__tag axis__tag--you">&#128101; About you</span>
+            <span class="field-label">16. Free-time style</span>
+            <div class="chip-row">
+              <label class="chip"><input type="radio" name="freetime" value="homebody"><span class="chip__label">Homebody</span></label>
+              <label class="chip"><input type="radio" name="freetime" value="active-outdoors" checked><span class="chip__label">Active outdoors</span></label>
+              <label class="chip"><input type="radio" name="freetime" value="city-culture"><span class="chip__label">City culture</span></label>
+              <label class="chip"><input type="radio" name="freetime" value="travel"><span class="chip__label">Travel</span></label>
+              <label class="chip"><input type="radio" name="freetime" value="mixed"><span class="chip__label">A bit of everything</span></label>
+            </div>
+            <div class="derived-chips">
+              <span class="chip-tag" data-signal="outdoors">from your data: outdoors</span>
+              <span class="chip-tag" data-signal="travel">from your data: travel</span>
+            </div>
+          </div>
+        </details>
+
+        <!-- Optional tiers (opt-in at creation, addable anytime; also ladder rung 2) -->
+        <details class="profile-section" data-tier="extended">
+          <summary>
+            <strong>Extended</strong>
+            <span class="badge badge--later">optional</span>
+            <span class="faint">&mdash; ~15 questions, ~4 min</span>
+          </summary>
+          <label class="opt-in">
+            <input type="checkbox" name="optin-extended">
+            <span class="opt-in__label">Add Extended to my profile</span>
+          </label>
+          <p class="faint" style="margin-top:var(--sp-2);">Values &amp; lifestyle details. You can add
+          (or remove) this anytime from your profile &mdash; the same answers also become
+          available after a mutual match (see the reveal ladder).</p>
+
+          <details class="nested">
+            <summary><strong>Other Extended questions</strong> <span class="faint">&mdash; values + lifestyle</span></summary>
+            <p class="faint">Ambition, quiet vs. loud, spending style, family, humor, how you show
+            you care, how you talk, drinking, exercise, food, politics in detail, how much work
+            matters, travel, downtime, ideal weekend.</p>
+          </details>
+        </details>
+
+        <details class="profile-section" data-tier="deep">
+          <summary>
+            <strong>Deep</strong>
+            <span class="badge badge--later">optional</span>
+            <span class="faint">&mdash; ~12 questions, ~4 min</span>
+          </summary>
+          <label class="opt-in">
+            <input type="checkbox" name="optin-deep">
+            <span class="opt-in__label">Add Deep to my profile</span>
+          </label>
+          <p class="faint" style="margin-top:var(--sp-2);">Nuanced compatibility. Same deal &mdash; add
+          anytime, and these answers also unlock after a mutual match.</p>
+          <details class="nested">
+            <summary><strong>Deep questions</strong> <span class="faint">&mdash; nuanced compatibility</span></summary>
+            <p class="faint">Attachment style, how you argue, life outlook, money, space, feelings,
+            where you want to live, health, social media, dealbreakers, first date, life pace.</p>
+          </details>
+        </details>
+
+        <p class="faint" style="margin-top:var(--sp-3);">Answering more doesn't change what
+        anyone sees. Cards stay lean either way.</p>
+
+        <div class="btn-row btn-row--between">
+          <a class="btn btn--ghost" href="#v-welcome" data-nav="welcome">Back</a>
+          <button class="btn btn--primary" id="questionnaire-done" type="button" data-nav="import">Continue &rarr;</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+        <!-- ================================================================ -->
+    <!-- STEP 3/4 · IMPORT (onboarding, optional) — context only, on-device -->
+    <!-- ================================================================ -->
+    <section class="view" id="v-import" data-view="import" data-title="Your data" data-onboarding="true">
+      <div class="page page--narrow">
+        <h2>Bring your own data (optional)</h2>
+        <p class="lead">Done answering? You can also pull in a Google Takeout export you made
+        yourself. It only adds a few <strong>context chips</strong> &mdash; hints about what
+        you like. Your answers are the dating signal; this is just <strong>context</strong>.</p>
+
+        <div class="dropzone" id="dropzone" role="button" tabindex="0" aria-label="drop a Takeout archive (mock)">
+          <div class="dz-icon">&#128230;</div>
+          <div><strong>Drop your Takeout file here</strong><br>
+          or click to pick one <em>(demo &mdash; nothing really imports)</em></div>
+        </div>
+
+        <div class="import-log" id="import-log" hidden></div>
+
+        <div class="card" id="derived-signals" hidden style="margin-top: var(--sp-4);">
+          <h3>What showed up</h3>
+          <p class="faint">Context chips only &mdash; small labels, never raw data. Import a newer one and these refresh.</p>
+          <div class="chip-row chip-row--tags">
+            <span class="chip-tag" data-signal="travel">travel</span>
+            <span class="chip-tag" data-signal="space">space</span>
+            <span class="chip-tag" data-signal="outdoors">outdoors</span>
+            <span class="chip-tag" data-signal="evenings">rhythm: evenings</span>
+            <span class="chip-tag" data-signal="maps">maps</span>
+          </div>
+        </div>
+
+        <details class="aside-note">
+          <summary>Where does this data live?</summary>
+          <p>Your raw export stays on this device and is parsed on-device. Nobody sees it &mdash;
+          only the little context chips here ever move around, and you can drop any you don't
+          like. Nothing is shown raw.</p>
+        </details>
+
+        <div class="btn-row btn-row--between">
+          <a class="btn btn--ghost" href="#v-questionnaire" data-nav="questionnaire">Back</a>
+          <button class="btn btn--primary" id="import-done" type="button" data-nav="profile">Skip or continue &rarr;</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- STEP 4/4 · YOUR PROFILE (review + edits) · enter the pool          -->
+    <!-- ================================================================ -->
+    <section class="view" id="v-profile" data-view="profile" data-title="Your profile" data-onboarding="true">
+      <div class="page page--narrow">
+        <h2>Your profile</h2>
+        <p class="lead">A quick look before you jump in. Edit anything, add a deeper tier
+        anytime, then enter the pool.</p>
+
+        <details class="profile-section" open>
+          <summary><strong>Your answers</strong> <span class="badge">done</span></summary>
+          <ul class="pref-lines">
+            <li><span class="k">Gender:</span> Prefer not to say &middot; <span class="k">Height:</span> Prefer not to say</li>
+            <li><span class="k">Relationship goal:</span> long-term &middot; <span class="k">Monogamy:</span> strictly</li>
+            <li><span class="k">Smoking:</span> never &middot; <span class="k">Age range:</span> 27&ndash;38</li>
+          </ul>
+          <a class="btn btn--ghost btn--sm" href="#v-questionnaire" data-nav="questionnaire">Edit my answers &rarr;</a>
+        </details>
+
+        <details class="profile-section">
+          <summary><strong>Extended &amp; Deep</strong> <span class="badge badge--later">optional</span></summary>
+          <p class="faint">Add the Extended or Deep tiers anytime &mdash; you don't have to now,
+          and you can change your mind later. They're also what unlocks after a mutual match
+          (reveal ladder, rung&nbsp;2).</p>
+          <a class="btn btn--ghost btn--sm" href="#v-questionnaire" data-nav="questionnaire">Tiers &mdash; opt in now &rarr;</a>
+        </details>
+
+        <details class="profile-section">
+          <summary><strong>From your data</strong> <span class="badge badge--later">optional</span></summary>
+          <p class="faint">Context chips from the export you brought. Tap the &times; to drop
+          any you don't like. None of this is shown raw &mdash; only these labels.</p>
+          <div class="chip-row chip-row--tags" id="profile-signals">
+            <span class="chip-tag" data-signal="travel">travel &times;</span>
+            <span class="chip-tag" data-signal="space">space &times;</span>
+            <span class="chip-tag" data-signal="outdoors">outdoors &times;</span>
+            <span class="chip-tag" data-signal="evenings">rhythm: evenings &times;</span>
+            <span class="chip-tag" data-signal="maps">maps &times;</span>
+          </div>
+        </details>
+
+        <div class="btn-row btn-row--between">
+          <a class="btn btn--ghost" href="#v-import" data-nav="import">Back</a>
+          <button class="btn btn--primary" id="profile-done" type="button" data-nav="discover">Enter the pool &mdash; start matching &rarr;</button>
+        </div>
+      </div>
+    </section>
+
+<!-- DISCOVER · candidate cards (lean + score + breakdown + expand)      -->
+    <!-- ================================================================ -->
+    <section class="view" id="v-discover" data-view="discover" data-title="Discover">
+      <div class="page">
+        <h2>Discover</h2>
+        <p class="lead">A few things about each person, plus a match score. The score is a
+        <strong>preference match</strong> &mdash; how much your answers line up. It's not a
+        prediction of how well you'll click.</p>
+        <p class="faint">This is <strong>preference screening, not a chemistry prediction</strong>.
+        Red flags are private dealbreakers. You can <a href="#v-profile" data-nav="profile">edit your
+        profile</a>, red flags, or <a href="#v-safety" data-nav="safety">withdraw</a> at any time.</p>
+
+        <div class="pool-status" data-pool-status hidden>
+          <span class="badge band-low">Out of the pool</span>
+          You've withdrawn consent (demo). Agent exchange has stopped and your profile no longer appears in the pool.
+        </div>
+
+        <!-- Card A (mutual) -->
+        <article class="candidate-card" data-candidate="A" data-mutual="true">
+          <div class="candidate-card__top">
+            <div class="candidate-avatar" aria-hidden="true" title="No photo yet">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-6 8-6s8 2 8 6"/>
+              </svg>
+            </div>
+            <div class="candidate-card__head">
+              <div class="match-score" data-score-for="A">
+                <span class="match-score__num">--</span>
+                <span class="match-score__unit">/100</span>
+                <span class="match-score__label">preference match</span>
+              </div>
+              <div class="candidate-card__quickline">
+                <span class="k">Looking for:</span> long-term
+                <span class="dot-sep">&middot;</span>
+                <span class="k">Free time:</span> active outdoors
+              </div>
+              <div class="candidate-card__quickline">
+                <span class="k">4 of 6</span> dealbreakers shared
+              </div>
+            </div>
+          </div>
+
+          <details class="score-breakdown" data-breakdown="A">
+            <summary>How is this calculated?</summary>
+            <div class="breakdown" data-breakdown-body="A">
+              <div class="breakdown__honesty">Preference match &mdash; not a chemistry or
+              compatibility prediction. Red flags are private dealbreakers.</div>
+            </div>
+          </details>
+
+          <details class="expand">
+            <summary>More about them</summary>
+            <ul class="pref-lines">
+              <li><span class="k">Working rhythm:</span> flexible</li>
+              <li><span class="k">Monogamy:</span> strictly</li>
+              <li><span class="k">Shared must-haves:</span> 3</li>
+              <li><span class="k">Shared preferences:</span> 11</li>
+            </ul>
+            <div class="gated-row">No photo, name, or age here &mdash; that comes later, on purpose.</div>
+          </details>
+
+          <div class="interest-state" data-state="A"><span class="dot"></span><span class="txt">Awaiting their answer</span></div>
+          <div class="card-actions">
+            <button class="btn btn--primary btn--sm" type="button" data-interest="A" data-action="interested">Interested</button>
+            <button class="btn btn--ghost btn--sm" type="button" data-interest="A" data-action="decline">Decline</button>
+            <button class="btn btn--ghost btn--sm" type="button" data-interest="A" data-action="skip">Skip</button>
+            <button class="btn btn--danger btn--sm" type="button" data-report="A">Report</button>
+          </div>
+        </article>
+
+        <!-- Card B -->
+        <article class="candidate-card" data-candidate="B" data-mutual="false">
+          <div class="candidate-card__top">
+            <div class="candidate-avatar" aria-hidden="true" title="No photo yet">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-6 8-6s8 2 8 6"/>
+              </svg>
+            </div>
+            <div class="candidate-card__head">
+              <div class="match-score" data-score-for="B">
+                <span class="match-score__num">--</span>
+                <span class="match-score__unit">/100</span>
+                <span class="match-score__label">preference match</span>
+              </div>
+              <div class="candidate-card__quickline">
+                <span class="k">Looking for:</span> long-term
+                <span class="dot-sep">&middot;</span>
+                <span class="k">Free time:</span> homebody
+              </div>
+              <div class="candidate-card__quickline">
+                <span class="k">3 of 6</span> dealbreakers shared
+              </div>
+            </div>
+          </div>
+
+          <details class="score-breakdown" data-breakdown="B">
+            <summary>How is this calculated?</summary>
+            <div class="breakdown" data-breakdown-body="B">
+              <div class="breakdown__honesty">Preference match &mdash; not a chemistry or
+              compatibility prediction. Red flags are private dealbreakers.</div>
+            </div>
+          </details>
+
+          <details class="expand">
+            <summary>More about them</summary>
+            <ul class="pref-lines">
+              <li><span class="k">Working rhythm:</span> 9&ndash;5</li>
+              <li><span class="k">Shared must-haves:</span> 2</li>
+              <li><span class="k">Shared preferences:</span> 7</li>
+            </ul>
+          </details>
+
+          <div class="interest-state" data-state="B"><span class="dot"></span><span class="txt">Awaiting their answer</span></div>
+          <div class="card-actions">
+            <button class="btn btn--primary btn--sm" type="button" data-interest="B" data-action="interested">Interested</button>
+            <button class="btn btn--ghost btn--sm" type="button" data-interest="B" data-action="decline">Decline</button>
+            <button class="btn btn--ghost btn--sm" type="button" data-interest="B" data-action="skip">Skip</button>
+            <button class="btn btn--danger btn--sm" type="button" data-report="B">Report</button>
+          </div>
+        </article>
+
+        <!-- Card C -->
+        <article class="candidate-card" data-candidate="C" data-mutual="false">
+          <div class="candidate-card__top">
+            <div class="candidate-avatar" aria-hidden="true" title="No photo yet">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-6 8-6s8 2 8 6"/>
+              </svg>
+            </div>
+            <div class="candidate-card__head">
+              <div class="match-score" data-score-for="C">
+                <span class="match-score__num">--</span>
+                <span class="match-score__unit">/100</span>
+                <span class="match-score__label">preference match</span>
+              </div>
+              <div class="candidate-card__quickline">
+                <span class="k">Looking for:</span> casual
+                <span class="dot-sep">&middot;</span>
+                <span class="k">Free time:</span> travel
+              </div>
+              <div class="candidate-card__quickline">
+                <span class="k">1 of 6</span> dealbreaker shared
+              </div>
+            </div>
+          </div>
+
+          <details class="score-breakdown" data-breakdown="C">
+            <summary>How is this calculated?</summary>
+            <div class="breakdown" data-breakdown-body="C">
+              <div class="breakdown__honesty">Preference match &mdash; not a chemistry or
+              compatibility prediction. Red flags are private dealbreakers.</div>
+            </div>
+          </details>
+
+          <details class="expand">
+            <summary>More about them</summary>
+            <ul class="pref-lines">
+              <li><span class="k">Shared must-haves:</span> 0</li>
+              <li><span class="k">Shared preferences:</span> 3</li>
+            </ul>
+          </details>
+
+          <div class="interest-state" data-state="C"><span class="dot"></span><span class="txt">Awaiting their answer</span></div>
+          <div class="card-actions">
+            <button class="btn btn--primary btn--sm" type="button" data-interest="C" data-action="interested">Interested</button>
+            <button class="btn btn--ghost btn--sm" type="button" data-interest="C" data-action="decline">Decline</button>
+            <button class="btn btn--ghost btn--sm" type="button" data-interest="C" data-action="skip">Skip</button>
+            <button class="btn btn--danger btn--sm" type="button" data-report="C">Report</button>
+          </div>
+        </article>
+
+        <!-- Card D (red-flag demo: smokes regularly — excluded when flagged) -->
+        <article class="candidate-card" data-candidate="D" data-mutual="false">
+          <div class="candidate-card__top">
+            <div class="candidate-avatar" aria-hidden="true" title="No photo yet">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-6 8-6s8 2 8 6"/>
+              </svg>
+            </div>
+            <div class="candidate-card__head">
+              <div class="match-score" data-score-for="D">
+                <span class="match-score__num">--</span>
+                <span class="match-score__unit">/100</span>
+                <span class="match-score__label">preference match</span>
+              </div>
+              <div class="candidate-card__quickline">
+                <span class="k">Looking for:</span> casual
+                <span class="dot-sep">&middot;</span>
+                <span class="k">Free time:</span> city culture
+              </div>
+              <div class="candidate-card__quickline">
+                <span class="k">0 of 6</span> dealbreakers shared
+              </div>
+            </div>
+          </div>
+
+          <details class="score-breakdown" data-breakdown="D">
+            <summary>How is this calculated?</summary>
+            <div class="breakdown" data-breakdown-body="D">
+              <div class="breakdown__honesty">Preference match &mdash; not a chemistry or
+              compatibility prediction. Red flags are private dealbreakers.</div>
+            </div>
+          </details>
+
+          <details class="expand">
+            <summary>More about them</summary>
+            <ul class="pref-lines">
+              <li><span class="k">Smoking:</span> regularly</li>
+              <li><span class="k">Working rhythm:</span> irregular</li>
+              <li><span class="k">Shared must-haves:</span> 0</li>
+              <li><span class="k">Shared preferences:</span> 1</li>
+            </ul>
+          </details>
+
+          <div class="interest-state" data-state="D"><span class="dot"></span><span class="txt">Awaiting their answer</span></div>
+          <div class="card-actions">
+            <button class="btn btn--primary btn--sm" type="button" data-interest="D" data-action="interested">Interested</button>
+            <button class="btn btn--ghost btn--sm" type="button" data-interest="D" data-action="decline">Decline</button>
+            <button class="btn btn--ghost btn--sm" type="button" data-interest="D" data-action="skip">Skip</button>
+            <button class="btn btn--danger btn--sm" type="button" data-report="D">Report</button>
+          </div>
+        </article>
+
+        <div class="btn-row btn-row--between">
+          <a class="btn btn--ghost" href="#v-profile" data-nav="profile">Back</a>
+          <span class="faint">Saying yes is quiet &mdash; the other side only hears if they said yes too.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- MATCHES · your mutual matches                                     -->
+    <!-- ================================================================ -->
+    <section class="view" id="v-matches" data-view="matches" data-title="Matches">
+      <div class="page page--narrow">
+        <h2>Matches</h2>
+        <p class="lead">People you've both said yes to. New matches land here.</p>
+
+        <article class="candidate-card is-matched" data-candidate="A" data-mutual="true">
+          <div class="candidate-card__top">
+            <div class="candidate-avatar" aria-hidden="true" title="No photo yet">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-6 8-6s8 2 8 6"/>
+              </svg>
+            </div>
+            <div class="candidate-card__head">
+              <div class="candidate-card__title">
+                <span class="badge band-high">Matched</span>
+              </div>
+              <div class="candidate-card__quickline">
+                <span class="k">Looking for:</span> long-term
+                <span class="dot-sep">&middot;</span>
+                <span class="k">Free time:</span> active outdoors
+              </div>
+            </div>
+          </div>
+          <div class="interest-state is-mutual"><span class="dot"></span><span class="txt">You both said yes</span></div>
+          <div class="card-actions">
+            <button class="btn btn--primary btn--sm" type="button" data-nav="match">Open match</button>
+            <button class="btn btn--ghost btn--sm" type="button" data-nav="ladder">How revealing works</button>
+          </div>
+        </article>
+
+        <div class="btn-row">
+          <a class="btn btn--ghost" href="#v-discover" data-nav="discover">Back</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- MATCH · mutual (reciprocity only)                                  -->
+    <!-- ================================================================ -->
+    <section class="view" id="v-match" data-view="match" data-title="Match">
+      <div class="page page--narrow center">
+        <h2>You matched!</h2>
+        <p class="lead">You both said yes. That's all this shows &mdash; for now.</p>
+        <div class="card">
+          <span class="badge band-high" style="font-size:var(--fs-md);padding:8px 16px;">You both said yes</span>
+          <div class="pref-lines" style="margin-top:var(--sp-4);">
+            <li><span class="k">Looking for:</span> long-term</li>
+            <li><span class="k">Free time:</span> active outdoors</li>
+          </div>
+          <p class="muted">Names, photos, and contact details aren't shared yet. That's the
+          point &mdash; nothing more is out there until you both want it.</p>
+        </div>
+        <div class="btn-row center" style="justify-content:center;">
+          <button class="btn btn--primary btn--pill" data-nav="ladder" type="button">See how revealing works &rarr;</button>
+        </div>
+        <div class="btn-row center" style="justify-content:center;">
+          <a class="btn btn--ghost" href="#v-matches" data-nav="matches">Back to matches</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- REVEAL LADDER · 4-rung explainer (plain, expandable)               -->
+    <!-- ================================================================ -->
+    <section class="view" id="v-ladder" data-view="ladder" data-title="Reveal ladder">
+      <div class="page page--narrow">
+        <h2>How you get to know each other</h2>
+        <p class="lead">Getting to know someone happens in steps. You both say yes to each
+        one &mdash; no one can push the next step on the other.</p>
+
+        <ul class="ladder">
+          <li class="ladder__rung is-now">
+            <details>
+              <summary>
+                <span class="ladder__num">1</span>
+                <span class="ladder__body">
+                  <span class="ladder__title">Match</span>
+                  <span class="ladder__oneliner">You both said yes. That's all either of you knows right now.</span>
+                </span>
+                <span class="badge band-high">where you are</span>
+              </summary>
+              <div class="ladder__detail">
+                <p>Right now the only new thing is that the interest was mutual. Nothing else
+                changed hands &mdash; no names, no photos, no way to reach each other.</p>
+              </div>
+            </details>
+          </li>
+
+          <li class="ladder__rung is-now">
+            <details>
+              <summary>
+                <span class="ladder__num">2</span>
+                <span class="ladder__body">
+                  <span class="ladder__title">More answers</span>
+                  <span class="ladder__oneliner">Swap your Extended &amp; Deep answers and pick a few conversation starters.</span>
+                </span>
+                <span class="badge band-medium">ready when you are</span>
+              </summary>
+              <div class="ladder__detail">
+                <p>Your <strong>Extended</strong> and <strong>Deep</strong> answers &mdash; the
+                optional tiers you can opt into from your profile &mdash; become shareable here,
+                after a mutual match. Plus tidy prompts like "ask about their free time."
+                Structured only &mdash; no free text. (Same answers, two uses: they're both your
+                profile detail <em>and</em> this rung's reveal material.)</p>
+                <div class="chip-row" style="margin-top:var(--sp-2);">
+                  <label class="chip"><input type="checkbox" name="starter"><span class="chip__label">Ask about: free time</span></label>
+                  <label class="chip"><input type="checkbox" name="starter"><span class="chip__label">Ask about: work rhythm</span></label>
+                  <label class="chip"><input type="checkbox" name="starter"><span class="chip__label">Ask about: travel</span></label>
+                </div>
+              </div>
+            </details>
+          </li>
+
+          <li class="ladder__rung is-later">
+            <details>
+              <summary>
+                <span class="ladder__num">3</span>
+                <span class="ladder__body">
+                  <span class="ladder__title">Photos</span>
+                  <span class="ladder__oneliner">Swap photos when you're both ready.</span>
+                </span>
+                <span class="badge badge--later">coming later</span>
+              </summary>
+              <div class="ladder__detail">
+                <p>Not built yet. It needs care and a few checks first &mdash; photos are
+                sensitive, so this step is still in the works. No hard feelings; it'll be here
+                when it's ready.</p>
+              </div>
+            </details>
+          </li>
+
+          <li class="ladder__rung is-later">
+            <details>
+              <summary>
+                <span class="ladder__num">4</span>
+                <span class="ladder__body">
+                  <span class="ladder__title">Names &amp; contact</span>
+                  <span class="ladder__oneliner">Trade names or a way to reach each other. The last step.</span>
+                </span>
+                <span class="badge badge--later">coming later</span>
+              </summary>
+              <div class="ladder__detail">
+                <p>Also not built yet &mdash; it needs the most care of all, plus a clear plan
+                for how you'll share details safely. It's the finish line, not something to
+                rush.</p>
+              </div>
+            </details>
+          </li>
+        </ul>
+
+        <p class="faint">Any step you've both unlocked stays unlockable &mdash; you can walk it
+        back whenever. Unmatching is quiet and both-sided: no one gets told who ended it.</p>
+
+        <div class="btn-row">
+          <button class="btn btn--ghost" type="button" data-report="match">Report</button>
+          <button class="btn btn--danger" type="button" id="unmatch">Unmatch</button>
+          <span class="faint" style="align-self:center;">Unmatching is silent &mdash; neither of you is notified.</span>
+        </div>
+        <div class="btn-row">
+          <a class="btn btn--ghost" href="#v-match" data-nav="match">Back</a>
+          <a class="btn btn--ghost" href="#v-safety" data-nav="safety">Safety</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- SAFETY · moderation, audit, report, privacy                        -->
+    <!-- ================================================================ -->
+    <section class="view" id="v-safety" data-view="safety" data-title="Safety">
+      <div class="page page--narrow">
+        <h2>Safety</h2>
+        <p class="lead">Your data, your say, and a human to ask when something's off.</p>
+
+        <details class="profile-section" data-legal="withdraw-control" open>
+          <summary><strong>Withdraw consent / delete demo profile</strong></summary>
+          <p>Stop participating anytime &mdash; as easy as it was to start.</p>
+          <button class="btn btn--danger" type="button" id="withdraw-safety">Withdraw consent / delete demo profile</button>
+          <p class="faint withdraw-status" data-withdraw-status hidden>Demo: agent exchange stopped, your profile left the pool. Real deletion &amp; retention mechanics are <strong>counsel-gated</strong> and not modeled here.</p>
+        </details>
+
+        <p class="faint" style="margin-top: var(--sp-3);">
+          <a href="#v-legal" data-nav="legal">Before you join &mdash; terms, privacy notice &amp; consent &rarr;</a>
+        </p>
+
+        <details class="profile-section" open>
+          <summary><strong>Your data &amp; privacy</strong></summary>
+          <p>Everything you answer and import stays on this device. Only the little labels and
+          counts move around. You can see, edit, or remove any of it, anytime.</p>
+          <ul class="pref-lines">
+            <li><span class="k">Update your answers</span> &mdash; <a href="#v-profile" data-nav="profile">open your profile</a></li>
+            <li><span class="k">Refresh your data</span> &mdash; <a href="#v-import" data-nav="import">bring a newer export</a></li>
+          </ul>
+        </details>
+
+        <details class="profile-section">
+          <summary><strong>Activity log</strong></summary>
+          <p class="faint">Every exchange is recorded and can be replayed. Here's this demo's log:</p>
+          <div class="import-log" id="audit-log" style="max-height:180px;"></div>
+        </details>
+
+        <details class="profile-section">
+          <summary><strong>Something wrong?</strong></summary>
+          <p>Reports go to a real person, not a machine. They can step in and pause things if
+          needed.</p>
+          <button class="btn btn--danger btn--sm" type="button" data-report="general">File a report (demo)</button>
+        </details>
+
+        <div class="btn-row">
+          <a class="btn btn--ghost" href="#v-matches" data-nav="matches">Back</a>
+        </div>
+      </div>
+    </section>
+    <!-- ================================================================ -->
+    <!-- BEFORE YOU JOIN · legal & consent (pre-counsel DRAFT)             -->
+    <!-- ================================================================ -->
+    <section class="view" id="v-legal" data-view="legal" data-title="Before you join">
+      <div class="page page--narrow">
+        <div class="legal-banner">
+          <span class="badge badge--gated">DRAFT &mdash; pre-counsel</span>
+          <p class="faint">Built for the legal inquiry, not a legal conclusion. Nothing here is
+          final; none of it is legal advice and none of it claims to meet any legal requirement. Every unknown is marked
+          <strong>&ldquo;to be confirmed with counsel&rdquo;</strong>.</p>
+        </div>
+
+        <h2>Before you join</h2>
+        <p class="lead">Three separate things, on purpose: the <strong>terms</strong> you agree to,
+        the <strong>privacy notice</strong> you read, and the <strong>consents</strong> you
+        explicitly opt into. Agreeing to the terms never counts as consent.</p>
+
+        <!-- 1. Terms of use (draft) -->
+        <details class="profile-section" data-legal="terms" open>
+          <summary><strong>1 &middot; Terms of use</strong> <span class="badge badge--gated">draft</span></summary>
+          <ul class="legal-list">
+            <li><strong>Beta.</strong> This is a prototype in testing, not a finished product. No promise of outcomes, matches, or that anything will work a certain way.</li>
+            <li><strong>Adults only.</strong> This service is for adults (18+). The exact age-policy wording and any verification are <strong>to be confirmed with counsel</strong>.</li>
+            <li><strong>Conduct.</strong> Be honest in your answers. No harassment, no impersonation, no abuse. You can <a href="#v-safety" data-nav="safety">unmatch or report</a> anyone, anytime.</li>
+            <li><strong>Reporting.</strong> Reports go to a human reviewer. Demo only &mdash; nothing is actually reviewed here.</li>
+            <li><strong>Service limits.</strong> The oversharing filter is best-effort, not a guarantee. No photos, names, or contact details are part of this demo.</li>
+          </ul>
+          <label class="opt-in legal-accept">
+            <input type="checkbox" name="terms-accept" id="terms-accept">
+            <span class="opt-in__label">I've read and accept these <strong>draft</strong> terms of use (demo).</span>
+          </label>
+          <p class="faint">This is a <strong>draft</strong>, not final legal terms, and it awaits counsel.</p>
+        </details>
+
+        <!-- 2. Privacy notice (draft, Art. 13 shaped) -->
+        <details class="profile-section" data-legal="privacy">
+          <summary><strong>2 &middot; Privacy notice</strong> <span class="badge badge--gated">draft</span></summary>
+          <p class="faint">Draft, shaped around Art. 13 information duties. Every placeholder below is
+          <strong>to be confirmed with counsel</strong> &mdash; none of them is real.</p>
+          <div class="legal-grid">
+            <div class="legal-grid__row"><span class="k">Controller</span><span class="v">[controller identity + contact &mdash; to be confirmed with counsel]</span></div>
+            <div class="legal-grid__row"><span class="k">Purposes</span><span class="v">Build a matching profile from your questionnaire answers; compare it with other profiles; show a preference-match result. The lawful basis (Art. 6 / Art. 9) is <strong>to be confirmed with counsel</strong>.</span></div>
+            <div class="legal-grid__row"><span class="k">Data categories</span><span class="v">Questionnaire answers (which may include special-category data such as sexual orientation where you answer that); optional local context import (e.g. Google Takeout, parsed on-device); derived matching signals.</span></div>
+            <div class="legal-grid__row"><span class="k">Recipients / role</span><span class="v">[platform / processor roles &mdash; to be confirmed with counsel]</span></div>
+            <div class="legal-grid__row"><span class="k">Storage &amp; retention</span><span class="v">[retention period &mdash; to be confirmed with counsel; no period is set or invented]</span></div>
+            <div class="legal-grid__row"><span class="k">Your rights</span><span class="v">Access, rectification, erasure, withdraw consent, object, and complaint to a supervisory authority. Withdrawal is available anytime in Safety.</span></div>
+            <div class="legal-grid__row"><span class="k">Automated matching</span><span class="v">A preference-match score compares your answers with someone else's. It is <strong>preference screening, not a chemistry or compatibility prediction</strong>. See &ldquo;How matching works&rdquo; below.</span></div>
+          </div>
+        </details>
+
+        <!-- 3. Explicit consent (separate, all off by default) -->
+        <details class="profile-section" data-legal="consent" open>
+          <summary><strong>3 &middot; Explicit consent</strong> <span class="badge badge--gated">draft</span></summary>
+          <p class="faint">Separate from the terms. Everything below is <strong>off by default</strong>.
+          You can decline any of it and still use the rest of the demo.</p>
+
+          <label class="consent-row">
+            <input type="checkbox" name="consent-matching" id="consent-matching">
+            <span class="consent-row__body">
+              <strong>Matching profile + structured agent exchange (PSI)</strong>
+              <span class="consent-row__meta">Purpose: compare my questionnaire answers (including special-category data where I answer) with other profiles to compute a preference match. Categories: profile answers, derived signals. Withdraw: Safety &rarr; &ldquo;Withdraw consent / delete demo profile&rdquo;, anytime.</span>
+            </span>
+          </label>
+
+          <label class="consent-row">
+            <input type="checkbox" name="consent-import" id="consent-import">
+            <span class="consent-row__body">
+              <strong>Optional context import</strong>
+              <span class="consent-row__meta">Purpose: parse a context archive you bring (Google Takeout now; future sources consented separately) on-device to surface context chips. Categories: the archive you bring, kept on-device. You can <strong>decline this</strong> and continue with the questionnaire-only demo. Withdraw: Safety, anytime.</span>
+            </span>
+          </label>
+
+          <label class="consent-row consent-row--locked">
+            <input type="checkbox" name="consent-disclosure" id="consent-disclosure" disabled>
+            <span class="consent-row__body">
+              <strong>Staged post-match disclosures</strong> <span class="badge badge--locked">counsel-gated</span>
+              <span class="consent-row__meta">Photos, names, and contact details are unavailable and locked until the legal gate. This consent cannot be given yet; its wording is <strong>to be confirmed with counsel</strong>.</span>
+            </span>
+          </label>
+        </details>
+
+        <!-- 4. Matching transparency -->
+        <details class="profile-section" data-legal="transparency">
+          <summary><strong>4 &middot; How matching works</strong></summary>
+          <p>Every card shows a <strong>preference match</strong> score (0&ndash;100) with a breakdown of
+          what lined up. It is <strong>preference screening, not a prediction of chemistry</strong>.</p>
+          <p><strong>Red flags</strong> are private dealbreakers &mdash; someone you flag never shows up,
+          and they're never told why.</p>
+          <p>You can <a href="#v-profile" data-nav="profile">edit your profile</a>, your red flags, or
+          <a href="#v-safety" data-nav="safety">withdraw</a> at any time.</p>
+          <p><a href="#v-miller" data-nav="miller">Open legal questions for counsel &rarr;</a></p>
+        </details>
+
+        <!-- 5. Withdrawal & deletion -->
+        <details class="profile-section" data-legal="withdraw" open>
+          <summary><strong>5 &middot; Withdraw &amp; delete</strong></summary>
+          <p>Withdrawing consent is as easy as giving it.</p>
+          <button class="btn btn--danger" type="button" id="withdraw">Withdraw consent / delete demo profile</button>
+          <p class="faint withdraw-status" data-withdraw-status hidden>Demo: agent exchange stopped, your profile left the pool. Real deletion &amp; retention mechanics are <strong>counsel-gated</strong> and not modeled here.</p>
+        </details>
+
+        <div class="btn-row btn-row--between">
+          <a class="btn btn--ghost" href="#v-welcome" data-nav="welcome">Back</a>
+          <button class="btn btn--primary" id="legal-continue" type="button">Continue &rarr;</button>
+        </div>
+        <p class="faint" id="legal-gate-note">You must accept the draft terms to continue (demo). Consent stays <strong>optional</strong>.</p>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- MILLER · open legal questions (public-safe)                       -->
+    <!-- ================================================================ -->
+    <section class="view" id="v-miller" data-view="miller" data-title="Legal questions">
+      <div class="page page--narrow">
+        <div class="legal-banner">
+          <span class="badge badge--gated">DRAFT &mdash; for counsel</span>
+          <p class="faint">Open legal questions, not a conclusion. Public-safe by design: no names,
+          identifiers, URLs, or internal details.</p>
+        </div>
+
+        <h2>Open legal questions for counsel</h2>
+        <p class="lead">What still needs counsel to decide. The Miller inquiry stays the gate for
+        real data and real users.</p>
+
+        <ul class="miller-list">
+          <li><strong>Lawful basis.</strong> Which Art. 6 / Art. 9 basis applies to processing sexuality data for matching, and whether explicit consent is the right exception.</li>
+          <li><strong>DPIA.</strong> Whether a Data Protection Impact Assessment is required for this prototype scope.</li>
+          <li><strong>Controller / processor.</strong> Confirm the role for the matching service and any platform or processing partners.</li>
+          <li><strong>Privacy promise wording.</strong> Validate the Art. 13 privacy-notice wording and any public promise made to users.</li>
+          <li><strong>Export / third-party data.</strong> Treatment of context imports (e.g. Google Takeout) and any third-party-derived signals.</li>
+          <li><strong>Photos / contact ladder.</strong> The staged disclosure of photos, names, and contact details &mdash; when and how.</li>
+        </ul>
+
+        <div class="btn-row">
+          <a class="btn btn--ghost" href="#v-legal" data-nav="legal">Back to Before you join</a>
+          <a class="btn btn--ghost" href="#v-safety" data-nav="safety">Safety</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+</div>
+
+<!-- Collapsible honesty / privacy footer -->
+<footer class="site-footer" role="contentinfo">
+  <details class="privacy" id="privacy-footer">
+    <summary>About privacy</summary>
+    <p>This is a demo, not a real product. The match score is a <strong>preference
+    match</strong> &mdash; how much your answers line up &mdash; <strong>not a chemistry or
+    compatibility prediction</strong>. It doesn't predict who you'll click with. Your answers
+    and imports stay on this device; only simple labels and counts ever move around.
+    Everything you share is your choice, and you can see, edit, or remove any of it.
+    <strong>Red flags are private dealbreakers</strong> &mdash; someone you flag simply never
+    shows up, and they're never told. The filter that stops accidental oversharing is
+    best-effort &mdash; it's not a promise nothing can ever leak. Made-up data only, no real
+    people.</p>
+    <p>PARTNER-002 &middot; UI prototype slice 8 &middot; static, vanilla HTML/CSS/JS, no
+    backend, no external assets. Things marked "later" are plans, not finished features.</p>
+  </details>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="matching.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
