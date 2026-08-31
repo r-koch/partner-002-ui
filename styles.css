@@ -491,6 +491,10 @@ select:focus-visible, input:focus-visible { outline: none; box-shadow: var(--foc
 .toggle input:disabled + .toggle__slider { cursor: not-allowed; opacity: 0.5; }
 
 /* ---- Toast -------------------------------------------------------------- */
+/* Hidden state is triple-locked (opacity/visibility/pointer-events), not
+   transform-only: fixed+transform painting is unreliable on mobile, which
+   let an empty toast ghost-render at bottom-center. Transform slide kept
+   as a bonus; visibility in the transition list preserves the fade-out. */
 .toast {
   position: fixed; bottom: var(--sp-5); left: 50%;
   transform: translateX(-50%) translateY(120%);
@@ -501,11 +505,19 @@ select:focus-visible, input:focus-visible { outline: none; box-shadow: var(--foc
   border-radius: var(--r-md);
   font-size: var(--fs-sm);
   box-shadow: var(--shadow);
-  transition: transform 0.25s ease;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
   z-index: 50;
   max-width: 90%;
 }
-.toast.is-visible { transform: translateX(-50%) translateY(0); }
+.toast.is-visible {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
 
 /* ---- Footer ------------------------------------------------------------- */
 .site-footer {
