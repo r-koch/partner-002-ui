@@ -90,38 +90,45 @@
           told why. It's private. (There are no flags on <em>About you</em> answers — that side
           just describes you.)</p>
 
-          <!-- Q1 gender — About you -->
-          <div class="field-group" data-question="gender" data-axis="you">
-            <span class="axis__tag axis__tag--you">&#128101; About you</span>
-            <span class="field-label">1. Your gender</span>
-            <div class="chip-row">
-              <label class="chip"><input type="radio" name="gender" value="woman"><span class="chip__label">Woman</span></label>
-              <label class="chip"><input type="radio" name="gender" value="man"><span class="chip__label">Man</span></label>
-              <label class="chip"><input type="radio" name="gender" value="non-binary"><span class="chip__label">Non-binary</span></label>
-              <label class="chip"><input type="radio" name="gender" value="prefer-not-to-say" checked><span class="chip__label">Prefer not to say</span></label>
+          <!-- Q1 gender — BOTH (single symmetric item; owner steer: merge your-gender + sought-gender) -->
+          <div class="field-group" data-question="gender" data-axis="both">
+            <span class="field-label">1. Gender</span>
+            <div class="axis-side axis-side--you" data-axis="you">
+              <span class="axis__tag axis__tag--you">&#128101; About you</span>
+              <div class="chip-row">
+                <label class="chip"><input type="radio" name="gender-you" value="woman"><span class="chip__label">Woman</span></label>
+                <label class="chip"><input type="radio" name="gender-you" value="man"><span class="chip__label">Man</span></label>
+                <label class="chip"><input type="radio" name="gender-you" value="non-binary"><span class="chip__label">Non-binary</span></label>
+                <label class="chip"><input type="radio" name="gender-you" value="prefer-not-to-say" checked><span class="chip__label">Prefer not to say</span></label>
+              </div>
+            </div>
+            <div class="axis-side axis-side--seek" data-axis="seek">
+              <span class="axis__tag axis__tag--seek">&#127919; Looking for</span>
+              <div class="chip-row">
+                <span class="choice"><label class="chip"><input type="checkbox" name="gender" value="women"><span class="chip__label">Women</span></label><button class="flag" type="button" data-flag="gender" data-flag-value="women" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                <span class="choice"><label class="chip"><input type="checkbox" name="gender" value="men"><span class="chip__label">Men</span></label><button class="flag" type="button" data-flag="gender" data-flag-value="men" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                <span class="choice"><label class="chip"><input type="checkbox" name="gender" value="non-binary-people"><span class="chip__label">Non-binary people</span></label><button class="flag" type="button" data-flag="gender" data-flag-value="non-binary-people" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                <span class="choice"><label class="chip"><input type="checkbox" name="gender" value="prefer-not-to-say"><span class="chip__label">Prefer not to say</span></label><button class="flag" type="button" data-flag="gender" data-flag-value="prefer-not-to-say" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                <span class="choice"><label class="chip"><input type="checkbox" name="gender" value="any" checked><span class="chip__label">Any</span></label></span>
+              </div>
+              <div class="field-hint">Pick all that apply, or "Any".</div>
+              <div class="importance" role="radiogroup" aria-label="how much this matters">
+                <span class="importance__label">How much does this matter?</span>
+                <label class="importance"><input type="radio" name="gender-imp" value="1"><span class="importance__dot">1</span></label>
+                <label class="importance"><input type="radio" name="gender-imp" value="2"><span class="importance__dot">2</span></label>
+                <label class="importance"><input type="radio" name="gender-imp" value="3" checked><span class="importance__dot">3</span></label>
+                <label class="importance"><input type="radio" name="gender-imp" value="4"><span class="importance__dot">4</span></label>
+                <label class="importance"><input type="radio" name="gender-imp" value="5"><span class="importance__dot">5</span></label>
+              </div>
             </div>
           </div>
 
-          <!-- Q2 sought gender — Looking for (multi-select) -->
-          <div class="field-group" data-question="gender-seek" data-axis="seek">
-            <span class="axis__tag axis__tag--seek">&#127919; Looking for</span>
-            <span class="field-label">2. Gender(s) you're looking for</span>
-            <div class="chip-row">
-              <label class="chip"><input type="checkbox" name="gender-seek" value="women"><span class="chip__label">Women</span></label>
-              <label class="chip"><input type="checkbox" name="gender-seek" value="men"><span class="chip__label">Men</span></label>
-              <label class="chip"><input type="checkbox" name="gender-seek" value="non-binary-people"><span class="chip__label">Non-binary people</span></label>
-              <label class="chip"><input type="checkbox" name="gender-seek" value="prefer-not-to-say"><span class="chip__label">Prefer not to say</span></label>
-              <label class="chip"><input type="checkbox" name="gender-seek" value="any" checked><span class="chip__label">Any</span></label>
-            </div>
-            <div class="field-hint">Pick all that apply, or "Any".</div>
-            <div class="importance" role="radiogroup" aria-label="how much this matters">
-              <span class="importance__label">How much does this matter?</span>
-              <label class="importance"><input type="radio" name="gender-seek-imp" value="1"><span class="importance__dot">1</span></label>
-              <label class="importance"><input type="radio" name="gender-seek-imp" value="2"><span class="importance__dot">2</span></label>
-              <label class="importance"><input type="radio" name="gender-seek-imp" value="3" checked><span class="importance__dot">3</span></label>
-              <label class="importance"><input type="radio" name="gender-seek-imp" value="4"><span class="importance__dot">4</span></label>
-              <label class="importance"><input type="radio" name="gender-seek-imp" value="5"><span class="importance__dot">5</span></label>
-            </div>
+          <!-- Q2 your age — About you (numeric, required) [owner steer I] -->
+          <div class="field-group" data-question="your-age" data-axis="you">
+            <span class="axis__tag axis__tag--you">&#128101; About you</span>
+            <span class="field-label">2. Your age</span>
+            <input type="number" id="your-age" name="your-age" min="18" max="99" required inputmode="numeric" aria-label="your age in years">
+            <div class="field-hint">Your own age in years (18&ndash;99).</div>
           </div>
 
           <!-- Q3 height — BOTH -->
@@ -378,27 +385,65 @@
             </div>
           </div>
 
-          <!-- Q11 living — About you -->
-          <div class="field-group" data-question="living" data-axis="you">
-            <span class="axis__tag axis__tag--you">&#128101; About you</span>
+          <!-- Q12 living — BOTH (owner steer H) -->
+          <div class="field-group" data-question="living" data-axis="both">
             <span class="field-label">12. Where do you live?</span>
-            <div class="chip-row">
-              <label class="chip"><input type="radio" name="living" value="alone" checked><span class="chip__label">Alone</span></label>
-              <label class="chip"><input type="radio" name="living" value="flatmates"><span class="chip__label">Flatmates</span></label>
-              <label class="chip"><input type="radio" name="living" value="family"><span class="chip__label">Family</span></label>
-              <label class="chip"><input type="radio" name="living" value="other"><span class="chip__label">Other</span></label>
+            <div class="axis-side axis-side--you" data-axis="you">
+              <span class="axis__tag axis__tag--you">&#128101; About you</span>
+              <div class="chip-row">
+                <label class="chip"><input type="radio" name="living-you" value="alone" checked><span class="chip__label">Alone</span></label>
+                <label class="chip"><input type="radio" name="living-you" value="flatmates"><span class="chip__label">Flatmates</span></label>
+                <label class="chip"><input type="radio" name="living-you" value="family"><span class="chip__label">Family</span></label>
+                <label class="chip"><input type="radio" name="living-you" value="other"><span class="chip__label">Other</span></label>
+              </div>
+            </div>
+            <div class="axis-side axis-side--seek" data-axis="seek">
+              <span class="axis__tag axis__tag--seek">&#127919; Looking for</span>
+              <div class="chip-row">
+                <span class="choice"><label class="chip"><input type="checkbox" name="living" value="alone" checked><span class="chip__label">Alone</span></label><button class="flag" type="button" data-flag="living" data-flag-value="alone" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                <span class="choice"><label class="chip"><input type="checkbox" name="living" value="flatmates"><span class="chip__label">Flatmates</span></label><button class="flag" type="button" data-flag="living" data-flag-value="flatmates" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                <span class="choice"><label class="chip"><input type="checkbox" name="living" value="family"><span class="chip__label">Family</span></label><button class="flag" type="button" data-flag="living" data-flag-value="family" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                <span class="choice"><label class="chip"><input type="checkbox" name="living" value="other"><span class="chip__label">Other</span></label><button class="flag" type="button" data-flag="living" data-flag-value="other" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+              </div>
+              <div class="importance" role="radiogroup" aria-label="how much living matters">
+                <span class="importance__label">How much does this matter?</span>
+                <label class="importance"><input type="radio" name="living-imp" value="1"><span class="importance__dot">1</span></label>
+                <label class="importance"><input type="radio" name="living-imp" value="2"><span class="importance__dot">2</span></label>
+                <label class="importance"><input type="radio" name="living-imp" value="3" checked><span class="importance__dot">3</span></label>
+                <label class="importance"><input type="radio" name="living-imp" value="4"><span class="importance__dot">4</span></label>
+                <label class="importance"><input type="radio" name="living-imp" value="5"><span class="importance__dot">5</span></label>
+              </div>
             </div>
           </div>
 
-          <!-- Q12 work rhythm — About you -->
-          <div class="field-group" data-question="work" data-axis="you">
-            <span class="axis__tag axis__tag--you">&#128101; About you</span>
+          <!-- Q13 work rhythm — BOTH (owner steer H) -->
+          <div class="field-group" data-question="work" data-axis="both">
             <span class="field-label">13. Work rhythm</span>
-            <div class="chip-row">
-              <label class="chip"><input type="radio" name="work" value="9to5"><span class="chip__label">9&ndash;5</span></label>
-              <label class="chip"><input type="radio" name="work" value="flexible" checked><span class="chip__label">Flexible</span></label>
-              <label class="chip"><input type="radio" name="work" value="irregular"><span class="chip__label">Irregular</span></label>
-              <label class="chip"><input type="radio" name="work" value="shift"><span class="chip__label">Shifts</span></label>
+            <div class="axis-side axis-side--you" data-axis="you">
+              <span class="axis__tag axis__tag--you">&#128101; About you</span>
+              <div class="chip-row">
+                <label class="chip"><input type="radio" name="work-you" value="9to5"><span class="chip__label">9&ndash;5</span></label>
+                <label class="chip"><input type="radio" name="work-you" value="flexible" checked><span class="chip__label">Flexible</span></label>
+                <label class="chip"><input type="radio" name="work-you" value="irregular"><span class="chip__label">Irregular</span></label>
+                <label class="chip"><input type="radio" name="work-you" value="shift"><span class="chip__label">Shifts</span></label>
+              </div>
+            </div>
+            <div class="axis-side axis-side--seek" data-axis="seek">
+              <span class="axis__tag axis__tag--seek">&#127919; Looking for</span>
+              <div class="chip-row">
+                <span class="choice"><label class="chip"><input type="checkbox" name="work" value="9to5"><span class="chip__label">9&ndash;5</span></label><button class="flag" type="button" data-flag="work" data-flag-value="9to5" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                <span class="choice"><label class="chip"><input type="checkbox" name="work" value="flexible" checked><span class="chip__label">Flexible</span></label><button class="flag" type="button" data-flag="work" data-flag-value="flexible" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                <span class="choice"><label class="chip"><input type="checkbox" name="work" value="irregular"><span class="chip__label">Irregular</span></label><button class="flag" type="button" data-flag="work" data-flag-value="irregular" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                <span class="choice"><label class="chip"><input type="checkbox" name="work" value="shift"><span class="chip__label">Shifts</span></label><button class="flag" type="button" data-flag="work" data-flag-value="shift" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+              </div>
+              <div class="importance" role="radiogroup" aria-label="how much work matters">
+                <span class="importance__label">How much does this matter?</span>
+                <label class="importance"><input type="radio" name="work-imp" value="1"><span class="importance__dot">1</span></label>
+                <label class="importance"><input type="radio" name="work-imp" value="2"><span class="importance__dot">2</span></label>
+                <label class="importance"><input type="radio" name="work-imp" value="3" checked><span class="importance__dot">3</span></label>
+                <label class="importance"><input type="radio" name="work-imp" value="4"><span class="importance__dot">4</span></label>
+                <label class="importance"><input type="radio" name="work-imp" value="5"><span class="importance__dot">5</span></label>
+              </div>
             </div>
           </div>
 
@@ -417,10 +462,10 @@
             <div class="axis-side axis-side--seek" data-axis="seek">
               <span class="axis__tag axis__tag--seek">&#127919; Looking for</span>
               <div class="chip-row">
-                <span class="choice"><label class="chip"><input type="radio" name="pets" value="love" checked><span class="chip__label">Loves them</span></label><button class="flag" type="button" data-flag="pets" data-flag-value="love" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-                <span class="choice"><label class="chip"><input type="radio" name="pets" value="tolerate"><span class="chip__label">Tolerates</span></label><button class="flag" type="button" data-flag="pets" data-flag-value="tolerate" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-                <span class="choice"><label class="chip"><input type="radio" name="pets" value="allergic"><span class="chip__label">Allergic</span></label><button class="flag" type="button" data-flag="pets" data-flag-value="allergic" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
-                <span class="choice"><label class="chip"><input type="radio" name="pets" value="none"><span class="chip__label">None</span></label><button class="flag" type="button" data-flag="pets" data-flag-value="none" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                                <span class="choice"><label class="chip"><input type="radio" name="pets" value="must-love" checked><span class="chip__label">Must love them</span></label><button class="flag" type="button" data-flag="pets" data-flag-value="must-love" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                <span class="choice"><label class="chip"><input type="radio" name="pets" value="pets-ok"><span class="chip__label">Pets ok</span></label><button class="flag" type="button" data-flag="pets" data-flag-value="pets-ok" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                <span class="choice"><label class="chip"><input type="radio" name="pets" value="no-pets"><span class="chip__label">No pets</span></label><button class="flag" type="button" data-flag="pets" data-flag-value="no-pets" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
+                <span class="choice"><label class="chip"><input type="radio" name="pets" value="doesnt-matter"><span class="chip__label">Doesn't matter</span></label><button class="flag" type="button" data-flag="pets" data-flag-value="doesnt-matter" aria-pressed="false" title="Red flag — this answer never matches: anyone answering it stays hidden from you. Private."><span class="flag__icon">&#9873;</span><span class="flag__txt">flag</span></button></span>
               </div>
               <div class="importance" role="radiogroup" aria-label="how much pets matter">
                 <span class="importance__label">How much does this matter?</span>
@@ -474,10 +519,6 @@
               <label class="chip"><input type="radio" name="freetime" value="city-culture"><span class="chip__label">City culture</span></label>
               <label class="chip"><input type="radio" name="freetime" value="travel"><span class="chip__label">Travel</span></label>
               <label class="chip"><input type="radio" name="freetime" value="mixed"><span class="chip__label">A bit of everything</span></label>
-            </div>
-            <div class="derived-chips">
-              <span class="chip-tag" data-signal="outdoors">from your data: outdoors</span>
-              <span class="chip-tag" data-signal="travel">from your data: travel</span>
             </div>
           </div>
         </details>

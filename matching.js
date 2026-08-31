@@ -49,6 +49,21 @@
      age 18..99, height 120..250 cm. Empty bound = open end = no constraint. */
   var RANGE_BOUNDS = { age: { min: 18, max: 99 }, height: { min: 120, max: 250 } };
 
+  /* Pets "Looking for" is acceptance semantics (owner 2026-08-31): the seek
+     value is what the user ACCEPTS, mapped onto the candidate's pet attribute
+     (love / tolerate / allergic / none). "Doesn't matter" accepts everyone. */
+  var PETS_ACCEPT = {
+    "must-love":     ["love"],
+    "pets-ok":       ["love", "tolerate"],
+    "no-pets":       ["none"],
+    "doesnt-matter": ["love", "tolerate", "allergic", "none"]
+  };
+
+  /* Multi-select symmetric items (living, work): the user's Looking-for is a
+     SET of acceptable values. A candidate value in the set matches; an empty
+     set means "any" (= no preference = skipped from the score). */
+  var MULTI = ["living", "work"];
+
   /* Range criterion semantics, shared by age and height:
      - user bounds may be null/undefined = open end (no constraint on that side)
      - candidate value inside [min,max] (inclusive) matches; outside doesn't
@@ -96,7 +111,7 @@
       smoking: "never", religion: "none", distance: "city",
       ageMin: 27, ageMax: 38,
       heightMin: null, heightMax: null,
-      living: "alone", work: "flexible", pets: "love",
+      living: ["alone"], work: ["flexible"], pets: "must-love",
       politics: "liberal", freetime: "active-outdoors"
     },
     importance: {
@@ -135,7 +150,17 @@
     if (ITEMS[item] && ITEMS[item].range) {
       return rangeMatches(item, candVal, user);
     }
-    return user.answers[item] != null && String(candVal) === String(user.answers[item]);
+    if (item === "pets") {
+      var acc = user.answers[item];
+      var accSet = PETS_ACCEPT[acc];
+      return accSet ? accSet.indexOf(String(candVal)) !== -1 : false;
+    }
+    var uv = user.answers[item];
+    if (MULTI.indexOf(item) !== -1) {
+      if (!uv || !uv.length) return false;      // empty = any (skipped upstream)
+      return uv.indexOf(String(candVal)) !== -1;
+    }
+    return uv != null && String(candVal) === String(uv);
   }
 
   function scoreCandidate(cand, user) {
@@ -157,8 +182,9 @@
         if (user.answers[item + "Min"] == null && user.answers[item + "Max"] == null) {
           continue;
         }
-      } else if (user.answers[item] == null) {
-        continue;                                  // user hasn't answered this item
+      } else if (user.answers[item] == null ||
+                 (MULTI.indexOf(item) !== -1 && user.answers[item].length === 0)) {
+        continue;                                  // user hasn't answered (multi: empty = any)
       }
       var w = user.importance[item] || 3;
       total += w;
@@ -206,6 +232,12 @@
     var el = document.querySelector('input[name="' + item + '"]:checked');
     return el ? el.value : null;
   }
+  function qvals(item) {
+    var nodes = document.querySelectorAll('input[name="' + item + '"]:checked');
+    var out = [];
+    for (var i = 0; i < nodes.length; i++) out.push(nodes[i].value);
+    return out;
+  }
   function impval(item) {
     var el = document.querySelector('input[name="' + item + '-imp"]:checked');
     return el ? parseInt(el.value, 10) : 3;
@@ -233,6 +265,9 @@
         if (mn != null && mx != null && mn > mx) { mn = null; mx = null; }
         answers[item + "Min"] = mn;
         answers[item + "Max"] = mx;
+      } else if (MULTI.indexOf(item) !== -1) {
+        var set = qvals(item);
+        if (set.length) answers[item] = set;
       } else {
         var v = qval(item);
         if (v) answers[item] = v;
@@ -552,6 +587,32 @@
     ok = assert(api.rangeMatches("height", 176, { answers: { heightMin: 180, heightMax: null } }) === false,
       "6h: rangeMatches below min -> false") && ok;
 
+    // 7. pets acceptance semantics (owner 2026-08-31)
+    ok = assert(api.itemMatches("pets", "love", { answers: { pets: "must-love" } }) === true,
+      "7: must-love matches a 'love' candidate") && ok;
+    ok = assert(api.itemMatches("pets", "tolerate", { answers: { pets: "must-love" } }) === false,
+      "7: must-love rejects a 'tolerate' candidate") && ok;
+    ok = assert(api.itemMatches("pets", "tolerate", { answers: { pets: "pets-ok" } }) === true,
+      "7: pets-ok accepts a 'tolerate' candidate") && ok;
+    ok = assert(api.itemMatches("pets", "none", { answers: { pets: "no-pets" } }) === true,
+      "7: no-pets accepts a 'none' candidate") && ok;
+    ok = assert(api.itemMatches("pets", "allergic", { answers: { pets: "doesnt-matter" } }) === true,
+      "7: doesnt-matter accepts any candidate") && ok;
+
+    // 8. living / work multi-select (value in set; empty = any = skipped)
+    ok = assert(api.itemMatches("living", "alone", { answers: { living: ["alone", "flatmates"] } }) === true,
+      "8: living in set matches") && ok;
+    ok = assert(api.itemMatches("living", "family", { answers: { living: ["alone"] } }) === false,
+      "8: living not in set misses") && ok;
+    ok = assert(api.itemMatches("work", "flexible", { answers: { work: [] } }) === false,
+      "8: empty work set = no preference (any)") && ok;
+    var u8 = JSON.parse(JSON.stringify(DEFAULT_USER));
+    u8.answers.work = [];
+    var d8 = matchAll(u8);
+    ok = assert(d8.scored.every(function (r) {
+      return !r.breakdown.perItem.some(function (pp) { return pp.item === "work"; });
+    }), "8: empty work set = work skipped from every breakdown") && ok;
+
     console.log(JSON.stringify({
       selftest: ok ? "PASS" : "FAIL",
       default: { scored: d.scored.map(function (r) { return [r.id, r.score]; }), excluded: d.excluded },
@@ -561,7 +622,9 @@
       height_range_165_180: d6.scored.map(function (r) {
         var l = heightLine(r); return [r.id, r.score, l ? l.match : "skipped"];
       }),
-      height_strict_excluded: d6f.excluded
+      height_strict_excluded: d6f.excluded,
+      pets_acceptance: { mustlove_love: true, mustlove_tolerate: false, petsok_tolerate: true },
+      living_work_multi: { living_set_match: true, living_set_miss: false, work_empty_skipped: true }
     }));
     if (process && process.exitCode !== 1) process.exitCode = 0;
   }
