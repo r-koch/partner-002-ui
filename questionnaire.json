@@ -30,19 +30,46 @@
       "you": {
         "type": "radio",
         "options": [
-          { "value": "woman", "label": "Woman" },
-          { "value": "man", "label": "Man" },
-          { "value": "non-binary", "label": "Non-binary" },
-          { "value": "prefer-not-to-say", "label": "Prefer not to say", "checked": true }
+          {
+            "value": "woman",
+            "label": "Woman"
+          },
+          {
+            "value": "man",
+            "label": "Man"
+          },
+          {
+            "value": "non-binary",
+            "label": "Non-binary"
+          },
+          {
+            "value": "prefer-not-to-say",
+            "label": "Prefer not to say",
+            "checked": true
+          }
         ]
       },
       "seek": {
         "type": "multi",
         "options": [
-          { "value": "women", "label": "Women" },
-          { "value": "men", "label": "Men" },
-          { "value": "non-binary-people", "label": "Non-binary people" },
-          { "value": "any", "label": "Any", "checked": true, "redflag": false }
+          {
+            "value": "women",
+            "label": "Women"
+          },
+          {
+            "value": "men",
+            "label": "Men"
+          },
+          {
+            "value": "non-binary-people",
+            "label": "Non-binary people"
+          },
+          {
+            "value": "any",
+            "label": "Any",
+            "checked": true,
+            "redflag": false
+          }
         ],
         "hint": "Pick all that apply, or \"Any\".",
         "importance": true,
@@ -62,7 +89,7 @@
         "max": 99,
         "required": true,
         "ariaLabel": "your age in years",
-        "hint": "Your own age in years (18\u201399)."
+        "hint": "Your own age in years (18–99)."
       },
       "conditional": null
     },
@@ -73,12 +100,31 @@
       "you": {
         "type": "radio",
         "options": [
-          { "value": "lt160", "label": "Under 160 cm" },
-          { "value": "160-170", "label": "160\u2013170 cm" },
-          { "value": "171-180", "label": "171\u2013180 cm" },
-          { "value": "181-190", "label": "181\u2013190 cm" },
-          { "value": "gt190", "label": "Over 190 cm" },
-          { "value": "prefer-not-to-say", "label": "Prefer not to say", "checked": true }
+          {
+            "value": "lt160",
+            "label": "Under 160 cm"
+          },
+          {
+            "value": "160-170",
+            "label": "160–170 cm"
+          },
+          {
+            "value": "171-180",
+            "label": "171–180 cm"
+          },
+          {
+            "value": "181-190",
+            "label": "181–190 cm"
+          },
+          {
+            "value": "gt190",
+            "label": "Over 190 cm"
+          },
+          {
+            "value": "prefer-not-to-say",
+            "label": "Prefer not to say",
+            "checked": true
+          }
         ]
       },
       "seek": {
@@ -92,12 +138,12 @@
         "unit": "cm",
         "minAriaLabel": "minimum height in centimetres",
         "maxAriaLabel": "maximum height in centimetres",
-        "hint": "Free-form range in cm (120\u2013250). Leave both empty for any height; leave one empty for an open end. Min must not exceed max.",
+        "hint": "Free-form range in cm (120–250). Leave both empty for any height; leave one empty for an open end. Min must not exceed max.",
         "importance": true,
         "importanceDefault": 3,
         "importanceAriaLabel": "how much height matters",
         "redflag": true,
-        "rangeFlagTitle": "Red flag \u2014 anyone outside this height range never matches. Private."
+        "rangeFlagTitle": "Red flag — anyone outside this height range never matches. Private."
       },
       "conditional": null
     },
@@ -108,21 +154,53 @@
       "you": {
         "type": "radio",
         "options": [
-          { "value": "slim", "label": "Slim" },
-          { "value": "average", "label": "Average" },
-          { "value": "athletic", "label": "Athletic" },
-          { "value": "fuller", "label": "Fuller" },
-          { "value": "prefer-not-to-say", "label": "Prefer not to say", "checked": true }
+          {
+            "value": "slim",
+            "label": "Slim"
+          },
+          {
+            "value": "average",
+            "label": "Average"
+          },
+          {
+            "value": "athletic",
+            "label": "Athletic"
+          },
+          {
+            "value": "fuller",
+            "label": "Fuller"
+          },
+          {
+            "value": "prefer-not-to-say",
+            "label": "Prefer not to say",
+            "checked": true
+          }
         ]
       },
       "seek": {
         "type": "multi",
         "options": [
-          { "value": "slim", "label": "Slim" },
-          { "value": "average", "label": "Average" },
-          { "value": "athletic", "label": "Athletic", "checked": true },
-          { "value": "fuller", "label": "Fuller" },
-          { "value": "prefer-not-to-say", "label": "Prefer not to say" }
+          {
+            "value": "slim",
+            "label": "Slim"
+          },
+          {
+            "value": "average",
+            "label": "Average"
+          },
+          {
+            "value": "athletic",
+            "label": "Athletic",
+            "checked": true
+          },
+          {
+            "value": "fuller",
+            "label": "Fuller"
+          },
+          {
+            "value": "prefer-not-to-say",
+            "label": "Prefer not to say"
+          }
         ],
         "importance": true,
         "importanceDefault": 3,
@@ -138,21 +216,53 @@
       "you": {
         "type": "radio",
         "options": [
-          { "value": "long-term", "label": "Long-term", "checked": true },
-          { "value": "marriage-oriented", "label": "Marriage" },
-          { "value": "open", "label": "Open" },
-          { "value": "casual", "label": "Casual" },
-          { "value": "undecided", "label": "Not sure yet" }
+          {
+            "value": "long-term",
+            "label": "Long-term",
+            "checked": true
+          },
+          {
+            "value": "marriage-oriented",
+            "label": "Marriage"
+          },
+          {
+            "value": "open",
+            "label": "Open"
+          },
+          {
+            "value": "casual",
+            "label": "Casual"
+          },
+          {
+            "value": "undecided",
+            "label": "Not sure yet"
+          }
         ]
       },
       "seek": {
         "type": "radio",
         "options": [
-          { "value": "long-term", "label": "Long-term", "checked": true },
-          { "value": "marriage-oriented", "label": "Marriage" },
-          { "value": "open", "label": "Open" },
-          { "value": "casual", "label": "Casual" },
-          { "value": "undecided", "label": "Not sure yet" }
+          {
+            "value": "long-term",
+            "label": "Long-term",
+            "checked": true
+          },
+          {
+            "value": "marriage-oriented",
+            "label": "Marriage"
+          },
+          {
+            "value": "open",
+            "label": "Open"
+          },
+          {
+            "value": "casual",
+            "label": "Casual"
+          },
+          {
+            "value": "undecided",
+            "label": "Not sure yet"
+          }
         ],
         "importance": true,
         "importanceDefault": 5,
@@ -168,19 +278,45 @@
       "you": {
         "type": "radio",
         "options": [
-          { "value": "yes", "label": "Want kids", "checked": true },
-          { "value": "no", "label": "Don't want" },
-          { "value": "open", "label": "Open" },
-          { "value": "already-have", "label": "Already have" }
+          {
+            "value": "yes",
+            "label": "Want kids",
+            "checked": true
+          },
+          {
+            "value": "no",
+            "label": "Don't want"
+          },
+          {
+            "value": "open",
+            "label": "Open"
+          },
+          {
+            "value": "already-have",
+            "label": "Already have"
+          }
         ]
       },
       "seek": {
         "type": "radio",
         "options": [
-          { "value": "yes", "label": "Wants kids", "checked": true },
-          { "value": "no", "label": "Doesn't want kids" },
-          { "value": "open", "label": "Open" },
-          { "value": "already-have", "label": "Already have" }
+          {
+            "value": "yes",
+            "label": "Wants kids",
+            "checked": true
+          },
+          {
+            "value": "no",
+            "label": "Doesn't want kids"
+          },
+          {
+            "value": "open",
+            "label": "Open"
+          },
+          {
+            "value": "already-have",
+            "label": "Already have"
+          }
         ],
         "importance": true,
         "importanceDefault": 4,
@@ -188,7 +324,13 @@
         "redflag": true
       },
       "hint": "This one shows because of your \"Looking for\" goal above.",
-      "conditional": { "when": "goal", "showUnless": ["casual", "undecided"] }
+      "conditional": {
+        "when": "goal",
+        "showUnless": [
+          "casual",
+          "undecided"
+        ]
+      }
     },
     {
       "id": "monogamy",
@@ -197,17 +339,37 @@
       "you": {
         "type": "radio",
         "options": [
-          { "value": "strictly", "label": "Strictly", "checked": true },
-          { "value": "open-relationship", "label": "Open to open" },
-          { "value": "undecided", "label": "Not sure" }
+          {
+            "value": "strictly",
+            "label": "Strictly",
+            "checked": true
+          },
+          {
+            "value": "open-relationship",
+            "label": "Open to open"
+          },
+          {
+            "value": "undecided",
+            "label": "Not sure"
+          }
         ]
       },
       "seek": {
         "type": "radio",
         "options": [
-          { "value": "strictly", "label": "Strictly", "checked": true },
-          { "value": "open-relationship", "label": "Open to open" },
-          { "value": "undecided", "label": "Not sure" }
+          {
+            "value": "strictly",
+            "label": "Strictly",
+            "checked": true
+          },
+          {
+            "value": "open-relationship",
+            "label": "Open to open"
+          },
+          {
+            "value": "undecided",
+            "label": "Not sure"
+          }
         ],
         "importance": true,
         "importanceDefault": 5,
@@ -223,17 +385,37 @@
       "you": {
         "type": "radio",
         "options": [
-          { "value": "never", "label": "Never", "checked": true },
-          { "value": "socially", "label": "Sometimes" },
-          { "value": "regularly", "label": "Regularly" }
+          {
+            "value": "never",
+            "label": "Never",
+            "checked": true
+          },
+          {
+            "value": "socially",
+            "label": "Sometimes"
+          },
+          {
+            "value": "regularly",
+            "label": "Regularly"
+          }
         ]
       },
       "seek": {
         "type": "radio",
         "options": [
-          { "value": "never", "label": "Never", "checked": true },
-          { "value": "socially", "label": "Sometimes" },
-          { "value": "regularly", "label": "Regularly" }
+          {
+            "value": "never",
+            "label": "Never",
+            "checked": true
+          },
+          {
+            "value": "socially",
+            "label": "Sometimes"
+          },
+          {
+            "value": "regularly",
+            "label": "Regularly"
+          }
         ],
         "importance": true,
         "importanceDefault": 4,
@@ -249,23 +431,61 @@
       "you": {
         "type": "radio",
         "options": [
-          { "value": "none", "label": "None", "checked": true },
-          { "value": "christian", "label": "Christian" },
-          { "value": "muslim", "label": "Muslim" },
-          { "value": "jewish", "label": "Jewish" },
-          { "value": "hindu", "label": "Hindu" },
-          { "value": "other", "label": "Other" }
+          {
+            "value": "none",
+            "label": "None",
+            "checked": true
+          },
+          {
+            "value": "christian",
+            "label": "Christian"
+          },
+          {
+            "value": "muslim",
+            "label": "Muslim"
+          },
+          {
+            "value": "jewish",
+            "label": "Jewish"
+          },
+          {
+            "value": "hindu",
+            "label": "Hindu"
+          },
+          {
+            "value": "other",
+            "label": "Other"
+          }
         ]
       },
       "seek": {
         "type": "radio",
         "options": [
-          { "value": "none", "label": "None", "checked": true },
-          { "value": "christian", "label": "Christian" },
-          { "value": "muslim", "label": "Muslim" },
-          { "value": "jewish", "label": "Jewish" },
-          { "value": "hindu", "label": "Hindu" },
-          { "value": "other", "label": "Other" }
+          {
+            "value": "none",
+            "label": "None",
+            "checked": true
+          },
+          {
+            "value": "christian",
+            "label": "Christian"
+          },
+          {
+            "value": "muslim",
+            "label": "Muslim"
+          },
+          {
+            "value": "jewish",
+            "label": "Jewish"
+          },
+          {
+            "value": "hindu",
+            "label": "Hindu"
+          },
+          {
+            "value": "other",
+            "label": "Other"
+          }
         ],
         "importance": true,
         "importanceDefault": 3,
@@ -281,10 +501,23 @@
       "seek": {
         "type": "radio",
         "options": [
-          { "value": "lt15km", "label": "< 15 km" },
-          { "value": "city", "label": "Same city", "checked": true },
-          { "value": "regional", "label": "Regional" },
-          { "value": "long-distance", "label": "Far is fine" }
+          {
+            "value": "lt15km",
+            "label": "< 15 km"
+          },
+          {
+            "value": "city",
+            "label": "Same city",
+            "checked": true
+          },
+          {
+            "value": "regional",
+            "label": "Regional"
+          },
+          {
+            "value": "long-distance",
+            "label": "Far is fine"
+          }
         ],
         "importance": true,
         "importanceDefault": 2,
@@ -309,7 +542,7 @@
         "importanceDefault": 3,
         "importanceAriaLabel": "how much age matters",
         "redflag": true,
-        "rangeFlagTitle": "Red flag \u2014 anyone outside this age range never matches. Private."
+        "rangeFlagTitle": "Red flag — anyone outside this age range never matches. Private."
       },
       "conditional": null
     },
@@ -320,19 +553,45 @@
       "you": {
         "type": "radio",
         "options": [
-          { "value": "alone", "label": "Alone", "checked": true },
-          { "value": "flatmates", "label": "Flatmates" },
-          { "value": "family", "label": "Family" },
-          { "value": "other", "label": "Other" }
+          {
+            "value": "alone",
+            "label": "Alone",
+            "checked": true
+          },
+          {
+            "value": "flatmates",
+            "label": "Flatmates"
+          },
+          {
+            "value": "family",
+            "label": "Family"
+          },
+          {
+            "value": "other",
+            "label": "Other"
+          }
         ]
       },
       "seek": {
         "type": "multi",
         "options": [
-          { "value": "alone", "label": "Alone", "checked": true },
-          { "value": "flatmates", "label": "Flatmates" },
-          { "value": "family", "label": "Family" },
-          { "value": "other", "label": "Other" }
+          {
+            "value": "alone",
+            "label": "Alone",
+            "checked": true
+          },
+          {
+            "value": "flatmates",
+            "label": "Flatmates"
+          },
+          {
+            "value": "family",
+            "label": "Family"
+          },
+          {
+            "value": "other",
+            "label": "Other"
+          }
         ],
         "importance": true,
         "importanceDefault": 3,
@@ -348,19 +607,45 @@
       "you": {
         "type": "radio",
         "options": [
-          { "value": "9to5", "label": "9\u20135" },
-          { "value": "flexible", "label": "Flexible", "checked": true },
-          { "value": "irregular", "label": "Irregular" },
-          { "value": "shift", "label": "Shifts" }
+          {
+            "value": "9to5",
+            "label": "9–5"
+          },
+          {
+            "value": "flexible",
+            "label": "Flexible",
+            "checked": true
+          },
+          {
+            "value": "irregular",
+            "label": "Irregular"
+          },
+          {
+            "value": "shift",
+            "label": "Shifts"
+          }
         ]
       },
       "seek": {
         "type": "multi",
         "options": [
-          { "value": "9to5", "label": "9\u20135" },
-          { "value": "flexible", "label": "Flexible", "checked": true },
-          { "value": "irregular", "label": "Irregular" },
-          { "value": "shift", "label": "Shifts" }
+          {
+            "value": "9to5",
+            "label": "9–5"
+          },
+          {
+            "value": "flexible",
+            "label": "Flexible",
+            "checked": true
+          },
+          {
+            "value": "irregular",
+            "label": "Irregular"
+          },
+          {
+            "value": "shift",
+            "label": "Shifts"
+          }
         ],
         "importance": true,
         "importanceDefault": 3,
@@ -376,19 +661,45 @@
       "you": {
         "type": "radio",
         "options": [
-          { "value": "love", "label": "Love them", "checked": true },
-          { "value": "tolerate", "label": "Tolerate" },
-          { "value": "allergic", "label": "Allergic" },
-          { "value": "none", "label": "None" }
+          {
+            "value": "love",
+            "label": "Love them",
+            "checked": true
+          },
+          {
+            "value": "tolerate",
+            "label": "Tolerate"
+          },
+          {
+            "value": "allergic",
+            "label": "Allergic"
+          },
+          {
+            "value": "none",
+            "label": "None"
+          }
         ]
       },
       "seek": {
         "type": "radio",
         "options": [
-          { "value": "must-love", "label": "Must love them", "checked": true },
-          { "value": "pets-ok", "label": "Pets ok" },
-          { "value": "no-pets", "label": "No pets" },
-          { "value": "doesnt-matter", "label": "Doesn't matter" }
+          {
+            "value": "must-love",
+            "label": "Must love them",
+            "checked": true
+          },
+          {
+            "value": "pets-ok",
+            "label": "Pets ok"
+          },
+          {
+            "value": "no-pets",
+            "label": "No pets"
+          },
+          {
+            "value": "doesnt-matter",
+            "label": "Doesn't matter"
+          }
         ],
         "importance": true,
         "importanceDefault": 2,
@@ -399,24 +710,50 @@
     },
     {
       "id": "politics",
-      "label": "Politics \u2014 rough direction",
+      "label": "Politics — rough direction",
       "axis": "both",
       "you": {
         "type": "radio",
         "options": [
-          { "value": "liberal", "label": "Liberal", "checked": true },
-          { "value": "conservative", "label": "Conservative" },
-          { "value": "center", "label": "Center" },
-          { "value": "apolitical", "label": "Not into it" }
+          {
+            "value": "liberal",
+            "label": "Liberal",
+            "checked": true
+          },
+          {
+            "value": "conservative",
+            "label": "Conservative"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "apolitical",
+            "label": "Not into it"
+          }
         ]
       },
       "seek": {
         "type": "radio",
         "options": [
-          { "value": "liberal", "label": "Liberal", "checked": true },
-          { "value": "conservative", "label": "Conservative" },
-          { "value": "center", "label": "Center" },
-          { "value": "apolitical", "label": "Not into it" }
+          {
+            "value": "liberal",
+            "label": "Liberal",
+            "checked": true
+          },
+          {
+            "value": "conservative",
+            "label": "Conservative"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "apolitical",
+            "label": "Not into it"
+          }
         ],
         "importance": true,
         "importanceDefault": 3,
@@ -432,11 +769,27 @@
       "you": {
         "type": "radio",
         "options": [
-          { "value": "homebody", "label": "Homebody" },
-          { "value": "active-outdoors", "label": "Active outdoors", "checked": true },
-          { "value": "city-culture", "label": "City culture" },
-          { "value": "travel", "label": "Travel" },
-          { "value": "mixed", "label": "A bit of everything" }
+          {
+            "value": "homebody",
+            "label": "Homebody"
+          },
+          {
+            "value": "active-outdoors",
+            "label": "Active outdoors",
+            "checked": true
+          },
+          {
+            "value": "city-culture",
+            "label": "City culture"
+          },
+          {
+            "value": "travel",
+            "label": "Travel"
+          },
+          {
+            "value": "mixed",
+            "label": "A bit of everything"
+          }
         ]
       },
       "conditional": null
