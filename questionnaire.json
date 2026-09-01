@@ -201,8 +201,8 @@
       "conditional": null
     },
     {
-      "id": "goal",
-      "label": "Relationship goal",
+      "id": "relationship-style",
+      "label": "Relationship style",
       "axis": "both",
       "you": {
         "type": "multi",
@@ -225,6 +225,10 @@
             "label": "Open relationship"
           },
           {
+            "value": "polyamorous",
+            "label": "Polyamory"
+          },
+          {
             "value": "undecided",
             "label": "Not sure yet"
           }
@@ -244,6 +248,14 @@
           {
             "value": "casual",
             "label": "Casual"
+          },
+          {
+            "value": "open-relationship",
+            "label": "Open relationship"
+          },
+          {
+            "value": "polyamorous",
+            "label": "Polyamory"
           },
           {
             "value": "any",
@@ -268,8 +280,7 @@
         "options": [
           {
             "value": "yes",
-            "label": "Want kids",
-            "checked": true
+            "label": "Want kids"
           },
           {
             "value": "no",
@@ -280,8 +291,16 @@
             "label": "Open"
           },
           {
-            "value": "already-have",
-            "label": "Already have"
+            "value": "already-have-enough",
+            "label": "Already have enough"
+          },
+          {
+            "value": "already-have-want-more",
+            "label": "Already have and want more"
+          },
+          {
+            "value": "undecided",
+            "label": "Not sure yet"
           }
         ]
       },
@@ -290,8 +309,7 @@
         "options": [
           {
             "value": "yes",
-            "label": "Wants kids",
-            "checked": true
+            "label": "Wants kids"
           },
           {
             "value": "no",
@@ -302,60 +320,23 @@
             "label": "Open"
           },
           {
-            "value": "already-have",
-            "label": "Already have"
+            "value": "already-have-enough",
+            "label": "Already have enough"
+          },
+          {
+            "value": "already-have-want-more",
+            "label": "Already have and want more"
+          },
+          {
+            "value": "any",
+            "label": "Any",
+            "checked": true,
+            "redflag": false
           }
         ],
         "importance": true,
         "importanceDefault": 4,
         "importanceAriaLabel": "how much kids matter",
-        "redflag": true
-      },
-      "hint": "This one shows because of your \"Looking for\" goal above.",
-      "conditional": null
-    },
-    {
-      "id": "monogamy",
-      "label": "Monogamy",
-      "axis": "both",
-      "you": {
-        "type": "radio",
-        "options": [
-          {
-            "value": "strictly",
-            "label": "Strictly",
-            "checked": true
-          },
-          {
-            "value": "open-relationship",
-            "label": "Open to open"
-          },
-          {
-            "value": "undecided",
-            "label": "Not sure"
-          }
-        ]
-      },
-      "seek": {
-        "type": "radio",
-        "options": [
-          {
-            "value": "strictly",
-            "label": "Strictly",
-            "checked": true
-          },
-          {
-            "value": "open-relationship",
-            "label": "Open to open"
-          },
-          {
-            "value": "undecided",
-            "label": "Not sure"
-          }
-        ],
-        "importance": true,
-        "importanceDefault": 5,
-        "importanceAriaLabel": "how much monogamy matters",
         "redflag": true
       },
       "conditional": null
@@ -369,8 +350,7 @@
         "options": [
           {
             "value": "never",
-            "label": "Never",
-            "checked": true
+            "label": "Never"
           },
           {
             "value": "socially",
@@ -387,8 +367,7 @@
         "options": [
           {
             "value": "never",
-            "label": "Never",
-            "checked": true
+            "label": "Never"
           },
           {
             "value": "socially",
@@ -400,7 +379,7 @@
           }
         ],
         "importance": true,
-        "importanceDefault": 4,
+        "importanceDefault": 3,
         "importanceAriaLabel": "how much smoking matters",
         "redflag": true
       },
@@ -415,8 +394,7 @@
         "options": [
           {
             "value": "none",
-            "label": "None",
-            "checked": true
+            "label": "None"
           },
           {
             "value": "christian",
@@ -465,8 +443,9 @@
             "label": "Hindu"
           },
           {
-            "value": "other",
-            "label": "Other"
+            "value": "any",
+            "label": "Any",
+            "redflag": false
           }
         ],
         "importance": true,
