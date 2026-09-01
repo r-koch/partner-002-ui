@@ -1,6 +1,6 @@
 {
   "_editingGuide": {
-    "purpose": "This file is the single master for the questionnaire the UI prototype renders. It is the literal input: every question, every answer option, and their order lives here and nowhere else. Edit this file, reload the page, done.",
+    "purpose": "This file is the single master for the questionnaire the UI prototype renders. It is the literal input: every question, every answer option, and their order lives here and nowhere else. HOW TO APPLY AN EDIT: the page renders from an embedded copy of this file inside index.html (gate G-QM-1 keeps both copies identical) - so after editing here, the SAME content must be re-embedded into index.html before a reload shows your change. The canonical repo's sync step does that re-embed; editing this file alone will not change the page.",
     "how_order_works": "Question numbers (1..N) are derived automatically from the order of the entries in the items array. To reorder questions, move whole item objects up or down in items. To add a question, append a new item object. To remove one, delete its item object. Do not hand-number anything.",
     "how_to_add_an_item": "Copy any existing item object, change id (must be unique) and label, then edit you/seek options. Required fields per item: id, label, axis. An item with axis \"you\" or \"both\" needs a you object; axis \"seek\" or \"both\" needs a seek object.",
     "fields": {
