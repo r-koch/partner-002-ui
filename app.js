@@ -1,7 +1,11 @@
 /* ============================================================================
    PARTNER-002 — UI prototype (slice 7b) — state machine
-   Vanilla JS only. Static, clickable states; no backend. No XHR/fetch, no
-   external assets, no network. Theme toggle is the only persistence (localStorage).
+   Vanilla JS only. Static, clickable states; no backend, no external assets.
+   The only network use (slice 11) is fetching the same-origin data file
+   questionnaire.json when the page is served over http(s) — GitHub Pages —
+   so an edit to that one file goes live on its own. Opened from file:// (or
+   offline), the page falls back to the questionnaire embedded in index.html.
+   Theme toggle is the only persistence (localStorage).
    ========================================================================== */
 (function () {
   "use strict";
@@ -346,16 +350,48 @@
     if (e.target.closest("#withdraw") || e.target.closest("#withdraw-safety")) withdrawConsent();
   });
 
-  /* ---- questionnaire rendering (slice 9) --------------------------------- */
-  /* index.html's questionnaire section is an empty render target. The items are
-     the data in questionnaire.json (embedded as a JSON script block). We parse it
-     and hand it to the pure renderer, then wire up conditional items. */
-  var qDataEl = document.getElementById("questionnaire-data");
-  var qRoot = document.getElementById("questionnaire-items");
-  if (qDataEl && qRoot && window.QuestionnaireRender) {
-    var QUESTIONNAIRE = JSON.parse(qDataEl.textContent);
-    qRoot.innerHTML = window.QuestionnaireRender.build(QUESTIONNAIRE.items);
-    registerConditionals(QUESTIONNAIRE.items);
+  /* ---- questionnaire rendering (slice 9, fetch-first since slice 11) ---- */
+  /* index.html's questionnaire section is an empty render target. The items
+     live in questionnaire.json. When the page is served over http(s) — GitHub
+     Pages — the file is FETCHED, so an edit to questionnaire.json (committed
+     in the public repo) renders live with no re-embed anywhere. Only when
+     fetch is unavailable or fails — file://, offline dev — does the page fall
+     back to the questionnaire embedded in index.html as a <script
+     type="application/json"> block. Fetched file wins; embed is fallback. */
+  function renderQuestionnaire(data) {
+    var qRoot = document.getElementById("questionnaire-items");
+    if (!qRoot || !window.QuestionnaireRender) return;
+    qRoot.innerHTML = window.QuestionnaireRender.build(data.items);
+    registerConditionals(data.items);
+  }
+
+  function embeddedQuestionnaire() {
+    var qDataEl = document.getElementById("questionnaire-data");
+    if (!qDataEl) return null;
+    try {
+      return JSON.parse(qDataEl.textContent);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  var canFetch = (typeof fetch === "function")
+    && location.protocol !== "file:";
+
+  if (canFetch) {
+    fetch("questionnaire.json")
+      .then(function (r) { if (r.ok) return r.json(); throw new Error("http " + r.status); })
+      .then(function (data) { renderQuestionnaire(data); })
+      .catch(function () {
+        var data = embeddedQuestionnaire();
+        if (data) {
+          renderQuestionnaire(data);
+          toast("Using the built-in questionnaire copy (could not fetch questionnaire.json).");
+        }
+      });
+  } else {
+    var data = embeddedQuestionnaire();
+    if (data) renderQuestionnaire(data);
   }
 
   /* ---- slice 10: on-device cartoon avatars (owner decision 2026-08-31) -- */
