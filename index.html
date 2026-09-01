@@ -916,7 +916,6 @@
             "redflag": false
           }
         ],
-        "hint": "Pick all that apply, or \"Any\".",
         "importance": true,
         "importanceDefault": 3,
         "importanceAriaLabel": "how much this matters",
@@ -925,16 +924,31 @@
       "conditional": null
     },
     {
-      "id": "your-age",
-      "label": "Your age",
-      "axis": "you",
+      "id": "age",
+      "label": "Age",
+      "axis": "both",
       "you": {
         "type": "number",
         "min": 18,
         "max": 99,
         "required": true,
-        "ariaLabel": "your age in years",
-        "hint": "Your own age in years (18–99)."
+        "ariaLabel": "your age in years"
+      },
+      "seek": {
+        "type": "range",
+        "min": 18,
+        "max": 99,
+        "minDefault": null,
+        "maxDefault": null,
+        "minPlaceholder": "from 18",
+        "maxPlaceholder": "to 99",
+        "minAriaLabel": "minimum age",
+        "maxAriaLabel": "maximum age",
+        "importance": true,
+        "importanceDefault": 3,
+        "importanceAriaLabel": "how much age matters",
+        "redflag": true,
+        "rangeFlagTitle": "Red flag — anyone outside this age range never matches. Private."
       },
       "conditional": null
     },
@@ -943,34 +957,11 @@
       "label": "Height",
       "axis": "both",
       "you": {
-        "type": "radio",
-        "options": [
-          {
-            "value": "lt160",
-            "label": "Under 160 cm"
-          },
-          {
-            "value": "160-170",
-            "label": "160–170 cm"
-          },
-          {
-            "value": "171-180",
-            "label": "171–180 cm"
-          },
-          {
-            "value": "181-190",
-            "label": "181–190 cm"
-          },
-          {
-            "value": "gt190",
-            "label": "Over 190 cm"
-          },
-          {
-            "value": "prefer-not-to-say",
-            "label": "Prefer not to say",
-            "checked": true
-          }
-        ]
+        "type": "number",
+        "min": 0,
+        "max": 300,
+        "required": true,
+        "ariaLabel": "your height in cm"
       },
       "seek": {
         "type": "range",
@@ -983,7 +974,6 @@
         "unit": "cm",
         "minAriaLabel": "minimum height in centimetres",
         "maxAriaLabel": "maximum height in centimetres",
-        "hint": "Free-form range in cm (120–250). Leave both empty for any height; leave one empty for an open end. Min must not exceed max.",
         "importance": true,
         "importanceDefault": 3,
         "importanceAriaLabel": "how much height matters",
@@ -1035,16 +1025,17 @@
           },
           {
             "value": "athletic",
-            "label": "Athletic",
-            "checked": true
+            "label": "Athletic"
           },
           {
             "value": "fuller",
             "label": "Fuller"
           },
           {
-            "value": "prefer-not-to-say",
-            "label": "Prefer not to say"
+            "value": "any",
+            "label": "Any",
+            "checked": true,
+            "redflag": false
           }
         ],
         "importance": true,
@@ -1055,11 +1046,11 @@
       "conditional": null
     },
     {
-      "id": "goal",
-      "label": "Relationship goal",
+      "id": "relationship-style",
+      "label": "Relationship style",
       "axis": "both",
       "you": {
-        "type": "radio",
+        "type": "multi",
         "options": [
           {
             "value": "long-term",
@@ -1068,15 +1059,19 @@
           },
           {
             "value": "marriage-oriented",
-            "label": "Marriage"
-          },
-          {
-            "value": "open",
-            "label": "Open"
+            "label": "Marriage oriented"
           },
           {
             "value": "casual",
             "label": "Casual"
+          },
+          {
+            "value": "open-relationship",
+            "label": "Open relationship"
+          },
+          {
+            "value": "polyamorous",
+            "label": "Polyamory"
           },
           {
             "value": "undecided",
@@ -1085,32 +1080,37 @@
         ]
       },
       "seek": {
-        "type": "radio",
+        "type": "multi",
         "options": [
           {
             "value": "long-term",
-            "label": "Long-term",
-            "checked": true
+            "label": "Long-term"
           },
           {
             "value": "marriage-oriented",
-            "label": "Marriage"
-          },
-          {
-            "value": "open",
-            "label": "Open"
+            "label": "Marriage oriented"
           },
           {
             "value": "casual",
             "label": "Casual"
           },
           {
-            "value": "undecided",
-            "label": "Not sure yet"
+            "value": "open-relationship",
+            "label": "Open relationship"
+          },
+          {
+            "value": "polyamorous",
+            "label": "Polyamory"
+          },
+          {
+            "value": "any",
+            "label": "Any",
+            "checked": true,
+            "redflag": false
           }
         ],
         "importance": true,
-        "importanceDefault": 5,
+        "importanceDefault": 3,
         "importanceAriaLabel": "how much this matters",
         "redflag": true
       },
@@ -1125,8 +1125,7 @@
         "options": [
           {
             "value": "yes",
-            "label": "Want kids",
-            "checked": true
+            "label": "Want kids"
           },
           {
             "value": "no",
@@ -1137,8 +1136,16 @@
             "label": "Open"
           },
           {
-            "value": "already-have",
-            "label": "Already have"
+            "value": "already-have-enough",
+            "label": "Already have enough"
+          },
+          {
+            "value": "already-have-want-more",
+            "label": "Already have and want more"
+          },
+          {
+            "value": "undecided",
+            "label": "Not sure yet"
           }
         ]
       },
@@ -1147,8 +1154,7 @@
         "options": [
           {
             "value": "yes",
-            "label": "Wants kids",
-            "checked": true
+            "label": "Wants kids"
           },
           {
             "value": "no",
@@ -1159,66 +1165,23 @@
             "label": "Open"
           },
           {
-            "value": "already-have",
-            "label": "Already have"
+            "value": "already-have-enough",
+            "label": "Already have enough"
+          },
+          {
+            "value": "already-have-want-more",
+            "label": "Already have and want more"
+          },
+          {
+            "value": "any",
+            "label": "Any",
+            "checked": true,
+            "redflag": false
           }
         ],
         "importance": true,
         "importanceDefault": 4,
         "importanceAriaLabel": "how much kids matter",
-        "redflag": true
-      },
-      "hint": "This one shows because of your \"Looking for\" goal above.",
-      "conditional": {
-        "when": "goal",
-        "showUnless": [
-          "casual",
-          "undecided"
-        ]
-      }
-    },
-    {
-      "id": "monogamy",
-      "label": "Monogamy",
-      "axis": "both",
-      "you": {
-        "type": "radio",
-        "options": [
-          {
-            "value": "strictly",
-            "label": "Strictly",
-            "checked": true
-          },
-          {
-            "value": "open-relationship",
-            "label": "Open to open"
-          },
-          {
-            "value": "undecided",
-            "label": "Not sure"
-          }
-        ]
-      },
-      "seek": {
-        "type": "radio",
-        "options": [
-          {
-            "value": "strictly",
-            "label": "Strictly",
-            "checked": true
-          },
-          {
-            "value": "open-relationship",
-            "label": "Open to open"
-          },
-          {
-            "value": "undecided",
-            "label": "Not sure"
-          }
-        ],
-        "importance": true,
-        "importanceDefault": 5,
-        "importanceAriaLabel": "how much monogamy matters",
         "redflag": true
       },
       "conditional": null
@@ -1232,8 +1195,7 @@
         "options": [
           {
             "value": "never",
-            "label": "Never",
-            "checked": true
+            "label": "Never"
           },
           {
             "value": "socially",
@@ -1250,8 +1212,7 @@
         "options": [
           {
             "value": "never",
-            "label": "Never",
-            "checked": true
+            "label": "Never"
           },
           {
             "value": "socially",
@@ -1263,7 +1224,7 @@
           }
         ],
         "importance": true,
-        "importanceDefault": 4,
+        "importanceDefault": 3,
         "importanceAriaLabel": "how much smoking matters",
         "redflag": true
       },
@@ -1278,8 +1239,7 @@
         "options": [
           {
             "value": "none",
-            "label": "None",
-            "checked": true
+            "label": "None"
           },
           {
             "value": "christian",
@@ -1328,8 +1288,9 @@
             "label": "Hindu"
           },
           {
-            "value": "other",
-            "label": "Other"
+            "value": "any",
+            "label": "Any",
+            "redflag": false
           }
         ],
         "importance": true,
@@ -1337,6 +1298,39 @@
         "importanceAriaLabel": "how much religion matters",
         "redflag": true
       },
+      "conditional": null
+    },
+    {
+      "id": "country",
+      "label": "Your country",
+      "axis": "you",
+      "you": {
+        "type": "text",
+        "placeholder": "Austria"
+      },
+      "hint": "Stated, not detected — no device location, ever.",
+      "conditional": null
+    },
+    {
+      "id": "city",
+      "label": "Your city / area",
+      "axis": "you",
+      "you": {
+        "type": "text",
+        "placeholder": "Vienna"
+      },
+      "hint": "Coarse band only — never shared raw.",
+      "conditional": null
+    },
+    {
+      "id": "postal",
+      "label": "Postal code (optional)",
+      "axis": "you",
+      "you": {
+        "type": "text",
+        "placeholder": "1140"
+      },
+      "hint": "Optional; sharpens the band slightly.",
       "conditional": null
     },
     {
@@ -1368,26 +1362,6 @@
         "importanceDefault": 2,
         "importanceAriaLabel": "how much distance matters",
         "redflag": true
-      },
-      "conditional": null
-    },
-    {
-      "id": "age",
-      "label": "Age range",
-      "axis": "seek",
-      "seek": {
-        "type": "range",
-        "min": 18,
-        "max": 99,
-        "minDefault": 27,
-        "maxDefault": 38,
-        "minAriaLabel": "minimum age",
-        "maxAriaLabel": "maximum age",
-        "importance": true,
-        "importanceDefault": 3,
-        "importanceAriaLabel": "how much age matters",
-        "redflag": true,
-        "rangeFlagTitle": "Red flag — anyone outside this age range never matches. Private."
       },
       "conditional": null
     },

@@ -456,6 +456,39 @@
       "conditional": null
     },
     {
+      "id": "country",
+      "label": "Your country",
+      "axis": "you",
+      "you": {
+        "type": "text",
+        "placeholder": "Austria"
+      },
+      "hint": "Stated, not detected — no device location, ever.",
+      "conditional": null
+    },
+    {
+      "id": "city",
+      "label": "Your city / area",
+      "axis": "you",
+      "you": {
+        "type": "text",
+        "placeholder": "Vienna"
+      },
+      "hint": "Coarse band only — never shared raw.",
+      "conditional": null
+    },
+    {
+      "id": "postal",
+      "label": "Postal code (optional)",
+      "axis": "you",
+      "you": {
+        "type": "text",
+        "placeholder": "1140"
+      },
+      "hint": "Optional; sharpens the band slightly.",
+      "conditional": null
+    },
+    {
       "id": "distance",
       "label": "How far is OK?",
       "axis": "seek",

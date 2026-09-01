@@ -87,6 +87,13 @@
       if (you.hint) out += '<div class="field-hint">' + esc(you.hint) + '</div>';
       return out;
     }
+    if (you.type === "text") {
+      var ph = you.placeholder ? ' placeholder="' + escAttr(you.placeholder) + '"' : "";
+      out = '<input type="text" id="' + escAttr(id) + '" name="' + escAttr(id) + '"' + ph
+        + ' autocomplete="off" aria-label="' + escAttr(you.ariaLabel || you.placeholder || "text answer") + '">';
+      if (you.hint) out += '<div class="field-hint">' + esc(you.hint) + '</div>';
+      return out;
+    }
     // radio
     out = '<div class="chip-row">';
     you.options.forEach(function (opt) { out += youOption(youName, opt); });

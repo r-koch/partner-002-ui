@@ -28,9 +28,9 @@
 
   /* ---- item registry — questionnaire items feed the score --------------- */
   var ITEMS = {
-    goal:      { label: "Relationship goal",  category: "Values" },
+    relationshipStyle: { label: "Relationship style", category: "Values" },
     children:  { label: "Kids",               category: "Values" },
-    monogamy:  { label: "Monogamy",           category: "Values" },
+    
     smoking:   { label: "Smoking",            category: "Lifestyle" },
     religion:  { label: "Religion",           category: "Values" },
     distance:  { label: "Distance",           category: "Logistics" },
@@ -62,7 +62,7 @@
   /* Multi-select symmetric items (living, work): the user's Looking-for is a
      SET of acceptable values. A candidate value in the set matches; an empty
      set means "any" (= no preference = skipped from the score). */
-  var MULTI = ["living", "work"];
+  var MULTI = ["living", "work", "relationshipStyle"];
 
   /* Range criterion semantics, shared by age and height:
      - user bounds may be null/undefined = open end (no constraint on that side)
@@ -81,23 +81,23 @@
   /* ---- synthetic candidate pool (made-up data only) --------------------- */
   var CANDIDATES = [
     { id: "A", answers: {
-        goal: "long-term", children: "yes", monogamy: "strictly",
-        smoking: "never", religion: "none", distance: "city", age: 29, height: 176,
+        relationshipStyle: ["long-term"], children: "yes", country: "Austria", city: "Vienna", postal: "1140",
+        smoking: "never", religion: "none", distance: "city", country: "Austria", city: "Vienna", postal: "1140", age: 29, height: 176,
         living: "alone", work: "flexible", pets: "love",
         politics: "liberal", freetime: "active-outdoors" } },
     { id: "B", answers: {
-        goal: "long-term", children: "yes", monogamy: "strictly",
-        smoking: "socially", religion: "christian", distance: "city", age: 34, height: 168,
+        relationshipStyle: ["long-term"], children: "yes", country: "Austria", city: "Vienna", postal: "1140",
+        smoking: "socially", religion: "christian", distance: "city", country: "Austria", city: "Vienna", postal: "1120", age: 34, height: 168,
         living: "alone", work: "flexible", pets: "tolerate",
         politics: "center", freetime: "homebody" } },
     { id: "C", answers: {
-        goal: "casual", children: "open", monogamy: "open-relationship",
-        smoking: "socially", religion: "none", distance: "regional", age: 25, height: 158,
+        relationshipStyle: ["casual"], children: "open",
+        smoking: "socially", religion: "none", distance: "regional", country: "Austria", city: "Graz", postal: "8010", age: 25, height: 158,
         living: "flatmates", work: "shift", pets: "none",
         politics: "apolitical", freetime: "travel" } },
     { id: "D", answers: {
-        goal: "casual", children: "no", monogamy: "undecided",
-        smoking: "regularly", religion: "other", distance: "long-distance", age: 41, height: 193,
+        relationshipStyle: ["casual"], children: "no",
+        smoking: "regularly", religion: "other", distance: "long-distance", country: "Germany", city: "Berlin", postal: "10115", age: 41, height: 193,
         living: "family", work: "irregular", pets: "allergic",
         politics: "conservative", freetime: "city-culture" } }
   ];
@@ -107,7 +107,7 @@
      any height passes until the user types bounds. */
   var DEFAULT_USER = {
     answers: {
-      goal: "long-term", children: "yes", monogamy: "strictly",
+      relationshipStyle: ["long-term"], children: "yes", country: "Austria", city: "Vienna", postal: "1140",
       smoking: "never", religion: "none", distance: "city",
       ageMin: 27, ageMax: 38,
       heightMin: null, heightMax: null,
@@ -115,7 +115,7 @@
       politics: "liberal", freetime: "active-outdoors"
     },
     importance: {
-      goal: 5, children: 4, monogamy: 5, smoking: 4, religion: 3,
+      relationshipStyle: 5, children: 4, smoking: 4, religion: 3,
       distance: 2, age: 3, height: 3, living: 1, work: 3, pets: 2, politics: 3, freetime: 2
     },
     redFlags: {}
@@ -146,7 +146,7 @@
     return false;
   }
 
-  function itemMatches(item, candVal, user) {
+  function itemMatches(item, candVal, user, cand) {
     if (ITEMS[item] && ITEMS[item].range) {
       return rangeMatches(item, candVal, user);
     }
@@ -154,6 +154,21 @@
       var acc = user.answers[item];
       var accSet = PETS_ACCEPT[acc];
       return accSet ? accSet.indexOf(String(candVal)) !== -1 : false;
+    }
+    if (item === "distance") {
+      // distance is DERIVED from stated location (country/city/postal bands):
+      // the candidate's band is computed from the USER's stated location vs the
+      // candidate's stated location; the seek-side bucket selects the band.
+      var u = user.answers || {};
+      var c = (cand && cand.answers) || {};
+      var sameCity = !!(u.city && c.city &&
+        String(u.city).toLowerCase() === String(c.city).toLowerCase());
+      var sameCountry = !!(u.country && c.country &&
+        String(u.country).toLowerCase() === String(c.country).toLowerCase());
+      var want = String(candVal);
+      if (want === "lt15km") return sameCity;     // coarse band: same city passes
+      var got = sameCity ? "city" : (sameCountry ? "regional" : "long-distance");
+      return want === got;
     }
     var uv = user.answers[item];
     if (MULTI.indexOf(item) !== -1) {
@@ -188,7 +203,7 @@
       }
       var w = user.importance[item] || 3;
       total += w;
-      var m = itemMatches(item, candVal, user);
+      var m = itemMatches(item, candVal, user, cand);
       if (m) matched += w;
       var uv = isRange
         ? { min: user.answers[item + "Min"], max: user.answers[item + "Max"] }
@@ -483,13 +498,13 @@
     ok = assert(d2.scored.every(function (r) { return r.id !== "D"; }),
       "D must not be scored when red-flagged") && ok;
 
-    // 3. flag goal=casual -> C (and D) excluded
+    // 3. flag relationship-style=casual -> C (and D) excluded
     var u3 = JSON.parse(JSON.stringify(DEFAULT_USER));
-    u3.redFlags = { goal: ["casual"] };
+    u3.redFlags = { relationshipStyle: ["casual"] };
     var d3 = matchAll(u3);
     var ex3 = d3.excluded.map(function (e) { return e.id; }).sort();
     ok = assert(ex3.indexOf("C") !== -1 && ex3.indexOf("D") !== -1,
-      "flag goal=casual should exclude C and D, got " + ex3.join(",")) && ok;
+      "flag relationshipStyle=casual should exclude C and D, got " + ex3.join(",")) && ok;
 
     // 4. age-strict flag excludes out-of-range C (25) and D (41) — both outside 27..38
     var u4 = JSON.parse(JSON.stringify(DEFAULT_USER));
@@ -617,7 +632,7 @@
       selftest: ok ? "PASS" : "FAIL",
       default: { scored: d.scored.map(function (r) { return [r.id, r.score]; }), excluded: d.excluded },
       flag_smoking_regularly_excluded: d2.excluded,
-      flag_goal_casual_excluded: d3.excluded,
+      flag_relationshipStyle_casual_excluded: d3.excluded,
       flag_age_strict_excluded: d4.excluded,
       height_range_165_180: d6.scored.map(function (r) {
         var l = heightLine(r); return [r.id, r.score, l ? l.match : "skipped"];
