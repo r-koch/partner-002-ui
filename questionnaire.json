@@ -235,7 +235,7 @@
         "options": [
           {
             "value": "long-term",
-            "label": "Long-term",
+            "label": "Long-term"
           },
           {
             "value": "marriage-oriented",
@@ -253,7 +253,7 @@
           }
         ],
         "importance": true,
-        "importanceDefault": 5,
+        "importanceDefault": 3,
         "importanceAriaLabel": "how much this matters",
         "redflag": true
       },
