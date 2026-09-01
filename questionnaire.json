@@ -71,7 +71,6 @@
             "redflag": false
           }
         ],
-        "hint": "Pick all that apply, or \"Any\".",
         "importance": true,
         "importanceDefault": 3,
         "importanceAriaLabel": "how much this matters",
