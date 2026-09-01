@@ -79,16 +79,31 @@
       "conditional": null
     },
     {
-      "id": "your-age",
-      "label": "Your age",
-      "axis": "you",
+      "id": "age",
+      "label": "Age",
+      "axis": "both",
       "you": {
         "type": "number",
         "min": 18,
         "max": 99,
         "required": true,
-        "ariaLabel": "your age in years",
-        "hint": "Your own age in years (18–99)."
+        "ariaLabel": "your age in years"
+      },
+      "seek": {
+        "type": "range",
+        "min": 18,
+        "max": 99,
+        "minDefault": null,
+        "maxDefault": null,
+        "minPlaceholder": "from 18",
+        "maxPlaceholder": "to 99",
+        "minAriaLabel": "minimum age",
+        "maxAriaLabel": "maximum age",
+        "importance": true,
+        "importanceDefault": 3,
+        "importanceAriaLabel": "how much age matters",
+        "redflag": true,
+        "rangeFlagTitle": "Red flag — anyone outside this age range never matches. Private."
       },
       "conditional": null
     },
@@ -97,34 +112,11 @@
       "label": "Height",
       "axis": "both",
       "you": {
-        "type": "radio",
-        "options": [
-          {
-            "value": "lt160",
-            "label": "Under 160 cm"
-          },
-          {
-            "value": "160-170",
-            "label": "160–170 cm"
-          },
-          {
-            "value": "171-180",
-            "label": "171–180 cm"
-          },
-          {
-            "value": "181-190",
-            "label": "181–190 cm"
-          },
-          {
-            "value": "gt190",
-            "label": "Over 190 cm"
-          },
-          {
-            "value": "prefer-not-to-say",
-            "label": "Prefer not to say",
-            "checked": true
-          }
-        ]
+        "type": "number",
+        "min": 0,
+        "max": 300,
+        "required": true,
+        "ariaLabel": "your height in cm"
       },
       "seek": {
         "type": "range",
@@ -137,7 +129,6 @@
         "unit": "cm",
         "minAriaLabel": "minimum height in centimetres",
         "maxAriaLabel": "maximum height in centimetres",
-        "hint": "Free-form range in cm (120–250). Leave both empty for any height; leave one empty for an open end. Min must not exceed max.",
         "importance": true,
         "importanceDefault": 3,
         "importanceAriaLabel": "how much height matters",
@@ -323,13 +314,7 @@
         "redflag": true
       },
       "hint": "This one shows because of your \"Looking for\" goal above.",
-      "conditional": {
-        "when": "goal",
-        "showUnless": [
-          "casual",
-          "undecided"
-        ]
-      }
+      "conditional": null
     },
     {
       "id": "monogamy",
@@ -522,26 +507,6 @@
         "importanceDefault": 2,
         "importanceAriaLabel": "how much distance matters",
         "redflag": true
-      },
-      "conditional": null
-    },
-    {
-      "id": "age",
-      "label": "Age range",
-      "axis": "seek",
-      "seek": {
-        "type": "range",
-        "min": 18,
-        "max": 99,
-        "minDefault": 27,
-        "maxDefault": 38,
-        "minAriaLabel": "minimum age",
-        "maxAriaLabel": "maximum age",
-        "importance": true,
-        "importanceDefault": 3,
-        "importanceAriaLabel": "how much age matters",
-        "redflag": true,
-        "rangeFlagTitle": "Red flag — anyone outside this age range never matches. Private."
       },
       "conditional": null
     },
