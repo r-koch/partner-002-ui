@@ -42,7 +42,6 @@
           { "value": "women", "label": "Women" },
           { "value": "men", "label": "Men" },
           { "value": "non-binary-people", "label": "Non-binary people" },
-          { "value": "prefer-not-to-say", "label": "Prefer not to say" },
           { "value": "any", "label": "Any", "checked": true, "redflag": false }
         ],
         "hint": "Pick all that apply, or \"Any\".",
