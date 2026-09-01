@@ -258,10 +258,8 @@
         <!-- Card A (mutual) -->
         <article class="candidate-card" data-candidate="A" data-mutual="true">
           <div class="candidate-card__top">
-            <div class="candidate-avatar" aria-hidden="true" title="No photo yet">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-6 8-6s8 2 8 6"/>
-              </svg>
+            <div class="candidate-avatar" title="Stylized cartoon likeness &mdash; algorithm-signed, not a photo">
+              <canvas class="candidate-avatar__canvas" width="56" height="56" aria-hidden="true"></canvas>
             </div>
             <div class="candidate-card__head">
               <div class="match-score" data-score-for="A">
@@ -296,7 +294,8 @@
               <li><span class="k">Shared must-haves:</span> 3</li>
               <li><span class="k">Shared preferences:</span> 11</li>
             </ul>
-            <div class="gated-row">No photo, name, or age here &mdash; that comes later, on purpose.</div>
+            <div class="gated-row">No real photo, name, or age here &mdash; the likeness is a stylized
+            cartoon, and real photos never appear in the app.</div>
           </details>
 
           <div class="interest-state" data-state="A"><span class="dot"></span><span class="txt">Awaiting their answer</span></div>
@@ -311,10 +310,8 @@
         <!-- Card B -->
         <article class="candidate-card" data-candidate="B" data-mutual="false">
           <div class="candidate-card__top">
-            <div class="candidate-avatar" aria-hidden="true" title="No photo yet">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-6 8-6s8 2 8 6"/>
-              </svg>
+            <div class="candidate-avatar" title="Stylized cartoon likeness &mdash; algorithm-signed, not a photo">
+              <canvas class="candidate-avatar__canvas" width="56" height="56" aria-hidden="true"></canvas>
             </div>
             <div class="candidate-card__head">
               <div class="match-score" data-score-for="B">
@@ -362,10 +359,8 @@
         <!-- Card C -->
         <article class="candidate-card" data-candidate="C" data-mutual="false">
           <div class="candidate-card__top">
-            <div class="candidate-avatar" aria-hidden="true" title="No photo yet">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-6 8-6s8 2 8 6"/>
-              </svg>
+            <div class="candidate-avatar" title="Stylized cartoon likeness &mdash; algorithm-signed, not a photo">
+              <canvas class="candidate-avatar__canvas" width="56" height="56" aria-hidden="true"></canvas>
             </div>
             <div class="candidate-card__head">
               <div class="match-score" data-score-for="C">
@@ -412,10 +407,8 @@
         <!-- Card D (red-flag demo: smokes regularly — excluded when flagged) -->
         <article class="candidate-card" data-candidate="D" data-mutual="false">
           <div class="candidate-card__top">
-            <div class="candidate-avatar" aria-hidden="true" title="No photo yet">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-6 8-6s8 2 8 6"/>
-              </svg>
+            <div class="candidate-avatar" title="Stylized cartoon likeness &mdash; algorithm-signed, not a photo">
+              <canvas class="candidate-avatar__canvas" width="56" height="56" aria-hidden="true"></canvas>
             </div>
             <div class="candidate-card__head">
               <div class="match-score" data-score-for="D">
@@ -478,10 +471,8 @@
 
         <article class="candidate-card is-matched" data-candidate="A" data-mutual="true">
           <div class="candidate-card__top">
-            <div class="candidate-avatar" aria-hidden="true" title="No photo yet">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-6 8-6s8 2 8 6"/>
-              </svg>
+            <div class="candidate-avatar" title="Stylized cartoon likeness &mdash; algorithm-signed, not a photo">
+              <canvas class="candidate-avatar__canvas" width="56" height="56" aria-hidden="true"></canvas>
             </div>
             <div class="candidate-card__head">
               <div class="candidate-card__title">
@@ -520,8 +511,9 @@
             <li><span class="k">Looking for:</span> long-term</li>
             <li><span class="k">Free time:</span> active outdoors</li>
           </div>
-          <p class="muted">Names, photos, and contact details aren't shared yet. That's the
-          point &mdash; nothing more is out there until you both want it.</p>
+          <p class="muted">Names and contact details aren't shared yet. Real photos never appear here
+          &mdash; only a stylized cartoon after you both opt in. That's the point: nothing more is
+          out there until you both want it.</p>
         </div>
         <div class="btn-row center" style="justify-content:center;">
           <button class="btn btn--primary btn--pill" data-nav="ladder" type="button">See how revealing works &rarr;</button>
@@ -533,7 +525,7 @@
     </section>
 
     <!-- ================================================================ -->
-    <!-- REVEAL LADDER · 4-rung explainer (plain, expandable)               -->
+    <!-- REVEAL LADDER · 3-rung explainer (plain, expandable)               -->
     <!-- ================================================================ -->
     <section class="view" id="v-ladder" data-view="ladder" data-title="Reveal ladder">
       <div class="page page--narrow">
@@ -564,8 +556,8 @@
               <summary>
                 <span class="ladder__num">2</span>
                 <span class="ladder__body">
-                  <span class="ladder__title">More answers</span>
-                  <span class="ladder__oneliner">Swap your Extended &amp; Deep answers and pick a few conversation starters.</span>
+                  <span class="ladder__title">More answers + cartoon avatars</span>
+                  <span class="ladder__oneliner">Swap your Extended &amp; Deep answers and share stylized cartoon avatars.</span>
                 </span>
                 <span class="badge band-medium">ready when you are</span>
               </summary>
@@ -580,6 +572,28 @@
                   <label class="chip"><input type="checkbox" name="starter"><span class="chip__label">Ask about: work rhythm</span></label>
                   <label class="chip"><input type="checkbox" name="starter"><span class="chip__label">Ask about: travel</span></label>
                 </div>
+
+                <div class="cartoon-block" style="margin-top:var(--sp-3);">
+                  <div class="candidate-avatar" title="Stylized cartoon likeness (demo)" style="margin-bottom:var(--sp-2);">
+                    <canvas class="candidate-avatar__canvas" data-avatar="demo" width="56" height="56" aria-hidden="true"></canvas>
+                  </div>
+                  <p class="faint">Cartoon avatars are a <strong>stylized non-identifying likeness</strong>
+                  drawn on your device &mdash; <strong>real photos never appear here</strong>; sharing
+                  real images happens only <strong>out-of-band after direct chat is unlocked</strong>.
+                  Each cartoon is algorithm-signed (e.g. <code>cartoonizer/v1 | input:3f9a2c11</code>) so
+                  it's provably a stylized render, never a raw photo.</p>
+                  <label class="opt-in" style="margin-top:var(--sp-2);">
+                    <input type="checkbox" name="cartoon-optin">
+                    <span class="opt-in__label">Share my cartoon avatar with this match (both opt in, logged &amp; revocable)</span>
+                  </label>
+                  <div class="cartoon-demo" style="margin-top:var(--sp-2);">
+                    <input type="file" accept="image/*" data-cartoon-file aria-label="choose a local image to cartoonize on this device (demo)">
+                    <canvas class="cartoon-demo__canvas" data-cartoon-preview width="96" height="96" hidden></canvas>
+                    <p class="faint" data-cartoon-status></p>
+                    <p class="faint">Try it: pick a local image and it's cartoonized <em>on this device</em>
+                    &mdash; the file is never uploaded or stored; only the stylized cartoon is drawn here.</p>
+                  </div>
+                </div>
               </div>
             </details>
           </li>
@@ -589,33 +603,15 @@
               <summary>
                 <span class="ladder__num">3</span>
                 <span class="ladder__body">
-                  <span class="ladder__title">Photos</span>
-                  <span class="ladder__oneliner">Swap photos when you're both ready.</span>
-                </span>
-                <span class="badge badge--later">coming later</span>
-              </summary>
-              <div class="ladder__detail">
-                <p>Not built yet. It needs care and a few checks first &mdash; photos are
-                sensitive, so this step is still in the works. No hard feelings; it'll be here
-                when it's ready.</p>
-              </div>
-            </details>
-          </li>
-
-          <li class="ladder__rung is-later">
-            <details>
-              <summary>
-                <span class="ladder__num">4</span>
-                <span class="ladder__body">
                   <span class="ladder__title">Names &amp; contact</span>
                   <span class="ladder__oneliner">Trade names or a way to reach each other. The last step.</span>
                 </span>
                 <span class="badge badge--later">coming later</span>
               </summary>
               <div class="ladder__detail">
-                <p>Also not built yet &mdash; it needs the most care of all, plus a clear plan
-                for how you'll share details safely. It's the finish line, not something to
-                rush.</p>
+                <p>Not built yet &mdash; it needs the most care, plus a clear plan for how you'll
+                share details safely. It's the finish line, not something to rush. Real photos are
+                never part of the ladder: they stay out-of-band after direct chat is unlocked.</p>
               </div>
             </details>
           </li>
@@ -759,7 +755,7 @@
             <input type="checkbox" name="consent-disclosure" id="consent-disclosure" disabled>
             <span class="consent-row__body">
               <strong>Staged post-match disclosures</strong> <span class="badge badge--locked">counsel-gated</span>
-              <span class="consent-row__meta">Photos, names, and contact details are unavailable and locked until the legal gate. This consent cannot be given yet; its wording is <strong>to be confirmed with counsel</strong>.</span>
+              <span class="consent-row__meta">Cartoon avatars (stylized, on-device, never a real photo) are available on the reveal ladder. Real photos never appear on the platform (owner decision). Names and contact details stay locked until the legal gate; their wording is <strong>to be confirmed with counsel</strong>.</span>
             </span>
           </label>
         </details>
@@ -813,7 +809,7 @@
           <li><strong>Controller / processor.</strong> Confirm the role for the matching service and any platform or processing partners.</li>
           <li><strong>Privacy promise wording.</strong> Validate the Art. 13 privacy-notice wording and any public promise made to users.</li>
           <li><strong>Export / third-party data.</strong> Treatment of context imports (e.g. Google Takeout) and any third-party-derived signals.</li>
-          <li><strong>Photos / contact ladder.</strong> The staged disclosure of photos, names, and contact details &mdash; when and how.</li>
+          <li><strong>Cartoon avatar / contact ladder.</strong> The staged disclosure of stylized cartoon avatars and contact details &mdash; when and how (real photos permanently absent per owner decision).</li>
         </ul>
 
         <div class="btn-row">
@@ -1295,6 +1291,7 @@
 }</script>
 <script src="questionnaire-render.js"></script>
 <script src="matching.js"></script>
+<script src="cartoonizer.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

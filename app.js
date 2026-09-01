@@ -358,7 +358,51 @@
     registerConditionals(QUESTIONNAIRE.items);
   }
 
+  /* ---- slice 10: on-device cartoon avatars (owner decision 2026-08-31) -- */
+  /* Candidate cards render a stylized cartoon (no real photo, ever). The
+     likeness is algorithm-signed (provenance in data-provenance). A local
+     file, if picked, is cartoonized ON-DEVICE via FileReader — never uploaded,
+     never stored. */
+  function avatarSeed(id) {
+    return typeof id === "string" && id.length ? id.charCodeAt(0) : 1;
+  }
+
+  function renderAvatars() {
+    if (!window.Cartoonizer) return;
+    document.querySelectorAll(".candidate-avatar__canvas").forEach(function (canvas) {
+      var id = canvas.getAttribute("data-avatar");
+      if (!id) {
+        var card = canvas.closest("[data-candidate]");
+        id = card ? card.getAttribute("data-candidate") : null;
+      }
+      if (!id) return;
+      var prov = window.Cartoonizer.renderDemoAvatar(avatarSeed(id), canvas);
+      if (prov) canvas.setAttribute("data-provenance", prov);
+    });
+  }
+
+  var cartoonFileInput = document.querySelector("[data-cartoon-file]");
+  if (cartoonFileInput && window.Cartoonizer) {
+    cartoonFileInput.addEventListener("change", function () {
+      var file = cartoonFileInput.files && cartoonFileInput.files[0];
+      var preview = document.querySelector("[data-cartoon-preview]");
+      var status = document.querySelector("[data-cartoon-status]");
+      if (!file) return;
+      if (status) status.textContent = "Processing on this device\u2026 (nothing is uploaded)";
+      window.Cartoonizer.cartoonizeFile(file, 1, preview, function (res) {
+        if (preview) preview.hidden = false;
+        if (res && res.error) {
+          if (status) status.textContent = res.error;
+        } else if (res && res.provenance) {
+          if (status) status.textContent = "Cartoonized on-device. Signature: " + res.provenance +
+            " \u2014 the source image is never stored or uploaded.";
+        }
+      });
+    });
+  }
+
   /* ---- boot --------------------------------------------------------------- */
+  renderAvatars();
   var start = (location.hash ? location.hash.replace("#v-", "") : "welcome");
   show(views[start] ? start : "welcome");
 })();
