@@ -180,16 +180,17 @@
           },
           {
             "value": "athletic",
-            "label": "Athletic",
-            "checked": true
+            "label": "Athletic"
           },
           {
             "value": "fuller",
             "label": "Fuller"
           },
           {
-            "value": "prefer-not-to-say",
-            "label": "Prefer not to say"
+            "value": "any",
+            "label": "Any",
+            "checked": true,
+            "redflag": false
           }
         ],
         "importance": true,
@@ -204,7 +205,7 @@
       "label": "Relationship goal",
       "axis": "both",
       "you": {
-        "type": "radio",
+        "type": "multi",
         "options": [
           {
             "value": "long-term",
@@ -213,15 +214,15 @@
           },
           {
             "value": "marriage-oriented",
-            "label": "Marriage"
-          },
-          {
-            "value": "open",
-            "label": "Open"
+            "label": "Marriage oriented"
           },
           {
             "value": "casual",
             "label": "Casual"
+          },
+          {
+            "value": "open-relationship",
+            "label": "Open relationship"
           },
           {
             "value": "undecided",
@@ -230,28 +231,25 @@
         ]
       },
       "seek": {
-        "type": "radio",
+        "type": "multi",
         "options": [
           {
             "value": "long-term",
             "label": "Long-term",
-            "checked": true
           },
           {
             "value": "marriage-oriented",
-            "label": "Marriage"
-          },
-          {
-            "value": "open",
-            "label": "Open"
+            "label": "Marriage oriented"
           },
           {
             "value": "casual",
             "label": "Casual"
           },
           {
-            "value": "undecided",
-            "label": "Not sure yet"
+            "value": "any",
+            "label": "Any",
+            "checked": true,
+            "redflag": false
           }
         ],
         "importance": true,
