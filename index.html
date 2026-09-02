@@ -821,13 +821,14 @@
     </section>
 
     <!-- ================================================================ -->
-    <!-- AVATAR DEMO · MediaPipe Face Landmarker + deterministic cartoon   -->
+    <!-- AVATAR DEMO · MediaPipe Face Landmarker + deterministic line-art  -->
     <!-- ================================================================ -->
     <section class="view" id="v-avatar" data-view="avatar" data-title="Avatar demo">
       <div class="page page--narrow">
         <h2>Avatar demo</h2>
-        <p class="lead">A stylized cartoon avatar from a face &mdash; run <strong>on this device</strong>
-        with the MediaPipe Face Landmarker and a fixed warm palette. This is a browser
+        <p class="lead">A stylized line-art avatar from a face &mdash; run <strong>on this device</strong>
+        with the MediaPipe Face Landmarker and a deterministic line-art renderer (ink strokes on a
+        light paper background, no flat-color face fill). This is a browser
         prototype of the production phone path.</p>
 
         <div class="card">
@@ -837,7 +838,7 @@
 
           <video id="mp-camera" width="256" height="256" autoplay playsinline muted hidden></video>
           <canvas id="mp-staging" width="256" height="256" hidden></canvas>
-          <canvas id="mp-preview" width="256" height="256" class="mp-preview" aria-label="stylized cartoon avatar preview"></canvas>
+          <canvas id="mp-preview" width="256" height="256" class="mp-preview" aria-label="stylized line-art avatar preview"></canvas>
 
           <div class="btn-row">
             <button class="btn btn--primary btn--sm" id="mp-render-camera" type="button" hidden>Render a camera frame</button>
@@ -850,8 +851,10 @@
             <summary>How it works</summary>
             <p>Your camera frame (or the bundled test portrait) goes to the on-device Face
             Landmarker, which returns a transient face mesh &mdash; <strong>no identity embedding,
-            no recognition</strong>. That mesh is used to overlay edges onto a deterministic
-            flat-color re-render. Only the finished cartoon is shown. <strong>The raw frame and the
+            no recognition</strong>. That mesh is used to add mesh-driven strokes on top of a
+            deterministic line-art re-render (Sobel luminance edges drawn as ink lines on a light
+            paper background; no flat-color fill inside the face). Only the finished line-art
+            portrait is shown. <strong>The raw frame and the
             mesh are discarded immediately &mdash; nothing is stored, nothing is uploaded.</strong>
             (This demo runs MediaPipe in the browser; the production path would use the MediaPipe
             Tasks Android SDK on the device.)</p>

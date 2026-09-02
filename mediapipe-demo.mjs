@@ -1,5 +1,5 @@
 /* ============================================================================
-   PARTNER-002 — UI prototype (slice 11) — MediaPipe Face Landmarker demo glue
+   PARTNER-002 — UI prototype (slice 11b) — MediaPipe Face Landmarker line-art demo glue
    ----------------------------------------------------------------------------
    Browser-only ES module. It wires the VENDORED MediaPipe Tasks-Vision Face
    Landmarker (see ./vendor/mediapipe/ — Apache-2.0, no CDN, loaded from local
@@ -8,8 +8,9 @@
    Pipeline (on-device, transient):
      input (webcam frame OR bundled public-domain test portrait OR synthetic
      placeholder) -> Face Landmarker -> transient face mesh -> deterministic
-     cartoon re-render (flat-color posterize + edge overlay, fixed warm
-     palette/seed) -> canvas preview.
+     line-art/sketch re-render (Sobel luminance edges + mesh-driven strokes on a
+     light paper background, fixed ink/paper/accent palette, fixed seed) ->
+     canvas preview.
 
    Nothing is stored and nothing is exported: the raw frame and the mesh are
    held only in local variables and are dropped when the function returns.
@@ -71,9 +72,11 @@ async function renderFace(source, isVideo) {
     mesh = result.faceLandmarks[0];
   }
 
-  // 3) deterministic cartoon re-render (flat-color posterize + edge overlay)
+  // 3) deterministic line-art/sketch re-render (Sobel edges -> ink strokes on
+  //    paper; optional flat accents only OUTSIDE the face, none here since no
+  //    face-region mask is available in this path -> pure line-art)
   const AR = window.AvatarRender;
-  const out = AR.renderCartoon({ width: w, height: h, data: raw.data });
+  const out = AR.renderLineArt({ width: w, height: h, data: raw.data });
   const pctx = preview.getContext("2d");
   pctx.putImageData(new ImageData(out.data, w, h), 0, 0);
 
@@ -82,13 +85,13 @@ async function renderFace(source, isVideo) {
     drawMesh(pctx, mesh, w, h);
     setStatus(AR.HONEST_COPY + " Signature: " + out.renderHash);
   } else {
-    setStatus("No face detected \u2014 showing the stylized render without a mesh overlay.");
+    setStatus("No face detected \u2014 showing the line-art render without a mesh overlay.");
   }
   const prov = el("mp-provenance");
   if (prov) prov.textContent = out.provenance;
 }
 
-/* ---- draw the 478-point face mesh as a dark edge overlay ----------------- */
+/* ---- draw the 478-point face mesh as ink mesh-driven strokes ------------ */
 function drawMesh(ctx, landmarks, w, h) {
   const conns = FaceLandmarker.FACE_LANDMARKS_TESSELATION || [];
   ctx.strokeStyle = "#16110e";
