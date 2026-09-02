@@ -1082,3 +1082,25 @@ details.score-breakdown[open] > summary::before { content: "\25BE"; }
 @media (max-width: 640px) {
   .legal-grid__row { grid-template-columns: 1fr; gap: 2px; }
 }
+
+/* ============================================================================
+   Slice 11 — avatar demo + default avatar (MediaPipe cartoonizer prototype)
+   ========================================================================== */
+.mp-preview {
+  display: block;
+  width: 256px;
+  height: 256px;
+  max-width: 100%;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+}
+.mp-honest { max-width: 62ch; }
+.mp-provenance { overflow-wrap: anywhere; }
+#default-avatar-canvas {
+  display: block;
+  margin: var(--sp-4) auto;
+  max-width: 240px;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+}

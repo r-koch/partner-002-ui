@@ -21,6 +21,8 @@
     { id: "match",         label: "Match" },
     { id: "ladder",        label: "Reveal ladder" },
     { id: "safety",        label: "Safety" },
+    { id: "avatar",        label: "Avatar demo" },
+    { id: "default-avatar",label: "Default avatar" },
     { id: "legal",         label: "Before you join" },
     { id: "miller",        label: "Legal questions" }
   ];
@@ -40,6 +42,8 @@
     match:    "matches",
     ladder:   "matches",
     safety:   "safety",
+    avatar:   "avatar",
+    "default-avatar": "avatar",
     legal:    "legal",
     miller:   "legal"
     // welcome / import are onboarding-only (no nav owner)
@@ -102,6 +106,23 @@
     window.scrollTo(0, 0);
     if (id === "safety") populateAuditLog();
     if (id === "discover") { populateExchangeNote(); if (window.Matching) window.Matching.refresh(); }
+    if (id === "default-avatar") renderDefaultAvatarView();
+    if (id === "avatar") bootMediaPipeDemo();
+  }
+
+  /* ---- slice 11: default-avatar view renders from code (no assets) ------ */
+  function renderDefaultAvatarView() {
+    if (!window.AvatarRender) return;
+    var canvas = document.querySelector("#default-avatar-canvas");
+    if (canvas) window.AvatarRender.renderDefaultAvatar(canvas);
+  }
+
+  /* ---- slice 11: lazy-boot the MediaPipe demo on first avatar view visit */
+  var mediaPipeBooted = false;
+  function bootMediaPipeDemo() {
+    if (mediaPipeBooted || !window.MediaPipeDemo) return;
+    mediaPipeBooted = true;
+    try { window.MediaPipeDemo.boot(); } catch (e) { /* demo handles its own status */ }
   }
 
   /* ---- navigation (event delegation; also honours #hash deep links) ----- */

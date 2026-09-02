@@ -1,0 +1,14 @@
+neil-armstrong.jpg — fixed deterministic test input for the Avatar demo.
+
+Source (Wikimedia Commons, exact file page):
+https://commons.wikimedia.org/wiki/File:Portrait_of_Neil_Armstrong.jpg
+Direct file (Wikimedia upload / originals):
+https://upload.wikimedia.org/wikipedia/commons/8/8b/Portrait_of_Neil_Armstrong.jpg
+
+License: Public domain — NASA (United States Government work, no copyright).
+Artist: NASA · Date: 1969 · Size: 2122 x 2644 px, image/jpeg.
+SHA-1 (file bytes): b5c412634795212d254c2c126921586041aadd20
+
+Used only as the bundled, fixed fallback input so the demo produces a
+deterministic render without a camera. No real user photo is ever used;
+this is a public-domain NASA portrait, not personal data.
