@@ -19,12 +19,20 @@
   function apply(name) {
     var p = PALETTES[name];
     if (!p) return;
+    function lum(hex) {
+      var h = hex.replace("#",""); var r=parseInt(h.slice(0,2),16)/255, g=parseInt(h.slice(2,4),16)/255, b=parseInt(h.slice(4,6),16)/255;
+      function f(c){return c<=0.03928? c/12.92 : Math.pow((c+0.055)/1.055, 2.4);}
+      return 0.2126*f(r)+0.7152*f(g)+0.0722*f(b);
+    }
+    function ink(bg){ return lum(bg) > 0.42 ? "#17130F" : "#FFFFFF"; } // light bg -> dark ink, dark bg -> white
     var r = document.documentElement.style;
     r.setProperty("--bg", p.bg); r.setProperty("--surface", p.surface);
     r.setProperty("--text", p.text); r.setProperty("--muted", p.muted);
-    r.setProperty("--accent", p.accent); r.setProperty("--accent-text", p.accentText);
+    r.setProperty("--accent", p.accent); r.setProperty("--accent-text", p.accentText || ink(p.accent));
     r.setProperty("--line", p.line); r.setProperty("--exclude", p.exclude);
+    r.setProperty("--exclude-text", p.excludeText || ink(p.exclude));
     r.setProperty("--match", p.match); r.setProperty("--positive", p.positive);
+    r.setProperty("--positive-text", p.positiveText || ink(p.positive));
     try { localStorage.setItem(STORE, name); } catch (e) {}
     var sel = document.getElementById("palette-select");
     if (sel) sel.value = name;
