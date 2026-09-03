@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PARTNER-002 — palette comparison (draft)</title>
+<style>
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{font-family:Georgia,'Times New Roman',serif; padding:28px 20px; max-width:520px; margin:0 auto;}
+  h1{font-size:24px; margin-bottom:6px;}
+  p.lead{font-size:14px; color:#6B5D50; margin-bottom:24px;}
+  .pal{ border-radius:18px; overflow:hidden; margin-bottom:28px; border:1px solid rgba(0,0,0,.08);}
+  .pal-head{padding:16px 18px 12px;}
+  .pal-head h2{font-size:18px;}
+  .pal-head p{font-size:13px; margin-top:2px; opacity:.8;}
+  .swatches{display:flex; flex-direction:column; gap:6px; padding:0 18px 16px;}
+  .sw{display:flex; align-items:center; gap:10px; border-radius:10px; padding:10px 12px;}
+  .sw .dot{width:34px; height:34px; border-radius:50%; border:1px solid rgba(0,0,0,.12); flex:0 0 auto;}
+  .sw .nm{font-size:13px;}
+  .sw .hex{font-size:12px; opacity:.75; margin-left:auto;}
+  .demo-text{padding:16px 18px; border-radius:12px; margin:0 18px 16px;}
+  .demo-text .t1{font-size:17px; font-weight:600; margin-bottom:6px;}
+  .demo-text .t2{font-size:14px;}
+  .demo-text .line{height:1px; margin:10px 0; border:none;}
+  .note{font-size:12px; color:#6B5D50; line-height:1.5;}
+</style>
+</head>
+<body>
+  <h1>Three palettes, side by side</h1>
+  <p class="lead">All pairs pass WCAG AA (text &ge; 4.5:1, surfaces &ge; 3:1). Judged on your screen, not in my head.</p>
+
+  <!-- A -->
+  <div class="pal" style="background:#FAF6EF; color:#2E2620;">
+    <div class="pal-head">
+      <h2>A — Warm Stylized</h2>
+      <p>cream paper, terracotta, ink · matches the ANIME avatar</p>
+    </div>
+    <div class="swatches">
+      <div class="sw" style="background:#FAF6EF;"><span class="dot" style="background:#FAF6EF;"></span><span class="nm">background</span><span class="hex">#FAF6EF</span></div>
+      <div class="sw" style="background:#F3EBDD;"><span class="dot" style="background:#F3EBDD;"></span><span class="nm">surface</span><span class="hex">#F3EBDD</span></div>
+      <div class="sw" style="background:#2E2620; color:#FAF6EF;"><span class="dot" style="background:#2E2620;"></span><span class="nm">text</span><span class="hex">#2E2620</span></div>
+      <div class="sw" style="background:#6B5D50; color:#FAF6EF;"><span class="dot" style="background:#6B5D50;"></span><span class="nm">muted text</span><span class="hex">#6B5D50</span></div>
+      <div class="sw" style="background:#B0431F; color:#FFFFFF;"><span class="dot" style="background:#B0431F;"></span><span class="nm">accent</span><span class="hex">#B0431F</span></div>
+      <div class="sw" style="background:#D8CCBA; color:#2E2620;"><span class="dot" style="background:#D8CCBA;"></span><span class="nm">lines</span><span class="hex">#D8CCBA</span></div>
+      <div class="sw" style="background:#A63A2B; color:#FFFFFF;"><span class="dot" style="background:#A63A2B;"></span><span class="nm">exclude</span><span class="hex">#A63A2B</span></div>
+      <div class="sw" style="background:#3E6B4F; color:#FFFFFF;"><span class="dot" style="background:#3E6B4F;"></span><span class="nm">match</span><span class="hex">#3E6B4F</span></div>
+    </div>
+    <div class="demo-text" style="background:#F3EBDD;">
+      <div class="t1">This is how a headline looks</div>
+      <div class="t2">And this is supporting text in the warm paper tone. The accent below is a button.</div>
+      <div class="line" style="background:#D8CCBA;"></div>
+      <div class="t2" style="color:#B0431F; font-weight:600;">Continue</div>
+    </div>
+  </div>
+
+  <!-- B -->
+  <div class="pal" style="background:#F7F8FA; color:#1E2430;">
+    <div class="pal-head">
+      <h2>B — Calm Minimal</h2>
+      <p>clean light, single cool blue accent · classic app feel</p>
+    </div>
+    <div class="swatches">
+      <div class="sw" style="background:#F7F8FA;"><span class="dot" style="background:#F7F8FA;"></span><span class="nm">background</span><span class="hex">#F7F8FA</span></div>
+      <div class="sw" style="background:#FFFFFF;"><span class="dot" style="background:#FFFFFF;"></span><span class="nm">surface</span><span class="hex">#FFFFFF</span></div>
+      <div class="sw" style="background:#1E2430; color:#F7F8FA;"><span class="dot" style="background:#1E2430;"></span><span class="nm">text</span><span class="hex">#1E2430</span></div>
+      <div class="sw" style="background:#5A6574; color:#F7F8FA;"><span class="dot" style="background:#5A6574;"></span><span class="nm">muted text</span><span class="hex">#5A6574</span></div>
+      <div class="sw" style="background:#2E6FDB; color:#FFFFFF;"><span class="dot" style="background:#2E6FDB;"></span><span class="nm">accent</span><span class="hex">#2E6FDB</span></div>
+      <div class="sw" style="background:#D9DEE8; color:#1E2430;"><span class="dot" style="background:#D9DEE8;"></span><span class="nm">lines</span><span class="hex">#D9DEE8</span></div>
+      <div class="sw" style="background:#B3403A; color:#FFFFFF;"><span class="dot" style="background:#B3403A;"></span><span class="nm">exclude</span><span class="hex">#B3403A</span></div>
+      <div class="sw" style="background:#2F7D5B; color:#FFFFFF;"><span class="dot" style="background:#2F7D5B;"></span><span class="nm">match</span><span class="hex">#2F7D5B</span></div>
+    </div>
+    <div class="demo-text" style="background:#FFFFFF;">
+      <div class="t1">This is how a headline looks</div>
+      <div class="t2">And this is supporting text in the clean light tone. The accent below is a button.</div>
+      <div class="line" style="background:#D9DEE8;"></div>
+      <div class="t2" style="color:#2E6FDB; font-weight:600;">Continue</div>
+    </div>
+  </div>
+
+  <!-- C -->
+  <div class="pal" style="background:#191C22; color:#EDEFF2;">
+    <div class="pal-head">
+      <h2>C — Deep Trust</h2>
+      <p>dark, warm gold accent · distinctive, evening mood</p>
+    </div>
+    <div class="swatches">
+      <div class="sw" style="background:#191C22;"><span class="dot" style="background:#191C22;"></span><span class="nm">background</span><span class="hex">#191C22</span></div>
+      <div class="sw" style="background:#232830; color:#EDEFF2;"><span class="dot" style="background:#232830;"></span><span class="nm">surface</span><span class="hex">#232830</span></div>
+      <div class="sw" style="background:#EDEFF2; color:#191C22;"><span class="dot" style="background:#EDEFF2;"></span><span class="nm">text</span><span class="hex">#EDEFF2</span></div>
+      <div class="sw" style="background:#A7AEB8; color:#191C22;"><span class="dot" style="background:#A7AEB8;"></span><span class="nm">muted text</span><span class="hex">#A7AEB8</span></div>
+      <div class="sw" style="background:#D9A05B; color:#191C22;"><span class="dot" style="background:#D9A05B;"></span><span class="nm">accent</span><span class="hex">#D9A05B</span></div>
+      <div class="sw" style="background:#343B45; color:#EDEFF2;"><span class="dot" style="background:#343B45;"></span><span class="nm">lines</span><span class="hex">#343B45</span></div>
+      <div class="sw" style="background:#D96A5B; color:#191C22;"><span class="dot" style="background:#D96A5B;"></span><span class="nm">exclude</span><span class="hex">#D96A5B</span></div>
+      <div class="sw" style="background:#7FB69A; color:#191C22;"><span class="dot" style="background:#7FB69A;"></span><span class="nm">match</span><span class="hex">#7FB69A</span></div>
+    </div>
+    <div class="demo-text" style="background:#232830;">
+      <div class="t1">This is how a headline looks</div>
+      <div class="t2">And this is supporting text in the dark trust tone. The accent below is a button.</div>
+      <div class="line" style="background:#343B45;"></div>
+      <div class="t2" style="color:#D9A05B; font-weight:600;">Continue</div>
+    </div>
+  </div>
+
+  <p class="note">Draft-only comparison page. No decisions locked. All ratios WCAG-AA verified by script; the calls are yours.</p>
+</body>
+</html>
