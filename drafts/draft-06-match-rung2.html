@@ -8,83 +8,120 @@
   :root{
     --bg:#FAF6EF; --surface:#F3EBDD; --text:#2E2620; --muted:#6B5D50;
     --accent:#B0431F; --accent-text:#FFFFFF; --line:#D8CCBA; --exclude:#A63A2B;
-    --match:#3E6B4F; --positive:#3E6B4F;
+    --match:#3E6B4F; --positive:#3E6B4F; --positive-text:#FFFFFF;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   body{background:var(--bg); color:var(--text); font-family:Georgia,'Times New Roman',serif;
        min-height:100vh; padding:24px;}
   .phone{width:100%; max-width:420px; margin:0 auto; background:var(--bg);
          border-radius:24px; overflow:hidden; border:1px solid var(--line);
-         display:flex; flex-direction:column; min-height:760px;}
+         display:flex; flex-direction:column; min-height:820px;}
   header{display:flex; justify-content:space-between; align-items:center; padding:16px 18px;
          border-bottom:1px solid var(--line);}
   header strong{font-weight:600;}
   header a{color:var(--muted); font-size:14px; text-decoration:none;}
-  .body{flex:1; padding:18px; overflow-y:auto;}
-  .handle{font-size:22px; font-weight:600; margin-bottom:2px;}
-  .rung-tag{font-size:12px; color:var(--muted); border:1px solid var(--line);
-            border-radius:999px; padding:3px 10px; display:inline-block; margin-bottom:14px;}
-  .avatar{width:110px; height:110px; border-radius:50%; overflow:hidden;
-          border:2px solid var(--line); margin:10px 0 16px; background:var(--surface);}
+  .top{display:flex; gap:14px; padding:16px 18px; border-bottom:1px solid var(--line);}
+  .avatar-col{flex:0 0 auto;}
+  .avatar{width:78px; height:78px; border-radius:50%; overflow:hidden;
+          border:2px solid var(--line); background:var(--surface);}
   .avatar img{width:100%; height:100%; object-fit:cover; display:block;}
-  .h2{font-size:16px; font-weight:600; margin:18px 0 10px;}
-  .ice{display:flex; align-items:center; gap:10px;}
-  .pair{border:1px solid var(--line); border-radius:14px; padding:12px; margin-bottom:10px;
-        background:var(--surface);}
-  .pair-top{display:flex; justify-content:space-between; font-size:14px; margin-bottom:10px;}
-  .pair-top b{font-weight:600;}
-  .pics{display:flex; gap:10px;}
-  .pic{flex:1; height:84px; border-radius:10px; border:2px solid var(--line);
-       background:var(--bg); display:flex; align-items:center; justify-content:center;
-       font-size:12px; color:var(--muted); text-align:center; padding:6px;}
-  .pic.picked{border-color:var(--match);}
-  .result{font-size:13px; color:var(--match); margin-top:8px;}
-  .starters{display:flex; flex-direction:column; gap:8px;}
-  .starter{border:1px solid var(--line); border-radius:12px; padding:12px 14px;
-           font-size:14px; background:var(--surface);}
-  .starter small{display:block; color:var(--muted); font-size:12px; margin-top:6px;}
-  .ask{font-size:13px; color:var(--muted); border-top:1px solid var(--line);
-       padding-top:12px; margin-top:18px;}
-  .ask b{color:var(--text); font-weight:600;}
+  .ident{flex:1; display:flex; flex-direction:column; gap:4px;}
+  .handle{font-size:20px; font-weight:600;}
+  .sub{font-size:12px; color:var(--muted);}
+  .rungs{display:flex; gap:5px; margin-top:auto;}
+  .rung .d{width:22px; height:22px; border-radius:50%; border:2px solid var(--line);
+           display:flex; align-items:center; justify-content:center; font-size:10px;
+           color:var(--muted); background:var(--surface);}
+  .rung.now .d{border-color:var(--accent); color:var(--accent); font-weight:700;}
+  .rung.done .d{border-color:var(--match); color:var(--match);}
+  .rung .l{font-size:8px; color:var(--muted); text-align:center; display:block;}
+  .body{flex:1; padding:18px; overflow-y:auto;}
+  .h2{font-size:15px; font-weight:600; margin:4px 0 10px;}
+  .card{border:1px solid var(--line); border-radius:14px; background:var(--surface);
+        padding:13px 15px; margin-bottom:12px;}
+  .btn{display:block; width:100%; background:var(--positive); color:var(--positive-text);
+       border:none; border-radius:999px; padding:12px 0; font-size:15px; cursor:pointer;
+       font-family:inherit;}
+  .btn.ghost{background:var(--surface); color:var(--text); border:2px solid var(--line);}
+  /* number grid for a fired ice-breaker set */
+  .pics{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:10px 0;}
+  .pic{border:2px solid var(--line); border-radius:12px; background:var(--bg);
+       height:76px; display:flex; align-items:center; justify-content:center;
+       font-size:22px; font-weight:700; color:var(--muted); cursor:pointer;}
+  .pic.picked{border-color:var(--match); color:var(--match);}
+  .pair-label{font-size:12px; color:var(--muted); margin-top:4px; text-align:center;}
+  /* past ice-breaker results with drill down */
+  details{border:1px solid var(--line); border-radius:14px; background:var(--surface);
+          padding:12px 15px; margin-bottom:12px;}
+  summary{cursor:pointer; font-size:14px; font-weight:600;}
+  .res{font-size:13px; color:var(--match); margin-top:8px; line-height:1.6;}
+  .starter{display:flex; justify-content:space-between; gap:10px; font-size:14px;
+           padding:11px 0; border-bottom:1px solid var(--line);}
+  .starter:last-child{border-bottom:none;}
+  .starter span{color:var(--muted); font-size:12px; flex:0 0 auto;}
   .demo-note{text-align:center; font-size:12px; color:var(--muted); padding:0 16px 16px;}
 </style>
 </head>
 <body>
   <div class="phone">
     <header>
-      <strong>brave-lion-4417</strong>
-      <a href="#">Back</a>
+      <strong>Matches</strong>
+      <a href="#">Safety</a>
     </header>
-    <div class="body">
-      <span class="rung-tag">Rung 2 — avatars open</span>
-      <div class="avatar"><img src="anime-avatar-example.png" alt="stylized avatar example — line-art style, not a photo"></div>
-      <div style="font-size:12px; color:var(--muted); margin-bottom:10px;">Example of the stylized avatar style (on-device line art — never a real photo; final rendering may differ).</div>
-
-      <div class="h2">Ice breakers — you both picked</div>
-      <div class="ice">
-        <div class="pair">
-          <div class="pair-top"><b>1. Beach or mountains?</b></div>
-          <div class="pics">
-            <div class="pic">sand dunes</div>
-            <div class="pic picked">mountain ridge</div>
-          </div>
-          <div class="result">You both picked: mountains</div>
+    <div class="top">
+      <div class="avatar-col">
+        <div class="avatar"><img src="anime-avatar-example.png" alt="stylized avatar example — not a photo"></div>
+      </div>
+      <div class="ident">
+        <div class="handle">brave-lion-4417</div>
+        <div class="sub">score 82 at match · locked · Vienna</div>
+        <div class="rungs">
+          <div class="rung done"><span class="d">1</span><span class="l">match</span></div>
+          <div class="rung done"><span class="d">2</span><span class="l">prefs</span></div>
+          <div class="rung now"><span class="d">3</span><span class="l">avatar</span></div>
+          <div class="rung"><span class="d">4</span><span class="l">chat</span></div>
         </div>
       </div>
+    </div>
+    <div class="body">
+      <div class="h2">Ice breakers</div>
+      <button class="btn">Fire an ice breaker (5 random pairs)</button>
+      <div class="card" style="margin-top:12px;">
+        <div class="pics">
+          <div class="pic">1</div><div class="pic">2</div>
+          <div class="pic">3</div><div class="pic">4</div>
+          <div class="pic picked">5</div><div class="pic picked">6</div>
+          <div class="pic">7</div><div class="pic">8</div>
+          <div class="pic">9</div><div class="pic">10</div>
+        </div>
+        <div class="pair-label">Pick your favorite of each pair · results reveal what matched</div>
+        <button class="btn ghost" style="margin-top:10px;">Send my picks</button>
+      </div>
+      <details>
+        <summary>Past ice breakers — 3 of 5 same</summary>
+        <div class="res">
+          Set 1 · 3 of 5 same · beaches, quiet nights, mountains<br>
+          &#8226; you both picked: mountains, city breaks, cozy home<br>
+          &#8226; different: morning person (them: night), pets (them: cats, you: none)
+        </div>
+        <div class="res">Set 2 · 4 of 5 same · waiting on their picks</div>
+      </details>
 
       <div class="h2">Conversation starters</div>
-      <div class="starters">
-        <div class="starter">Favorite travel type?
-          <small>A: city · B: backpacking · C: beach · D: something else</small>
-        </div>
-        <div class="starter">Ideal weekend?
-          <small>A: outdoors · B: cozy home · C: friends out · D: something else</small>
-        </div>
+      <div class="card">
+        <div class="starter">Favorite travel type?<span>answered</span></div>
+        <div class="starter">Ideal weekend?<span>answered</span></div>
+        <div class="starter">Big city or countryside?<span>open</span></div>
       </div>
+      <button class="btn ghost">Send a new starter (fixed answers)</button>
 
-      <div class="ask"><b>Question request:</b> ask about something you answered yourself, e.g. their kids answer — you answered yours first.</div>
+      <div class="h2">Their answers</div>
+      <details>
+        <summary>Everything they answered</summary>
+        <div class="res">Full extended profile renders here, expandable per answer. Their private red-flag indicators are never shown to you.</div>
+      </details>
     </div>
-    <div class="demo-note">Synthetic demo · avatar example style · not a real photo</div>
+    <div class="demo-note">Rung 2 — avatars open · ice breakers + starters fireable · past results drill down</div>
   </div>
   <script src="palette-switcher.js"></script>
 </body>
