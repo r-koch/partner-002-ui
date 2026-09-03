@@ -256,6 +256,17 @@
           You've withdrawn consent (demo). Agent exchange has stopped and your profile no longer appears in the pool.
         </div>
 
+        <!-- Score-floor filter (slice 13) — a SOFT display filter, not a hard
+             cutoff. Below-floor candidates are hidden, never excluded; their
+             score/breakdown is unchanged; red flags stay the only hard path. -->
+        <div class="score-floor" id="score-floor">
+          <label class="score-floor__label" for="score-floor-input">Minimum score</label>
+          <input type="number" id="score-floor-input" class="score-floor__input" min="0" max="100" step="1" value="40" inputmode="numeric" aria-describedby="score-floor-help">
+          <span class="score-floor__unit">/100</span>
+          <p class="score-floor__help" id="score-floor-help">the score shows how well they fit what you're looking for. Higher is better.</p>
+          <p class="score-floor__note faint" id="score-floor-count" aria-live="polite"></p>
+        </div>
+
         <!-- Card A (mutual) -->
         <article class="candidate-card" data-candidate="A" data-mutual="true">
           <div class="candidate-card__top">

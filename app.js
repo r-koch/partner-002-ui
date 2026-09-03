@@ -105,7 +105,7 @@
     renderNav(id);
     window.scrollTo(0, 0);
     if (id === "safety") populateAuditLog();
-    if (id === "discover") { populateExchangeNote(); if (window.Matching) window.Matching.refresh(); }
+    if (id === "discover") { populateExchangeNote(); refreshDiscover(); }
     if (id === "default-avatar") renderDefaultAvatarView();
     if (id === "avatar") bootMediaPipeDemo();
   }
@@ -162,7 +162,7 @@
   }
 
   document.addEventListener("change", function (e) {
-    if (window.Matching) window.Matching.refresh();
+    if (window.Matching) refreshDiscover();
   });
 
   /* ---- red-flag toggles (slice 7c) — per-choice, private hard exclusions */
@@ -193,7 +193,7 @@
     } else {
       btn.setAttribute("aria-pressed", "false");
     }
-    if (window.Matching) window.Matching.refresh();
+    if (window.Matching) refreshDiscover();
   });
 
   /* ---- candidate interest/decline + mutual match ------------------------ */
@@ -336,6 +336,82 @@
     var saved = localStorage.getItem("p2-theme");
     if (saved) applyTheme(saved);
   } catch (e) {}
+
+  /* ---- slice 13: score-floor display filter (Discover) ------------------- */
+  /* The floor is a SOFT display filter only: candidates below it are HIDDEN
+     from the Discover list; their score/breakdown is unchanged; they are NOT
+     excluded, NOT un-scored, NOT red-flagged. Red-flag exclusions stay the
+     ONLY hard path (handled in matching.js, private, never revealed). The
+     floor pref persists per-browser (localStorage; synthetic demo) — per-user
+     server-side storage is a production item, gated, not modeled here. */
+  var SCORE_FLOOR_KEY = "p2-score-floor";
+  var SCORE_FLOOR_DEFAULT = 40;
+
+  function clampFloor(n) {
+    if (isNaN(n)) return SCORE_FLOOR_DEFAULT;
+    return Math.min(100, Math.max(0, n));
+  }
+
+  function readScoreFloor() {
+    var v = SCORE_FLOOR_DEFAULT;
+    try {
+      var raw = localStorage.getItem(SCORE_FLOOR_KEY);
+      if (raw != null) v = clampFloor(parseInt(raw, 10));
+    } catch (e) {}
+    return v;
+  }
+
+  function writeScoreFloor(v) {
+    try { localStorage.setItem(SCORE_FLOOR_KEY, String(v)); } catch (e) {}
+  }
+
+  /* Re-render the Discover list against the floor WITHOUT recomputing scores.
+     Scored cards below the floor get hidden; at/above get shown. A card with
+     no parseable score ("--") is a red-flag exclusion — matching.js owns its
+     hidden state and the floor never touches it, so an excluded candidate
+     stays absent at every floor setting. */
+  function applyScoreFloor() {
+    var floorEl = document.getElementById("score-floor-input");
+    var floor = floorEl ? clampFloor(parseInt(floorEl.value, 10)) : SCORE_FLOOR_DEFAULT;
+    var hiddenCount = 0;
+    document.querySelectorAll("#v-discover .candidate-card[data-candidate]").forEach(function (card) {
+      var numEl = card.querySelector(".match-score__num");
+      var score = numEl ? parseInt(numEl.textContent, 10) : NaN;
+      if (isNaN(score)) return;                        // red-flag excluded — leave as-is
+      if (score < floor) {
+        card.setAttribute("hidden", "");
+        card.classList.add("is-below-floor");
+        hiddenCount++;
+      } else {
+        card.classList.remove("is-below-floor");
+        card.removeAttribute("hidden");
+      }
+    });
+    var countEl = document.getElementById("score-floor-count");
+    if (countEl) {
+      countEl.textContent = hiddenCount === 0
+        ? ""
+        : hiddenCount + (hiddenCount === 1 ? " person is" : " people are")
+          + " below your minimum &mdash; hidden, not ruled out.";
+    }
+  }
+
+  function refreshDiscover() {
+    if (window.Matching) window.Matching.refresh();
+    applyScoreFloor();
+  }
+
+  var floorInput = document.getElementById("score-floor-input");
+  if (floorInput) {
+    floorInput.value = String(readScoreFloor());
+    floorInput.addEventListener("input", function () { applyScoreFloor(); });
+    floorInput.addEventListener("change", function () {
+      var n = clampFloor(parseInt(floorInput.value, 10));
+      floorInput.value = String(n);
+      writeScoreFloor(n);
+      applyScoreFloor();
+    });
+  }
 
   /* ---- slice 8: terms gate (continue requires terms; consent optional) --- */
   var termsInput = document.getElementById("terms-accept");

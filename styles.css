@@ -1058,6 +1058,38 @@ details.score-breakdown[open] > summary::before { content: "\25BE"; }
 }
 .miller-list li strong { color: var(--text); }
 
+/* Score-floor filter (slice 13) — Discover control row, WCAG-AA text sizes */
+.score-floor {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+  margin: var(--sp-3) 0 var(--sp-4);
+  padding: var(--sp-3);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--r-md);
+  background: var(--bg-elev);
+}
+.score-floor__label {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--text);
+}
+.score-floor__input { width: 90px; max-width: 90px; }
+.score-floor__unit { color: var(--text-muted); font-size: var(--fs-sm); }
+.score-floor__help {
+  flex-basis: 100%;
+  margin: 0;
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+.score-floor__note {
+  flex-basis: 100%;
+  margin: 0;
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+
 /* Pool participation status (post-withdrawal) */
 .pool-status {
   display: flex;
