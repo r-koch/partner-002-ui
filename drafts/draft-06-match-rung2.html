@@ -49,6 +49,11 @@
        height:76px; display:flex; align-items:center; justify-content:center;
        font-size:22px; font-weight:700; color:var(--muted); cursor:pointer;}
   .pic.picked{border-color:var(--match); color:var(--match);}
+  .pic.pic-img{height:86px; overflow:hidden; padding:0;}
+  .pic.pic-img img{width:100%; height:100%; object-fit:cover; display:block;}
+  .pic.you{border-color:var(--match); box-shadow:0 0 0 2px var(--match);}
+  .pic.them{border-color:var(--exclude); box-shadow:0 0 0 2px var(--exclude);}
+  .pic.both{border-color:var(--accent); box-shadow:0 0 0 3px var(--accent);}
   .pair-label{font-size:12px; color:var(--muted); margin-top:4px; text-align:center;}
   /* past ice-breaker results with drill down */
   details{border:1px solid var(--line); border-radius:14px; background:var(--surface);
@@ -99,12 +104,23 @@
       </div>
       <details>
         <summary>Past ice breakers — 3 of 5 same</summary>
-        <div class="res">
-          Set 1 · 3 of 5 same · beaches, quiet nights, mountains<br>
-          &#8226; you both picked: mountains, city breaks, cozy home<br>
-          &#8226; different: morning person (them: night), pets (them: cats, you: none)
+        <div class="res"><b>Set 1 · pair 1 · beaches or mountains</b></div>
+        <div class="pics">
+          <div class="pic pic-img"><img src="ib-beach-placeholder.png" alt="beach"></div>
+          <div class="pic pic-img picked"><img src="ib-lake.jpg" alt="mountains"></div>
         </div>
-        <div class="res">Set 2 · 4 of 5 same · waiting on their picks</div>
+        <div class="res">&#8226; you: mountains · them: mountains — <b>both picked</b> (highlight legend below)</div>
+        <div class="res"><b>Set 1 · pair 2 · quiet mornings or late nights</b></div>
+        <div class="pics">
+          <div class="pic pic-img you"><img src="ib-beach-placeholder.png" alt="morning"></div>
+          <div class="pic pic-img them"><img src="ib-lake.jpg" alt="night"></div>
+        </div>
+        <div class="res">&#8226; you: mornings · them: nights — <b>different</b></div>
+        <div class="res" style="border-top:1px solid var(--line); padding-top:8px;">
+          Legend: <span style="color:var(--match);">you = match-green border</span> ·
+          <span style="color:var(--exclude);">them = red border</span> ·
+          <span style="color:var(--accent);">both = dark accent ring</span>
+        </div>
       </details>
 
       <div class="h2">Conversation starters</div>
