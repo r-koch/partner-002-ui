@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PARTNER-002 design draft — match detail, rung 2 (avatar + ice breakers)</title>
+<style>
+  :root{
+    --bg:#FAF6EF; --surface:#F3EBDD; --text:#2E2620; --muted:#6B5D50;
+    --accent:#B0431F; --accent-text:#FFFFFF; --line:#D8CCBA; --exclude:#A63A2B;
+    --match:#3E6B4F; --positive:#3E6B4F;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--text); font-family:Georgia,'Times New Roman',serif;
+       min-height:100vh; padding:24px;}
+  .phone{width:100%; max-width:420px; margin:0 auto; background:var(--bg);
+         border-radius:24px; overflow:hidden; border:1px solid var(--line);
+         display:flex; flex-direction:column; min-height:760px;}
+  header{display:flex; justify-content:space-between; align-items:center; padding:16px 18px;
+         border-bottom:1px solid var(--line);}
+  header strong{font-weight:600;}
+  header a{color:var(--muted); font-size:14px; text-decoration:none;}
+  .body{flex:1; padding:18px; overflow-y:auto;}
+  .handle{font-size:22px; font-weight:600; margin-bottom:2px;}
+  .rung-tag{font-size:12px; color:var(--muted); border:1px solid var(--line);
+            border-radius:999px; padding:3px 10px; display:inline-block; margin-bottom:14px;}
+  .avatar{width:96px; height:96px; border-radius:50%; background:var(--surface);
+          border:2px solid var(--line); display:flex; align-items:center; justify-content:center;
+          font-size:12px; color:var(--muted); margin:10px 0 16px;}
+  .avatar span{text-align:center; line-height:1.3;}
+  .h2{font-size:16px; font-weight:600; margin:18px 0 10px;}
+  .ice{display:flex; align-items:center; gap:10px;}
+  .pair{border:1px solid var(--line); border-radius:14px; padding:12px; margin-bottom:10px;
+        background:var(--surface);}
+  .pair-top{display:flex; justify-content:space-between; font-size:14px; margin-bottom:10px;}
+  .pair-top b{font-weight:600;}
+  .pics{display:flex; gap:10px;}
+  .pic{flex:1; height:84px; border-radius:10px; border:2px solid var(--line);
+       background:var(--bg); display:flex; align-items:center; justify-content:center;
+       font-size:12px; color:var(--muted); text-align:center; padding:6px;}
+  .pic.picked{border-color:var(--match);}
+  .result{font-size:13px; color:var(--match); margin-top:8px;}
+  .starters{display:flex; flex-direction:column; gap:8px;}
+  .starter{border:1px solid var(--line); border-radius:12px; padding:12px 14px;
+           font-size:14px; background:var(--surface);}
+  .starter small{display:block; color:var(--muted); font-size:12px; margin-top:6px;}
+  .ask{font-size:13px; color:var(--muted); border-top:1px solid var(--line);
+       padding-top:12px; margin-top:18px;}
+  .ask b{color:var(--text); font-weight:600;}
+  .demo-note{text-align:center; font-size:12px; color:var(--muted); padding:0 16px 16px;}
+</style>
+</head>
+<body>
+  <div class="phone">
+    <header>
+      <strong>brave-lion-4417</strong>
+      <a href="#">Back</a>
+    </header>
+    <div class="body">
+      <span class="rung-tag">Rung 2 — avatars open</span>
+      <div class="avatar"><span>stylized avatar<br>(on-device,<br>not a photo)</span></div>
+
+      <div class="h2">Ice breakers — you both picked</div>
+      <div class="ice">
+        <div class="pair">
+          <div class="pair-top"><b>1. Beach or mountains?</b></div>
+          <div class="pics">
+            <div class="pic">sand dunes</div>
+            <div class="pic picked">mountain ridge</div>
+          </div>
+          <div class="result">You both picked: mountains</div>
+        </div>
+      </div>
+
+      <div class="h2">Conversation starters</div>
+      <div class="starters">
+        <div class="starter">Favorite travel type?
+          <small>A: city · B: backpacking · C: beach · D: something else</small>
+        </div>
+        <div class="starter">Ideal weekend?
+          <small>A: outdoors · B: cozy home · C: friends out · D: something else</small>
+        </div>
+      </div>
+
+      <div class="ask"><b>Question request:</b> ask about something you answered yourself, e.g. their kids answer — you answered yours first.</div>
+    </div>
+    <div class="demo-note">Synthetic demo · avatar example style · not a real photo</div>
+  </div>
+  <script src="palette-switcher.js"></script>
+</body>
+</html>

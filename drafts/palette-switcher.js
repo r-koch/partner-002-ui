@@ -52,9 +52,9 @@
   function buildBar() {
     var bar = document.createElement("div");
     bar.id = "palette-bar";
-    bar.style.cssText = "position:sticky;top:0;z-index:99;display:flex;align-items:center;gap:10px;" +
+    bar.style.cssText = "position:fixed;top:0;left:0;right:0;z-index:999;display:flex;align-items:center;gap:10px;" +
       "padding:10px 14px;background:var(--surface, #F3EBDD);border-bottom:1px solid var(--line,#D8CCBA);" +
-      "font-family:Georgia,serif;font-size:14px;color:var(--text,#2E2620);flex-wrap:wrap;";
+      "font-family:Georgia,serif;font-size:14px;color:var(--text,#2E2620);flex-wrap:wrap;box-shadow:0 1px 4px rgba(0,0,0,.08);";
     var lab = document.createElement("span");
     lab.textContent = "Palette";
     var sel = document.createElement("select");
@@ -117,4 +117,5 @@
   }
 
   loadCustom(); buildBar();
-})();
+    document.body.style.paddingTop = "56px";   // bar is fixed; keep content clear of it
+  })();
