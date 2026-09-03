@@ -7,7 +7,7 @@
 <style>
   :root{
     --bg:#FAF6EF; --surface:#F3EBDD; --text:#2E2620; --muted:#6B5D50;
-    --accent:#B0431F; --accent-text:#FFFFFF; --line:#D8CCBA; --positive:#3E6B4F;
+    --accent:#B0431F; --accent-text:#FFFFFF; --line:#D8CCBA; --exclude:#A63A2B; --match:#3E6B4F; --positive:#3E6B4F;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   body{background:var(--bg); color:var(--text); font-family:Georgia, 'Times New Roman', serif;
@@ -31,7 +31,7 @@
           align-items:center; max-width:480px; width:100%; margin-left:auto; margin-right:auto;}
   .back{background:none; border:none; color:var(--muted); font-size:15px; cursor:pointer;
         font-family:inherit;}
-  .next{background:var(--accent); color:var(--accent-text); border:none; border-radius:999px;
+  .next{background:var(--positive); color:#FFFFFF; border:none; border-radius:999px;
         padding:14px 30px; font-size:16px; cursor:pointer; font-family:inherit;}
   .next[disabled]{opacity:.4; cursor:not-allowed;}
 </style>
@@ -58,5 +58,6 @@
     <button class="back">Back</button>
     <button class="next" disabled>Continue</button>
   </div>
+<script src="palette-switcher.js"></script>
 </body>
 </html>
