@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PARTNER-002 design draft — signup wizard (page 2 of 7: 18+ declaration)</title>
+<style>
+  :root{
+    --bg:#FAF6EF; --surface:#F3EBDD; --text:#2E2620; --muted:#6B5D50;
+    --accent:#B0431F; --accent-text:#FFFFFF; --line:#D8CCBA; --positive:#3E6B4F;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--text); font-family:Georgia, 'Times New Roman', serif;
+       min-height:100vh; display:flex; flex-direction:column;}
+  /* top progress: 7 steps, current = 2 */
+  .progress{display:flex; gap:6px; padding:18px 20px 0;}
+  .progress span{flex:1; height:4px; background:var(--line); border-radius:2px;}
+  .progress span.on{background:var(--accent);}
+  .card{flex:1; display:flex; flex-direction:column; justify-content:center;
+        max-width:480px; width:100%; margin:0 auto; padding:28px 24px;}
+  .stepno{font-size:14px; color:var(--muted); margin-bottom:14px;}
+  h1{font-size:28px; font-weight:600; margin-bottom:8px;}
+  p.lead{font-size:16px; color:var(--muted); margin-bottom:28px; line-height:1.5;}
+  .choice{display:block; border:2px solid var(--line); border-radius:12px;
+          padding:18px 20px; margin-bottom:14px; font-size:17px; cursor:pointer;
+          background:var(--surface); transition:border-color .15s;}
+  .choice:hover{border-color:var(--muted);}
+  .choice.now{border-color:var(--accent);}
+  .choice small{display:block; color:var(--muted); font-size:13px; margin-top:4px;}
+  .footer{margin-top:auto; padding:20px; display:flex; justify-content:space-between;
+          align-items:center; max-width:480px; width:100%; margin-left:auto; margin-right:auto;}
+  .back{background:none; border:none; color:var(--muted); font-size:15px; cursor:pointer;
+        font-family:inherit;}
+  .next{background:var(--accent); color:var(--accent-text); border:none; border-radius:999px;
+        padding:14px 30px; font-size:16px; cursor:pointer; font-family:inherit;}
+  .next[disabled]{opacity:.4; cursor:not-allowed;}
+</style>
+</head>
+<body>
+  <div class="progress">
+    <span class="on"></span><span class="on"></span><span></span><span></span>
+    <span></span><span></span><span></span>
+  </div>
+  <div class="card">
+    <div class="stepno">Step 2 of 7</div>
+    <h1>How old are you?</h1>
+    <p class="lead">This app is only for people 18 or older. We ask this once, on your way in.</p>
+    <label class="choice now">
+      I am 18 or older
+      <small>By continuing you confirm you are an adult. No proof needed — we trust you.</small>
+    </label>
+    <label class="choice">
+      I am under 18
+      <small>This app is not for you yet. Nothing personal — it's the law.</small>
+    </label>
+  </div>
+  <div class="footer">
+    <button class="back">Back</button>
+    <button class="next" disabled>Continue</button>
+  </div>
+</body>
+</html>
