@@ -44,7 +44,13 @@
   .oval.gender{width:28px; height:28px; border-radius:50%; padding:0; display:flex;
         align-items:center; justify-content:center; font-size:14px; font-weight:700;
         color:var(--accent); border-color:var(--accent);}
-  .chips{font-size:12px; color:var(--muted); margin-top:10px; line-height:1.5;}
+  .interests{display:flex; align-items:center; flex-wrap:wrap; gap:6px; margin-top:10px;}
+  .interests .ilab{font-size:11px; color:var(--muted); letter-spacing:.04em; margin-right:2px;}
+  .ichip{display:inline-flex; align-items:center; gap:5px; background:var(--bg);
+         border:1.5px dashed var(--accent); border-radius:999px; padding:3px 10px;
+         font-size:11px; color:var(--text); opacity:.92;}
+  .ichip::before{content:""; width:6px; height:6px; border-radius:50%;
+         background:var(--accent); flex:0 0 auto;}
   .match-btns{display:flex; gap:8px; margin-top:10px;}
   .mbtn{flex:1; background:var(--surface); color:var(--text); border:2px solid var(--line);
         border-radius:999px; padding:9px 8px; font-size:12px; cursor:pointer;
@@ -92,7 +98,7 @@
           <span class="oval">non-smoker</span>
           <span class="oval">long-term</span>
         </div>
-        <div class="chips">Interests · travel, outdoors, city, space</div>
+        <div class="interests"><span class="ilab">Interests</span><span class="ichip">travel</span><span class="ichip">outdoors</span><span class="ichip">city</span><span class="ichip">space</span></div>
         <div class="match-btns">
           <a class="mbtn" href="draft-06a-history.html">Show me our history</a>
           <a class="mbtn" href="draft-06b-extended-qa.html">Show extended/deep Q&amp;A</a>
