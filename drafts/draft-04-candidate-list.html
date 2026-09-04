@@ -27,6 +27,9 @@
   .score{font-size:32px; font-weight:700; line-height:1;}
   .band{font-size:13px; color:var(--muted);}
   .handle{font-size:18px; font-weight:600; margin-bottom:2px;}
+  .gring{display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px;
+         border-radius:50%; border:2px solid var(--accent); color:var(--accent); font-size:13px;
+         font-weight:600; margin-right:8px; vertical-align:-2px;}
   .facts{font-size:14px; color:var(--muted); margin-bottom:12px;}
   .chips{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px;}
   .chip{background:var(--bg); border:1px solid var(--line); border-radius:999px;
@@ -49,38 +52,38 @@
     <div class="list">
       <div class="card">
         <div class="row1"><span class="score">82</span><span class="band">strong fit</span></div>
-        <div class="handle">brave-lion-4417</div>
+        <div class="handle"><span class="gring">&#9895;</span>brave-lion-4417</div>
         <div class="facts">27 · Vienna · long-term</div>
         <div class="chips">
           <span class="chip">wants kids</span><span class="chip">non-smoker</span>
           <span class="chip">outdoors</span>
         </div>
         <div class="shared">You both said: wants kids · non-smoker</div>
-        <div class="actions"><button class="skip">Not for me</button><button class="yes">Interested</button></div>
+        <div class="actions"><button class="yes">Interested</button><button class="skip">Not for me</button></div>
       </div>
       <div class="card">
         <div class="row1"><span class="score">61</span><span class="band">decent fit</span></div>
-        <div class="handle">quiet-fox-2148</div>
+        <div class="handle"><span class="gring">?</span>quiet-fox-2148</div>
         <div class="facts">31 · Vienna · long-term</div>
         <div class="chips">
           <span class="chip">open to kids</span><span class="chip">occasional smoker</span>
           <span class="chip">city culture</span>
         </div>
         <div class="shared">You both said: long-term · same city</div>
-        <div class="actions"><button class="skip">Not for me</button><button class="yes">Interested</button></div>
+        <div class="actions"><button class="yes">Interested</button><button class="skip">Not for me</button></div>
       </div>
       <div class="card">
         <div class="row1"><span class="score">44</span><span class="band">weak fit</span></div>
-        <div class="handle">steady-owl-8831</div>
+        <div class="handle"><span class="gring">&#9792;</span>steady-owl-8831</div>
         <div class="facts">29 · Graz · long-term</div>
         <div class="chips">
           <span class="chip">wants kids</span><span class="chip">non-smoker</span>
         </div>
         <div class="shared">You both said: wants kids</div>
-        <div class="actions"><button class="skip">Not for me</button><button class="yes">Interested</button></div>
+        <div class="actions"><button class="yes">Interested</button><button class="skip">Not for me</button></div>
       </div>
     </div>
-    <div class="demo-note">Synthetic demo · sorted by score · floor at 40</div>
+    <div class="demo-note">Synthetic demo · sorted by score · floor 40 · gender rings: non-binary / not-saying / woman</div>
   </div>
   <script src="palette-switcher.js"></script>
 </body>

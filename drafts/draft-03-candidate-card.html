@@ -19,6 +19,9 @@
   header strong{font-weight:600;}
   header a{color:var(--muted); font-size:14px; text-decoration:none;}
   .card{flex:1; display:flex; flex-direction:column; justify-content:center; padding:20px 24px;}
+  .gring{display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px;
+         border-radius:50%; border:2px solid var(--accent); color:var(--accent); font-size:14px;
+         font-weight:600; margin-right:8px; vertical-align:-3px;}
   .score-band{display:flex; align-items:baseline; gap:10px; margin-bottom:14px;}
   .score{font-size:44px; font-weight:700; line-height:1;}
   .band{font-size:14px; color:var(--muted);}
@@ -52,7 +55,7 @@
         <span class="score">78</span>
         <span class="band">strong fit</span>
       </div>
-      <div class="handle">quiet-fox-2148</div>
+      <div class="handle"><span class="gring">&#9895;</span>quiet-fox-2148</div>
       <div class="facts">29 · Vienna · long-term</div>
       <div class="chips">
         <span class="chip">wants kids</span>
@@ -69,8 +72,8 @@
         </div>
       </details>
       <div class="actions">
-        <button class="skip">Not for me</button>
         <button class="yes">Interested</button>
+        <button class="skip">Not for me</button>
       </div>
     </div>
     <div class="demo-note">Synthetic demo · no real people · handle frozen once matched</div>
