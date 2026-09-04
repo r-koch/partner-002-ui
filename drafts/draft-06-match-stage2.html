@@ -38,7 +38,8 @@
   .scoreline{display:flex; align-items:baseline; gap:8px;}
   .score{font-size:26px; font-weight:700; line-height:1;}
   .handle{font-size:16px; font-weight:600; color:var(--muted);}
-  .ovals{display:flex; flex-wrap:wrap; gap:6px; margin-top:9px;}
+  .ovals{display:flex; flex-wrap:wrap; gap:6px; margin-top:9px; align-items:center;}
+  .anslab{font-size:11px; color:var(--muted); letter-spacing:.04em; flex:0 0 auto;}
   .oval{background:var(--surface); border:1px solid var(--line); border-radius:999px;
         padding:4px 12px; font-size:12px; color:var(--text);}
   .oval.gender{width:28px; height:28px; border-radius:50%; padding:0; display:flex;
@@ -93,6 +94,7 @@
       <div class="ident">
         <div class="scoreline"><span class="score">82</span> <span class="handle">brave-lion-4417</span></div>
         <div class="ovals">
+          <span class="anslab">Profile</span>
           <span class="oval gender">&#9895;</span>
           <span class="oval">wants kids</span>
           <span class="oval">non-smoker</span>
