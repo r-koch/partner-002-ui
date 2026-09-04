@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PARTNER-002 design draft — stage history (sub-page)</title>
+<style>
+  :root{
+    --bg:#FAF6EF; --surface:#F3EBDD; --text:#2E2620; --muted:#6B5D50;
+    --accent:#B0431F; --accent-text:#FFFFFF; --line:#D8CCBA; --exclude:#A63A2B;
+    --match:#3E6B4F; --positive:#3E6B4F; --positive-text:#FFFFFF;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--text); font-family:Georgia,'Times New Roman',serif;
+       min-height:100vh; padding:24px;}
+  .phone{width:100%; max-width:420px; margin:0 auto; background:var(--bg);
+         border-radius:24px; overflow:hidden; border:1px solid var(--line);
+         display:flex; flex-direction:column; min-height:720px;}
+  header{display:flex; justify-content:space-between; align-items:center; padding:16px 18px;
+         border-bottom:1px solid var(--line);}
+  header strong{font-weight:600;}
+  header a{color:var(--muted); font-size:14px; text-decoration:none;}
+  .body{flex:1; padding:18px; overflow-y:auto;}
+  .tl{position:relative; padding-left:20px;}
+  .tl::before{content:""; position:absolute; left:5px; top:6px; bottom:6px;
+              width:2px; background:var(--line);}
+  .ev{position:relative; margin-bottom:16px;}
+  .ev::before{content:""; position:absolute; left:-17px; top:4px; width:10px; height:10px;
+              border-radius:50%; background:var(--accent);}
+  .ev .when{font-size:12px; color:var(--muted);}
+  .ev .what{font-size:14px; margin-top:2px; line-height:1.4;}
+  .ev .what b{font-weight:600;}
+  .ev.open::before{background:var(--positive);}
+  .demo-note{display:none;}
+</style>
+</head>
+<body>
+  <div class="phone">
+    <header>
+      <strong>History</strong>
+      <a href="draft-06-match-stage2.html">Close</a>
+    </header>
+    <div class="body">
+      <div class="tl">
+        <div class="ev"><div class="when">Sep 3 · 18:42</div>
+          <div class="what">You advanced to Stage 2 together</div></div>
+        <div class="ev open"><div class="when">Sep 3 · 18:20</div>
+          <div class="what"><b>Ice breaker started</b> — waiting on them</div></div>
+        <div class="ev"><div class="when">Sep 3 · 17:58</div>
+          <div class="what">Starter "Tea or coffee?" — you both answered</div></div>
+        <div class="ev"><div class="when">Sep 3 · 17:40</div>
+          <div class="what">Starter "Favorite travel type?" — sent, awaiting them</div></div>
+        <div class="ev"><div class="when">Sep 3 · 17:02</div>
+          <div class="what"><b>Ice breaker completed</b> — 3 of 5 same</div></div>
+        <div class="ev"><div class="when">Sep 2 · 16:30</div>
+          <div class="what">Stage 1 — extended/question requested: "ideal weekend?" — answered</div></div>
+        <div class="ev"><div class="when">Sep 2 · 15:12</div>
+          <div class="what">You advanced to Stage 1 together</div></div>
+        <div class="ev"><div class="when">Sep 2 · 14:00</div>
+          <div class="what">You matched — score 82</div></div>
+      </div>
+    </div>
+  </div>
+  <script src="palette-switcher.js"></script>
+</body>
+</html>

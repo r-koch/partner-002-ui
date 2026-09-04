@@ -7,79 +7,81 @@
 <style>
   :root{
     --bg:#FAF6EF; --surface:#F3EBDD; --text:#2E2620; --muted:#6B5D50;
-    --accent:#B0431F; --accent-text:#FFFFFF; --line:#D8CCBA; --exclude:#A63A2B; --match:#3E6B4F; --positive:#3E6B4F;
+    --accent:#B0431F; --accent-text:#FFFFFF; --line:#D8CCBA; --exclude:#A63A2B;
+    --match:#3E6B4F; --positive:#3E6B4F; --positive-text:#FFFFFF;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   body{background:var(--bg); color:var(--text); font-family:Georgia,'Times New Roman',serif;
-       min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px;}
-  .phone{width:100%; max-width:420px; background:var(--bg); border-radius:24px; overflow:hidden;
-         border:1px solid var(--line); display:flex; flex-direction:column; min-height:640px;}
+       min-height:100vh; padding:24px;}
+  .phone{width:100%; max-width:420px; margin:0 auto; background:var(--bg);
+         border-radius:24px; overflow:hidden; border:1px solid var(--line);
+         display:flex; flex-direction:column; min-height:680px;}
   header{display:flex; justify-content:space-between; align-items:center; padding:16px 18px;
          border-bottom:1px solid var(--line);}
   header strong{font-weight:600;}
+  header nav{display:flex; gap:10px; align-items:center;}
   header a{color:var(--muted); font-size:14px; text-decoration:none;}
+  .qmark{width:20px; height:20px; border-radius:50%; border:1.5px solid var(--muted);
+         color:var(--muted); font-size:12px; display:inline-flex; align-items:center;
+         justify-content:center; cursor:pointer; background:none; font-family:inherit;}
+  .expl{display:none; font-size:12px; color:var(--muted); line-height:1.5;
+        margin:10px 18px 0; border-left:2px solid var(--line); padding:4px 10px;}
+  .expl.show{display:block;}
   .card{flex:1; display:flex; flex-direction:column; justify-content:center; padding:20px 24px;}
-  .gring{display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px;
-         border-radius:50%; border:2px solid var(--accent); color:var(--accent); font-size:17px;
-         line-height:1; font-weight:600; margin-right:8px; vertical-align:-4px;}
-  .score-band{display:flex; align-items:baseline; gap:10px; margin-bottom:14px;}
-  .score{font-size:44px; font-weight:700; line-height:1;}
-  .band{font-size:14px; color:var(--muted);}
-  .handle{font-size:24px; font-weight:600; margin-bottom:4px;}
-  .facts{font-size:15px; color:var(--muted); margin-bottom:20px;}
-  .chips{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px;}
-  .chip{background:var(--surface); border:1px solid var(--line); border-radius:999px;
-        padding:6px 12px; font-size:13px; color:var(--text);}
-  .shared{display:flex; align-items:center; gap:8px; font-size:14px; color:var(--positive);
-          margin-bottom:24px;}
-  details{border:1px solid var(--line); border-radius:12px; padding:12px 14px; margin-bottom:20px;
-          background:var(--surface);}
-  summary{cursor:pointer; font-size:14px; font-weight:600;}
-  .break{font-size:13px; color:var(--muted); margin-top:10px; line-height:1.5;}
-  .actions{display:flex; gap:12px;}
-  .skip{flex:1; background:var(--surface); border:2px solid var(--line); border-radius:999px;
-        padding:14px 0; font-size:16px; cursor:pointer; font-family:inherit; color:var(--text);}
-  .yes{flex:1; background:var(--positive); color:var(--positive-text); border:none; border-radius:999px;
-       padding:14px 0; font-size:16px; cursor:pointer; font-family:inherit;}
-  .demo-note{text-align:center; font-size:12px; color:var(--muted); padding:8px 16px 16px;}
+  .m-row{display:flex; gap:14px;}
+  .m-avatar-col{flex:0 0 auto; width:88px; height:88px; position:relative;}
+  .m-avatar{width:78px; height:78px; border-radius:50%; border:3px solid var(--line);
+            background:var(--surface); position:absolute; top:2px; left:2px;
+            display:flex; align-items:center; justify-content:center;
+            font-size:11px; color:var(--muted); text-align:center;}
+  .gring{position:absolute; right:-2px; bottom:-2px; width:30px; height:30px;
+         border-radius:50%; background:var(--bg); border:2px solid var(--accent);
+         display:flex; align-items:center; justify-content:center; font-size:15px;
+         color:var(--accent); font-weight:600;}
+  .m-ident{flex:1; min-width:0;}
+  .scoreline{display:flex; align-items:baseline; gap:8px;}
+  .score{font-size:30px; font-weight:700; line-height:1;}
+  .handle{font-size:15px; font-weight:600; color:var(--muted);}
+  .ovals{display:flex; flex-wrap:wrap; gap:6px; margin-top:9px;}
+  .oval{background:var(--surface); border:1px solid var(--line); border-radius:999px;
+        padding:4px 12px; font-size:12px; color:var(--text);}
+  .chips{font-size:12px; color:var(--muted); margin-top:10px; line-height:1.5;}
+  .actions-row{display:flex; gap:12px; padding:16px 24px 20px;}
+  .interested{flex:1; background:var(--positive); color:var(--positive-text); border:none;
+        border-radius:999px; padding:13px 0; font-size:15px; cursor:pointer; font-family:inherit;}
+  .skip2{flex:1; background:var(--surface); color:var(--text); border:2px solid var(--line);
+        border-radius:999px; padding:13px 0; font-size:15px; cursor:pointer; font-family:inherit;}
 </style>
 </head>
 <body>
   <div class="phone">
     <header>
-      <strong>Discover</strong>
-      <a href="#" onclick="document.getElementById('page-info').classList.toggle('show');return false;">?</a>
-      <a href="#">Safety</a>
+      <strong>Discover <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
+      <nav><a href="#">FAQ</a><a href="#">Safety</a></nav>
     </header>
-    <div class="expl" id="page-info">Synthetic demo · no real people · handle frozen once matched</div>
+    <div class="expl" id="h-expl">How well they fit what you're looking for — value only, higher is better. The avatar is added after you match.</div>
     <div class="card">
-      <div class="score-band">
-        <span class="score">78</span>
-        <span class="band">strong fit</span>
-      </div>
-      <div class="handle"><span class="gring">&#9895;</span>quiet-fox-2148</div>
-      <div class="facts">29 · Vienna · long-term</div>
-      <div class="chips">
-        <span class="chip">wants kids</span>
-        <span class="chip">non-smoker</span>
-        <span class="chip">flexible hours</span>
-      </div>
-      <div class="shared">You both said: wants kids · non-smoker</div>
-      <details>
-        <summary>How is this score made?</summary>
-        <div class="break">
-          Dealbreakers checked. Weighted match on your "looking for" answers
-          (kids 5/5, smoking 4/5, work rhythm 3/5 — all matched). Distance and
-          age are soft factors. This says nothing about chemistry.
+      <div class="m-row">
+        <div class="m-avatar-col">
+          <div class="m-avatar">avatar<br>comes at<br>stage 2</div>
+          <div class="gring">&#9895;</div>
         </div>
-      </details>
-      <div class="actions">
-        <button class="yes">Interested</button>
-        <button class="skip">Not for me</button>
+        <div class="m-ident">
+          <div class="scoreline"><span class="score">78</span> <span class="handle">quiet-fox-2148</span></div>
+          <div class="ovals">
+            <span class="oval">wants kids</span>
+            <span class="oval">non-smoker</span>
+            <span class="oval">long-term</span>
+          </div>
+          <div class="chips">Interests · travel, outdoors, city</div>
+        </div>
       </div>
     </div>
-    
+    <div class="actions-row">
+      <button class="interested">Interested</button>
+      <button class="skip2">Not for me</button>
+    </div>
   </div>
-<script src="palette-switcher.js"></script>
+  <script src="palette-switcher.js"></script>
 </body>
 </html>

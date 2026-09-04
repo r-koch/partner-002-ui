@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PARTNER-002 design draft — match detail, rung 3 (chat)</title>
+<title>PARTNER-002 design draft — Match Stage 3 (chat)</title>
 <style>
   :root{
     --bg:#FAF6EF; --surface:#F3EBDD; --text:#2E2620; --muted:#6B5D50;
@@ -30,15 +30,10 @@
          border-radius:50%; border:2px solid var(--accent); color:var(--accent); font-size:17px;
          line-height:1; font-weight:600; margin-right:8px; vertical-align:-4px;}
   .ident{flex:1; display:flex; flex-direction:column; gap:4px;}
-  .handle{font-size:20px; font-weight:600;}
-  .sub{font-size:12px; color:var(--muted);}
-  .rungs{display:flex; gap:5px; margin-top:auto;}
-  .rung .d{width:22px; height:22px; border-radius:50%; border:2px solid var(--line);
-           display:flex; align-items:center; justify-content:center; font-size:10px;
-           color:var(--muted); background:var(--surface);}
-  .rung.now .d{border-color:var(--accent); color:var(--accent); font-weight:700;}
-  .rung.done .d{border-color:var(--match); color:var(--match);}
-  .rung .l{font-size:8px; color:var(--muted); text-align:center; display:block;}
+  .scoreline{display:flex; align-items:baseline; gap:8px;}
+  .score{font-size:26px; font-weight:700; line-height:1;}
+  .handle{font-size:16px; font-weight:600; color:var(--muted);}
+  .chips{font-size:12px; color:var(--muted);}
   .chat{flex:1; padding:16px 18px; overflow-y:auto; display:flex; flex-direction:column; gap:10px;}
   .msg{max-width:80%; border-radius:16px; padding:10px 14px; font-size:14px; line-height:1.45;}
   .msg.me{align-self:flex-end; background:var(--positive); color:var(--positive-text);
@@ -81,22 +76,15 @@
     </header>
     <div class="top">
       <div class="avatar-col">
-        <div class="avatar"><img src="anime-avatar-example.png" alt="stylized avatar example — not a photo"></div>
+        <div class="avatar"><img src="anime-avatar-example.png" alt="stylized avatar — not a photo"></div>
         <div class="gring">&#9895;</div>
       </div>
       <div class="ident">
-        <div class="handle">brave-lion-4417</div>
-        <div class="sub">score 82 · Vienna</div>
-        <div class="rungs">
-          <div class="rung done"><span class="d">1</span><span class="l">match</span></div>
-          <div class="rung done"><span class="d">2</span><span class="l">avatar</span></div>
-          <div class="rung now"><span class="d">3</span><span class="l">chat</span></div>
-        </div>
+        <div class="scoreline"><span class="score">82</span> <span class="handle">brave-lion-4417</span></div>
+        <div class="chips">stage 3 · chat open · score locked at match</div>
       </div>
     </div>
-    <div class="body" style="display:none;"></div>
-    <div class="expl" id="page-info" style="display:none;"></div>
-    <div class="rungbar">
+<div class="rungbar">
       <button class="adv">Ready to advance</button>
       <button class="cancel">Cancel match</button>
     </div>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PARTNER-002 design draft — extended/deep Q&A (sub-page)</title>
+<style>
+  :root{
+    --bg:#FAF6EF; --surface:#F3EBDD; --text:#2E2620; --muted:#6B5D50;
+    --accent:#B0431F; --accent-text:#FFFFFF; --line:#D8CCBA; --exclude:#A63A2B;
+    --match:#3E6B4F; --positive:#3E6B4F; --positive-text:#FFFFFF;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--text); font-family:Georgia,'Times New Roman',serif;
+       min-height:100vh; padding:24px;}
+  .phone{width:100%; max-width:420px; margin:0 auto; background:var(--bg);
+         border-radius:24px; overflow:hidden; border:1px solid var(--line);
+         display:flex; flex-direction:column; min-height:720px;}
+  header{display:flex; justify-content:space-between; align-items:center; padding:16px 18px;
+         border-bottom:1px solid var(--line);}
+  header strong{font-weight:600;}
+  header a{color:var(--muted); font-size:14px; text-decoration:none;}
+  .body{flex:1; padding:18px; overflow-y:auto;}
+  .seg-title{font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em;
+             margin:14px 0 8px;}
+  .qa{border:1px solid var(--line); border-radius:12px; background:var(--surface);
+      padding:12px 14px; margin-bottom:10px;}
+  .qa .q{font-size:14px; font-weight:600;}
+  .qa .a{font-size:14px; margin-top:6px; line-height:1.45;}
+  .qa .a.same{color:var(--match);}
+  .qa .a.diff{color:var(--exclude);}
+  .qa .a.none{color:var(--muted); font-style:italic;}
+  .qa .ask{margin-top:8px; border:none; background:var(--positive); color:var(--positive-text);
+           border-radius:999px; padding:8px 16px; font-size:13px; cursor:pointer; font-family:inherit;}
+  .qa .ask.route{background:var(--surface); color:var(--text); border:2px solid var(--line);}
+  .qa small{display:block; font-size:11px; color:var(--muted); margin-top:6px;}
+  .legend{font-size:12px; color:var(--muted); margin-bottom:12px; line-height:1.5;}
+  .legend b{color:var(--match);} .legend i{color:var(--exclude);}
+  .demo-note{display:none;}
+</style>
+</head>
+<body>
+  <div class="phone">
+    <header>
+      <strong>Extended / deep Q&amp;A</strong>
+      <a href="draft-06-match-stage2.html">Close</a>
+    </header>
+    <div class="body">
+      <div class="legend">Answers shown for both of you. <b>Green = same</b>, <i>red = no match</i>.
+        Unanswered questions can be sent as a request — you can only ask what you've answered yourself.</div>
+
+      <div class="seg-title">Extended</div>
+      <div class="qa">
+        <div class="q">Ideal weekend?</div>
+        <div class="a same">You: outdoors · them: outdoors</div>
+      </div>
+      <div class="qa">
+        <div class="q">Pets?</div>
+        <div class="a diff">You: no pets · them: cats — no match</div>
+      </div>
+      <div class="qa">
+        <div class="q">Morning or night person?</div>
+        <div class="a diff">You: mornings · them: nights — no match</div>
+      </div>
+      <div class="qa">
+        <div class="q">Travel style?</div>
+        <div class="a none">They haven't answered this one.</div>
+        <button class="ask">Ask them</button>
+      </div>
+      <div class="qa">
+        <div class="q">Favorite season?</div>
+        <div class="a none">You haven't answered this one — answer first, then you can ask.</div>
+        <button class="ask route">Answer it first</button>
+      </div>
+
+      <div class="seg-title">Deep</div>
+      <div class="qa">
+        <div class="q">Attachment style?</div>
+        <div class="a same">You: secure · them: secure</div>
+      </div>
+      <div class="qa">
+        <div class="q">How do you handle conflict?</div>
+        <div class="a diff">You: talk it out · them: need space first — no match</div>
+      </div>
+    </div>
+  </div>
+  <script src="palette-switcher.js"></script>
+</body>
+</html>

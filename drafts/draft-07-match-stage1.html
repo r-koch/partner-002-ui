@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PARTNER-002 design draft — Match Stage 1</title>
+<style>
+  :root{
+    --bg:#FAF6EF; --surface:#F3EBDD; --text:#2E2620; --muted:#6B5D50;
+    --accent:#B0431F; --accent-text:#FFFFFF; --line:#D8CCBA; --exclude:#A63A2B;
+    --match:#3E6B4F; --positive:#3E6B4F; --positive-text:#FFFFFF;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--text); font-family:Georgia,'Times New Roman',serif;
+       min-height:100vh; padding:24px;}
+  .phone{width:100%; max-width:420px; margin:0 auto; background:var(--bg);
+         border-radius:24px; overflow:hidden; border:1px solid var(--line);
+         display:flex; flex-direction:column; min-height:700px;}
+  header{display:flex; justify-content:space-between; align-items:center; padding:16px 18px;
+         border-bottom:1px solid var(--line);}
+  header strong{font-weight:600;}
+  header nav{display:flex; gap:10px; align-items:center;}
+  header a{color:var(--muted); font-size:14px; text-decoration:none;}
+  .qmark{width:20px; height:20px; border-radius:50%; border:1.5px solid var(--muted);
+         color:var(--muted); font-size:12px; display:inline-flex; align-items:center;
+         justify-content:center; cursor:pointer; background:none; font-family:inherit;}
+  .expl{display:none; font-size:12px; color:var(--muted); line-height:1.5;
+        margin:10px 18px 0; border-left:2px solid var(--line); padding:4px 10px;}
+  .expl.show{display:block;}
+  .match{display:flex; gap:14px; padding:16px 18px; border-bottom:1px solid var(--line);}
+  .avatar-col{flex:0 0 auto; width:88px; height:88px; position:relative;}
+  .avatar{width:78px; height:78px; border-radius:50%; overflow:hidden;
+          border:3px solid var(--line); background:var(--surface);
+          position:absolute; top:2px; left:2px; display:flex; align-items:center;
+          justify-content:center; font-size:11px; color:var(--muted); text-align:center;}
+  .ident{flex:1; min-width:0;}
+  .scoreline{display:flex; align-items:baseline; gap:8px;}
+  .score{font-size:26px; font-weight:700; line-height:1;}
+  .handle{font-size:16px; font-weight:600; color:var(--muted);}
+  .ovals{display:flex; flex-wrap:wrap; gap:6px; margin-top:9px;}
+  .oval{background:var(--surface); border:1px solid var(--line); border-radius:999px;
+        padding:4px 12px; font-size:12px; color:var(--text);}
+  .oval.gender{width:28px; height:28px; border-radius:50%; padding:0; display:flex;
+        align-items:center; justify-content:center; font-size:14px; font-weight:700;
+        color:var(--accent); border-color:var(--accent);}
+  .pending{border-bottom:1px solid var(--line); padding:10px 18px;}
+  .prow{display:flex; align-items:center; justify-content:space-between; gap:8px;
+        padding:8px 0; border-bottom:1px solid var(--line); font-size:14px;}
+  .prow:last-child{border-bottom:none;}
+  .prow .meta{font-size:12px; color:var(--muted); display:block;}
+  .prow .act{border:none; background:var(--positive); color:var(--positive-text);
+        border-radius:999px; padding:7px 14px; font-size:12px; cursor:pointer;
+        font-family:inherit; flex:0 0 auto;}
+  .actions{display:grid; grid-template-columns:1fr 1fr; gap:10px; padding:16px 18px; margin-top:auto;}
+  .btn{padding:13px 10px; border-radius:999px; font-size:14px; cursor:pointer;
+       font-family:inherit; text-align:center; border:none;}
+  .btn.primary{background:var(--positive); color:var(--positive-text);}
+  .btn.ghost{background:var(--surface); color:var(--text); border:2px solid var(--line);}
+  .demo-note{display:none;}
+</style>
+</head>
+<body>
+  <div class="phone">
+    <header>
+      <strong>Match Stage 1 <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
+      <nav>
+        <a href="#">FAQ</a>
+        <a href="#">Safety</a>
+      </nav>
+    </header>
+    <div class="expl" id="h-expl">You matched. Stage 1 shows the basic answers you share. Ask questions you've answered yourself, then advance together when you're ready.</div>
+
+    <div class="match">
+      <div class="avatar-col">
+        <div class="avatar">avatar<br>comes at<br>stage 2</div>
+      </div>
+      <div class="ident">
+        <div class="scoreline"><span class="score">82</span> <span class="handle">brave-lion-4417</span></div>
+        <div class="ovals">
+          <span class="oval gender">&#9895;</span>
+          <span class="oval">wants kids</span>
+          <span class="oval">non-smoker</span>
+          <span class="oval">long-term</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pending">
+      <div class="prow">
+        <span>Question "ideal weekend?" <span class="meta">they asked you · awaiting your answer</span></span>
+        <button class="act">Answer</button>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn primary">Ask a question</button>
+      <button class="btn ghost" style="visibility:hidden;">&nbsp;</button>
+      <button class="btn primary">Ready to advance</button>
+      <button class="btn ghost">Cancel match</button>
+    </div>
+  </div>
+  <script src="palette-switcher.js"></script>
+</body>
+</html>

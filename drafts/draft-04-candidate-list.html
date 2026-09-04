@@ -3,89 +3,125 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PARTNER-002 design draft — candidate list (Discover, two cards)</title>
+<title>PARTNER-002 design draft — candidate list (Discover)</title>
 <style>
   :root{
     --bg:#FAF6EF; --surface:#F3EBDD; --text:#2E2620; --muted:#6B5D50;
     --accent:#B0431F; --accent-text:#FFFFFF; --line:#D8CCBA; --exclude:#A63A2B;
-    --match:#3E6B4F; --positive:#3E6B4F;
+    --match:#3E6B4F; --positive:#3E6B4F; --positive-text:#FFFFFF;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   body{background:var(--bg); color:var(--text); font-family:Georgia,'Times New Roman',serif;
        min-height:100vh; padding:24px;}
   .phone{width:100%; max-width:420px; margin:0 auto; background:var(--bg);
          border-radius:24px; overflow:hidden; border:1px solid var(--line);
-         display:flex; flex-direction:column; min-height:700px;}
+         display:flex; flex-direction:column; min-height:720px;}
   header{display:flex; justify-content:space-between; align-items:center; padding:16px 18px;
          border-bottom:1px solid var(--line);}
   header strong{font-weight:600;}
+  header nav{display:flex; gap:10px; align-items:center;}
   header a{color:var(--muted); font-size:14px; text-decoration:none;}
+  .qmark{width:20px; height:20px; border-radius:50%; border:1.5px solid var(--muted);
+         color:var(--muted); font-size:12px; display:inline-flex; align-items:center;
+         justify-content:center; cursor:pointer; background:none; font-family:inherit;}
+  .expl{display:none; font-size:12px; color:var(--muted); line-height:1.5;
+        margin:10px 18px 0; border-left:2px solid var(--line); padding:4px 10px;}
+  .expl.show{display:block;}
   .list{flex:1; padding:16px; display:flex; flex-direction:column; gap:16px; overflow-y:auto;}
   .card{border:1px solid var(--line); border-radius:16px; background:var(--surface);
-        padding:16px;}
-  .row1{display:flex; align-items:baseline; gap:10px; margin-bottom:6px;}
-  .score{font-size:32px; font-weight:700; line-height:1;}
-  .band{font-size:13px; color:var(--muted);}
-  .handle{font-size:18px; font-weight:600; margin-bottom:2px;}
-  .gring{display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px;
-         border-radius:50%; border:2px solid var(--accent); color:var(--accent); font-size:17px;
-         line-height:1; font-weight:600; margin-right:8px; vertical-align:-4px;}
-  .facts{font-size:14px; color:var(--muted); margin-bottom:12px;}
-  .chips{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px;}
-  .chip{background:var(--bg); border:1px solid var(--line); border-radius:999px;
-        padding:4px 10px; font-size:12px;}
-  .shared{font-size:13px; color:var(--match); margin-bottom:12px;}
-  .actions{display:flex; gap:10px;}
-  .skip{flex:1; background:var(--surface); border:2px solid var(--line); border-radius:999px;
-        padding:11px 0; font-size:15px; cursor:pointer; font-family:inherit; color:var(--text);}
-  .yes{flex:1; background:var(--positive); color:var(--positive-text); border:none; border-radius:999px;
-       padding:11px 0; font-size:15px; cursor:pointer; font-family:inherit;}
-  .demo-note{text-align:center; font-size:12px; color:var(--muted); padding:0 16px 16px;}
+        padding:14px;}
+  .m-row{display:flex; gap:12px;}
+  .m-avatar-col{flex:0 0 auto; width:78px; height:78px; position:relative;}
+  .m-avatar{width:68px; height:68px; border-radius:50%; border:3px solid var(--line);
+            background:var(--bg); position:absolute; top:2px; left:2px;
+            display:flex; align-items:center; justify-content:center;
+            font-size:10px; color:var(--muted); text-align:center;}
+  .gring{position:absolute; right:-2px; bottom:-2px; width:27px; height:27px;
+         border-radius:50%; background:var(--bg); border:2px solid var(--accent);
+         display:flex; align-items:center; justify-content:center; font-size:14px;
+         color:var(--accent); font-weight:600;}
+  .m-ident{flex:1; min-width:0;}
+  .scoreline{display:flex; align-items:baseline; gap:8px;}
+  .score{font-size:26px; font-weight:700; line-height:1;}
+  .handle{font-size:14px; font-weight:600; color:var(--muted);}
+  .ovals{display:flex; flex-wrap:wrap; gap:5px; margin-top:8px;}
+  .oval{background:var(--bg); border:1px solid var(--line); border-radius:999px;
+        padding:3px 10px; font-size:11px; color:var(--text);}
+  .chips{font-size:11px; color:var(--muted); margin-top:8px; line-height:1.5;}
+  .actrow{display:flex; gap:8px; margin-top:12px;}
+  .int{flex:1; background:var(--positive); color:var(--positive-text); border:none;
+       border-radius:999px; padding:10px 0; font-size:14px; cursor:pointer; font-family:inherit;}
+  .no{flex:1; background:var(--bg); color:var(--text); border:2px solid var(--line);
+      border-radius:999px; padding:10px 0; font-size:14px; cursor:pointer; font-family:inherit;}
 </style>
 </head>
 <body>
   <div class="phone">
     <header>
-      <strong>Discover</strong>
-      <a href="#" onclick="document.getElementById('page-info').classList.toggle('show');return false;">?</a>
-      <a href="#">Safety</a>
+      <strong>Discover <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
+      <nav><a href="#">FAQ</a><a href="#">Safety</a></nav>
     </header>
+    <div class="expl" id="h-expl">Candidates sorted by how well they fit what you're looking for. The avatar is added after you match. Score is value only — higher is better.</div>
     <div class="list">
-      <div class="expl" id="page-info">Synthetic demo · sorted by score · floor 40 · gender rings: non-binary / not-saying / woman</div>
-    <div class="card">
-        <div class="row1"><span class="score">82</span><span class="band">strong fit</span></div>
-        <div class="handle"><span class="gring">&#9895;</span>brave-lion-4417</div>
-        <div class="facts">27 · Vienna · long-term</div>
-        <div class="chips">
-          <span class="chip">wants kids</span><span class="chip">non-smoker</span>
-          <span class="chip">outdoors</span>
+      <div class="card">
+        <div class="m-row">
+          <div class="m-avatar-col">
+            <div class="m-avatar">avatar<br>comes at<br>stage 2</div>
+            <div class="gring">&#9895;</div>
+          </div>
+          <div class="m-ident">
+            <div class="scoreline"><span class="score">82</span> <span class="handle">brave-lion-4417</span></div>
+            <div class="ovals">
+              <span class="oval">wants kids</span><span class="oval">non-smoker</span>
+              <span class="oval">long-term</span>
+            </div>
+            <div class="chips">Interests · travel, outdoors</div>
+          </div>
         </div>
-        <div class="shared">You both said: wants kids · non-smoker</div>
-        <div class="actions"><button class="yes">Interested</button><button class="skip">Not for me</button></div>
+        <div class="actrow">
+          <button class="int">Interested</button>
+          <button class="no">Not for me</button>
+        </div>
       </div>
       <div class="card">
-        <div class="row1"><span class="score">61</span><span class="band">decent fit</span></div>
-        <div class="handle"><span class="gring">?</span>quiet-fox-2148</div>
-        <div class="facts">31 · Vienna · long-term</div>
-        <div class="chips">
-          <span class="chip">open to kids</span><span class="chip">occasional smoker</span>
-          <span class="chip">city culture</span>
+        <div class="m-row">
+          <div class="m-avatar-col">
+            <div class="m-avatar">avatar<br>comes at<br>stage 2</div>
+            <div class="gring">?</div>
+          </div>
+          <div class="m-ident">
+            <div class="scoreline"><span class="score">61</span> <span class="handle">quiet-fox-2148</span></div>
+            <div class="ovals">
+              <span class="oval">open to kids</span><span class="oval">city culture</span>
+            </div>
+            <div class="chips">Interests · concerts, food</div>
+          </div>
         </div>
-        <div class="shared">You both said: long-term · same city</div>
-        <div class="actions"><button class="yes">Interested</button><button class="skip">Not for me</button></div>
+        <div class="actrow">
+          <button class="int">Interested</button>
+          <button class="no">Not for me</button>
+        </div>
       </div>
       <div class="card">
-        <div class="row1"><span class="score">44</span><span class="band">weak fit</span></div>
-        <div class="handle"><span class="gring">&#9792;</span>steady-owl-8831</div>
-        <div class="facts">29 · Graz · long-term</div>
-        <div class="chips">
-          <span class="chip">wants kids</span><span class="chip">non-smoker</span>
+        <div class="m-row">
+          <div class="m-avatar-col">
+            <div class="m-avatar">avatar<br>comes at<br>stage 2</div>
+            <div class="gring">&#9792;</div>
+          </div>
+          <div class="m-ident">
+            <div class="scoreline"><span class="score">44</span> <span class="handle">steady-owl-8831</span></div>
+            <div class="ovals">
+              <span class="oval">wants kids</span><span class="oval">long-term</span>
+            </div>
+            <div class="chips">Interests · hiking, films</div>
+          </div>
         </div>
-        <div class="shared">You both said: wants kids</div>
-        <div class="actions"><button class="yes">Interested</button><button class="skip">Not for me</button></div>
+        <div class="actrow">
+          <button class="int">Interested</button>
+          <button class="no">Not for me</button>
+        </div>
       </div>
     </div>
-    
   </div>
   <script src="palette-switcher.js"></script>
 </body>
