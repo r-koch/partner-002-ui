@@ -40,7 +40,14 @@
   .ovals{display:flex; flex-wrap:wrap; gap:5px; margin-top:8px;}
   .oval{background:var(--bg); border:1px solid var(--line); border-radius:999px;
         padding:3px 10px; font-size:11px; color:var(--text);}
-  .chips{font-size:11px; color:var(--muted); margin-top:8px; line-height:1.5;}
+  .interests{display:flex; align-items:center; flex-wrap:wrap; gap:6px; margin-top:10px;}
+  .interests .ilab{font-size:11px; color:var(--muted); letter-spacing:.04em; margin-right:2px;}
+  .ichip{display:inline-flex; align-items:center; gap:5px; background:var(--bg);
+         border:1.5px dashed var(--accent); border-radius:999px; padding:3px 10px;
+         font-size:11px; color:var(--text); opacity:.92;}
+  .ichip::before{content:""; width:6px; height:6px; border-radius:50%;
+         background:var(--accent); flex:0 0 auto;}
+  .anslab{font-size:11px; color:var(--muted); letter-spacing:.04em; display:block; margin-top:2px;}
   .actrow{display:flex; gap:8px; margin-top:12px;}
   .int{flex:1; background:var(--positive); color:var(--positive-text); border:none;
        border-radius:999px; padding:10px 0; font-size:14px; cursor:pointer; font-family:inherit;}
@@ -59,6 +66,7 @@
       <div class="card">
         <div class="m-ident">
           <div class="scoreline"><span class="score">82</span> <span class="handle">brave-lion-4417</span></div>
+          <span class="anslab">Shared</span>
           <div class="ovals">
             <span class="oval gender">&#9895;</span>
             <span class="oval">wants kids</span><span class="oval">non-smoker</span>
@@ -74,6 +82,7 @@
       <div class="card">
         <div class="m-ident">
           <div class="scoreline"><span class="score">61</span> <span class="handle">quiet-fox-2148</span></div>
+          <span class="anslab">Shared</span>
           <div class="ovals">
             <span class="oval gender">?</span>
             <span class="oval">open to kids</span><span class="oval">city culture</span>
@@ -88,6 +97,7 @@
       <div class="card">
         <div class="m-ident">
           <div class="scoreline"><span class="score">44</span> <span class="handle">steady-owl-8831</span></div>
+          <span class="anslab">Shared</span>
           <div class="ovals">
             <span class="oval gender">&#9792;</span>
             <span class="oval">wants kids</span><span class="oval">long-term</span>
