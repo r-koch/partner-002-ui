@@ -45,6 +45,11 @@
   .msg.me .t{color:rgba(255,255,255,.75);}
   .e2ee{border:1px solid var(--line); border-radius:12px; padding:8px 12px;
         font-size:12px; color:var(--muted); text-align:center; margin-bottom:4px;}
+  .rungbar{display:flex; gap:8px; padding:12px 16px 0;}
+  .adv{flex:1; background:var(--positive); color:var(--positive-text); border:none;
+       border-radius:999px; padding:11px 0; font-size:14px; cursor:pointer; font-family:inherit;}
+  .cancel{background:none; border:1px solid var(--line); border-radius:999px;
+          padding:11px 16px; font-size:13px; color:var(--muted); cursor:pointer; font-family:inherit;}
   .inputbar{display:flex; gap:10px; padding:12px 16px; border-top:1px solid var(--line);}
   .inputbar input{flex:1; border:2px solid var(--line); border-radius:999px;
         padding:11px 16px; font-size:15px; background:var(--surface); color:var(--text);
@@ -80,6 +85,10 @@
           <div class="rung now"><span class="d">4</span><span class="l">chat</span></div>
         </div>
       </div>
+    </div>
+    <div class="rungbar">
+      <button class="adv">Ready to advance</button>
+      <button class="cancel">Cancel match</button>
     </div>
     <div class="chat">
       <div class="e2ee">End-to-end encrypted · text only · nothing stored on the server</div>

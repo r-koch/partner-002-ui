@@ -15,7 +15,7 @@
        min-height:100vh; padding:24px;}
   .phone{width:100%; max-width:420px; margin:0 auto; background:var(--bg);
          border-radius:24px; overflow:hidden; border:1px solid var(--line);
-         display:flex; flex-direction:column; min-height:820px;}
+         display:flex; flex-direction:column; min-height:840px;}
   header{display:flex; justify-content:space-between; align-items:center; padding:16px 18px;
          border-bottom:1px solid var(--line);}
   header strong{font-weight:600;}
@@ -36,6 +36,14 @@
   .rung.done .d{border-color:var(--match); color:var(--match);}
   .rung .l{font-size:8px; color:var(--muted); text-align:center; display:block;}
   .body{flex:1; padding:18px; overflow-y:auto;}
+  /* rung actions row */
+  .actions{display:flex; gap:8px; margin-bottom:16px;}
+  .adv{flex:1; background:var(--positive); color:var(--positive-text); border:none;
+       border-radius:999px; padding:12px 0; font-size:14px; cursor:pointer; font-family:inherit;}
+  .adv.wait{background:var(--surface); color:var(--text); border:2px solid var(--line);}
+  .cancel{background:none; border:1px solid var(--line); border-radius:999px;
+          padding:12px 16px; font-size:13px; color:var(--muted); cursor:pointer; font-family:inherit;}
+  .pending{margin:-10px 0 16px; font-size:12px; color:var(--muted);}
   .h2{font-size:15px; font-weight:600; margin:4px 0 10px;}
   .card{border:1px solid var(--line); border-radius:14px; background:var(--surface);
         padding:13px 15px; margin-bottom:12px;}
@@ -43,27 +51,26 @@
        border:none; border-radius:999px; padding:12px 0; font-size:15px; cursor:pointer;
        font-family:inherit;}
   .btn.ghost{background:var(--surface); color:var(--text); border:2px solid var(--line);}
-  /* number grid for a fired ice-breaker set */
-  .pics{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:10px 0;}
-  .pic{border:2px solid var(--line); border-radius:12px; background:var(--bg);
-       height:76px; display:flex; align-items:center; justify-content:center;
-       font-size:22px; font-weight:700; color:var(--muted); cursor:pointer;}
-  .pic.picked{border-color:var(--match); color:var(--match);}
-  .pic.pic-img{height:86px; overflow:hidden; padding:0;}
-  .pic.pic-img img{width:100%; height:100%; object-fit:cover; display:block;}
-  .pic.you{border-color:var(--match); box-shadow:0 0 0 2px var(--match);}
-  .pic.them{border-color:var(--exclude); box-shadow:0 0 0 2px var(--exclude);}
-  .pic.both{border-color:var(--accent); box-shadow:0 0 0 3px var(--accent);}
-  .pair-label{font-size:12px; color:var(--muted); margin-top:4px; text-align:center;}
-  /* past ice-breaker results with drill down */
-  details{border:1px solid var(--line); border-radius:14px; background:var(--surface);
-          padding:12px 15px; margin-bottom:12px;}
-  summary{cursor:pointer; font-size:14px; font-weight:600;}
-  .res{font-size:13px; color:var(--match); margin-top:8px; line-height:1.6;}
-  .starter{display:flex; justify-content:space-between; gap:10px; font-size:14px;
-           padding:11px 0; border-bottom:1px solid var(--line);}
-  .starter:last-child{border-bottom:none;}
-  .starter span{color:var(--muted); font-size:12px; flex:0 0 auto;}
+  /* ice breaker / starter list rows */
+  .row{display:flex; align-items:center; justify-content:space-between; gap:8px;
+       padding:10px 0; border-bottom:1px solid var(--line); font-size:14px;}
+  .row:last-child{border-bottom:none;}
+  .row .meta{font-size:12px; color:var(--muted); display:block;}
+  .row .act{border:1px solid var(--line); border-radius:999px; padding:6px 12px;
+       font-size:12px; cursor:pointer; background:var(--bg); color:var(--text);
+       font-family:inherit; flex:0 0 auto;}
+  .row .act.primary{background:var(--positive); color:var(--positive-text); border:none;}
+  .row.red-flag{color:var(--exclude);}
+  /* matching / not matching (item 7) */
+  .mm{border:1px solid var(--line); border-radius:14px; overflow:hidden; margin-bottom:12px;}
+  .mm h4{font-size:13px; padding:10px 15px; border-bottom:1px solid var(--line);
+         background:var(--surface);}
+  .mm .li{display:flex; justify-content:space-between; gap:10px; padding:9px 15px;
+          font-size:13px; border-bottom:1px solid var(--line);}
+  .mm .li:last-child{border-bottom:none;}
+  .mm .li .src{font-size:11px; color:var(--muted); display:block;}
+  .mm .li .st{flex:0 0 auto;}
+  .st.same{color:var(--match);} .st.diff{color:var(--muted);} .st.you{color:var(--exclude);}
   .demo-note{text-align:center; font-size:12px; color:var(--muted); padding:0 16px 16px;}
 </style>
 </head>
@@ -89,55 +96,70 @@
       </div>
     </div>
     <div class="body">
-      <div class="h2">Ice breakers</div>
-      <button class="btn">Fire an ice breaker (5 random pairs)</button>
-      <div class="card" style="margin-top:12px;">
-        <div class="pics">
-          <div class="pic">1</div><div class="pic">2</div>
-          <div class="pic">3</div><div class="pic">4</div>
-          <div class="pic picked">5</div><div class="pic picked">6</div>
-          <div class="pic">7</div><div class="pic">8</div>
-          <div class="pic">9</div><div class="pic">10</div>
-        </div>
-        <div class="pair-label">Pick your favorite of each pair · results reveal what matched</div>
-        <button class="btn ghost" style="margin-top:10px;">Send my picks</button>
+      <div class="actions">
+        <button class="adv">Ready to advance</button>
+        <button class="cancel">Cancel match</button>
       </div>
-      <details>
-        <summary>Past ice breakers — 3 of 5 same</summary>
-        <div class="res"><b>Set 1 · pair 1 · beaches or mountains</b></div>
-        <div class="pics">
-          <div class="pic pic-img"><img src="ib-beach-placeholder.png" alt="beach"></div>
-          <div class="pic pic-img picked"><img src="ib-lake.jpg" alt="mountains"></div>
+
+      <div class="h2">Ice breakers</div>
+      <button class="btn">Start an ice breaker (random set)</button>
+      <div class="card" style="margin-top:12px;">
+        <div class="row">
+          <span>Set 3 — currently open <span class="meta">started by you · waiting for them</span></span>
+          <button class="act primary">Continue</button>
         </div>
-        <div class="res">&#8226; you: mountains · them: mountains — <b>both picked</b> (highlight legend below)</div>
-        <div class="res"><b>Set 1 · pair 2 · quiet mornings or late nights</b></div>
-        <div class="pics">
-          <div class="pic pic-img you"><img src="ib-beach-placeholder.png" alt="morning"></div>
-          <div class="pic pic-img them"><img src="ib-lake.jpg" alt="night"></div>
+        <div class="row">
+          <span>Set 1 — completed <span class="meta">3 of 5 same</span></span>
+          <button class="act">Details</button>
         </div>
-        <div class="res">&#8226; you: mornings · them: nights — <b>different</b></div>
-        <div class="res" style="border-top:1px solid var(--line); padding-top:8px;">
-          Legend: <span style="color:var(--match);">you = match-green border</span> ·
-          <span style="color:var(--exclude);">them = red border</span> ·
-          <span style="color:var(--accent);">both = dark accent ring</span>
+        <div class="row">
+          <span>Set 2 — completed <span class="meta">4 of 5 same</span></span>
+          <button class="act">Details</button>
         </div>
-      </details>
+      </div>
+      <div style="font-size:12px; color:var(--muted); margin:-6px 0 16px;">One open set at a time. Random pick from sets you haven't started. More sets coming.</div>
 
       <div class="h2">Conversation starters</div>
-      <div class="card">
-        <div class="starter">Favorite travel type?<span>answered</span></div>
-        <div class="starter">Ideal weekend?<span>answered</span></div>
-        <div class="starter">Big city or countryside?<span>open</span></div>
+      <button class="btn ghost">Start a starter (from your shared chips)</button>
+      <div class="card" style="margin-top:12px;">
+        <div class="row">
+          <span>Favorite travel type? <span class="meta">open · sent by them</span></span>
+          <button class="act primary">Reply</button>
+        </div>
+        <div class="row">
+          <span>Ideal weekend? <span class="meta">completed · both answered</span></span>
+          <button class="act">Show result</button>
+        </div>
       </div>
-      <button class="btn ghost">Send a new starter (fixed answers)</button>
+
+      <div class="h2">Matching and not</div>
+      <div class="mm">
+        <h4>Matching (same)</h4>
+        <div class="li"><span>Wants kids <span class="src">questionnaire · seeking</span></span><span class="st same">same</span></div>
+        <div class="li"><span>Non-smoker <span class="src">questionnaire · about-you</span></span><span class="st same">same</span></div>
+        <div class="li"><span>Travel interest <span class="src">import chips</span></span><span class="st same">same</span></div>
+        <div class="li"><span>4-letter style similar <span class="src">personality</span></span><span class="st same">same</span></div>
+        <div class="li"><span>Mountains <span class="src">ice breaker 1</span></span><span class="st same">same</span></div>
+      </div>
+      <div class="mm">
+        <h4>Different</h4>
+        <div class="li"><span>Morning vs night <span class="src">ice breaker 1</span></span><span class="st diff">different</span></div>
+        <div class="li"><span>Pets: cats vs none <span class="src">questionnaire · seeking</span></span><span class="st diff">different</span></div>
+      </div>
 
       <div class="h2">Their answers</div>
       <details>
         <summary>Everything they answered</summary>
-        <div class="res">Full extended profile renders here, expandable per answer. Their private red-flag indicators are never shown to you.</div>
+        <div class="row" style="border-bottom:1px solid var(--line);">
+          <span>Kids — wants kids <span class="meta">extended tier</span></span>
+        </div>
+        <div class="row" style="border-bottom:1px solid var(--line);">
+          <span>Work rhythm — flexible <span class="meta">core tier</span></span>
+        </div>
+        <div class="row"><span>Living — alone <span class="meta">core tier</span></span></div>
       </details>
     </div>
-    <div class="demo-note">Rung 2 — avatars open · ice breakers + starters fireable · past results drill down</div>
+    <div class="demo-note">Rung 2 — advance is symmetric · cancel anywhere · one ice breaker open at a time · matching/not from all sources</div>
   </div>
   <script src="palette-switcher.js"></script>
 </body>

@@ -48,6 +48,19 @@
        border:none; border-radius:999px; padding:13px 0; font-size:15px; cursor:pointer;
        font-family:inherit; margin-top:4px;}
   .btn.ghost{background:var(--surface); color:var(--text); border:2px solid var(--line);}
+  .actions{display:flex; gap:8px; margin-bottom:16px;}
+  .adv{flex:1; background:var(--positive); color:var(--positive-text); border:none;
+       border-radius:999px; padding:12px 0; font-size:14px; cursor:pointer; font-family:inherit;}
+  .cancel{background:none; border:1px solid var(--line); border-radius:999px;
+          padding:12px 16px; font-size:13px; color:var(--muted); cursor:pointer; font-family:inherit;}
+  .mm{border:1px solid var(--line); border-radius:14px; overflow:hidden; margin-bottom:12px;}
+  .mm h4{font-size:13px; padding:10px 15px; border-bottom:1px solid var(--line); background:var(--surface);}
+  .mm .li{display:flex; justify-content:space-between; gap:10px; padding:9px 15px;
+          font-size:13px; border-bottom:1px solid var(--line);}
+  .mm .li:last-child{border-bottom:none;}
+  .mm .li .src{font-size:11px; color:var(--muted); display:block;}
+  .mm .li .st{flex:0 0 auto;}
+  .st.same{color:var(--match);} .st.diff{color:var(--muted);}
   .demo-note{text-align:center; font-size:12px; color:var(--muted); padding:0 16px 16px;}
 </style>
 </head>
@@ -70,6 +83,21 @@
       </div>
     </div>
     <div class="body">
+      <div class="actions">
+        <button class="adv">Ready to advance</button>
+        <button class="cancel">Cancel match</button>
+      </div>
+      <div class="h2">Matching and not</div>
+      <div class="mm">
+        <h4>Matching (same)</h4>
+        <div class="li"><span>Wants kids <span class="src">questionnaire · seeking</span></span><span class="st same">same</span></div>
+        <div class="li"><span>Non-smoker <span class="src">questionnaire · about-you</span></span><span class="st same">same</span></div>
+        <div class="li"><span>Travel interest <span class="src">import chips</span></span><span class="st same">same</span></div>
+      </div>
+      <div class="mm">
+        <h4>Different</h4>
+        <div class="li"><span>Pets: cats vs none <span class="src">questionnaire · seeking</span></span><span class="st diff">different</span></div>
+      </div>
       <div class="h2">Their answers, unlocked together</div>
       <div class="card">
         <div class="qa"><b>Kids</b><span>Wants kids</span></div>
@@ -93,7 +121,7 @@
       </div>
       <button class="btn ghost">Ask a question (only ones you answered)</button>
     </div>
-    <div class="demo-note">Rung 1 — deeper preferences · symmetric unlock · any side can stop</div>
+    <div class="demo-note">Rung 1 — advance symmetric · cancel anywhere · matching/not from all sources</div>
   </div>
   <script src="palette-switcher.js"></script>
 </body>
