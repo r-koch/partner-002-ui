@@ -5,7 +5,6 @@
     "draft-00-palettes.html",
     "draft-01-signup-18plus.html",
     "draft-02-questionnaire-onepage.html",
-    "draft-03-candidate-card.html",
     "draft-04-candidate-list.html",
     "draft-05-matches-list.html",
     "draft-06-match-stage2.html",
