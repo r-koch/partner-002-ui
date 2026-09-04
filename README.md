@@ -18,12 +18,12 @@ xdg-open index.html    # Linux
 open index.html        # macOS
 ```
 
-Dark theme is the default; the ☾ toggle flips to light (WCAG-2.1-AA contrast-verified in both).
+Dark theme is the default; the moon toggle flips to light (WCAG-2.1-AA contrast-verified in both).
 
 ## What it demonstrates
 
-- **Is / seeks split.** Each questionnaire item is tagged 🧑 **About you** (an attribute of
-  yours) and/or 🎯 **Looking for** (what you seek in a partner). Symmetric items ask both.
+- **Is / seeks split.** Each questionnaire item is tagged **About you** (an attribute of
+  yours) and/or **Looking for** (what you seek in a partner). Symmetric items ask both.
 - **Importance + red flags (Looking-for only).** Every *Looking-for* answer carries a 1–5
   importance rating (the matching weight) and an optional **red flag** — a private
   dealbreaker: someone you flag simply never appears, and they're never told.
