@@ -25,9 +25,9 @@
          padding:14px 16px; cursor:pointer;}
   .mrow{display:flex; align-items:center; justify-content:space-between; gap:10px;}
   .handle{font-size:17px; font-weight:600;}
-  .gring{display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px;
-         border-radius:50%; border:2px solid var(--accent); color:var(--accent); font-size:17px;
-         line-height:1; font-weight:600; margin-right:8px; vertical-align:-4px;}
+  .oval.gender{width:24px; height:24px; border-radius:50%; padding:0; display:inline-flex;
+        align-items:center; justify-content:center; font-size:12px; font-weight:700;
+        color:var(--accent); border:1.5px solid var(--accent); vertical-align:-5px; margin-right:6px;}
   .rung{font-size:12px; color:var(--muted); border:1px solid var(--line);
         border-radius:999px; padding:3px 9px;}
   .last{font-size:13px; color:var(--muted); margin-top:6px;}
@@ -50,26 +50,26 @@
     <div class="expl" id="page-info">Synthetic demo · sorted by most recent interaction · handles frozen per match</div>
       <div class="match">
         <div class="mrow">
-          <span class="handle"><span class="gring">&#9895;</span>brave-lion-4417</span>
+          <span class="handle">brave-lion-4417</span>
           <span class="rung">stage 2 · avatar</span>
         </div>
-        <div class="scoreline"><span class="scr">82</span></div>
+        <div class="scoreline"><span class="scr">82</span><span class="oval gender">&#9895;</span></div>
         <div class="last"><span class="new-dot"></span> New: shared ice-breaker result · 2 hours ago</div>
       </div>
       <div class="match">
         <div class="mrow">
-          <span class="handle"><span class="gring">?</span>steady-owl-8831</span>
+          <span class="handle">steady-owl-8831</span>
           <span class="rung">stage 1</span>
         </div>
-        <div class="scoreline"><span class="scr">61</span></div>
+        <div class="scoreline"><span class="scr">61</span><span class="oval gender">?</span></div>
         <div class="last">You: started a question · yesterday</div>
       </div>
       <div class="match">
         <div class="mrow">
-          <span class="handle"><span class="gring">&#9792;</span>sunny-deer-5024</span>
+          <span class="handle">sunny-deer-5024</span>
           <span class="rung">stage 3 · chat</span>
         </div>
-        <div class="scoreline"><span class="scr">77</span></div>
+        <div class="scoreline"><span class="scr">77</span><span class="oval gender">&#9792;</span></div>
         <div class="last">Last message: 3 days ago · handle frozen</div>
       </div>
     </div>

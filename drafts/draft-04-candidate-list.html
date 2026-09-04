@@ -30,17 +30,10 @@
   .list{flex:1; padding:16px; display:flex; flex-direction:column; gap:16px; overflow-y:auto;}
   .card{border:1px solid var(--line); border-radius:16px; background:var(--surface);
         padding:14px;}
-  .m-row{display:flex; gap:12px;}
-  .m-avatar-col{flex:0 0 auto; width:78px; height:78px; position:relative;}
-  .m-avatar{width:68px; height:68px; border-radius:50%; border:3px solid var(--line);
-            background:var(--bg); position:absolute; top:2px; left:2px;
-            display:flex; align-items:center; justify-content:center;
-            font-size:10px; color:var(--muted); text-align:center;}
-  .gring{position:absolute; right:-2px; bottom:-2px; width:27px; height:27px;
-         border-radius:50%; background:var(--bg); border:2px solid var(--accent);
-         display:flex; align-items:center; justify-content:center; font-size:14px;
-         color:var(--accent); font-weight:600;}
-  .m-ident{flex:1; min-width:0;}
+  .m-ident{width:100%;}
+  .oval.gender{width:28px; height:28px; border-radius:50%; padding:0; display:flex;
+        align-items:center; justify-content:center; font-size:14px; font-weight:700;
+        color:var(--accent); border-color:var(--accent);}
   .scoreline{display:flex; align-items:baseline; gap:8px;}
   .score{font-size:26px; font-weight:700; line-height:1;}
   .handle{font-size:14px; font-weight:600; color:var(--muted);}
@@ -61,22 +54,17 @@
       <strong>Discover <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
       <nav><a href="#">FAQ</a><a href="#">Safety</a></nav>
     </header>
-    <div class="expl" id="h-expl">Candidates sorted by how well they fit what you're looking for. The avatar is added after you match. Score is value only — higher is better.</div>
+    <div class="expl" id="h-expl">Candidates sorted by how well they fit what you're looking for. Score is value only — higher is better. Gender is the first answer, like on matched pages.</div>
     <div class="list">
       <div class="card">
-        <div class="m-row">
-          <div class="m-avatar-col">
-            <div class="m-avatar">avatar<br>comes at<br>stage 2</div>
-            <div class="gring">&#9895;</div>
+        <div class="m-ident">
+          <div class="scoreline"><span class="score">82</span> <span class="handle">brave-lion-4417</span></div>
+          <div class="ovals">
+            <span class="oval gender">&#9895;</span>
+            <span class="oval">wants kids</span><span class="oval">non-smoker</span>
+            <span class="oval">long-term</span>
           </div>
-          <div class="m-ident">
-            <div class="scoreline"><span class="score">82</span> <span class="handle">brave-lion-4417</span></div>
-            <div class="ovals">
-              <span class="oval">wants kids</span><span class="oval">non-smoker</span>
-              <span class="oval">long-term</span>
-            </div>
-            <div class="chips">Interests · travel, outdoors</div>
-          </div>
+          <div class="chips">Interests · travel, outdoors</div>
         </div>
         <div class="actrow">
           <button class="int">Interested</button>
@@ -84,18 +72,13 @@
         </div>
       </div>
       <div class="card">
-        <div class="m-row">
-          <div class="m-avatar-col">
-            <div class="m-avatar">avatar<br>comes at<br>stage 2</div>
-            <div class="gring">?</div>
+        <div class="m-ident">
+          <div class="scoreline"><span class="score">61</span> <span class="handle">quiet-fox-2148</span></div>
+          <div class="ovals">
+            <span class="oval gender">?</span>
+            <span class="oval">open to kids</span><span class="oval">city culture</span>
           </div>
-          <div class="m-ident">
-            <div class="scoreline"><span class="score">61</span> <span class="handle">quiet-fox-2148</span></div>
-            <div class="ovals">
-              <span class="oval">open to kids</span><span class="oval">city culture</span>
-            </div>
-            <div class="chips">Interests · concerts, food</div>
-          </div>
+          <div class="chips">Interests · concerts, food</div>
         </div>
         <div class="actrow">
           <button class="int">Interested</button>
@@ -103,18 +86,13 @@
         </div>
       </div>
       <div class="card">
-        <div class="m-row">
-          <div class="m-avatar-col">
-            <div class="m-avatar">avatar<br>comes at<br>stage 2</div>
-            <div class="gring">&#9792;</div>
+        <div class="m-ident">
+          <div class="scoreline"><span class="score">44</span> <span class="handle">steady-owl-8831</span></div>
+          <div class="ovals">
+            <span class="oval gender">&#9792;</span>
+            <span class="oval">wants kids</span><span class="oval">long-term</span>
           </div>
-          <div class="m-ident">
-            <div class="scoreline"><span class="score">44</span> <span class="handle">steady-owl-8831</span></div>
-            <div class="ovals">
-              <span class="oval">wants kids</span><span class="oval">long-term</span>
-            </div>
-            <div class="chips">Interests · hiking, films</div>
-          </div>
+          <div class="chips">Interests · hiking, films</div>
         </div>
         <div class="actrow">
           <button class="int">Interested</button>
