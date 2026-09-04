@@ -21,10 +21,15 @@
   header strong{font-weight:600;}
   header a{color:var(--muted); font-size:14px; text-decoration:none;}
   .top{display:flex; gap:14px; padding:16px 18px; border-bottom:1px solid var(--line);}
-  .avatar-col{flex:0 0 auto;}
+  .avatar-col{flex:0 0 auto; position:relative; width:88px; height:88px;}
   .avatar{width:78px; height:78px; border-radius:50%; overflow:hidden;
-          border:2px solid var(--line); background:var(--surface);}
+          border:3px solid var(--line); background:var(--surface);
+          position:absolute; top:2px; left:2px;}
   .avatar img{width:100%; height:100%; object-fit:cover; display:block;}
+  .gring{position:absolute; right:-2px; bottom:-2px; width:34px; height:34px;
+         border-radius:50%; background:var(--bg); border:2px solid var(--accent);
+         display:flex; align-items:center; justify-content:center; font-size:17px;
+         color:var(--accent); font-weight:600;}
   .ident{flex:1; display:flex; flex-direction:column; gap:4px;}
   .handle{font-size:20px; font-weight:600;}
   .sub{font-size:12px; color:var(--muted);}
@@ -74,6 +79,7 @@
     <div class="top">
       <div class="avatar-col">
         <div class="avatar"><img src="anime-avatar-example.png" alt="stylized avatar example — not a photo"></div>
+        <div class="gring">&#9792;</div>
       </div>
       <div class="ident">
         <div class="handle">brave-lion-4417</div>
@@ -109,7 +115,7 @@
       <input type="text" placeholder="Message (text only, no images)" disabled>
       <button disabled>Send</button>
     </div>
-    <div class="demo-note">Rung 3 — in-app chat unlocked together · no images/attachments · contact exchange is up to you two</div>
+    <div class="demo-note">Rung 3 — in-app chat unlocked together · no images/attachments · contact exchange is up to you two · gender in avatar ring</div>
   </div>
   <script src="palette-switcher.js"></script>
 </body>

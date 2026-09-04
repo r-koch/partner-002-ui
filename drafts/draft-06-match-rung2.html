@@ -15,16 +15,22 @@
        min-height:100vh; padding:24px;}
   .phone{width:100%; max-width:420px; margin:0 auto; background:var(--bg);
          border-radius:24px; overflow:hidden; border:1px solid var(--line);
-         display:flex; flex-direction:column; min-height:840px;}
+         display:flex; flex-direction:column; min-height:860px;}
   header{display:flex; justify-content:space-between; align-items:center; padding:16px 18px;
          border-bottom:1px solid var(--line);}
   header strong{font-weight:600;}
   header a{color:var(--muted); font-size:14px; text-decoration:none;}
-  .top{display:flex; gap:14px; padding:16px 18px; border-bottom:1px solid var(--line);}
-  .avatar-col{flex:0 0 auto;}
+  /* avatar with gender ring */
+  .avatar-col{flex:0 0 auto; position:relative; width:88px; height:88px;}
   .avatar{width:78px; height:78px; border-radius:50%; overflow:hidden;
-          border:2px solid var(--line); background:var(--surface);}
+          border:3px solid var(--line); background:var(--surface);
+          position:absolute; top:2px; left:2px;}
   .avatar img{width:100%; height:100%; object-fit:cover; display:block;}
+  .gring{position:absolute; right:-2px; bottom:-2px; width:34px; height:34px;
+         border-radius:50%; background:var(--bg); border:2px solid var(--accent);
+         display:flex; align-items:center; justify-content:center; font-size:17px;
+         color:var(--accent); font-weight:600;}
+  .top{display:flex; gap:14px; padding:16px 18px; border-bottom:1px solid var(--line);}
   .ident{flex:1; display:flex; flex-direction:column; gap:4px;}
   .handle{font-size:20px; font-weight:600;}
   .sub{font-size:12px; color:var(--muted);}
@@ -36,22 +42,29 @@
   .rung.done .d{border-color:var(--match); color:var(--match);}
   .rung .l{font-size:8px; color:var(--muted); text-align:center; display:block;}
   .body{flex:1; padding:18px; overflow-y:auto;}
-  /* rung actions row */
-  .actions{display:flex; gap:8px; margin-bottom:16px;}
+  .actions{display:flex; gap:8px; margin-bottom:14px;}
   .adv{flex:1; background:var(--positive); color:var(--positive-text); border:none;
        border-radius:999px; padding:12px 0; font-size:14px; cursor:pointer; font-family:inherit;}
-  .adv.wait{background:var(--surface); color:var(--text); border:2px solid var(--line);}
   .cancel{background:none; border:1px solid var(--line); border-radius:999px;
           padding:12px 16px; font-size:13px; color:var(--muted); cursor:pointer; font-family:inherit;}
-  .pending{margin:-10px 0 16px; font-size:12px; color:var(--muted);}
-  .h2{font-size:15px; font-weight:600; margin:4px 0 10px;}
+  /* question-mark explainers */
+  .h-row{display:flex; align-items:center; gap:6px; margin:4px 0 10px;}
+  .h2{font-size:15px; font-weight:600;}
+  .qmark{width:20px; height:20px; border-radius:50%; border:1.5px solid var(--muted);
+         color:var(--muted); font-size:12px; display:flex; align-items:center;
+         justify-content:center; cursor:pointer; background:none; font-family:inherit;
+         flex:0 0 auto;}
+  .expl{display:none; font-size:12px; color:var(--muted); line-height:1.5;
+        margin:-4px 0 10px; border-left:2px solid var(--line); padding:4px 10px;}
+  .expl.show{display:block;}
+  /* collapsed-by-default lists that surface open items */
   .card{border:1px solid var(--line); border-radius:14px; background:var(--surface);
-        padding:13px 15px; margin-bottom:12px;}
-  .btn{display:block; width:100%; background:var(--positive); color:var(--positive-text);
-       border:none; border-radius:999px; padding:12px 0; font-size:15px; cursor:pointer;
-       font-family:inherit;}
-  .btn.ghost{background:var(--surface); color:var(--text); border:2px solid var(--line);}
-  /* ice breaker / starter list rows */
+        margin-bottom:12px; overflow:hidden;}
+  .card summary{cursor:pointer; font-size:14px; font-weight:600; padding:13px 15px;
+        list-style:none; display:flex; justify-content:space-between; align-items:center;}
+  .card summary .open-note{font-size:12px; color:var(--accent); font-weight:400;}
+  .card[open] .rows{display:block;}
+  .rows{padding:0 15px 13px;}
   .row{display:flex; align-items:center; justify-content:space-between; gap:8px;
        padding:10px 0; border-bottom:1px solid var(--line); font-size:14px;}
   .row:last-child{border-bottom:none;}
@@ -60,8 +73,9 @@
        font-size:12px; cursor:pointer; background:var(--bg); color:var(--text);
        font-family:inherit; flex:0 0 auto;}
   .row .act.primary{background:var(--positive); color:var(--positive-text); border:none;}
-  .row.red-flag{color:var(--exclude);}
-  /* matching / not matching (item 7) */
+  .btn{display:block; width:100%; background:var(--positive); color:var(--positive-text);
+       border:none; border-radius:999px; padding:12px 0; font-size:15px; cursor:pointer;
+       font-family:inherit; margin-bottom:12px;}
   .mm{border:1px solid var(--line); border-radius:14px; overflow:hidden; margin-bottom:12px;}
   .mm h4{font-size:13px; padding:10px 15px; border-bottom:1px solid var(--line);
          background:var(--surface);}
@@ -83,6 +97,7 @@
     <div class="top">
       <div class="avatar-col">
         <div class="avatar"><img src="anime-avatar-example.png" alt="stylized avatar example — not a photo"></div>
+        <div class="gring">&#9792;</div>
       </div>
       <div class="ident">
         <div class="handle">brave-lion-4417</div>
@@ -100,85 +115,101 @@
         <button class="adv">Ready to advance</button>
         <button class="cancel">Cancel match</button>
       </div>
-      <div class="pending">Match history: matched Sep 2 · preferences unlocked Sep 2 · avatars opened Sep 3 (you advanced together) · report or block: in the cancel sheet</div>
+      <div class="h-row">
+        <span class="h2">History</span>
+        <button class="qmark" onclick="this.nextElementSibling.classList.toggle('show')">?</button>
+        <div class="expl">Matched Sep 2 · preferences unlocked Sep 2 · avatars opened Sep 3 (you advanced together). Cancel sheet also offers report and block.</div>
+      </div>
 
-      <div class="h2">Ice breakers</div>
-      <button class="btn">Start an ice breaker (random set)</button>
-      <div class="card" style="margin-top:12px;">
+      <div class="h-row" style="margin-top:14px;">
+        <span class="h2">Ice breakers</span>
+        <button class="qmark" onclick="this.nextElementSibling.classList.toggle('show')">?</button>
+        <div class="expl">Random picture pairs — pick the one that feels more like you, no going back. After you both finish, you see how many of 5 you picked the same, and which.</div>
+      </div>
+      <button class="btn">Break the ice</button>
+      <div class="card" style="padding:0 15px;">
         <div class="row">
-          <span>Set 3 — currently open <span class="meta">started by you · waiting for them</span></span>
+          <span>Set 3 — open <span class="meta">started by you · waiting for them</span></span>
           <button class="act primary">Continue</button>
         </div>
-        <div class="row">
-          <span>Set 1 — completed <span class="meta">3 of 5 same</span></span>
-          <button class="act">Details</button>
-        </div>
-        <div class="row">
-          <span>Set 2 — completed <span class="meta">4 of 5 same</span></span>
-          <button class="act">Details</button>
-        </div>
       </div>
-      <div style="font-size:12px; color:var(--muted); margin:-6px 0 16px;">One open set at a time. Random pick from sets you haven't started. More sets coming.</div>
+      <details class="card">
+        <summary>Past ice breakers</summary>
+        <div class="rows">
+          <div class="row">
+            <span>Set 1 — 3 of 5 same</span>
+            <button class="act">Details</button>
+          </div>
+          <div class="row">
+            <span>Set 2 — 4 of 5 same</span>
+            <button class="act">Details</button>
+          </div>
+        </div>
+      </details>
 
-      <div class="h2">Conversation starters</div>
-      <button class="btn ghost">Start a starter about them (from their chips)</button>
-      <div class="card" style="margin-top:12px;">
+      <div class="h-row" style="margin-top:14px;">
+        <span class="h2">Conversation starters</span>
+        <button class="qmark" onclick="this.nextElementSibling.classList.toggle('show')">?</button>
+        <div class="expl">Fixed questions about each other's interests, with set answers. Answering opens "how about you?" if you want to ask back. Skip is always fine.</div>
+      </div>
+      <button class="btn">What could I ask her?</button>
+      <div class="card" style="padding:0 15px;">
         <div class="row">
-          <span>Favorite travel type? <span class="meta">about their travel chip · asked by you · awaiting them</span></span>
+          <span>Favorite travel type? <span class="meta">about her travel chip · awaiting her</span></span>
           <button class="act primary">Nudge</button>
         </div>
         <div class="row">
-          <span>Ideal weekend? <span class="meta">about their outdoor chip · they answered</span></span>
-          <button class="act primary">How about you?</button>
-        </div>
-        <div class="row">
-          <span>Big city or countryside? <span class="meta">about your city chip · asked by them · awaiting you</span></span>
+          <span>Big city or countryside? <span class="meta">about your city chip · awaiting you</span></span>
           <button class="act primary">Answer</button>
         </div>
-        <div class="row">
-          <span>Tea or coffee? <span class="meta">completed · both answered</span></span>
-          <button class="act">Show result</button>
+      </div>
+      <details class="card">
+        <summary>Past starters</summary>
+        <div class="rows">
+          <div class="row">
+            <span>Tea or coffee? <span class="meta">completed</span></span>
+            <button class="act">Show result</button>
+          </div>
         </div>
-      </div>
-      <div style="font-size:12px; color:var(--muted); margin:-6px 0 16px;">Starters ask about the other person's interests. Answering opens "how about you?" when you want to ask back. Skipping is always fine.</div>
+      </details>
 
-      <div class="h2">Matching and not</div>
-      <div class="mm">
-        <h4>Matching (same)</h4>
-        <div class="li"><span>Wants kids <span class="src">questionnaire · seeking</span></span><span class="st same">same</span></div>
-        <div class="li"><span>Non-smoker <span class="src">questionnaire · about-you</span></span><span class="st same">same</span></div>
-        <div class="li"><span>Travel interest <span class="src">import chips</span></span><span class="st same">same</span></div>
-        <div class="li"><span>4-letter style similar <span class="src">personality</span></span><span class="st same">same</span></div>
-        <div class="li"><span>Mountains <span class="src">ice breaker 1</span></span><span class="st same">same</span></div>
+      <div class="h-row" style="margin-top:14px;">
+        <span class="h2">Matching and not</span>
+        <button class="qmark" onclick="this.nextElementSibling.classList.toggle('show')">?</button>
+        <div class="expl">Everything you share and don't — from questionnaires, interests, personality and ice-breaker picks. A preference match only; nothing about chemistry.</div>
       </div>
-      <div class="mm">
-        <h4>Different</h4>
-        <div class="li"><span>Morning vs night <span class="src">ice breaker 1</span></span><span class="st diff">different</span></div>
-        <div class="li"><span>Pets: cats vs none <span class="src">questionnaire · seeking</span></span><span class="st diff">different</span></div>
-      </div>
+      <details class="card">
+        <summary>Matches and differences</summary>
+        <div class="rows">
+          <div class="mm"><h4>Matching</h4>
+            <div class="li"><span>Wants kids <span class="src">questionnaire · seeking</span></span><span class="st same">same</span></div>
+            <div class="li"><span>Non-smoker <span class="src">questionnaire · about-you</span></span><span class="st same">same</span></div>
+            <div class="li"><span>Travel + outdoors <span class="src">interests</span></span><span class="st same">same</span></div>
+            <div class="li"><span>Mountains <span class="src">ice breaker 1</span></span><span class="st same">same</span></div>
+          </div>
+          <div class="mm"><h4>Different</h4>
+            <div class="li"><span>Morning vs night <span class="src">ice breaker 1</span></span><span class="st diff">different</span></div>
+            <div class="li"><span>Pets: cats vs none <span class="src">questionnaire · seeking</span></span><span class="st diff">different</span></div>
+          </div>
+        </div>
+      </details>
 
-      <div class="h2">Their interests</div>
-      <div class="card">
-        <div class="row"><span>Travel <span class="meta">shared with you</span></span><span class="st same">same</span></div>
-        <div class="row"><span>Outdoors <span class="meta">shared with you</span></span><span class="st same">same</span></div>
-        <div class="row"><span>City culture <span class="meta">only theirs</span></span><span class="st diff">theirs</span></div>
-        <div class="row"><span>Space <span class="meta">only theirs</span></span><span class="st diff">theirs</span></div>
+      <div class="h-row" style="margin-top:14px;">
+        <span class="h2">Their answers</span>
+        <button class="qmark" onclick="this.nextElementSibling.classList.toggle('show')">?</button>
+        <div class="expl">Everything they answered, from all questionnaire tiers, with their interests. Private red-flag indicators are never shown.</div>
       </div>
-      <div style="font-size:12px; color:var(--muted); margin:-6px 0 16px;">Their chips are visible context — matching never uses them. Starters can ask about any of them.</div>
-
-      <div class="h2">Their answers</div>
-      <details>
+      <details class="card">
         <summary>Everything they answered</summary>
-        <div class="row" style="border-bottom:1px solid var(--line);">
-          <span>Kids — wants kids <span class="meta">extended tier</span></span>
+        <div class="rows">
+          <div class="row"><span>Kids — wants kids <span class="meta">extended tier</span></span></div>
+          <div class="row"><span>Work rhythm — flexible <span class="meta">core tier</span></span></div>
+          <div class="row"><span>Living — alone <span class="meta">core tier</span></span></div>
+          <div class="row"><span>Interests — travel, outdoors, city, space <span class="meta">import chips</span></span></div>
         </div>
-        <div class="row" style="border-bottom:1px solid var(--line);">
-          <span>Work rhythm — flexible <span class="meta">core tier</span></span>
-        </div>
-        <div class="row"><span>Living — alone <span class="meta">core tier</span></span></div>
       </details>
     </div>
-    <div class="demo-note">Rung 2 — advance is symmetric · cancel anywhere · one ice breaker open at a time · matching/not from all sources</div>
+    <div class="demo-note">Rung 2 — advance symmetric · cancel anywhere · one ice breaker open at a time · gender shown in the avatar ring</div>
   </div>
   <script src="palette-switcher.js"></script>
 </body>
