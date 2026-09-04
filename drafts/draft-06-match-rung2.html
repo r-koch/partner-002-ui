@@ -100,6 +100,7 @@
         <button class="adv">Ready to advance</button>
         <button class="cancel">Cancel match</button>
       </div>
+      <div class="pending">Match history: matched Sep 2 · preferences unlocked Sep 2 · avatars opened Sep 3 (you advanced together) · report or block: in the cancel sheet</div>
 
       <div class="h2">Ice breakers</div>
       <button class="btn">Start an ice breaker (random set)</button>
@@ -120,17 +121,26 @@
       <div style="font-size:12px; color:var(--muted); margin:-6px 0 16px;">One open set at a time. Random pick from sets you haven't started. More sets coming.</div>
 
       <div class="h2">Conversation starters</div>
-      <button class="btn ghost">Start a starter (from your shared chips)</button>
+      <button class="btn ghost">Start a starter about them (from their chips)</button>
       <div class="card" style="margin-top:12px;">
         <div class="row">
-          <span>Favorite travel type? <span class="meta">open · sent by them</span></span>
-          <button class="act primary">Reply</button>
+          <span>Favorite travel type? <span class="meta">about their travel chip · asked by you · awaiting them</span></span>
+          <button class="act primary">Nudge</button>
         </div>
         <div class="row">
-          <span>Ideal weekend? <span class="meta">completed · both answered</span></span>
+          <span>Ideal weekend? <span class="meta">about their outdoor chip · they answered</span></span>
+          <button class="act primary">How about you?</button>
+        </div>
+        <div class="row">
+          <span>Big city or countryside? <span class="meta">about your city chip · asked by them · awaiting you</span></span>
+          <button class="act primary">Answer</button>
+        </div>
+        <div class="row">
+          <span>Tea or coffee? <span class="meta">completed · both answered</span></span>
           <button class="act">Show result</button>
         </div>
       </div>
+      <div style="font-size:12px; color:var(--muted); margin:-6px 0 16px;">Starters ask about the other person's interests. Answering opens "how about you?" when you want to ask back. Skipping is always fine.</div>
 
       <div class="h2">Matching and not</div>
       <div class="mm">
@@ -146,6 +156,15 @@
         <div class="li"><span>Morning vs night <span class="src">ice breaker 1</span></span><span class="st diff">different</span></div>
         <div class="li"><span>Pets: cats vs none <span class="src">questionnaire · seeking</span></span><span class="st diff">different</span></div>
       </div>
+
+      <div class="h2">Their interests</div>
+      <div class="card">
+        <div class="row"><span>Travel <span class="meta">shared with you</span></span><span class="st same">same</span></div>
+        <div class="row"><span>Outdoors <span class="meta">shared with you</span></span><span class="st same">same</span></div>
+        <div class="row"><span>City culture <span class="meta">only theirs</span></span><span class="st diff">theirs</span></div>
+        <div class="row"><span>Space <span class="meta">only theirs</span></span><span class="st diff">theirs</span></div>
+      </div>
+      <div style="font-size:12px; color:var(--muted); margin:-6px 0 16px;">Their chips are visible context — matching never uses them. Starters can ask about any of them.</div>
 
       <div class="h2">Their answers</div>
       <details>
