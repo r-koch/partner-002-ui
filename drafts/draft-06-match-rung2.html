@@ -26,10 +26,9 @@
           border:3px solid var(--line); background:var(--surface);
           position:absolute; top:2px; left:2px;}
   .avatar img{width:100%; height:100%; object-fit:cover; display:block;}
-  .gring{position:absolute; right:-2px; bottom:-2px; width:34px; height:34px;
-         border-radius:50%; background:var(--bg); border:2px solid var(--accent);
-         display:flex; align-items:center; justify-content:center; font-size:17px;
-         color:var(--accent); font-weight:600;}
+    .gring{display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px;
+         border-radius:50%; border:2px solid var(--accent); color:var(--accent); font-size:17px;
+         line-height:1; font-weight:600; margin-right:8px; vertical-align:-4px;}
   .top{display:flex; gap:14px; padding:16px 18px; border-bottom:1px solid var(--line);}
   .ident{flex:1; display:flex; flex-direction:column; gap:4px;}
   .handle{font-size:20px; font-weight:600;}
@@ -92,7 +91,11 @@
   <div class="phone">
     <header>
       <strong>Matches</strong>
-      <a href="#">Safety</a>
+      <nav style="display:flex; gap:10px;">
+        <a href="#" onclick="document.getElementById('faq-area')?.scrollIntoView({behavior:'smooth'});return false;">FAQ</a>
+        <a href="#" onclick="document.getElementById('page-info').classList.toggle('show');return false;">?</a>
+        <a href="#">Safety</a>
+      </nav>
     </header>
     <div class="top">
       <div class="avatar-col">
@@ -104,13 +107,13 @@
         <div class="sub">score 82 · Vienna</div>
         <div class="rungs">
           <div class="rung done"><span class="d">1</span><span class="l">match</span></div>
-          <div class="rung done"><span class="d">2</span><span class="l">prefs</span></div>
-          <div class="rung now"><span class="d">3</span><span class="l">avatar</span></div>
-          <div class="rung"><span class="d">4</span><span class="l">chat</span></div>
+          <div class="rung now"><span class="d">2</span><span class="l">avatar</span></div>
+          <div class="rung"><span class="d">3</span><span class="l">chat</span></div>
         </div>
       </div>
     </div>
     <div class="body">
+      <div class="expl" id="page-info">Synthetic demo · rung 2 example · advance symmetric · cancel anywhere · one ice breaker open at a time · gender shown in the avatar ring</div>
       <div class="actions">
         <button class="adv">Ready to advance</button>
         <button class="cancel">Cancel match</button>
@@ -122,17 +125,45 @@
       </div>
 
       <div class="h-row" style="margin-top:14px;">
+        <span class="h2">Pending</span>
+        <button class="qmark" onclick="this.nextElementSibling.classList.toggle('show')">?</button>
+        <div class="expl">Things waiting on you or on them. They stay at the top until resolved.</div>
+      </div>
+      <div class="card" style="padding:8px 15px 4px;">
+        <div class="row">
+          <span>Ice breaker Set 3 <span class="meta">started by you · waiting for them</span></span>
+          <button class="act primary">Continue</button>
+        </div>
+        <div class="row">
+          <span>Favorite travel type? <span class="meta">about her travel chip · awaiting her</span></span>
+          <button class="act primary">Nudge</button>
+        </div>
+        <div class="row">
+          <span>Big city or countryside? <span class="meta">about your city chip · awaiting you</span></span>
+          <button class="act primary">Answer</button>
+        </div>
+      </div>
+
+      <div class="h-row" style="margin-top:14px;">
         <span class="h2">Ice breakers</span>
         <button class="qmark" onclick="this.nextElementSibling.classList.toggle('show')">?</button>
         <div class="expl">Random picture pairs — pick the one that feels more like you, no going back. After you both finish, you see how many of 5 you picked the same, and which.</div>
       </div>
       <button class="btn">Break the ice</button>
-      <div class="card" style="padding:0 15px;">
-        <div class="row">
-          <span>Set 3 — open <span class="meta">started by you · waiting for them</span></span>
-          <button class="act primary">Continue</button>
-        </div>
+
+      <div class="h-row" style="margin-top:14px;">
+        <span class="h2">Conversation starters</span>
+        <button class="qmark" onclick="this.nextElementSibling.classList.toggle('show')">?</button>
+        <div class="expl">Fixed questions about each other's interests, with set answers. Answering opens "how about you?" if you want to ask back. Skip is always fine.</div>
       </div>
+      <button class="btn">What could I ask her?</button>
+
+      <div class="h-row" style="margin-top:14px;">
+        <span class="h2">Past ice breakers</span>
+        <button class="qmark" onclick="this.nextElementSibling.classList.toggle('show')">?</button>
+        <div class="expl">Random picture pairs — pick the one that feels more like you, no going back. After you both finish, you see how many of 5 you picked the same, and which.</div>
+      </div>
+      <button class="btn">Break the ice</button>
       <details class="card">
         <summary>Past ice breakers</summary>
         <div class="rows">
@@ -153,16 +184,6 @@
         <div class="expl">Fixed questions about each other's interests, with set answers. Answering opens "how about you?" if you want to ask back. Skip is always fine.</div>
       </div>
       <button class="btn">What could I ask her?</button>
-      <div class="card" style="padding:0 15px;">
-        <div class="row">
-          <span>Favorite travel type? <span class="meta">about her travel chip · awaiting her</span></span>
-          <button class="act primary">Nudge</button>
-        </div>
-        <div class="row">
-          <span>Big city or countryside? <span class="meta">about your city chip · awaiting you</span></span>
-          <button class="act primary">Answer</button>
-        </div>
-      </div>
       <details class="card">
         <summary>Past starters</summary>
         <div class="rows">
@@ -210,7 +231,7 @@
       </details>
     </div>
 
-      <div class="h-row" style="margin-top:14px;">
+      <div class="h-row" id="faq-area" style="margin-top:14px;">
         <span class="h2">FAQ</span>
         <button class="qmark" onclick="this.nextElementSibling.classList.toggle('show')">?</button>
         <div class="expl">Short answers to the questions people actually ask.</div>
@@ -221,7 +242,7 @@
           <div class="row"><span>The score is fixed when you match — your later answers don't rewrite it. It's a snapshot of the fit you matched on.<span class="meta">more questions coming in the real FAQ</span></span></div>
         </div>
       </details>
-    <div class="demo-note">Rung 2 — advance symmetric · cancel anywhere · one ice breaker open at a time · gender shown in the avatar ring</div>
+    
   </div>
   <script src="palette-switcher.js"></script>
 </body>

@@ -19,9 +19,9 @@
   header strong{font-weight:600;}
   header a{color:var(--muted); font-size:14px; text-decoration:none;}
   .card{flex:1; display:flex; flex-direction:column; justify-content:center; padding:20px 24px;}
-  .gring{display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px;
-         border-radius:50%; border:2px solid var(--accent); color:var(--accent); font-size:14px;
-         font-weight:600; margin-right:8px; vertical-align:-3px;}
+  .gring{display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px;
+         border-radius:50%; border:2px solid var(--accent); color:var(--accent); font-size:17px;
+         line-height:1; font-weight:600; margin-right:8px; vertical-align:-4px;}
   .score-band{display:flex; align-items:baseline; gap:10px; margin-bottom:14px;}
   .score{font-size:44px; font-weight:700; line-height:1;}
   .band{font-size:14px; color:var(--muted);}
@@ -48,8 +48,10 @@
   <div class="phone">
     <header>
       <strong>Discover</strong>
+      <a href="#" onclick="document.getElementById('page-info').classList.toggle('show');return false;">?</a>
       <a href="#">Safety</a>
     </header>
+    <div class="expl" id="page-info">Synthetic demo · no real people · handle frozen once matched</div>
     <div class="card">
       <div class="score-band">
         <span class="score">78</span>
@@ -76,7 +78,7 @@
         <button class="skip">Not for me</button>
       </div>
     </div>
-    <div class="demo-note">Synthetic demo · no real people · handle frozen once matched</div>
+    
   </div>
 <script src="palette-switcher.js"></script>
 </body>

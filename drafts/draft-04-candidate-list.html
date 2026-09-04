@@ -27,9 +27,9 @@
   .score{font-size:32px; font-weight:700; line-height:1;}
   .band{font-size:13px; color:var(--muted);}
   .handle{font-size:18px; font-weight:600; margin-bottom:2px;}
-  .gring{display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px;
-         border-radius:50%; border:2px solid var(--accent); color:var(--accent); font-size:13px;
-         font-weight:600; margin-right:8px; vertical-align:-2px;}
+  .gring{display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px;
+         border-radius:50%; border:2px solid var(--accent); color:var(--accent); font-size:17px;
+         line-height:1; font-weight:600; margin-right:8px; vertical-align:-4px;}
   .facts{font-size:14px; color:var(--muted); margin-bottom:12px;}
   .chips{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px;}
   .chip{background:var(--bg); border:1px solid var(--line); border-radius:999px;
@@ -47,10 +47,12 @@
   <div class="phone">
     <header>
       <strong>Discover</strong>
+      <a href="#" onclick="document.getElementById('page-info').classList.toggle('show');return false;">?</a>
       <a href="#">Safety</a>
     </header>
     <div class="list">
-      <div class="card">
+      <div class="expl" id="page-info">Synthetic demo · sorted by score · floor 40 · gender rings: non-binary / not-saying / woman</div>
+    <div class="card">
         <div class="row1"><span class="score">82</span><span class="band">strong fit</span></div>
         <div class="handle"><span class="gring">&#9895;</span>brave-lion-4417</div>
         <div class="facts">27 · Vienna · long-term</div>
@@ -83,7 +85,7 @@
         <div class="actions"><button class="yes">Interested</button><button class="skip">Not for me</button></div>
       </div>
     </div>
-    <div class="demo-note">Synthetic demo · sorted by score · floor 40 · gender rings: non-binary / not-saying / woman</div>
+    
   </div>
   <script src="palette-switcher.js"></script>
 </body>

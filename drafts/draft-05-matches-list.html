@@ -25,9 +25,9 @@
          padding:14px 16px; cursor:pointer;}
   .mrow{display:flex; align-items:center; justify-content:space-between; gap:10px;}
   .handle{font-size:17px; font-weight:600;}
-  .gring{display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px;
-         border-radius:50%; border:2px solid var(--accent); color:var(--accent); font-size:12px;
-         font-weight:600; margin-right:6px; vertical-align:-2px;}
+  .gring{display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px;
+         border-radius:50%; border:2px solid var(--accent); color:var(--accent); font-size:17px;
+         line-height:1; font-weight:600; margin-right:8px; vertical-align:-4px;}
   .rung{font-size:12px; color:var(--muted); border:1px solid var(--line);
         border-radius:999px; padding:3px 9px;}
   .last{font-size:13px; color:var(--muted); margin-top:6px;}
@@ -40,9 +40,13 @@
   <div class="phone">
     <header>
       <strong>Matches</strong>
-      <a href="#">Discover</a>
+      <nav style="display:flex; gap:10px;">
+        <a href="#" onclick="document.getElementById('page-info').classList.toggle('show');return false;">?</a>
+        <a href="#">Discover</a>
+      </nav>
     </header>
     <div class="list">
+    <div class="expl" id="page-info">Synthetic demo · sorted by most recent interaction · handles frozen per match</div>
       <div class="match">
         <div class="mrow">
           <span class="handle"><span class="gring">&#9895;</span>brave-lion-4417</span>
@@ -68,7 +72,7 @@
         <div class="last">Last message: 3 days ago · handle frozen</div>
       </div>
     </div>
-    <div class="demo-note">Synthetic demo · sorted by most recent interaction · handles frozen per match</div>
+    
   </div>
   <script src="palette-switcher.js"></script>
 </body>

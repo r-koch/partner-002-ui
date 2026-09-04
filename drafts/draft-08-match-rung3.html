@@ -26,10 +26,9 @@
           border:3px solid var(--line); background:var(--surface);
           position:absolute; top:2px; left:2px;}
   .avatar img{width:100%; height:100%; object-fit:cover; display:block;}
-  .gring{position:absolute; right:-2px; bottom:-2px; width:34px; height:34px;
-         border-radius:50%; background:var(--bg); border:2px solid var(--accent);
-         display:flex; align-items:center; justify-content:center; font-size:17px;
-         color:var(--accent); font-weight:600;}
+    .gring{display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px;
+         border-radius:50%; border:2px solid var(--accent); color:var(--accent); font-size:17px;
+         line-height:1; font-weight:600; margin-right:8px; vertical-align:-4px;}
   .ident{flex:1; display:flex; flex-direction:column; gap:4px;}
   .handle{font-size:20px; font-weight:600;}
   .sub{font-size:12px; color:var(--muted);}
@@ -74,7 +73,11 @@
   <div class="phone">
     <header>
       <strong>Matches</strong>
-      <a href="#">Safety</a>
+      <nav style="display:flex; gap:10px;">
+        <a href="#" onclick="document.getElementById('faq-area')?.scrollIntoView({behavior:'smooth'});return false;">FAQ</a>
+        <a href="#" onclick="document.getElementById('page-info').classList.toggle('show');return false;">?</a>
+        <a href="#">Safety</a>
+      </nav>
     </header>
     <div class="top">
       <div class="avatar-col">
@@ -86,12 +89,13 @@
         <div class="sub">score 82 · Vienna</div>
         <div class="rungs">
           <div class="rung done"><span class="d">1</span><span class="l">match</span></div>
-          <div class="rung done"><span class="d">2</span><span class="l">prefs</span></div>
-          <div class="rung done"><span class="d">3</span><span class="l">avatar</span></div>
-          <div class="rung now"><span class="d">4</span><span class="l">chat</span></div>
+          <div class="rung done"><span class="d">2</span><span class="l">avatar</span></div>
+          <div class="rung now"><span class="d">3</span><span class="l">chat</span></div>
         </div>
       </div>
     </div>
+    <div class="body" style="display:none;"></div>
+    <div class="expl" id="page-info" style="display:none;"></div>
     <div class="rungbar">
       <button class="adv">Ready to advance</button>
       <button class="cancel">Cancel match</button>
@@ -116,7 +120,7 @@
       <button disabled>Send</button>
     </div>
 
-      <div class="h-row" style="margin-top:14px;">
+      <div class="h-row" id="faq-area" style="margin-top:14px;">
         <span class="h2">FAQ</span>
         <button class="qmark" onclick="this.nextElementSibling.classList.toggle('show')">?</button>
         <div class="expl">Short answers to the questions people actually ask.</div>
@@ -127,7 +131,7 @@
           <div class="row"><span>The score is fixed when you match — your later answers don't rewrite it. It's a snapshot of the fit you matched on.<span class="meta">more questions coming in the real FAQ</span></span></div>
         </div>
       </details>
-    <div class="demo-note">Rung 3 — in-app chat unlocked together · no images/attachments · contact exchange is up to you two · gender in avatar ring</div>
+    
   </div>
   <script src="palette-switcher.js"></script>
 </body>
