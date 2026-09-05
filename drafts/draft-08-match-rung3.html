@@ -15,7 +15,7 @@
        min-height:100vh; padding:24px;}
   .phone{width:100%; max-width:420px; margin:0 auto; background:var(--bg);
          border-radius:24px; overflow:hidden; border:1px solid var(--line);
-         display:flex; flex-direction:column; min-height:820px;}
+         display:flex; flex-direction:column; min-height:840px;}
   header{display:flex; justify-content:space-between; align-items:center; padding:16px 18px;
          border-bottom:1px solid var(--line);}
   header strong{font-weight:600;}
@@ -27,51 +27,66 @@
   .expl{display:none; font-size:12px; color:var(--muted); line-height:1.5;
         margin:10px 18px 0; border-left:2px solid var(--line); padding:4px 10px;}
   .expl.show{display:block;}
-  .top{display:flex; gap:14px; padding:16px 18px; border-bottom:1px solid var(--line);}
+  .top{display:flex; gap:14px; padding:14px 18px; border-bottom:1px solid var(--line);}
   .avatar-col{flex:0 0 auto; width:88px; display:flex; flex-direction:column;
-        align-items:center; gap:10px;}
-  .avatar{width:78px; height:78px; border-radius:50%; overflow:hidden;
+        align-items:center; gap:8px;}
+  .avatar{width:74px; height:74px; border-radius:50%; overflow:hidden;
           border:3px solid var(--line); background:var(--surface);}
   .avatar img{width:100%; height:100%; object-fit:cover; display:block;}
-  .avatar-btns{display:flex; flex-direction:column; gap:6px; width:70px;}
+  .avatar-btns{display:flex; flex-direction:column; gap:5px; width:78px;}
   .abtn{background:var(--surface); color:var(--text); border:1.5px solid var(--line);
-        border-radius:999px; padding:6px 4px; font-size:10px; line-height:1.2;
+        border-radius:999px; padding:5px 4px; font-size:10px; line-height:1.2;
         cursor:pointer; font-family:inherit; text-align:center; text-decoration:none;}
-  .ident{flex:1; display:flex; flex-direction:column; gap:4px; min-width:0;}
+  .ident{flex:1; display:flex; flex-direction:column; gap:3px; min-width:0;}
   .scoreline{display:flex; align-items:baseline; gap:8px;}
-  .score{font-size:26px; font-weight:700; line-height:1;}
-  .handle{font-size:16px; font-weight:600; color:var(--muted);}
-  .ovals{display:flex; flex-wrap:wrap; gap:6px; margin-top:9px; align-items:center; line-height:24px;}
-  .anslab{font-size:11px; color:var(--muted); letter-spacing:.04em; flex:0 0 auto; line-height:24px;}
+  .score{font-size:24px; font-weight:700; line-height:1;}
+  .handle{font-size:15px; font-weight:600; color:var(--muted);}
+  .ovals{display:flex; flex-wrap:wrap; gap:5px; margin-top:6px; align-items:center; line-height:22px;}
+  .anslab{font-size:10px; color:var(--muted); letter-spacing:.04em; flex:0 0 auto; line-height:22px;}
   .oval{background:var(--surface); border:1px solid var(--line); border-radius:999px;
-        padding:4px 12px; font-size:12px; color:var(--text);}
-  .oval.gender{width:24px; height:24px; border-radius:50%; padding:0; display:inline-flex;
-        align-items:center; justify-content:center; font-size:12px; font-weight:700;
+        padding:2px 9px; font-size:10px; color:var(--text);}
+  .oval.gender{width:22px; height:22px; border-radius:50%; padding:0; display:inline-flex;
+        align-items:center; justify-content:center; font-size:11px; font-weight:700;
         color:var(--accent); border-color:var(--accent); vertical-align:-2px;}
-  .interests{display:flex; align-items:center; flex-wrap:wrap; gap:6px; margin-top:9px;}
-  .interests .ilab{font-size:11px; color:var(--muted); letter-spacing:.04em; margin-right:2px;}
-  .ichip{display:inline-flex; align-items:center; gap:5px; background:var(--bg);
-         border:1.5px dashed var(--accent); border-radius:999px; padding:3px 9px;
-         font-size:11px; color:var(--text); opacity:.92;}
-  .ichip::before{content:""; width:5px; height:5px; border-radius:50%;
-         background:var(--accent); flex:0 0 auto;}
-  .cancelbar{display:flex; justify-content:flex-end; padding:10px 18px 0;}
-  .cancel{background:none; border:1px solid var(--line); border-radius:999px;
-          padding:9px 16px; font-size:13px; color:var(--muted); cursor:pointer; font-family:inherit;}
-  .chat{flex:1; padding:14px 18px; overflow-y:auto; display:flex; flex-direction:column; gap:10px;}
-  .msg{max-width:80%; border-radius:16px; padding:10px 14px; font-size:14px; line-height:1.45;}
+
+  .pending{border-bottom:1px solid var(--line); padding:8px 18px; background:var(--surface);}
+  .prow{display:flex; align-items:center; justify-content:space-between; gap:8px;
+        padding:6px 0; border-bottom:1px dashed var(--line); font-size:13px;}
+  .prow:last-child{border-bottom:none;}
+  .prow .meta{font-size:11px; color:var(--muted); display:block;}
+  .prow .act{border:1px solid var(--line); border-radius:999px; padding:5px 12px;
+        font-size:11px; cursor:pointer; background:var(--bg); color:var(--text);
+        font-family:inherit; flex:0 0 auto;}
+
+  .suggest{margin:8px 18px; border:1.5px solid var(--accent); border-radius:14px;
+        padding:10px 12px; font-size:13px; line-height:1.5;}
+  .suggest .t{font-weight:600; margin-bottom:4px;}
+  .suggest .opt{background:var(--bg); border:1px solid var(--line); border-radius:999px;
+        padding:5px 10px; font-size:11px; cursor:pointer; margin-top:6px; display:block;
+        width:100%; text-align:left; color:var(--text); font-family:inherit; line-height:1.4;}
+  .suggest .hint{font-size:11px; color:var(--muted); margin-top:6px;}
+
+  .chat{flex:1; padding:12px 18px; overflow-y:auto; display:flex; flex-direction:column; gap:8px;
+        min-height:180px;}
+  .msg{max-width:80%; border-radius:16px; padding:9px 13px; font-size:14px; line-height:1.45;}
   .msg.me{align-self:flex-end; background:var(--positive); color:var(--positive-text);
           border-bottom-right-radius:4px;}
   .msg.them{align-self:flex-start; background:var(--surface); border:1px solid var(--line);
             border-bottom-left-radius:4px;}
-  .msg .t{display:block; font-size:10px; color:var(--muted); margin-top:4px;}
+  .msg .t{display:block; font-size:10px; color:var(--muted); margin-top:3px;}
   .msg.me .t{color:rgba(255,255,255,.75);}
-  .inputbar{display:flex; gap:10px; padding:12px 16px; border-top:1px solid var(--line);}
+  .inputbar{display:flex; gap:10px; padding:10px 16px; border-top:1px solid var(--line);}
   .inputbar input{flex:1; border:2px solid var(--line); border-radius:999px;
-        padding:11px 16px; font-size:15px; background:var(--surface); color:var(--text);
+        padding:10px 15px; font-size:15px; background:var(--surface); color:var(--text);
         font-family:inherit;}
   .inputbar button{background:var(--positive); color:var(--positive-text); border:none;
-        border-radius:999px; padding:11px 20px; font-size:15px; cursor:pointer; font-family:inherit;}
+        border-radius:999px; padding:10px 18px; font-size:15px; cursor:pointer; font-family:inherit;}
+  .minirow{display:flex; gap:8px; padding:8px 18px 0;}
+  .minibtn{background:none; border:1px solid var(--line); border-radius:999px;
+        padding:7px 14px; font-size:12px; color:var(--text); cursor:pointer; font-family:inherit; flex:1;}
+  .cancelbar{display:flex; justify-content:flex-end; padding:8px 18px 0;}
+  .cancel{background:none; border:1px solid var(--line); border-radius:999px;
+          padding:7px 14px; font-size:12px; color:var(--muted); cursor:pointer; font-family:inherit;}
 </style>
 </head>
 <body>
@@ -83,14 +98,14 @@
         <a href="#">Safety</a>
       </nav>
     </header>
-    <div class="expl" id="h-expl">End-to-end encrypted. Text only, no images, nothing stored on the server. You both unlocked this stage together. Ice breakers and starters from stage 2 are behind the "what could I ask?" button.</div>
+    <div class="expl" id="h-expl">End-to-end encrypted. Text only, no images, nothing stored on the server. If you both ever want more ice breakers or starters, they're still here. Answers and requests work like in the earlier stages.</div>
 
     <div class="top">
       <div class="avatar-col">
         <div class="avatar"><img src="anime-avatar-example.png" alt="stylized avatar — not a photo"></div>
         <div class="avatar-btns">
           <a class="abtn" href="draft-06a-history.html">history</a>
-          <a class="abtn" href="#" onclick="alert('only if stage-2 events exist \u2014 this match has some');return false;">what could I ask?</a>
+          <a class="abtn" href="draft-06b-extended-qa.html">extended / deep</a>
         </div>
       </div>
       <div class="ident">
@@ -100,14 +115,33 @@
           <span class="oval gender">&#9895;</span>
           <span class="oval">wants kids</span>
           <span class="oval">non-smoker</span>
-          <span class="oval">long-term</span>
-        </div>
-        <div class="interests">
-          <span class="ilab">Interests</span><span class="ichip">travel</span><span class="ichip">outdoors</span><span class="ichip">space</span>
         </div>
       </div>
     </div>
 
+    <div class="pending">
+      <div class="prow">
+        <span>They asked "ideal weekend?" <span class="meta">awaiting your answer</span></span>
+        <button class="act">Answer</button>
+      </div>
+      <div class="prow">
+        <span>Ice breaker open <span class="meta">you started it, waiting on them</span></span>
+        <button class="act">Continue</button>
+      </div>
+    </div>
+
+    <div class="suggest" id="suggest-a" style="display:none;">
+      <div class="t">What could I ask her?</div>
+      <div>From your stage 2 events:</div>
+      <button class="opt" onclick="document.getElementById('suggest-a').style.display='none';document.getElementById('compose').value='Remember our ice breaker where we split on fire vs water? I picked water because it is quieter. What made you go for fire?';return false;">&#8220;Remember our ice breaker where we split on fire vs water? I picked water because it is quieter. What made you go for fire?&#8221;</button>
+      <button class="opt" onclick="document.getElementById('suggest-a').style.display='none';document.getElementById('compose').value='That fire vs water one kept nagging me, ha. My water logic: calm wins. Your fire logic?';return false;">&#8220;That fire vs water one kept nagging me, ha. My water logic: calm wins. Your fire logic?&#8221;</button>
+      <div class="hint">Tap a suggestion to fill the message box. We vary the wording so it never feels like a script.</div>
+    </div>
+
+    <div class="minirow">
+      <button class="minibtn" onclick="document.getElementById('suggest-a').style.display='block';">What could I ask her?</button>
+      <button class="minibtn">Break the ice</button>
+    </div>
     <div class="cancelbar">
       <button class="cancel">Cancel match</button>
     </div>
@@ -127,7 +161,7 @@
       </div>
     </div>
     <div class="inputbar">
-      <input type="text" placeholder="Message (text only, no images)" disabled>
+      <input id="compose" type="text" placeholder="Message (text only, no images)" disabled>
       <button disabled>Send</button>
     </div>
   </div>
