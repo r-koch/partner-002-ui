@@ -94,6 +94,27 @@
       if (you.hint) out += '<div class="field-hint">' + esc(you.hint) + '</div>';
       return out;
     }
+    if (you.type === "fields") {
+      // multi-field About-you side: one labeled text input per field. The input
+      // name is the FIELD's key (country/city/postal), NOT the item id or the
+      // "-you" suffix — matching.js reads input[name="country"] etc. back by it.
+      var fields = you.fields || [];
+      out = '<div class="fields">';
+      for (var fi = 0; fi < fields.length; fi++) {
+        var f = fields[fi];
+        var fph = f.placeholder ? ' placeholder="' + escAttr(f.placeholder) + '"' : "";
+        var freq = f.required ? " required" : "";
+        out += '<div class="field">'
+          + '<span class="field__label">' + esc(f.label || f.key) + '</span>'
+          + '<input type="text" name="' + escAttr(f.key) + '"' + fph
+          + ' autocomplete="off"' + freq
+          + ' aria-label="' + escAttr(f.label || f.placeholder || "text answer") + '">'
+          + '</div>';
+        if (f.hint) out += '<div class="field-hint">' + esc(f.hint) + '</div>';
+      }
+      out += '</div>';
+      return out;
+    }
     // radio
     out = '<div class="chip-row">';
     you.options.forEach(function (opt) { out += youOption(youName, opt); });
@@ -105,16 +126,20 @@
   /* ---- seek side --------------------------------------------------------- */
   function seekSection(id, seek) {
     var out = "";
+    // seek-side input-name override: a both-axis "location" item keeps the
+    // matching.js `distance` contract (radio name, -imp suffix, flag base)
+    // even though its item.id is "location". Otherwise seekName == item.id.
+    var seekName = seek.inputName || seek.name || id;
     if (seek.type === "range") {
       out = rangeSection(id, seek);
     } else {
       var isMulti = seek.type === "multi";
       out = '<div class="chip-row">';
-      seek.options.forEach(function (opt) { out += seekOption(id, opt, !!seek.redflag, isMulti); });
+      seek.options.forEach(function (opt) { out += seekOption(seekName, opt, !!seek.redflag, isMulti); });
       out += '</div>';
       if (seek.hint) out += '<div class="field-hint">' + esc(seek.hint) + '</div>';
     }
-    if (seek.importance) out += importanceHTML(id, seek.importanceAriaLabel || "how much this matters", seek.importanceDefault || 3);
+    if (seek.importance) out += importanceHTML(seekName, seek.importanceAriaLabel || "how much this matters", seek.importanceDefault || 3);
     return out;
   }
 

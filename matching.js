@@ -253,6 +253,14 @@
     for (var i = 0; i < nodes.length; i++) out.push(nodes[i].value);
     return out;
   }
+  function textval(name) {
+    // single free-text field (country/city/postal on the location item): read
+    // trimmed value, empty -> null (so derived distance treats it as unanswered)
+    var el = document.querySelector('input[name="' + name + '"]');
+    if (!el) return null;
+    var v = String(el.value == null ? "" : el.value).trim();
+    return v === "" ? null : v;
+  }
   function impval(item) {
     var el = document.querySelector('input[name="' + item + '-imp"]:checked');
     return el ? parseInt(el.value, 10) : 3;
@@ -290,6 +298,15 @@
       var fl = flagValues(item);
       if (fl.length) redFlags[item] = fl;
     });
+    // location (both-axis) About-you fields: collected under their own names so
+    // the derived-distance logic reads user's country/city/postal directly.
+    // postal is optional; empty fields are skipped (answers left unset).
+    var locCountry = textval("country");
+    var locCity = textval("city");
+    var locPostal = textval("postal");
+    if (locCountry) answers.country = locCountry;
+    if (locCity) answers.city = locCity;
+    if (locPostal) answers.postal = locPostal;
     return { answers: answers, importance: importance, redFlags: redFlags };
   }
 

@@ -456,44 +456,37 @@
       "conditional": null
     },
     {
-      "id": "country",
-      "label": "Your country",
-      "axis": "you",
+      "id": "location",
+      "label": "Location",
+      "axis": "both",
       "you": {
-        "type": "text",
-        "placeholder": "Austria"
+        "type": "fields",
+        "fields": [
+          {
+            "key": "country",
+            "placeholder": "Austria",
+            "label": "Country",
+            "required": true,
+            "hint": "Stated, not detected — no device location, ever."
+          },
+          {
+            "key": "city",
+            "placeholder": "Vienna",
+            "label": "City / area",
+            "required": true
+          },
+          {
+            "key": "postal",
+            "placeholder": "1140",
+            "label": "Postal code",
+            "required": false,
+            "hint": "Optional; sharpens the band slightly."
+          }
+        ]
       },
-      "hint": "Stated, not detected — no device location, ever.",
-      "conditional": null
-    },
-    {
-      "id": "city",
-      "label": "Your city / area",
-      "axis": "you",
-      "you": {
-        "type": "text",
-        "placeholder": "Vienna"
-      },
-      "hint": "Coarse band only — never shared raw.",
-      "conditional": null
-    },
-    {
-      "id": "postal",
-      "label": "Postal code (optional)",
-      "axis": "you",
-      "you": {
-        "type": "text",
-        "placeholder": "1140"
-      },
-      "hint": "Optional; sharpens the band slightly.",
-      "conditional": null
-    },
-    {
-      "id": "distance",
-      "label": "How far is OK?",
-      "axis": "seek",
       "seek": {
         "type": "radio",
+        "inputName": "distance",
         "options": [
           {
             "value": "lt15km",
