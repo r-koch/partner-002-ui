@@ -31,6 +31,10 @@
   .card{border:1px solid var(--line); border-radius:16px; background:var(--surface);
         padding:14px;}
   .m-ident{width:100%;}
+  .topline{display:flex; justify-content:space-between; align-items:center; gap:8px;}
+  .stage-tag{font-size:11px; color:var(--muted); border:1px solid var(--line);
+        border-radius:999px; padding:3px 9px; flex:0 0 auto;}
+  .scoreline{display:flex; align-items:baseline; gap:8px;}
   .oval.gender{width:24px; height:24px; border-radius:50%; padding:0; display:inline-flex;
         align-items:center; justify-content:center; font-size:12px; font-weight:700;
         color:var(--accent); border-color:var(--accent); vertical-align:-2px;}
@@ -65,7 +69,10 @@
     <div class="list">
       <div class="card">
         <div class="m-ident">
-          <div class="scoreline"><span class="score">82</span> <span class="handle">brave-lion-4417</span></div>
+          <div class="topline">
+            <div class="scoreline"><span class="score">82</span> <span class="handle">brave-lion-4417</span></div>
+            <span class="stage-tag">strong fit</span>
+          </div>
           <div class="ovals"><span class="anslab">Profile</span>
             <span class="oval gender">&#9895;</span>
             <span class="oval">wants kids</span><span class="oval">non-smoker</span>
@@ -81,7 +88,10 @@
       </div>
       <div class="card">
         <div class="m-ident">
-          <div class="scoreline"><span class="score">61</span> <span class="handle">quiet-fox-2148</span></div>
+          <div class="topline">
+            <div class="scoreline"><span class="score">61</span> <span class="handle">quiet-fox-2148</span></div>
+            <span class="stage-tag">decent fit</span>
+          </div>
           <div class="ovals"><span class="anslab">Profile</span>
             <span class="oval gender">?</span>
             <span class="oval">open to kids</span><span class="oval">city culture</span>
@@ -95,7 +105,10 @@
       </div>
       <div class="card">
         <div class="m-ident">
-          <div class="scoreline"><span class="score">44</span> <span class="handle">steady-owl-8831</span></div>
+          <div class="topline">
+            <div class="scoreline"><span class="score">44</span> <span class="handle">steady-owl-8831</span></div>
+            <span class="stage-tag">weak fit</span>
+          </div>
           <div class="ovals"><span class="anslab">Profile</span>
             <span class="oval gender">&#9792;</span>
             <span class="oval">wants kids</span><span class="oval">long-term</span>

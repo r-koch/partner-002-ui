@@ -21,15 +21,16 @@
   header strong{font-weight:600;}
   header a{color:var(--muted); font-size:14px; text-decoration:none;}
   .top{display:flex; gap:14px; padding:16px 18px; border-bottom:1px solid var(--line);}
-  .avatar-col{flex:0 0 auto; position:relative; width:88px; height:88px;}
+  .avatar-col{flex:0 0 auto; width:88px; display:flex; flex-direction:column;
+        align-items:center; gap:10px;}
   .avatar{width:78px; height:78px; border-radius:50%; overflow:hidden;
-          border:3px solid var(--line); background:var(--surface);
-          position:absolute; top:2px; left:2px;}
+          border:3px solid var(--line); background:var(--surface);}
   .avatar img{width:100%; height:100%; object-fit:cover; display:block;}
-    .gring{display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px;
-         border-radius:50%; border:2px solid var(--accent); color:var(--accent); font-size:17px;
-         line-height:1; font-weight:600; margin-right:8px; vertical-align:-4px;}
-  .ident{flex:1; display:flex; flex-direction:column; gap:4px;}
+  .avatar-btns{display:flex; flex-direction:column; gap:6px; width:70px;}
+  .abtn{background:var(--surface); color:var(--text); border:1.5px solid var(--line);
+        border-radius:999px; padding:6px 4px; font-size:10px; line-height:1.2;
+        cursor:pointer; font-family:inherit; text-align:center; text-decoration:none;}
+    .ident{flex:1; display:flex; flex-direction:column; gap:4px;}
   .scoreline{display:flex; align-items:baseline; gap:8px;}
   .score{font-size:26px; font-weight:700; line-height:1;}
   .handle{font-size:16px; font-weight:600; color:var(--muted);}
@@ -77,7 +78,10 @@
     <div class="top">
       <div class="avatar-col">
         <div class="avatar"><img src="anime-avatar-example.png" alt="stylized avatar — not a photo"></div>
-        <div class="gring">&#9895;</div>
+        <div class="avatar-btns">
+          <a class="abtn" href="draft-06a-history.html">history</a>
+          <a class="abtn" href="draft-06b-extended-qa.html">extended / deep</a>
+        </div>
       </div>
       <div class="ident">
         <div class="scoreline"><span class="score">82</span> <span class="handle">brave-lion-4417</span></div>

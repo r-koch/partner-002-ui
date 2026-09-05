@@ -43,6 +43,13 @@
   .oval.gender{width:24px; height:24px; border-radius:50%; padding:0; display:inline-flex;
         align-items:center; justify-content:center; font-size:12px; font-weight:700;
         color:var(--accent); border-color:var(--accent); vertical-align:-2px;}
+  .interests{display:flex; align-items:center; flex-wrap:wrap; gap:5px; margin-top:8px;}
+  .interests .ilab{font-size:11px; color:var(--muted); letter-spacing:.04em; margin-right:2px;}
+  .ichip{display:inline-flex; align-items:center; gap:5px; background:var(--bg);
+         border:1.5px dashed var(--accent); border-radius:999px; padding:2px 9px;
+         font-size:11px; color:var(--text); opacity:.92;}
+  .ichip::before{content:""; width:5px; height:5px; border-radius:50%;
+         background:var(--accent); flex:0 0 auto;}
   .last{font-size:12px; color:var(--muted); margin-top:8px;}
   .new-dot{width:8px; height:8px; border-radius:50%; background:var(--match); display:inline-block;
         margin-right:4px;}
@@ -59,7 +66,7 @@
       <div class="match">
         <div class="topline">
           <div class="scoreline"><span class="score">82</span> <span class="handle">brave-lion-4417</span></div>
-          <span class="stage-tag">stage 2 · avatar</span>
+          <span class="stage-tag">stage 2</span>
         </div>
         <div class="ovals">
           <span class="anslab">Profile</span>
@@ -68,7 +75,10 @@
           <span class="oval">non-smoker</span>
           <span class="oval">long-term</span>
         </div>
-        <div class="last"><span class="new-dot"></span>New: shared ice-breaker result · 2 hours ago</div>
+        <div class="interests">
+          <span class="ilab">Interests</span><span class="ichip">travel</span><span class="ichip">outdoors</span><span class="ichip">space</span>
+        </div>
+        <div class="last"><span class="new-dot"></span>Ice breaker "beach/mountains" — 3 of 5 same · 2 hours ago</div>
       </div>
       <div class="match">
         <div class="topline">
@@ -81,12 +91,15 @@
           <span class="oval">open to kids</span>
           <span class="oval">non-smoker</span>
         </div>
-        <div class="last">You: started a question · yesterday</div>
+        <div class="interests">
+          <span class="ilab">Interests</span><span class="ichip">films</span><span class="ichip">hiking</span>
+        </div>
+        <div class="last">They asked: "ideal weekend?" · awaiting your answer · yesterday</div>
       </div>
       <div class="match">
         <div class="topline">
           <div class="scoreline"><span class="score">77</span> <span class="handle">sunny-deer-5024</span></div>
-          <span class="stage-tag">stage 3 · chat</span>
+          <span class="stage-tag">stage 3</span>
         </div>
         <div class="ovals">
           <span class="anslab">Profile</span>
@@ -94,7 +107,10 @@
           <span class="oval">wants kids</span>
           <span class="oval">flexible hours</span>
         </div>
-        <div class="last">Last message: 3 days ago</div>
+        <div class="interests">
+          <span class="ilab">Interests</span><span class="ichip">concerts</span><span class="ichip">food</span><span class="ichip">books</span>
+        </div>
+        <div class="last">Last message: "have you tried the quiet coastline?" · 3 days ago</div>
       </div>
     </div>
   </div>
