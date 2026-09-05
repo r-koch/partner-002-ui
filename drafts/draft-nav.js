@@ -3,7 +3,13 @@
 (function () {
   var SEQUENCE = [
     "draft-00-palettes.html",
+    "draft-01a-welcome.html",
     "draft-01-signup-18plus.html",
+    "draft-01b-terms.html",
+    "draft-01c-privacy.html",
+    "draft-01d-consent-sensitive.html",
+    "draft-01e-consent-avatar.html",
+    "draft-01f-handle.html",
     "draft-02-questionnaire-onepage.html",
     "draft-04-candidate-list.html",
     "draft-05-matches-list.html",
@@ -11,8 +17,13 @@
     "draft-06-match-stage2.html",
     "draft-08-match-rung3.html",
     "draft-09-icebreaker-pair.html",
+    "draft-09b-icebreaker-result.html",
     "draft-06a-history.html",
-    "draft-06b-extended-qa.html"
+    "draft-06b-extended-qa.html",
+    "draft-04a-safety.html",
+    "draft-04b-your-profile.html",
+    "draft-04d-import.html",
+    "draft-04c-faq.html"
   ];
   var here = location.pathname.split("/").pop() || "draft-00-palettes.html";
   var idx = SEQUENCE.indexOf(here);
