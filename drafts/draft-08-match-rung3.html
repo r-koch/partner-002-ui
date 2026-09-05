@@ -19,7 +19,14 @@
   header{display:flex; justify-content:space-between; align-items:center; padding:16px 18px;
          border-bottom:1px solid var(--line);}
   header strong{font-weight:600;}
+  header nav{display:flex; gap:10px; align-items:center;}
   header a{color:var(--muted); font-size:14px; text-decoration:none;}
+  .qmark{width:20px; height:20px; border-radius:50%; border:1.5px solid var(--muted);
+         color:var(--muted); font-size:12px; display:inline-flex; align-items:center;
+         justify-content:center; cursor:pointer; background:none; font-family:inherit;}
+  .expl{display:none; font-size:12px; color:var(--muted); line-height:1.5;
+        margin:10px 18px 0; border-left:2px solid var(--line); padding:4px 10px;}
+  .expl.show{display:block;}
   .top{display:flex; gap:14px; padding:16px 18px; border-bottom:1px solid var(--line);}
   .avatar-col{flex:0 0 auto; width:88px; display:flex; flex-direction:column;
         align-items:center; gap:10px;}
@@ -30,12 +37,28 @@
   .abtn{background:var(--surface); color:var(--text); border:1.5px solid var(--line);
         border-radius:999px; padding:6px 4px; font-size:10px; line-height:1.2;
         cursor:pointer; font-family:inherit; text-align:center; text-decoration:none;}
-    .ident{flex:1; display:flex; flex-direction:column; gap:4px;}
+  .ident{flex:1; display:flex; flex-direction:column; gap:4px; min-width:0;}
   .scoreline{display:flex; align-items:baseline; gap:8px;}
   .score{font-size:26px; font-weight:700; line-height:1;}
   .handle{font-size:16px; font-weight:600; color:var(--muted);}
-  .chips{font-size:12px; color:var(--muted);}
-  .chat{flex:1; padding:16px 18px; overflow-y:auto; display:flex; flex-direction:column; gap:10px;}
+  .ovals{display:flex; flex-wrap:wrap; gap:6px; margin-top:9px; align-items:center; line-height:24px;}
+  .anslab{font-size:11px; color:var(--muted); letter-spacing:.04em; flex:0 0 auto; line-height:24px;}
+  .oval{background:var(--surface); border:1px solid var(--line); border-radius:999px;
+        padding:4px 12px; font-size:12px; color:var(--text);}
+  .oval.gender{width:24px; height:24px; border-radius:50%; padding:0; display:inline-flex;
+        align-items:center; justify-content:center; font-size:12px; font-weight:700;
+        color:var(--accent); border-color:var(--accent); vertical-align:-2px;}
+  .interests{display:flex; align-items:center; flex-wrap:wrap; gap:6px; margin-top:9px;}
+  .interests .ilab{font-size:11px; color:var(--muted); letter-spacing:.04em; margin-right:2px;}
+  .ichip{display:inline-flex; align-items:center; gap:5px; background:var(--bg);
+         border:1.5px dashed var(--accent); border-radius:999px; padding:3px 9px;
+         font-size:11px; color:var(--text); opacity:.92;}
+  .ichip::before{content:""; width:5px; height:5px; border-radius:50%;
+         background:var(--accent); flex:0 0 auto;}
+  .cancelbar{display:flex; justify-content:flex-end; padding:10px 18px 0;}
+  .cancel{background:none; border:1px solid var(--line); border-radius:999px;
+          padding:9px 16px; font-size:13px; color:var(--muted); cursor:pointer; font-family:inherit;}
+  .chat{flex:1; padding:14px 18px; overflow-y:auto; display:flex; flex-direction:column; gap:10px;}
   .msg{max-width:80%; border-radius:16px; padding:10px 14px; font-size:14px; line-height:1.45;}
   .msg.me{align-self:flex-end; background:var(--positive); color:var(--positive-text);
           border-bottom-right-radius:4px;}
@@ -43,38 +66,25 @@
             border-bottom-left-radius:4px;}
   .msg .t{display:block; font-size:10px; color:var(--muted); margin-top:4px;}
   .msg.me .t{color:rgba(255,255,255,.75);}
-  .e2ee{border:1px solid var(--line); border-radius:12px; padding:8px 12px;
-        font-size:12px; color:var(--muted); text-align:center; margin-bottom:4px;}
-  .rungbar{display:flex; gap:8px; padding:12px 16px 0;}
-  .adv{flex:1; background:var(--positive); color:var(--positive-text); border:none;
-       border-radius:999px; padding:11px 0; font-size:14px; cursor:pointer; font-family:inherit;}
-  .cancel{background:none; border:1px solid var(--line); border-radius:999px;
-          padding:11px 16px; font-size:13px; color:var(--muted); cursor:pointer; font-family:inherit;}
   .inputbar{display:flex; gap:10px; padding:12px 16px; border-top:1px solid var(--line);}
   .inputbar input{flex:1; border:2px solid var(--line); border-radius:999px;
         padding:11px 16px; font-size:15px; background:var(--surface); color:var(--text);
         font-family:inherit;}
   .inputbar button{background:var(--positive); color:var(--positive-text); border:none;
         border-radius:999px; padding:11px 20px; font-size:15px; cursor:pointer; font-family:inherit;}
-  .body{flex:1; padding:16px 18px; overflow-y:auto;}
-  .h2{font-size:15px; font-weight:600; margin:4px 0 10px;}
-  details{border:1px solid var(--line); border-radius:14px; background:var(--surface);
-          padding:12px 15px; margin-bottom:12px;}
-  summary{cursor:pointer; font-size:14px; font-weight:600;}
-  .res{font-size:13px; color:var(--muted); margin-top:8px; line-height:1.6;}
-  .demo-note{text-align:center; font-size:12px; color:var(--muted); padding:0 16px 16px;}
 </style>
 </head>
 <body>
   <div class="phone">
     <header>
-      <strong>Matches</strong>
-      <nav style="display:flex; gap:10px;">
-        <a href="#" onclick="document.getElementById('faq-area')?.scrollIntoView({behavior:'smooth'});return false;">FAQ</a>
-        <a href="#" onclick="document.getElementById('page-info').classList.toggle('show');return false;">?</a>
+      <strong>Match Stage 3 <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
+      <nav>
+        <a href="#">FAQ</a>
         <a href="#">Safety</a>
       </nav>
     </header>
+    <div class="expl" id="h-expl">End-to-end encrypted. Text only, no images, nothing stored on the server. You both unlocked this stage together.</div>
+
     <div class="top">
       <div class="avatar-col">
         <div class="avatar"><img src="anime-avatar-example.png" alt="stylized avatar — not a photo"></div>
@@ -85,16 +95,25 @@
       </div>
       <div class="ident">
         <div class="scoreline"><span class="score">82</span> <span class="handle">brave-lion-4417</span></div>
-        <div class="chips">stage 3 · chat open · score locked at match</div>
+        <div class="ovals">
+          <span class="anslab">Profile</span>
+          <span class="oval gender">&#9895;</span>
+          <span class="oval">wants kids</span>
+          <span class="oval">non-smoker</span>
+          <span class="oval">long-term</span>
+        </div>
+        <div class="interests">
+          <span class="ilab">Interests</span><span class="ichip">travel</span><span class="ichip">outdoors</span><span class="ichip">space</span>
+        </div>
       </div>
     </div>
-<div class="rungbar">
-      <button class="adv">Ready to advance</button>
+
+    <div class="cancelbar">
       <button class="cancel">Cancel match</button>
     </div>
+
     <div class="chat">
-      <div class="e2ee">End-to-end encrypted · text only · nothing stored on the server</div>
-      <div class="msg them">the mountains one — definitely.
+      <div class="msg them">the mountains one, definitely.
         <span class="t">yesterday 19:02</span>
       </div>
       <div class="msg them">and your weekend answer sat with me
@@ -103,7 +122,7 @@
       <div class="msg me">ha, city breaks are underrated
         <span class="t">yesterday 19:11</span>
       </div>
-      <div class="msg them">fair — but have you tried the quiet coastline?
+      <div class="msg them">fair, but have you tried the quiet coastline?
         <span class="t">yesterday 19:14</span>
       </div>
     </div>
@@ -111,19 +130,6 @@
       <input type="text" placeholder="Message (text only, no images)" disabled>
       <button disabled>Send</button>
     </div>
-
-      <div class="h-row" id="faq-area" style="margin-top:14px;">
-        <span class="h2">FAQ</span>
-        <button class="qmark" onclick="this.nextElementSibling.classList.toggle('show')">?</button>
-        <div class="expl">Short answers to the questions people actually ask.</div>
-      </div>
-      <details class="card">
-        <summary>Why does the score never change?</summary>
-        <div class="rows">
-          <div class="row"><span>The score is fixed when you match — your later answers don't rewrite it. It's a snapshot of the fit you matched on.<span class="meta">more questions coming in the real FAQ</span></span></div>
-        </div>
-      </details>
-    
   </div>
   <script src="palette-switcher.js"></script>
 <script src="draft-nav.js"></script>
