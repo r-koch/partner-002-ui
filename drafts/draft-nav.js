@@ -23,6 +23,7 @@
     "draft-04a-safety.html",
     "draft-04b-your-profile.html",
     "draft-04d-import.html",
+    "draft-04e-interests-manual.html",
     "draft-04c-faq.html"
   ];
   var here = location.pathname.split("/").pop() || "draft-00-palettes.html";

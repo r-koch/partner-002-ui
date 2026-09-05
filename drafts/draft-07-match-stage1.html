@@ -70,6 +70,18 @@
   .btn.primary{background:var(--positive); color:var(--positive-text);}
   .btn.ghost{background:var(--surface); color:var(--text); border:2px solid var(--line);}
   .demo-note{display:none;}
+
+  .h-row{display:flex; align-items:center; gap:6px; margin:4px 0 10px;}
+  .h2{font-size:15px; font-weight:600;}
+  .card{border:1px solid var(--line); border-radius:14px; background:var(--surface);
+        margin-bottom:12px; overflow:hidden;}
+  .card summary{cursor:pointer; font-size:14px; font-weight:600; padding:13px 15px;
+        list-style:none;}
+  .rows{padding:0 15px 13px;}
+  .row{display:flex; align-items:center; justify-content:space-between; gap:8px;
+       padding:10px 0; border-bottom:1px solid var(--line); font-size:14px;}
+  .row:last-child{border-bottom:none;}
+  .row .meta{font-size:12px; color:var(--muted); display:block;}
 </style>
 </head>
 <body>
@@ -81,7 +93,7 @@
         <a href="#">Safety</a>
       </nav>
     </header>
-    <div class="expl" id="h-expl">You matched. Stage 1 shows the basic answers you share. Ask questions you've answered yourself, then advance together when you're ready.</div>
+    <div class="expl" id="h-expl">Stage 1 is about getting to know each other’s answers. Everything they answered is open now — ask for what’s missing (you can only ask what you've answered yourself).</div>
 
     <div class="match">
       <div class="avatar-col">
