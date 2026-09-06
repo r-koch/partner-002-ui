@@ -2,7 +2,6 @@
    Injects a fixed bottom bar with left/right arrows + a page counter. No emojis. */
 (function () {
   var SEQUENCE = [
-    "draft-00-palettes.html",
     "draft-01a-welcome.html",
     "draft-01-signup-18plus.html",
     "draft-01b-terms.html",
