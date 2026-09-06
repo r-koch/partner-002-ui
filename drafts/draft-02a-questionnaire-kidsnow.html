@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PARTNER-002 design draft — questionnaire, one question per page</title>
+<style>
+  :root{
+    --bg:#FAF6EF; --surface:#F3EBDD; --text:#2E2620; --muted:#6B5D50;
+    --accent:#B0431F; --accent-text:#FFFFFF; --line:#D8CCBA; --exclude:#A63A2B;
+    --match:#3E6B4F; --positive:#3E6B4F; --positive-text:#FFFFFF;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--text); font-family:Georgia,'Times New Roman',serif;
+       min-height:100vh; padding:24px;}
+  .phone{width:100%; max-width:420px; margin:0 auto; background:var(--bg);
+         border-radius:24px; overflow:hidden; border:1px solid var(--line);
+         display:flex; flex-direction:column; min-height:700px;}
+  header{display:flex; justify-content:space-between; align-items:center; padding:14px 18px;
+         border-bottom:1px solid var(--line);}
+  header strong{font-weight:600;}
+  header nav{display:flex; gap:10px; align-items:center;}
+  header a{color:var(--muted); font-size:14px; text-decoration:none;}
+  .qmark{width:20px; height:20px; border-radius:50%; border:1.5px solid var(--muted);
+         color:var(--muted); font-size:12px; display:inline-flex; align-items:center;
+         justify-content:center; cursor:pointer; background:none; font-family:inherit;}
+  .expl{display:none; font-size:12px; color:var(--muted); line-height:1.5;
+        margin:8px 18px 0; border-left:2px solid var(--line); padding:4px 10px;}
+  .expl.show{display:block;}
+  .progress{display:flex; gap:3px; padding:12px 18px 0;}
+  .progress span{flex:1; height:4px; background:var(--line); border-radius:2px;}
+  .progress span.done{background:var(--positive);}
+  .progress span.now{background:var(--accent);}
+  .body{flex:1; padding:14px 16px; overflow-y:auto;}
+  h1{font-size:23px; font-weight:600; margin-bottom:12px; line-height:1.25;}
+  .cols{display:flex; gap:12px; align-items:flex-start;}
+  .col{flex:1; min-width:0;}
+  .col-tag{display:block; font-size:11px; letter-spacing:.05em; color:var(--muted);
+        text-align:center; margin-bottom:8px;}
+  .opt{display:flex; align-items:center; gap:8px; border:1.5px solid var(--line);
+       border-radius:11px; padding:10px 10px; margin-bottom:7px; font-size:14px;
+       cursor:pointer; background:var(--surface); text-align:left; width:100%;
+       font-family:inherit; color:var(--text); line-height:1.3;}
+  .opt:hover{border-color:var(--muted);}
+  .opt.sel{border-color:var(--accent); background:var(--bg);}
+  .opt .mark{flex:0 0 auto; width:20px; height:20px; border:2px solid var(--muted);
+       display:inline-flex; align-items:center; justify-content:center;}
+  .opt .mark.round{border-radius:50%;}
+  .opt .mark.square{border-radius:5px;}
+  .opt.sel .mark{border-color:var(--accent);}
+  .opt.sel .mark.round::after{content:""; width:10px; height:10px; border-radius:50%;
+       background:var(--accent);}
+  .opt.sel .mark.square::after{content:"\2713"; font-size:13px; color:var(--accent);
+       font-weight:700;}
+  .imp{display:flex; align-items:center; gap:8px; margin-top:12px; padding-top:10px;
+       border-top:1px dashed var(--line);}
+  .imp span{font-size:12px; color:var(--muted); flex:1;}
+  .imp .dots{display:flex; gap:3px;}
+  .imp .dots i{width:21px; height:21px; border:1.5px solid var(--line); border-radius:50%;
+       display:inline-flex; align-items:center; justify-content:center; font-style:normal;
+       font-size:11px; color:var(--muted); cursor:pointer; background:var(--bg);}
+  .imp .dots i.on{border-color:var(--accent); color:var(--accent); font-weight:700;}
+  .footer{margin-top:auto; padding:14px 18px; display:flex; justify-content:space-between;
+          align-items:center; border-top:1px solid var(--line);}
+  .back{background:none; border:none; color:var(--muted); font-size:15px; cursor:pointer;
+        font-family:inherit;}
+  .next{background:var(--positive); color:var(--positive-text); border:none; border-radius:999px;
+        padding:12px 24px; font-size:15px; cursor:pointer; font-family:inherit;}
+  .next[disabled]{opacity:.4; cursor:not-allowed;}
+</style>
+</head>
+<body>
+  <div class="phone">
+    <header>
+      <strong>Questionnaire – Kids now <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
+      <nav>
+        <a href="#">FAQ</a>
+        <a href="#">Safety</a>
+      </nav>
+    </header>
+    <div class="expl" id="h-expl">What's true for you now, and what you're looking for. Circle = pick one, square = pick several.</div>
+    <div class="progress">
+      <span class="done"></span><span class="done"></span><span class="now"></span>
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span>
+    </div>
+    <div class="body">
+      <div class="cols">
+        <div class="col">
+          <span class="col-tag">About you</span>
+          <button class="opt sel"><span class="mark round"></span>No kids</button>
+          <button class="opt"><span class="mark round"></span>Have kids</button>
+          <button class="opt"><span class="mark round"></span>Grown up</button>
+        </div>
+        <div class="col">
+          <span class="col-tag">Looking for</span>
+          <button class="opt sel"><span class="mark square"></span>No kids</button>
+          <button class="opt"><span class="mark square"></span>Has kids</button>
+          <button class="opt"><span class="mark square"></span>Grown up</button>
+          <button class="opt"><span class="mark square"></span>Any</button>
+          <div class="imp">
+            <span>How much does this matter?</span>
+            <span class="dots">
+              <i class="on">1</i><i>2</i><i>3</i><i>4</i><i>5</i>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <button class="back">Back</button>
+      <button class="next" disabled>Continue</button>
+    </div>
+  </div>
+  <script src="palette-switcher.js"></script>
+<script src="draft-nav.js"></script>
+</body>
+</html>

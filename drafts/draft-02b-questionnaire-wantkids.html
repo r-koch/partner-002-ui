@@ -67,20 +67,22 @@
   .next{background:var(--positive); color:var(--positive-text); border:none; border-radius:999px;
         padding:12px 24px; font-size:15px; cursor:pointer; font-family:inherit;}
   .next[disabled]{opacity:.4; cursor:not-allowed;}
+  .flag{flex:0 0 auto; font-size:11px; color:var(--exclude); border:1px solid var(--exclude);
+        border-radius:999px; padding:2px 8px; background:var(--bg);}
 </style>
 </head>
 <body>
   <div class="phone">
     <header>
-      <strong>Questionnaire – Kids <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
+      <strong>Questionnaire – Want kids <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
       <nav>
         <a href="#">FAQ</a>
         <a href="#">Safety</a>
       </nav>
     </header>
-    <div class="expl" id="h-expl">One question, both sides: what's true for you, and what you're looking for. Circle = pick one, square = pick several.</div>
+    <div class="expl" id="h-expl">A red flag is a hard boundary: a person you match with can never break it. It's kept private and never shown to them.</div>
     <div class="progress">
-      <span class="done"></span><span class="done"></span><span class="now"></span>
+      <span class="done"></span><span class="done"></span><span class="done"></span><span class="now"></span>
       <span></span><span></span><span></span><span></span><span></span>
       <span></span><span></span><span></span><span></span><span></span>
       <span></span>
@@ -89,17 +91,15 @@
       <div class="cols">
         <div class="col">
           <span class="col-tag">About you</span>
-          <button class="opt sel"><span class="mark round"></span>Want kids</button>
-          <button class="opt"><span class="mark round"></span>Don't want</button>
+          <button class="opt sel"><span class="mark round"></span>Yes</button>
+          <button class="opt"><span class="mark round"></span>No</button>
           <button class="opt"><span class="mark round"></span>Open</button>
-          <button class="opt"><span class="mark round"></span>Already have enough</button>
-          <button class="opt"><span class="mark round"></span>Already have, want more</button>
           <button class="opt"><span class="mark round"></span>Not sure yet</button>
         </div>
         <div class="col">
           <span class="col-tag">Looking for</span>
           <button class="opt sel"><span class="mark round"></span>Wants kids</button>
-          <button class="opt"><span class="mark round"></span>Doesn't want kids</button>
+          <button class="opt"><span class="mark round"></span>Doesn't want</button>
           <button class="opt"><span class="mark round"></span>Open</button>
           <button class="opt"><span class="mark round"></span>Any</button>
           <div class="imp">
@@ -107,6 +107,9 @@
             <span class="dots">
               <i class="on">1</i><i>2</i><i>3</i><i>4</i><i>5</i>
             </span>
+          </div>
+          <div style="margin-top:8px; display:flex; justify-content:center;">
+            <button class="opt" style="width:auto; padding:7px 14px; font-size:12px; margin:0;"><span class="flag">red flag</span></button>
           </div>
         </div>
       </div>
