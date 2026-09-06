@@ -7,60 +7,109 @@
 <style>
   :root{
     --bg:#FAF6EF; --surface:#F3EBDD; --text:#2E2620; --muted:#6B5D50;
-    --accent:#B0431F; --accent-text:#FFFFFF; --line:#D8CCBA; --exclude:#A63A2B; --match:#3E6B4F; --positive:#3E6B4F;
+    --accent:#B0431F; --accent-text:#FFFFFF; --line:#D8CCBA; --exclude:#A63A2B;
+    --match:#3E6B4F; --positive:#3E6B4F; --positive-text:#FFFFFF;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   body{background:var(--bg); color:var(--text); font-family:Georgia,'Times New Roman',serif;
-       min-height:100vh; display:flex; flex-direction:column;}
-  .progress{display:flex; gap:4px; padding:18px 20px 0;}
+       min-height:100vh; padding:24px;}
+  .phone{width:100%; max-width:420px; margin:0 auto; background:var(--bg);
+         border-radius:24px; overflow:hidden; border:1px solid var(--line);
+         display:flex; flex-direction:column; min-height:740px;}
+  header{display:flex; justify-content:space-between; align-items:center; padding:16px 18px;
+         border-bottom:1px solid var(--line);}
+  header strong{font-weight:600;}
+  header nav{display:flex; gap:10px; align-items:center;}
+  header a{color:var(--muted); font-size:14px; text-decoration:none;}
+  .qmark{width:20px; height:20px; border-radius:50%; border:1.5px solid var(--muted);
+         color:var(--muted); font-size:12px; display:inline-flex; align-items:center;
+         justify-content:center; cursor:pointer; background:none; font-family:inherit;}
+  .expl{display:none; font-size:12px; color:var(--muted); line-height:1.5;
+        margin:10px 18px 0; border-left:2px solid var(--line); padding:4px 10px;}
+  .expl.show{display:block;}
+  .progress{display:flex; gap:4px; padding:14px 18px 0;}
   .progress span{flex:1; height:4px; background:var(--line); border-radius:2px;}
   .progress span.done{background:var(--positive);}
   .progress span.now{background:var(--accent);}
-  .card{flex:1; display:flex; flex-direction:column; justify-content:center;
-        max-width:480px; width:100%; margin:0 auto; padding:28px 24px;}
-  .qno{font-size:14px; color:var(--muted); margin-bottom:14px;}
-  h1{font-size:26px; font-weight:600; margin-bottom:6px; line-height:1.25;}
-  p.hint{font-size:15px; color:var(--muted); margin-bottom:26px;}
+  .body{flex:1; padding:16px 18px; overflow-y:auto;}
+  .qno{font-size:12px; color:var(--muted); margin-bottom:10px;}
+  h1{font-size:24px; font-weight:600; margin-bottom:4px; line-height:1.25;}
+  .lead{font-size:14px; color:var(--muted); margin-bottom:16px; line-height:1.5;}
+  .axis-block{border:1.5px solid var(--line); border-radius:16px; padding:14px 14px 10px;
+        margin-bottom:12px;}
+  .axis-block .axis-tag{display:inline-block; font-size:11px; letter-spacing:.05em;
+        color:var(--muted); border:1px solid var(--line); border-radius:999px;
+        padding:3px 9px; margin-bottom:10px;}
   .opt{display:block; border:2px solid var(--line); border-radius:12px;
-       padding:16px 18px; margin-bottom:12px; font-size:17px; cursor:pointer;
+       padding:13px 15px; margin-bottom:8px; font-size:15px; cursor:pointer;
        background:var(--surface);}
-  .opt:hover{border-color:var(--muted);}
   .opt.sel{border-color:var(--accent);}
-  .opt small{display:block; color:var(--muted); font-size:13px; margin-top:3px;}
-  .footer{margin-top:auto; padding:20px; display:flex; justify-content:space-between;
-          align-items:center; max-width:480px; width:100%; margin-left:auto; margin-right:auto;}
+  .opt small{display:block; color:var(--muted); font-size:12px; margin-top:2px;}
+  .imp{display:flex; align-items:center; gap:8px; margin-top:10px; padding-top:10px;
+       border-top:1px dashed var(--line);}
+  .imp span{font-size:12px; color:var(--muted); flex:1;}
+  .imp .dots{display:flex; gap:3px;}
+  .imp .dots i{width:22px; height:22px; border:1.5px solid var(--line); border-radius:50%;
+       display:inline-flex; align-items:center; justify-content:center; font-style:normal;
+       font-size:11px; color:var(--muted); cursor:pointer; background:var(--bg);}
+  .imp .dots i.on{border-color:var(--accent); color:var(--accent); font-weight:700;}
+  .footer{margin-top:auto; padding:16px 18px; display:flex; justify-content:space-between;
+          align-items:center; border-top:1px solid var(--line);}
   .back{background:none; border:none; color:var(--muted); font-size:15px; cursor:pointer;
         font-family:inherit;}
   .next{background:var(--positive); color:var(--positive-text); border:none; border-radius:999px;
-        padding:14px 30px; font-size:16px; cursor:pointer; font-family:inherit;}
-  .next[disabled]{opacity:.4; cursor:not-allowed;}
-  .axis{display:inline-block; font-size:12px; letter-spacing:.06em; text-transform:uppercase;
-        color:var(--muted); border:1px solid var(--line); border-radius:999px;
-        padding:4px 10px; margin-bottom:12px;}
+        padding:12px 24px; font-size:15px; cursor:pointer; font-family:inherit;}
 </style>
 </head>
 <body>
-  <div class="progress">
-    <span class="done"></span><span class="done"></span><span class="now"></span>
-    <span></span><span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span>
+  <div class="phone">
+    <header>
+      <strong>Questionnaire <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
+      <nav>
+        <a href="#">FAQ</a>
+        <a href="#">Safety</a>
+      </nav>
+    </header>
+    <div class="expl" id="h-expl">You answer what you're like, and what you're looking for. The second side only matters if a criterion matters to you.</div>
+    <div class="progress">
+      <span class="done"></span><span class="done"></span><span class="now"></span>
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span>
+    </div>
+    <div class="body">
+      <div class="qno">Question 3 of 14</div>
+      <h1>Kids</h1>
+      <div class="lead">One question, both sides. What's true for you, and what you're looking for.</div>
+
+      <div class="axis-block">
+        <span class="axis-tag">About you</span>
+        <label class="opt sel">Want kids<small>An important part of my future.</small></label>
+        <label class="opt">Don't want<small>That's a full life too.</small></label>
+        <label class="opt">Open<small>Could go either way.</small></label>
+        <label class="opt">Already have enough<small>And they are wonderful.</small></label>
+      </div>
+
+      <div class="axis-block">
+        <span class="axis-tag">Looking for</span>
+        <label class="opt sel">Wants kids<small>Important that they share this.</small></label>
+        <label class="opt">Doesn't want kids<small>Better to know early.</small></label>
+        <label class="opt">Open<small>No strong side.</small></label>
+        <label class="opt">Any<small>Doesn't matter to me.</small></label>
+        <div class="imp">
+          <span>How much does this matter?</span>
+          <span class="dots">
+            <i class="on">1</i><i>2</i><i>3</i><i>4</i><i>5</i>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <button class="back">Back</button>
+      <button class="next">Continue</button>
+    </div>
   </div>
-  <div class="card">
-    <span class="axis">Looking for</span>
-    <div class="qno">Question 3 of 16</div>
-    <h1>Are kids on the table?</h1>
-    <p class="hint">Your answer shows up in other people's matching. No wrong answers.</p>
-    <label class="opt">Wants kids<small>An important part of my future.</small></label>
-    <label class="opt sel">Doesn't want kids<small>That's a full life too.</small></label>
-    <label class="opt">Open<small>Could go either way.</small></label>
-    <label class="opt">Already have enough<small>And they are wonderful.</small></label>
-  </div>
-  <div class="footer">
-    <button class="back">Back</button>
-    <button class="next">Continue</button>
-  </div>
-<script src="palette-switcher.js"></script>
+  <script src="palette-switcher.js"></script>
 <script src="draft-nav.js"></script>
 </body>
 </html>
