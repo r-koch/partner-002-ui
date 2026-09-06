@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PARTNER-002 design draft — Pricing</title>
+<style>
+
+  :root{
+    --bg:#FAF6EF; --surface:#F3EBDD; --text:#2E2620; --muted:#6B5D50;
+    --accent:#B0431F; --accent-text:#FFFFFF; --line:#D8CCBA; --exclude:#A63A2B;
+    --match:#3E6B4F; --positive:#3E6B4F; --positive-text:#FFFFFF;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--text); font-family:Georgia,'Times New Roman',serif;
+       min-height:100vh; padding:24px;}
+  .phone{width:100%; max-width:420px; margin:0 auto; background:var(--bg);
+         border-radius:24px; overflow:hidden; border:1px solid var(--line);
+         display:flex; flex-direction:column; min-height:700px;}
+  header{display:flex; justify-content:space-between; align-items:center; padding:16px 18px;
+         border-bottom:1px solid var(--line);}
+  header strong{font-weight:600;}
+  header nav{display:flex; gap:10px; align-items:center;}
+  header a{color:var(--muted); font-size:14px; text-decoration:none; display:inline-flex;}
+  .qmark{width:20px; height:20px; border-radius:50%; border:1.5px solid var(--muted);
+         color:var(--muted); font-size:12px; display:inline-flex; align-items:center;
+         justify-content:center; cursor:pointer; background:none; font-family:inherit;}
+  .expl{display:none; font-size:12px; color:var(--muted); line-height:1.5;
+        margin:10px 18px 0; border-left:2px solid var(--line); padding:4px 10px;}
+  .expl.show{display:block;}
+  .body{flex:1; padding:18px; overflow-y:auto;}
+  h1{font-size:23px; font-weight:600; margin-bottom:6px;}
+  .lead{font-size:14px; color:var(--muted); margin-bottom:16px; line-height:1.5;}
+  .plan{border:2px solid var(--line); border-radius:14px; background:var(--surface);
+        padding:14px 16px; margin-bottom:10px;}
+  .plan .name{font-size:16px; font-weight:600; display:flex; justify-content:space-between;}
+  .plan .price{color:var(--accent);}
+  .plan .desc{font-size:13px; color:var(--muted); line-height:1.5; margin:6px 0 10px;}
+  .plan .incl{font-size:13px; line-height:1.7;}
+  .plan .incl span{color:var(--muted);}
+  .btn{display:block; width:100%; background:var(--positive); color:var(--positive-text);
+       border:none; border-radius:999px; padding:12px 0; font-size:15px; cursor:pointer;
+       font-family:inherit; margin-top:6px; text-align:center;}
+  .providers{font-size:13px; color:var(--muted); margin-top:14px; line-height:1.6;}
+  .fine{font-size:11px; color:var(--muted); margin-top:12px; line-height:1.6;
+        border-top:1px solid var(--line); padding-top:10px;}
+</style>
+</head>
+<body>
+  <div class="phone" style="min-height:640px;">
+    <header>
+      <strong>Pricing <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
+      <nav><a href="#" title="Help"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></a><a href="#" title="Safety"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></a></nav>
+    </header>
+    <div class="expl" id="h-expl">Matching and getting to know someone (stage 1 and 2) are free forever. Only opening the chat, stage 3, costs — and only for the person who starts it. Your 30-day period begins when you accept the consent page. You never enter card numbers on our site — a certified payment provider handles them. Your email is only used for payment receipts. Cancel anytime with one tap; by law you can withdraw within 14 days.</div>
+    <div class="body">
+      <h1>Talk to the people you match with.</h1>
+      <div class="lead">Stages 1 and 2 are free. Opening chat, stage 3, takes an advance — you pay only when you start it, never for receiving a chat.</div>
+
+      <div class="plan">
+        <div class="name"><span>Free</span><span class="price">EUR 0</span></div>
+        <div class="desc">3 stage-3 advances per 30 days.</div>
+        <div class="incl"><span>&#10003; Matching, stage 1 and stage 2</span><br><span>&#10003; 3 chat unlocks per period</span></div>
+        <button class="btn" style="background:var(--line); color:var(--text);">Current plan</button>
+      </div>
+
+      <div class="plan">
+        <div class="name"><span>Unlimited month</span><span class="price">EUR [price]</span></div>
+        <div class="desc">Unlimited stage-3 advances for 30 days. Cancel anytime.</div>
+        <div class="incl"><span>&#10003; Unlimited chat unlocks</span><br><span>&#10003; Cancel anytime, no tricks</span></div>
+        <button class="btn">Subscribe</button>
+      </div>
+
+      <div class="plan">
+        <div class="name"><span>Advance bundles</span><span class="price">EUR [price]</span></div>
+        <div class="desc">Prepaid chat unlocks that never expire.</div>
+        <div class="incl"><span>&#10003; 5 / 10 / 20 advances</span><br><span>&#10003; A month's membership never ends your bundle</span></div>
+        <button class="btn">Buy advances</button>
+      </div>
+
+      <div class="providers">PayPal, credit card, SEPA direct debit, Apple/Google Pay.</div>
+    </div>
+  </div>
+  <script src="palette-switcher.js"></script>
+<script src="draft-nav.js"></script>
+</body>
+</html>

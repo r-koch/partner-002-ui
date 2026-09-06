@@ -24,6 +24,7 @@
     "draft-04b-your-profile.html",
     "draft-04d-import.html",
     "draft-04e-interests-manual.html",
+    "draft-04f-pricing.html",
     "draft-04c-faq.html"
   ];
   var here = location.pathname.split("/").pop() || "draft-01a-welcome.html";
