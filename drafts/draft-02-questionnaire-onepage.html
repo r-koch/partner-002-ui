@@ -37,10 +37,10 @@
   .col{flex:1; min-width:0;}
   .col-tag{display:block; font-size:11px; letter-spacing:.05em; color:var(--muted);
         text-align:center; margin-bottom:8px;}
-  .opt{display:flex; align-items:center; gap:9px; border:1.5px solid var(--line);
-       border-radius:11px; padding:11px 12px; margin-bottom:8px; font-size:15px;
+  .opt{display:flex; align-items:center; gap:8px; border:1.5px solid var(--line);
+       border-radius:11px; padding:10px 10px; margin-bottom:7px; font-size:14px;
        cursor:pointer; background:var(--surface); text-align:left; width:100%;
-       font-family:inherit; color:var(--text);}
+       font-family:inherit; color:var(--text); line-height:1.3;}
   .opt:hover{border-color:var(--muted);}
   .opt.sel{border-color:var(--accent); background:var(--bg);}
   .opt .mark{flex:0 0 auto; width:20px; height:20px; border:2px solid var(--muted);
@@ -72,7 +72,7 @@
 <body>
   <div class="phone">
     <header>
-      <strong>Kids <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
+      <strong>Questionnaire – Kids <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
       <nav>
         <a href="#">FAQ</a>
         <a href="#">Safety</a>
