@@ -38,11 +38,21 @@
   .col-tag{display:block; font-size:11px; letter-spacing:.05em; color:var(--muted);
         text-align:center; margin-bottom:8px;}
 
-  .opt{display:flex; align-items:stretch; margin-bottom:7px; font-size:14px;
-       cursor:pointer; background:var(--surface); border-radius:11px; overflow:hidden;
-       text-align:left; width:100%; font-family:inherit; color:var(--text); line-height:1.3;}
+  /* base .opt: simple button-style row (About-you: mark + text directly inside) */
+  .opt{display:flex; align-items:center; gap:8px; border:1.5px solid var(--line);
+       border-radius:11px; padding:10px 12px; margin-bottom:7px; font-size:14px;
+       cursor:pointer; background:var(--surface); text-align:left; width:100%;
+       font-family:inherit; color:var(--text); line-height:1.3;}
+  .opt:hover{border-color:var(--muted);}
+  .opt.sel{border-color:var(--accent); background:var(--bg);}
+
+  /* cell-model override: only rows that actually contain mark|text|flag cells */
+  .opt:has(.cell){display:flex; align-items:stretch; gap:0; border:none; padding:0;
+       overflow:hidden;}
+  .opt:has(.cell):hover{border-color:transparent;}
+  .opt:has(.cell).sel{border-color:transparent; background:var(--surface);}
   .opt .cell{border:1.5px solid var(--line); display:flex; align-items:center;}
-  .opt:hover .cell{border-color:var(--muted);}
+  .opt:has(.cell):hover .cell{border-color:var(--muted);}
   .opt .cell.mark{border-radius:11px 0 0 11px; border-right:none; padding:10px 4px 10px 12px;}
   .opt .cell.text{flex:1; min-width:0; border-left:none; border-right:none; padding:10px 4px;}
   .opt .cell.flag{border-radius:0 11px 11px 0; border-left:none; padding:6px 8px;
