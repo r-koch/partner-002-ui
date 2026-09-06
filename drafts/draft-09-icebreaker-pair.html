@@ -35,19 +35,26 @@
   .no-back{text-align:center; font-size:12px; color:var(--muted);
         border-top:1px solid var(--line); padding:12px 20px;}
   .demo-note{text-align:center; font-size:12px; color:var(--muted); padding:0 16px 16px;}
+  .qmark{width:20px; height:20px; border-radius:50%; border:1.5px solid var(--muted);
+         color:var(--muted); font-size:12px; display:inline-flex; align-items:center;
+         justify-content:center; cursor:pointer; background:none; font-family:inherit;}
+  .expl{display:none; font-size:12px; color:var(--muted); line-height:1.5;
+        margin:10px 18px 0; border-left:2px solid var(--line); padding:4px 10px;}
+  .expl.show{display:block;}
 </style>
 </head>
 <body>
   <div class="phone">
     <header>
-      <strong>Ice breaker</strong>
+      <strong>Ice breaker <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
       <a href="#">with brave-lion-4417</a>
     </header>
+    <div class="expl" id="h-expl">Which one feels more like you? Trust the first gut reaction — there is no going back. One tap, then the next pair; your choice lands in the shared results, revealed after you both finish.</div>
     <div class="count">Pair 2 of 5</div>
     <div class="dots">
       <span></span><span class="on"></span><span></span><span></span><span></span>
     </div>
-    <div class="hint">Which one feels more like you? Trust the first gut reaction — there is no going back.</div>
+    
     <div class="pair">
       <div class="imgwrap" onclick="document.querySelector('.phone').classList.add('flip')">
         <img src="ib-beach-placeholder.png" alt="beach">
@@ -58,8 +65,8 @@
         <span class="tag">place</span>
       </div>
     </div>
-    <div class="no-back">One tap, then the next pair. Your choice lands in the shared results.</div>
-    <div class="demo-note">Pair 2 of 5 · numbered or unlabeled · results revealed after both finish</div>
+    
+    
   </div>
   <script src="palette-switcher.js"></script>
 <script src="draft-nav.js"></script>

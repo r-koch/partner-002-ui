@@ -37,17 +37,23 @@
   .legend{font-size:12px; color:var(--muted); margin-bottom:12px; line-height:1.5;}
   .legend b{color:var(--match);} .legend i{color:var(--exclude);}
   .demo-note{display:none;}
+  .qmark{width:20px; height:20px; border-radius:50%; border:1.5px solid var(--muted);
+         color:var(--muted); font-size:12px; display:inline-flex; align-items:center;
+         justify-content:center; cursor:pointer; background:none; font-family:inherit;}
+  .expl{display:none; font-size:12px; color:var(--muted); line-height:1.5;
+        margin:10px 18px 0; border-left:2px solid var(--line); padding:4px 10px;}
+  .expl.show{display:block;}
 </style>
 </head>
 <body>
   <div class="phone">
     <header>
-      <strong>Extended / deep Q&amp;A</strong>
+      <strong>Extended / deep Q&amp;A <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
       <a href="draft-06-match-stage2.html">Close</a>
     </header>
+    <div class="expl" id="h-expl">Answers shown for both of you. Green = same, red = no match. Unanswered questions can be sent as a request — you can only ask what you've answered yourself.</div>
     <div class="body">
-      <div class="legend">Answers shown for both of you. <b>Green = same</b>, <i>red = no match</i>.
-        Unanswered questions can be sent as a request — you can only ask what you've answered yourself.</div>
+      
 
       <div class="seg-title">Extended</div>
       <div class="qa">
