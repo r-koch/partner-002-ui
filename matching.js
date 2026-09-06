@@ -63,7 +63,19 @@
   /* Multi-select symmetric items (living, work): the user's Looking-for is a
      SET of acceptable values. A candidate value in the set matches; an empty
      set means "any" (= no preference = skipped from the score). */
-  var MULTI = ["living", "work", "relationshipStyle"];
+  var MULTI = ["living", "work", "relationshipStyle", "smoking", "religion", "pets", "politics",
+               "bodyType", "gender", "kidsNow", "wantKids"];
+
+  /* ITEMS keys are camelCase (score registry); the DOM emits kebab-case names
+     from questionnaire.json ids ("relationship-style", "kids-now", "want-kids").
+     This map keeps DOM collection working for hyphenated ids. */
+  var DOM_NAME = {
+    relationshipStyle: "relationship-style",
+    kidsNow: "kids-now",
+    wantKids: "want-kids",
+    bodyType: "body-type"
+  };
+  function domName(item) { return DOM_NAME[item] || item; }
 
   /* Range criterion semantics, shared by age and height:
      - user bounds may be null/undefined = open end (no constraint on that side)
@@ -245,11 +257,11 @@
 
   /* ---- browser: DOM collection + render (guarded, node-safe) ------------ */
   function qval(item) {
-    var el = document.querySelector('input[name="' + item + '"]:checked');
+    var el = document.querySelector('input[name="' + domName(item) + '"]:checked');
     return el ? el.value : null;
   }
   function qvals(item) {
-    var nodes = document.querySelectorAll('input[name="' + item + '"]:checked');
+    var nodes = document.querySelectorAll('input[name="' + domName(item) + '"]:checked');
     var out = [];
     for (var i = 0; i < nodes.length; i++) out.push(nodes[i].value);
     return out;
@@ -263,12 +275,12 @@
     return v === "" ? null : v;
   }
   function impval(item) {
-    var el = document.querySelector('input[name="' + item + '-imp"]:checked');
+    var el = document.querySelector('input[name="' + domName(item) + '-imp"]:checked');
     return el ? parseInt(el.value, 10) : 3;
   }
   function flagValues(item) {
     var out = [];
-    var nodes = document.querySelectorAll('.flag[data-flag="' + item + '"][aria-pressed="true"]');
+    var nodes = document.querySelectorAll('.flag[data-flag="' + domName(item) + '"][aria-pressed="true"]');
     for (var i = 0; i < nodes.length; i++) out.push(nodes[i].getAttribute("data-flag-value"));
     return out;
   }
@@ -279,8 +291,8 @@
       importance[item] = impval(item);
       if (ITEMS[item] && ITEMS[item].range) {
         // free-form min/max criterion (age, height): empty = open end = no constraint
-        var minEl = document.getElementById(item + "-min");
-        var maxEl = document.getElementById(item + "-max");
+        var minEl = document.getElementById(domName(item) + "-min");
+        var maxEl = document.getElementById(domName(item) + "-max");
         var mn = minEl ? parseBound(minEl.value, RANGE_BOUNDS[item].min, RANGE_BOUNDS[item].max) : null;
         var mx = maxEl ? parseBound(maxEl.value, RANGE_BOUNDS[item].min, RANGE_BOUNDS[item].max) : null;
         // pair-level sanity: a crossed range (min > max) is invalid — the UI
@@ -326,8 +338,8 @@
      Returns { valid: bool, errors: [..] } and toggles .is-invalid on the
      inputs + hint. Empty fields are always fine (no constraint). */
   function validateRangeInputs(item) {
-    var minEl = document.getElementById(item + "-min");
-    var maxEl = document.getElementById(item + "-max");
+    var minEl = document.getElementById(domName(item) + "-min");
+    var maxEl = document.getElementById(domName(item) + "-max");
     var hintEl = document.querySelector('.field-hint[data-hint-for="' + item + '"]');
     if (!minEl || !maxEl) return { valid: true, errors: [] };
     var b = RANGE_BOUNDS[item];

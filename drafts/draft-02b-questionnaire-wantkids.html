@@ -33,7 +33,7 @@
   .progress span.now{background:var(--accent);}
   .body{flex:1; padding:14px 16px; overflow-y:auto;}
   h1{font-size:23px; font-weight:600; margin-bottom:12px; line-height:1.25;}
-  .cols{display:flex; gap:12px; align-items:flex-start;}
+  .cols{display:flex; gap:8px; align-items:flex-start;}
   .col{flex:1; min-width:0;}
   .col-tag{display:block; font-size:11px; letter-spacing:.05em; color:var(--muted);
         text-align:center; margin-bottom:8px;}
@@ -47,6 +47,10 @@
        display:inline-flex; align-items:center; justify-content:center;}
   .opt .mark.round{border-radius:50%;}
   .opt .mark.square{border-radius:5px;}
+  .flagcol ul{list-style:none;}
+  .flagcol li{display:flex; align-items:center; justify-content:center; height:42px;
+       margin-bottom:7px; border:1.5px dashed var(--exclude); border-radius:11px;}
+  .flagcol input{width:18px; height:18px; accent-color:var(--exclude); cursor:pointer;}
   .opt.sel .mark{border-color:var(--accent);}
   .opt.sel .mark.round::after{content:""; width:10px; height:10px; border-radius:50%;
        background:var(--accent);}
@@ -97,19 +101,25 @@
         </div>
         <div class="col">
           <span class="col-tag">Looking for</span>
-          <button class="opt sel"><span class="mark round"></span>Wants kids</button>
-          <button class="opt"><span class="mark round"></span>Doesn't want</button>
-          <button class="opt"><span class="mark round"></span>Open</button>
-          <button class="opt"><span class="mark round"></span>Any</button>
+          <button class="opt sel"><span class="mark square"></span>Wants kids</button>
+          <button class="opt"><span class="mark square"></span>Doesn't want</button>
+          <button class="opt"><span class="mark square"></span>Open</button>
+          <button class="opt"><span class="mark square"></span>Any</button>
           <div class="imp">
             <span>How much does this matter?</span>
             <span class="dots">
               <i class="on">1</i><i>2</i><i>3</i><i>4</i><i>5</i>
             </span>
           </div>
-          <div style="margin-top:8px; display:flex; justify-content:center;">
-            <button class="opt" style="width:auto; padding:7px 14px; font-size:12px; margin:0;"><span class="flag">red flag</span></button>
-          </div>
+        </div>
+        <div class="col flagcol">
+          <span class="col-tag">Red flag</span>
+          <ul>
+            <li><input type="checkbox" title="hard no: never matches anyone who doesn't want kids"></li>
+            <li><input type="checkbox" title="hard no: never matches anyone who wants kids"></li>
+            <li><input type="checkbox" title="hard no: never matches anyone who is open"></li>
+            <li style="border:none;"></li>
+          </ul>
         </div>
       </div>
     </div>
