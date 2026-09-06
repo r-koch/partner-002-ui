@@ -272,34 +272,76 @@
       "conditional": null
     },
     {
-      "id": "children",
-      "label": "Kids",
+      "id": "kids-now",
+      "label": "Kids now",
+      "axis": "both",
+      "you": {
+        "type": "radio",
+        "options": [
+          {
+            "value": "none",
+            "label": "No kids"
+          },
+          {
+            "value": "have",
+            "label": "Have kids"
+          },
+          {
+            "value": "grown-up",
+            "label": "Grown up"
+          }
+        ]
+      },
+      "seek": {
+        "type": "multi",
+        "options": [
+          {
+            "value": "no-kids",
+            "label": "No kids"
+          },
+          {
+            "value": "has-kids",
+            "label": "Has kids"
+          },
+          {
+            "value": "grown-up",
+            "label": "Grown up"
+          },
+          {
+            "value": "any",
+            "label": "Any",
+            "checked": true,
+            "redflag": false
+          }
+        ],
+        "importance": true,
+        "importanceDefault": 2,
+        "importanceAriaLabel": "how much having kids now matters",
+        "redflag": false
+      },
+      "conditional": null
+    },
+    {
+      "id": "want-kids",
+      "label": "Want kids",
       "axis": "both",
       "you": {
         "type": "radio",
         "options": [
           {
             "value": "yes",
-            "label": "Want kids"
+            "label": "Yes"
           },
           {
             "value": "no",
-            "label": "Don't want"
+            "label": "No"
           },
           {
             "value": "open",
             "label": "Open"
           },
           {
-            "value": "already-have-enough",
-            "label": "Already have enough"
-          },
-          {
-            "value": "already-have-want-more",
-            "label": "Already have and want more"
-          },
-          {
-            "value": "undecided",
+            "value": "unsure",
             "label": "Not sure yet"
           }
         ]
@@ -313,19 +355,11 @@
           },
           {
             "value": "no",
-            "label": "Doesn't want kids"
+            "label": "Doesn't want"
           },
           {
             "value": "open",
             "label": "Open"
-          },
-          {
-            "value": "already-have-enough",
-            "label": "Already have enough"
-          },
-          {
-            "value": "already-have-want-more",
-            "label": "Already have and want more"
           },
           {
             "value": "any",
@@ -335,8 +369,8 @@
           }
         ],
         "importance": true,
-        "importanceDefault": 4,
-        "importanceAriaLabel": "how much kids matter",
+        "importanceDefault": 3,
+        "importanceAriaLabel": "how much wanting kids matters",
         "redflag": true
       },
       "conditional": null

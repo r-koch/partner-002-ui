@@ -29,7 +29,8 @@
   /* ---- item registry — questionnaire items feed the score --------------- */
   var ITEMS = {
     relationshipStyle: { label: "Relationship style", category: "Values" },
-    children:  { label: "Kids",               category: "Values" },
+    kidsNow:  { label: "Kids now",             category: "Values" },
+    wantKids: { label: "Want kids",            category: "Values" },
     
     smoking:   { label: "Smoking",            category: "Lifestyle" },
     religion:  { label: "Religion",           category: "Values" },
@@ -81,22 +82,22 @@
   /* ---- synthetic candidate pool (made-up data only) --------------------- */
   var CANDIDATES = [
     { id: "A", answers: {
-        relationshipStyle: ["long-term"], children: "yes", country: "Austria", city: "Vienna", postal: "1140",
+        relationshipStyle: ["long-term"], kidsNow: "none", wantKids: "yes", country: "Austria", city: "Vienna", postal: "1140",
         smoking: "never", religion: "none", distance: "city", country: "Austria", city: "Vienna", postal: "1140", age: 29, height: 176,
         living: "alone", work: "flexible", pets: "love",
         politics: "liberal", freetime: "active-outdoors" } },
     { id: "B", answers: {
-        relationshipStyle: ["long-term"], children: "yes", country: "Austria", city: "Vienna", postal: "1140",
+        relationshipStyle: ["long-term"], kidsNow: "none", wantKids: "yes", country: "Austria", city: "Vienna", postal: "1140",
         smoking: "socially", religion: "christian", distance: "city", country: "Austria", city: "Vienna", postal: "1120", age: 34, height: 168,
         living: "alone", work: "flexible", pets: "tolerate",
         politics: "center", freetime: "homebody" } },
     { id: "C", answers: {
-        relationshipStyle: ["casual"], children: "open",
+        relationshipStyle: ["casual"], kidsNow: "have", wantKids: "open",
         smoking: "socially", religion: "none", distance: "regional", country: "Austria", city: "Graz", postal: "8010", age: 25, height: 158,
         living: "flatmates", work: "shift", pets: "none",
         politics: "apolitical", freetime: "travel" } },
     { id: "D", answers: {
-        relationshipStyle: ["casual"], children: "no",
+        relationshipStyle: ["casual"], kidsNow: "have", wantKids: "no",
         smoking: "regularly", religion: "other", distance: "long-distance", country: "Germany", city: "Berlin", postal: "10115", age: 41, height: 193,
         living: "family", work: "irregular", pets: "allergic",
         politics: "conservative", freetime: "city-culture" } }
@@ -107,7 +108,7 @@
      any height passes until the user types bounds. */
   var DEFAULT_USER = {
     answers: {
-      relationshipStyle: ["long-term"], children: "yes", country: "Austria", city: "Vienna", postal: "1140",
+      relationshipStyle: ["long-term"], kidsNow: "none", wantKids: "yes", country: "Austria", city: "Vienna", postal: "1140",
       smoking: "never", religion: "none", distance: "city",
       ageMin: 27, ageMax: 38,
       heightMin: null, heightMax: null,
@@ -115,7 +116,7 @@
       politics: "liberal", freetime: "active-outdoors"
     },
     importance: {
-      relationshipStyle: 5, children: 4, smoking: 4, religion: 3,
+      relationshipStyle: 5, kidsNow: 2, wantKids: 4, smoking: 4, religion: 3,
       distance: 2, age: 3, height: 3, living: 1, work: 3, pets: 2, politics: 3, freetime: 2
     },
     redFlags: {}
