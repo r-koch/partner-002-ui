@@ -64,9 +64,13 @@
   .flagbtn .flag-cloth{stroke:var(--exclude); stroke-width:1.6; fill:var(--exclude);}
   /* mark selected: accent border around mark+text; flag borderless */
   .opt.cells.sel .cell.cmark,.opt.cells.sel .cell.ctext{border-color:var(--accent);}
+  .opt.cells.sel .cell.ctext{border-right:1.5px solid var(--accent);
+       border-top-right-radius:11px; border-bottom-right-radius:11px;}
   .opt.cells.sel .cell.flag{border-color:transparent;}
   /* flag selected (.flagged): red border around text+flag; mark borderless; pale bg */
   .opt.cells.flagged .cell.ctext,.opt.cells.flagged .cell.flag{border-color:var(--flag-dark,#8A2B1F);}
+  .opt.cells.flagged .cell.ctext{border-left:1.5px solid var(--flag-dark,#8A2B1F);
+       border-top-left-radius:11px; border-bottom-left-radius:11px;}
   .opt.cells.flagged .cell.cmark{border-color:transparent;}
   .opt.cells.flagged .flagbtn{background:var(--flag-bg,#E8B7AE);}
   .opt .mark{flex:0 0 auto; width:20px; height:20px; border:2px solid var(--muted);
