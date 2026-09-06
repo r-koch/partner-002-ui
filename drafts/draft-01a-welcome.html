@@ -62,15 +62,18 @@
       <strong>Welcome <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
       <nav><a href="#">Help</a><a href="#">Safety</a></nav>
     </header>
-    <div class="expl" id="h-expl">Account is minimal: Google handles log-in, we never see your email or name.</div>
+    <div class="expl" id="h-expl">Account is minimal: a provider of your choice handles log-in (OpenID Connect). We never see or store your email, name, or profile – only a provider account number.</div>
     
     <div class="body" style="display:flex; flex-direction:column; justify-content:center;">
       <h1>Find people who fit, not just photos.</h1>
       <div class="lead">Answer questions about what you're like and what you're looking for.
         Your answers stay on your phone. No photos, no matchmaking secrets.</div>
       <button class="btn google">Sign in with Google</button>
+      <button class="btn ghost">Sign in with Apple</button>
+      <button class="btn ghost">Sign in with Microsoft</button>
+      <button class="btn ghost">Sign in with LinkedIn</button>
       <div style="text-align:center; font-size:12px; color:var(--muted); margin-top:14px;">
-        More sign-in options after launch.</div>
+        Sign-in providers: Google, Apple, Microsoft, LinkedIn – all OpenID Connect.</div>
     </div>
   </div>
   <script src="palette-switcher.js"></script>
