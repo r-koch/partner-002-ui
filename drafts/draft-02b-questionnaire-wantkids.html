@@ -54,13 +54,12 @@
   .opt.cells:hover .cell{border-color:var(--muted);}
   .opt.cells .cell.mark{border-radius:11px 0 0 11px; border-right:none; padding:10px 4px 10px 12px;}
   .opt.cells .cell.text{flex:1; min-width:0; border-left:none; border-right:none; padding:10px 4px;}
-  .opt.cells .cell.flag{border-radius:0 11px 11px 0; border-left:none; padding:6px 8px;
-       transition:background .15s;}
-  .flagbtn{flex:0 0 auto; width:20px; height:20px; border:1.5px solid var(--muted);
+  .opt.cells .cell.flag{border-radius:0 11px 11px 0; border-left:none; padding:10px 8px;}
+  .flagbtn{flex:0 0 auto; width:18px; height:18px; border:1.5px solid var(--muted);
        border-radius:5px; background:none; cursor:pointer; padding:0; display:inline-flex;
        align-items:center; justify-content:center; font-family:inherit; position:relative;}
   .opt.cells.flagged .flagbtn{border-color:var(--flag-dark,#8A2B1F);}
-  .flagbtn svg{width:14px; height:14px;}
+  .flagbtn svg{width:12px; height:12px;}
   .flagbtn .flag-stick{stroke:var(--exclude);}
   .flagbtn .flag-cloth{stroke:var(--exclude); stroke-width:1.6; fill:var(--exclude);}
   /* mark selected: accent border around mark+text; flag borderless */
@@ -69,7 +68,7 @@
   /* flag selected (.flagged): red border around text+flag; mark borderless; pale bg */
   .opt.cells.flagged .cell.text,.opt.cells.flagged .cell.flag{border-color:var(--flag-dark,#8A2B1F);}
   .opt.cells.flagged .cell.mark{border-color:transparent;}
-  .opt.cells.flagged .cell.flag{background:var(--flag-bg,#E8B7AE);}
+  .opt.cells.flagged .flagbtn{background:var(--flag-bg,#E8B7AE);}
   .opt .mark{flex:0 0 auto; width:20px; height:20px; border:2px solid var(--muted);
        display:inline-flex; align-items:center; justify-content:center;}
   .opt.cells .mark{border:1.5px solid var(--muted); width:18px; height:18px;}
