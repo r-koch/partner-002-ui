@@ -1468,10 +1468,6 @@
           "label": "Spiritual but not religious"
         },
         {
-          "value": "other",
-          "label": "Other"
-        },
-        {
           "value": "any",
           "label": "Any",
           "checked": true,
@@ -1534,6 +1530,12 @@
         {
           "value": "long-distance",
           "label": "Far is fine"
+        },
+        {
+          "value": "any",
+          "label": "Any",
+          "checked": true,
+          "redflag": false
         }
       ],
       "importance": true,
@@ -1584,10 +1586,6 @@
         {
           "value": "family",
           "label": "Family"
-        },
-        {
-          "value": "other",
-          "label": "Other"
         },
         {
           "value": "any",
@@ -1786,7 +1784,7 @@
   {
     "id": "freetime",
     "label": "Free-time style",
-    "axis": "you",
+    "axis": "both",
     "you": {
       "type": "radio",
       "options": [
@@ -1813,7 +1811,42 @@
         }
       ]
     },
-    "conditional": null
+    "conditional": null,
+    "seek": {
+      "type": "multi",
+      "importance": true,
+      "importanceDefault": 3,
+      "importanceAriaLabel": "how much this matters",
+      "redflag": true,
+      "options": [
+        {
+          "value": "homebody",
+          "label": "Homebody"
+        },
+        {
+          "value": "active-outdoors",
+          "label": "Active outdoors"
+        },
+        {
+          "value": "city-culture",
+          "label": "City culture"
+        },
+        {
+          "value": "travel",
+          "label": "Travel"
+        },
+        {
+          "value": "mixed",
+          "label": "A bit of everything"
+        },
+        {
+          "value": "any",
+          "label": "Any",
+          "checked": true,
+          "redflag": false
+        }
+      ]
+    }
   }
 
   ]
