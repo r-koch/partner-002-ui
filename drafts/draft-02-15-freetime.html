@@ -105,42 +105,34 @@
         padding:12px 24px; font-size:15px; cursor:pointer; font-family:inherit;}
   .next[disabled]{opacity:.4; cursor:not-allowed;}
 
+  /* number / text-field variants */
+  .field-label{display:block; font-size:12px; color:var(--muted); margin:10px 0 4px;}
+  .numinput,.textinput{width:100%; border:1.5px solid var(--line); border-radius:11px;
+    padding:10px 12px; font-size:15px; font-family:inherit; background:var(--bg);
+    color:var(--text);}
+  .numinput:focus,.textinput:focus{border-color:var(--accent); outline:none;}
+  .numpair{display:flex; gap:8px; align-items:center;}
+  .numpair .numinput{flex:1;}
+  .unit{font-size:13px; color:var(--muted); white-space:nowrap;}
 </style>
 </head>
 <body>
   <div class="phone">
     <header>
-      <strong>Questionnaire – Want kids <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
+      <strong>Questionnaire – Free-time style <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
       <nav>
         <a href="#" title="Help"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></a>
       </nav>
     </header>
-    <div class="expl" id="h-expl">A red flag is a hard boundary: a person you match with can never break it. It's kept private and never shown to them.</div>
-    <div class="progress">
-      <span class="done"></span><span class="done"></span><span class="done"></span><span class="now"></span>
-      <span></span><span></span><span></span><span></span><span></span>
-      <span></span><span></span><span></span><span></span><span></span>
-      <span></span>
-    </div>
+    <div class="expl" id="h-expl">How you’d most often spend your free time. Pick one.</div>
+    <div class="progress"><span class="done"></span><span class="done"></span><span class="done"></span><span class="done"></span><span class="done"></span><span class="done"></span><span class="done"></span><span class="done"></span><span class="done"></span><span class="done"></span><span class="done"></span><span class="done"></span><span class="done"></span><span class="done"></span><span class="now"></span></div>
     <div class="body">
-      <div class="cols">
-        <div class="col">
-          <span class="col-tag">About you</span>
-          <button class="opt sel"><span class="mark round"></span>Yes</button>
-          <button class="opt"><span class="mark round"></span>No</button>
-          <button class="opt"><span class="mark round"></span>Open</button>
-          <button class="opt"><span class="mark round"></span>Not sure yet</button>
-        </div>
-        <div class="col">
-          <span class="col-tag">Looking for</span>
-<div class="opt cells sel" onclick="if(event.target.closest('.flagbtn'))return;this.classList.toggle('sel');this.classList.remove('flagged');this.querySelector('.flagbtn').classList.remove('on');"><span class="cell cmark"><span class="mark square"></span></span><span class="cell ctext">Wants kids</span><span class="cell flag"><span class="flagicon"><svg viewBox="0 0 22 22" width="20" height="20" xmlns="http://www.w3.org/2000/svg"><rect class="flag-cloth" x="6" y="3" width="13" height="8" rx="1.2"/><line class="flag-stick" x1="5.5" y1="2" x2="5.5" y2="20" stroke-linecap="round"/></svg></span><span class="flagbtn" title="hard no: never matches anyone who doesn't want kids" onclick="event.stopPropagation();if(this.classList.contains('any-hide'))return false;var keep=function(){var vs=[].slice.call(document.querySelectorAll('.opt.cells .flagbtn')).filter(function(b){return !b.classList.contains('any-hide');});var cnt=vs.filter(function(b){return b.classList.contains('on');}).length;return !(cnt>=vs.length-1&&!this.classList.contains('on'));}.bind(this);if(this.classList.contains('on')||keep()){this.classList.toggle('on');if(this.classList.contains('on')){var o=this.closest('.opt');o.classList.add('flagged');o.classList.remove('sel');}else{this.closest('.opt').classList.remove('flagged');}}else{var h=this,old=this.getAttribute('title');this.setAttribute('title','At least one option must stay open');setTimeout(function(){h.setAttribute('title',old);},1400);}return false;"></span></span></div><div class="opt cells" onclick="if(event.target.closest('.flagbtn'))return;this.classList.toggle('sel');this.classList.remove('flagged');this.querySelector('.flagbtn').classList.remove('on');"><span class="cell cmark"><span class="mark square"></span></span><span class="cell ctext">Doesn't want</span><span class="cell flag"><span class="flagicon"><svg viewBox="0 0 22 22" width="20" height="20" xmlns="http://www.w3.org/2000/svg"><rect class="flag-cloth" x="6" y="3" width="13" height="8" rx="1.2"/><line class="flag-stick" x1="5.5" y1="2" x2="5.5" y2="20" stroke-linecap="round"/></svg></span><span class="flagbtn" title="hard no: never matches anyone who wants kids" onclick="event.stopPropagation();if(this.classList.contains('any-hide'))return false;var keep=function(){var vs=[].slice.call(document.querySelectorAll('.opt.cells .flagbtn')).filter(function(b){return !b.classList.contains('any-hide');});var cnt=vs.filter(function(b){return b.classList.contains('on');}).length;return !(cnt>=vs.length-1&&!this.classList.contains('on'));}.bind(this);if(this.classList.contains('on')||keep()){this.classList.toggle('on');if(this.classList.contains('on')){var o=this.closest('.opt');o.classList.add('flagged');o.classList.remove('sel');}else{this.closest('.opt').classList.remove('flagged');}}else{var h=this,old=this.getAttribute('title');this.setAttribute('title','At least one option must stay open');setTimeout(function(){h.setAttribute('title',old);},1400);}return false;"></span></span></div><div class="opt cells" onclick="if(event.target.closest('.flagbtn'))return;this.classList.toggle('sel');this.classList.remove('flagged');this.querySelector('.flagbtn').classList.remove('on');"><span class="cell cmark"><span class="mark square"></span></span><span class="cell ctext">Open</span><span class="cell flag"><span class="flagicon"><svg viewBox="0 0 22 22" width="20" height="20" xmlns="http://www.w3.org/2000/svg"><rect class="flag-cloth" x="6" y="3" width="13" height="8" rx="1.2"/><line class="flag-stick" x1="5.5" y1="2" x2="5.5" y2="20" stroke-linecap="round"/></svg></span><span class="flagbtn" title="hard no: never matches anyone who is open" onclick="event.stopPropagation();if(this.classList.contains('any-hide'))return false;var keep=function(){var vs=[].slice.call(document.querySelectorAll('.opt.cells .flagbtn')).filter(function(b){return !b.classList.contains('any-hide');});var cnt=vs.filter(function(b){return b.classList.contains('on');}).length;return !(cnt>=vs.length-1&&!this.classList.contains('on'));}.bind(this);if(this.classList.contains('on')||keep()){this.classList.toggle('on');if(this.classList.contains('on')){var o=this.closest('.opt');o.classList.add('flagged');o.classList.remove('sel');}else{this.closest('.opt').classList.remove('flagged');}}else{var h=this,old=this.getAttribute('title');this.setAttribute('title','At least one option must stay open');setTimeout(function(){h.setAttribute('title',old);},1400);}return false;"></span></span></div><div class="opt cells" onclick="if(event.target.closest('.flagbtn'))return;this.classList.toggle('sel');this.classList.remove('flagged');this.querySelector('.flagbtn').classList.remove('on');"><span class="cell cmark"><span class="mark square"></span></span><span class="cell ctext">Any</span><span class="cell flag"><span class="flagicon any-hide"><svg viewBox="0 0 22 22" width="20" height="20" xmlns="http://www.w3.org/2000/svg"><rect class="flag-cloth" x="6" y="3" width="13" height="8" rx="1.2"/><line class="flag-stick" x1="5.5" y1="2" x2="5.5" y2="20" stroke-linecap="round"/></svg></span><span class="flagbtn any-hide" title="" onclick="event.stopPropagation();if(this.classList.contains('any-hide'))return false;var keep=function(){var vs=[].slice.call(document.querySelectorAll('.opt.cells .flagbtn')).filter(function(b){return !b.classList.contains('any-hide');});var cnt=vs.filter(function(b){return b.classList.contains('on');}).length;return !(cnt>=vs.length-1&&!this.classList.contains('on'));}.bind(this);if(this.classList.contains('on')||keep()){this.classList.toggle('on');if(this.classList.contains('on')){var o=this.closest('.opt');o.classList.add('flagged');o.classList.remove('sel');}else{this.closest('.opt').classList.remove('flagged');}}else{var h=this,old=this.getAttribute('title');this.setAttribute('title','At least one option must stay open');setTimeout(function(){h.setAttribute('title',old);},1400);}return false;"></span></span></div><div class="imp">
-            <span class="ilabel">How important is this?</span>
-            <span class="dots">
-              <i class="on">1</i><i>2</i><i>3</i><i>4</i><i>5</i>
-            </span>
-          </div>
-        </div>
-      </div>
+  <span class="col-tag">About you</span>
+  <button class="opt"><span class="mark round"></span>Homebody</button>
+  <button class="opt sel"><span class="mark round"></span>Active outdoors</button>
+  <button class="opt"><span class="mark round"></span>City culture</button>
+  <button class="opt"><span class="mark round"></span>Travel</button>
+  <button class="opt"><span class="mark round"></span>A bit of everything</button>
     </div>
     <div class="footer">
       <button class="back">Back</button>
