@@ -114,6 +114,8 @@
   .numpair{display:flex; gap:8px; align-items:center;}
   .numpair .numinput{flex:1;}
   .unit{font-size:13px; color:var(--muted); white-space:nowrap;}
+
+  input::placeholder{font-size:12px; color:var(--muted); opacity:.7;}
 </style>
 </head>
 <body>
@@ -184,9 +186,9 @@
           <option value="South Africa">South Africa</option>
         </select>
         <label class="field-label">City / area</label>
-        <input class="textinput" type="text" placeholder="Vienna" />
+        <input class="textinput" type="text" placeholder="e.g. Vienna" />
         <label class="field-label">Postal code</label>
-        <input class="textinput" type="text" placeholder="1140" />
+        <input class="textinput" type="text" placeholder="e.g. 1140" />
       </div>
       <div class="col">
         <span class="col-tag">Looking for</span>

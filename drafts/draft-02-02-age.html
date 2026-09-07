@@ -114,6 +114,8 @@
   .numpair{display:flex; gap:8px; align-items:center;}
   .numpair .numinput{flex:1;}
   .unit{font-size:13px; color:var(--muted); white-space:nowrap;}
+
+  input::placeholder{font-size:12px; color:var(--muted); opacity:.7;}
 </style>
 </head>
 <body>
@@ -136,11 +138,17 @@
       <div class="col">
         <span class="col-tag">Looking for</span>
         <label class="field-label">Age range</label>
-        <div class="numpair">
-          <input class="numinput" type="number" min="18" max="99" placeholder="from 18" aria-label="minimum age" />
-          <input class="numinput" type="number" min="18" max="99" placeholder="to 99" aria-label="maximum age" />
+        <div style="display:flex; flex-direction:column; gap:7px;">
+          <div style="display:flex; align-items:center; gap:8px; border:1.5px solid var(--line); border-radius:11px; padding:9px 12px; background:var(--surface);">
+            <span style="flex:0 0 44px; font-size:14px; color:var(--muted);">From</span>
+            <input class="numinput" type="number" min="18" max="99" placeholder="e.g. 25" aria-label="minimum age" style="flex:1; border:none; background:none; font-size:15px; font-family:inherit; color:var(--text); outline:none;"/>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px; border:1.5px solid var(--line); border-radius:11px; padding:9px 12px; background:var(--surface);">
+            <span style="flex:0 0 44px; font-size:14px; color:var(--muted);">To</span>
+            <input class="numinput" type="number" min="18" max="99" placeholder="e.g. 40" aria-label="maximum age" style="flex:1; border:none; background:none; font-size:15px; font-family:inherit; color:var(--text); outline:none;"/>
+          </div>
         </div>
-        <div class="imp"><span class="ilabel">How important is this?</span><span class="dots"><i class="on">1</i><i>2</i><i>3</i><i>4</i><i>5</i></span></div>
+        <div class="imp"><span class="ilabel">How important is this?</span><span class="dots"><i>1</i><i>2</i><i class="on">3</i><i>4</i><i>5</i></span></div>
       </div>
       </div>
     </div>
