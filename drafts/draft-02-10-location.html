@@ -124,14 +124,65 @@
         <a href="#" title="Help"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></a>
       </nav>
     </header>
-    <div class="expl" id="h-expl">State where you are — never detected from your device — then how far you’re willing to go.</div>
+    <div class="expl" id="h-expl">State where you are — never detected from your device — then how far you’re willing to go. City suggests names depending on the chosen country (production). This never leaves your phone; only the matched band travels.</div>
     <div class="progress"><span class="done"></span><span class="done"></span><span class="done"></span><span class="done"></span><span class="done"></span><span class="done"></span><span class="done"></span><span class="done"></span><span class="done"></span><span class="now"></span><span></span><span></span><span></span><span></span><span></span></div>
     <div class="body">
       <div class="cols">
       <div class="col">
         <span class="col-tag">About you</span>
         <label class="field-label">Country</label>
-        <input class="textinput" type="text" placeholder="Austria" />
+        <select class="countrysel" style="width:100%; border:1.5px solid var(--line); border-radius:11px; padding:10px 12px; background:var(--surface); font-family:inherit; font-size:14px; color:var(--text); margin-bottom:14px; -webkit-appearance:none; appearance:none;">
+          <option value="" disabled selected>Select country</option>
+          <option value="Austria" selected>Austria</option>
+          <option value="Belgium">Belgium</option>
+          <option value="Bulgaria">Bulgaria</option>
+          <option value="Croatia">Croatia</option>
+          <option value="Cyprus">Cyprus</option>
+          <option value="Czechia">Czechia</option>
+          <option value="Denmark">Denmark</option>
+          <option value="Estonia">Estonia</option>
+          <option value="Finland">Finland</option>
+          <option value="France">France</option>
+          <option value="Germany">Germany</option>
+          <option value="Greece">Greece</option>
+          <option value="Hungary">Hungary</option>
+          <option value="Iceland">Iceland</option>
+          <option value="Ireland">Ireland</option>
+          <option value="Italy">Italy</option>
+          <option value="Latvia">Latvia</option>
+          <option value="Liechtenstein">Liechtenstein</option>
+          <option value="Lithuania">Lithuania</option>
+          <option value="Luxembourg">Luxembourg</option>
+          <option value="Malta">Malta</option>
+          <option value="Netherlands">Netherlands</option>
+          <option value="Norway">Norway</option>
+          <option value="Poland">Poland</option>
+          <option value="Portugal">Portugal</option>
+          <option value="Romania">Romania</option>
+          <option value="Slovakia">Slovakia</option>
+          <option value="Slovenia">Slovenia</option>
+          <option value="Spain">Spain</option>
+          <option value="Sweden">Sweden</option>
+          <option value="Switzerland">Switzerland</option>
+          <option value="United Kingdom">United Kingdom</option>
+          <option value="Albania">Albania</option>
+          <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+          <option value="Kosovo">Kosovo</option>
+          <option value="Montenegro">Montenegro</option>
+          <option value="North Macedonia">North Macedonia</option>
+          <option value="Serbia">Serbia</option>
+          <option value="Turkey">Turkey</option>
+          <option value="Ukraine">Ukraine</option>
+          <option value="United States">United States</option>
+          <option value="Canada">Canada</option>
+          <option value="Australia">Australia</option>
+          <option value="New Zealand">New Zealand</option>
+          <option value="India">India</option>
+          <option value="Japan">Japan</option>
+          <option value="Brazil">Brazil</option>
+          <option value="Mexico">Mexico</option>
+          <option value="South Africa">South Africa</option>
+        </select>
         <label class="field-label">City / area</label>
         <input class="textinput" type="text" placeholder="Vienna" />
         <label class="field-label">Postal code</label>
@@ -143,7 +194,7 @@
         <button class="opt sel"><span class="mark round"></span>Same city</button>
         <button class="opt"><span class="mark round"></span>Regional</button>
         <button class="opt"><span class="mark round"></span>Far is fine</button>
-        <div class="imp"><span class="ilabel">How important is this?</span><span class="dots"><i class="on">1</i><i>2</i><i>3</i><i>4</i><i>5</i></span></div>
+        <div class="imp"><span class="ilabel">How important is this?</span><span class="dots"><i>1</i><i>2</i><i class="on">3</i><i>4</i><i>5</i></span></div>
       </div>
       </div>
     </div>
