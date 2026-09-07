@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PARTNER-002 design draft — questionnaire, one question per page</title>
+<style>
+
+  :root{
+    --bg:#FAF6EF; --surface:#F3EBDD; --text:#2E2620; --muted:#6B5D50;
+    --accent:#B0431F; --accent-text:#FFFFFF; --line:#D8CCBA; --exclude:#A63A2B;
+    --match:#3E6B4F; --positive:#3E6B4F; --positive-text:#FFFFFF;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--text); font-family:Georgia,'Times New Roman',serif;
+       min-height:100vh; padding:24px;}
+  .phone{width:100%; max-width:420px; margin:0 auto; background:var(--bg);
+         border-radius:24px; overflow:hidden; border:1px solid var(--line);
+         display:flex; flex-direction:column; min-height:700px;}
+  header{display:flex; justify-content:space-between; align-items:center; padding:14px 18px;
+         border-bottom:1px solid var(--line);}
+  header strong{font-weight:600;}
+  header nav{display:flex; gap:10px; align-items:center;}
+  header a{color:var(--muted); font-size:14px; text-decoration:none;}
+  .qmark{width:20px; height:20px; border-radius:50%; border:1.5px solid var(--muted);
+         color:var(--muted); font-size:12px; display:inline-flex; align-items:center;
+         justify-content:center; cursor:pointer; background:none; font-family:inherit;}
+  .expl{display:none; font-size:12px; color:var(--muted); line-height:1.5;
+        margin:8px 18px 0; border-left:2px solid var(--line); padding:4px 10px;}
+  .expl.show{display:block;}
+  .progress{display:flex; gap:3px; padding:12px 18px 0;}
+  .progress span{flex:1; height:4px; background:var(--line); border-radius:2px;}
+  .progress span.done{background:var(--positive);}
+  .progress span.now{background:var(--accent);}
+  .body{flex:1; padding:14px 16px; overflow-y:auto;}
+  h1{font-size:23px; font-weight:600; margin-bottom:12px; line-height:1.25;}
+  .cols{display:flex; gap:8px; align-items:flex-start;}
+  .col{flex:1; min-width:0;}
+  .col-tag{display:block; font-size:11px; letter-spacing:.05em; color:var(--muted);
+        text-align:center; margin-bottom:8px;}
+
+  /* base .opt: simple button-style row (About-you: mark + text directly inside) */
+  .opt{display:flex; align-items:center; gap:8px; border:1.5px solid var(--line);
+       border-radius:11px; padding:10px 12px; margin-bottom:7px; font-size:14px;
+       cursor:pointer; background:var(--surface); text-align:left; width:100%;
+       font-family:inherit; color:var(--text); line-height:1.3;}
+  .opt:hover{border-color:var(--muted);}
+  .opt.sel{border-color:var(--accent); background:var(--bg);}
+
+  /* cell-model (Looking-for rows carry .cells): mark|text|flag split border */
+  .opt.cells{display:flex; align-items:stretch; gap:0; border:none; padding:0; overflow:hidden;}
+  .opt.cells:hover{border-color:transparent;}
+  .opt.cells.sel{border-color:transparent; background:var(--surface);}
+  .opt.cells .cell{border:1.5px solid var(--line); display:flex; align-items:center;}
+  .opt.cells:hover .cell{border-color:var(--muted);}
+  .opt.cells .cell.cmark{border-radius:11px 0 0 11px; border-right:none; padding:10px 4px 10px 12px;}
+  .opt.cells .cell.ctext{flex:1; min-width:0; border-left:none; border-right:none; padding:10px 4px;}
+  .opt.cells .cell.flag{border-radius:0 11px 11px 0; border-left:none; padding:10px 8px;}
+  .flagicon{flex:0 0 auto; display:inline-flex; align-items:center;
+       justify-content:center; margin-right:6px;}
+  .flagicon svg{width:14px; height:14px; display:block;}
+  .flagicon .flag-stick{stroke:var(--exclude);}
+  .flagicon .flag-cloth{stroke:var(--exclude); stroke-width:1.6; fill:var(--exclude);}
+  .flagbtn{flex:0 0 auto; width:18px; height:18px; border:1.5px solid var(--muted);
+       border-radius:5px; background:none; cursor:pointer; padding:0; display:inline-flex;
+       align-items:center; justify-content:center; font-family:inherit; position:relative;}
+  .opt.cells.flagged .flagbtn{border-color:var(--flag-dark,#8A2B1F);}
+  .flagbtn.on::after{content:"\2713"; font-size:13px; color:var(--flag-dark,#8A2B1F);
+       font-weight:700;}
+  .flagicon.any-hide,.flagbtn.any-hide{visibility:hidden;}
+  /* mark selected: accent border around mark+text; flag borderless */
+  .opt.cells.sel .cell.cmark,.opt.cells.sel .cell.ctext{border-color:var(--accent);}
+  .opt.cells.sel .cell.ctext{border-right:1.5px solid var(--accent);
+       border-top-right-radius:11px; border-bottom-right-radius:11px;}
+  .opt.cells.sel .cell.flag{border-color:transparent; background:var(--bg);}
+  /* flag selected (.flagged): red border around text+flag; mark borderless; pale bg */
+  .opt.cells.flagged .cell.ctext,.opt.cells.flagged .cell.flag{border-color:var(--flag-dark,#8A2B1F);}
+  .opt.cells.flagged .cell.ctext{border-left:1.5px solid var(--flag-dark,#8A2B1F);
+       border-top-left-radius:11px; border-bottom-left-radius:11px;}
+  .opt.cells.flagged .cell.cmark{border-color:transparent; background:var(--bg);}
+
+  .opt .mark{flex:0 0 auto; width:18px; height:18px; border:1.5px solid var(--muted);
+       display:inline-flex; align-items:center; justify-content:center;}
+  .opt.cells.sel .mark{border-color:var(--accent);}
+  .opt .mark.round{border-radius:50%;}
+  .opt .mark.square{border-radius:5px;}
+
+  .opt.sel .mark{border-color:var(--accent);}
+  .opt.sel .mark.round::after{content:""; width:10px; height:10px; border-radius:50%;
+       background:var(--accent);}
+  .opt.sel .mark.square::after{content:"\2713"; font-size:13px; color:var(--accent);
+       font-weight:700;}
+  .imp{margin-top:12px; padding-top:10px; border-top:1px dashed var(--line);}
+  .imp .ilabel{font-size:12px; color:var(--muted); display:block; margin-bottom:8px;}
+  .imp .dots{display:flex; gap:3px; justify-content:center;}
+  .imp .dots{display:flex; gap:3px;}
+  .imp .dots i{width:21px; height:21px; border:1.5px solid var(--line); border-radius:50%;
+       display:inline-flex; align-items:center; justify-content:center; font-style:normal;
+       font-size:11px; color:var(--muted); cursor:pointer; background:var(--bg);}
+  .imp .dots i.on{border-color:var(--accent); color:var(--accent); font-weight:700;}
+  .footer{margin-top:auto; padding:14px 18px; display:flex; justify-content:space-between;
+          align-items:center; border-top:1px solid var(--line);}
+  .back{background:none; border:none; color:var(--muted); font-size:15px; cursor:pointer;
+        font-family:inherit;}
+  .next{background:var(--positive); color:var(--positive-text); border:none; border-radius:999px;
+        padding:12px 24px; font-size:15px; cursor:pointer; font-family:inherit;}
+  .next[disabled]{opacity:.4; cursor:not-allowed;}
+
+  /* number / text-field variants */
+  .field-label{display:block; font-size:12px; color:var(--muted); margin:10px 0 4px;}
+  .numinput,.textinput{width:100%; border:1.5px solid var(--line); border-radius:11px;
+    padding:10px 12px; font-size:15px; font-family:inherit; background:var(--bg);
+    color:var(--text);}
+  .numinput:focus,.textinput:focus{border-color:var(--accent); outline:none;}
+  .numpair{display:flex; gap:8px; align-items:center;}
+  .numpair .numinput{flex:1;}
+  .unit{font-size:13px; color:var(--muted); white-space:nowrap;}
+
+</style>
+</head>
+<body>
+  <div class="phone">
+<header>
+      <strong>Questionnaire – Big Five <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
+      <nav><a href="#" title="Help"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></a><a href="#" title="Safety"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></a></nav>
+    </header>
+    <div class="expl" id="h-expl">Five broad personality traits (openness, conscientiousness, extraversion, agreeableness, emotional stability). This is the scientifically grounded system; we use public-domain IPIP test items when the test arrives. Shown after a match.</div>
+<div class="progress">
+      <span class="done"></span>
+      <span class="done"></span>
+      <span class="done"></span>
+      <span class="done"></span>
+      <span class="done"></span>
+      <span class="done"></span>
+      <span class="done"></span>
+      <span class="done"></span>
+      <span class="done"></span>
+      <span class="done"></span>
+      <span class="done"></span>
+      <span class="done"></span>
+      <span class="done"></span>
+      <span class="done"></span>
+      <span class="done"></span>
+    </div>
+    <div class="body">
+      <h1>Your Big Five</h1>
+<div class="lead" style="font-size:14px; color:var(--muted); margin-bottom:14px;">Optional — three bands each.</div><div style="margin-bottom:8px;"><div style="font-size:12px; color:var(--muted); margin-bottom:5px; letter-spacing:.04em;">Openness</div><div style="display:flex; gap:8px;"><button class="opt" style="margin:0; padding:8px 6px; font-size:13px; justify-content:center;" onclick="var s=this.parentNode;s.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span>Low</button><button class="opt" style="margin:0; padding:8px 6px; font-size:13px; justify-content:center;" onclick="var s=this.parentNode;s.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span>Medium</button><button class="opt" style="margin:0; padding:8px 6px; font-size:13px; justify-content:center;" onclick="var s=this.parentNode;s.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span>High</button></div></div><div style="margin-bottom:8px;"><div style="font-size:12px; color:var(--muted); margin-bottom:5px; letter-spacing:.04em;">Conscientiousness</div><div style="display:flex; gap:8px;"><button class="opt" style="margin:0; padding:8px 6px; font-size:13px; justify-content:center;" onclick="var s=this.parentNode;s.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span>Low</button><button class="opt" style="margin:0; padding:8px 6px; font-size:13px; justify-content:center;" onclick="var s=this.parentNode;s.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span>Medium</button><button class="opt" style="margin:0; padding:8px 6px; font-size:13px; justify-content:center;" onclick="var s=this.parentNode;s.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span>High</button></div></div><div style="margin-bottom:8px;"><div style="font-size:12px; color:var(--muted); margin-bottom:5px; letter-spacing:.04em;">Extraversion</div><div style="display:flex; gap:8px;"><button class="opt" style="margin:0; padding:8px 6px; font-size:13px; justify-content:center;" onclick="var s=this.parentNode;s.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span>Low</button><button class="opt" style="margin:0; padding:8px 6px; font-size:13px; justify-content:center;" onclick="var s=this.parentNode;s.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span>Medium</button><button class="opt" style="margin:0; padding:8px 6px; font-size:13px; justify-content:center;" onclick="var s=this.parentNode;s.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span>High</button></div></div><div style="margin-bottom:8px;"><div style="font-size:12px; color:var(--muted); margin-bottom:5px; letter-spacing:.04em;">Agreeableness</div><div style="display:flex; gap:8px;"><button class="opt" style="margin:0; padding:8px 6px; font-size:13px; justify-content:center;" onclick="var s=this.parentNode;s.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span>Low</button><button class="opt" style="margin:0; padding:8px 6px; font-size:13px; justify-content:center;" onclick="var s=this.parentNode;s.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span>Medium</button><button class="opt" style="margin:0; padding:8px 6px; font-size:13px; justify-content:center;" onclick="var s=this.parentNode;s.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span>High</button></div></div><div style="margin-bottom:8px;"><div style="font-size:12px; color:var(--muted); margin-bottom:5px; letter-spacing:.04em;">Emotional stability</div><div style="display:flex; gap:8px;"><button class="opt" style="margin:0; padding:8px 6px; font-size:13px; justify-content:center;" onclick="var s=this.parentNode;s.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span>Low</button><button class="opt" style="margin:0; padding:8px 6px; font-size:13px; justify-content:center;" onclick="var s=this.parentNode;s.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span>Medium</button><button class="opt" style="margin:0; padding:8px 6px; font-size:13px; justify-content:center;" onclick="var s=this.parentNode;s.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span>High</button></div></div><div style="margin-top:8px; font-size:13px; color:var(--muted);">A scientifically grounded test is coming later — for now, estimate as you like.</div>    </div>
+    <div class="footer" style="margin-top:auto; padding:14px 18px; display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--line);">
+      <button class="back" style="background:none; border:none; color:var(--muted); font-size:15px; cursor:pointer; font-family:inherit;">Back</button>
+      <button class="next" disabled style="background:var(--positive); color:var(--positive-text); border:none; border-radius:999px; padding:12px 24px; font-size:15px; cursor:pointer; font-family:inherit;">Continue</button>
+    </div>
+  </div>
+  <script src="palette-switcher.js"></script>
+<script src="draft-nav.js"></script>
+</body>
+</html>
