@@ -116,6 +116,10 @@
   .unit{font-size:13px; color:var(--muted); white-space:nowrap;}
 
   input::placeholder{font-size:12px; color:var(--muted); opacity:.7;}
+  input[type="number"], input[type="text"]{background:var(--surface);
+       border:1.5px solid var(--line); border-radius:11px; padding:10px 12px;
+       font-family:inherit; font-size:14px; color:var(--text); outline:none;}
+  input[type="number"]:focus, input[type="text"]:focus{border-color:var(--accent);}
 </style>
 </head>
 <body>
@@ -139,14 +143,14 @@
         <span class="col-tag">Looking for</span>
         <label class="field-label">Height range</label>
         <div style="display:flex; flex-direction:column; gap:7px;">
-          <div style="display:flex; align-items:center; gap:8px; border:1.5px solid var(--line); border-radius:11px; padding:9px 12px;">
+          <div style="display:flex; align-items:center; gap:8px; border:none; padding:0;">
             <span style="flex:0 0 44px; font-size:14px; color:var(--muted);">From</span>
-            <input class="numinput" type="number" min="120" max="250" placeholder="e.g. 165" aria-label="minimum height in centimetres" style="flex:1; border:none; background:var(--surface); font-size:15px; font-family:inherit; color:var(--text); outline:none; border-radius:8px; padding:7px 10px;"/>
+            <input class="numinput" type="number" min="120" max="250" placeholder="e.g. 165" aria-label="minimum height in centimetres" style="flex:1;"/>
             <span style="flex:0 0 24px; font-size:13px; color:var(--muted);">cm</span>
           </div>
-          <div style="display:flex; align-items:center; gap:8px; border:1.5px solid var(--line); border-radius:11px; padding:9px 12px;">
+          <div style="display:flex; align-items:center; gap:8px; border:none; padding:0;">
             <span style="flex:0 0 44px; font-size:14px; color:var(--muted);">To</span>
-            <input class="numinput" type="number" min="120" max="250" placeholder="e.g. 190" aria-label="maximum height in centimetres" style="flex:1; border:none; background:var(--surface); font-size:15px; font-family:inherit; color:var(--text); outline:none; border-radius:8px; padding:7px 10px;"/>
+            <input class="numinput" type="number" min="120" max="250" placeholder="e.g. 190" aria-label="maximum height in centimetres" style="flex:1;"/>
             <span style="flex:0 0 24px; font-size:13px; color:var(--muted);">cm</span>
           </div>
         </div>

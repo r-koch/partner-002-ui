@@ -87,6 +87,10 @@
   .cancelbar{display:flex; justify-content:flex-end; padding:8px 18px 0;}
   .cancel{background:none; border:1px solid var(--line); border-radius:999px;
           padding:7px 14px; font-size:12px; color:var(--muted); cursor:pointer; font-family:inherit;}
+  input[type="number"], input[type="text"]{background:var(--surface);
+       border:1.5px solid var(--line); border-radius:11px; padding:10px 12px;
+       font-family:inherit; font-size:14px; color:var(--text); outline:none;}
+  input[type="number"]:focus, input[type="text"]:focus{border-color:var(--accent);}
 </style>
 </head>
 <body>
@@ -130,7 +134,7 @@
       </div>
     </div>
 
-    <div class="suggest" id="suggest-a" style="display:none;">
+    <div class="suggest" id="suggest-a">
       <div class="t">What could I ask her?</div>
       <div>From your stage 2 events:</div>
       <button class="opt" onclick="document.getElementById('suggest-a').style.display='none';document.getElementById('compose').value='Remember our ice breaker where we split on fire vs water? I picked water because it is quieter. What made you go for fire?';return false;">&#8220;Remember our ice breaker where we split on fire vs water? I picked water because it is quieter. What made you go for fire?&#8221;</button>

@@ -60,10 +60,14 @@
          font-size:12px; color:var(--text);}
   .ichip::before{content:""; width:6px; height:6px; border-radius:50%;
          background:var(--accent); flex:0 0 auto;}
+  input[type="number"], input[type="text"]{background:var(--surface);
+       border:1.5px solid var(--line); border-radius:11px; padding:10px 12px;
+       font-family:inherit; font-size:14px; color:var(--text); outline:none;}
+  input[type="number"]:focus, input[type="text"]:focus{border-color:var(--accent);}
 </style>
 </head>
 <body>
-  <div class="phone" style="min-height:620px;">
+  <div class="phone">
     <header>
       <strong>Add interests <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
       <nav><a href="#" title="Help"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></a><a href="#" title="Safety"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></a></nav>
@@ -71,34 +75,34 @@
     <div class="expl" id="h-expl">For when you’d rather not import. Chips are conversation flavor only — they never change matching.</div>
 
     <div class="body">
-      <h1 style="font-size:22px;">Your interests, typed in</h1>
+      <h1>Your interests, typed in</h1>
       <div class="lead">No import needed — pick interests from the list, or add your own.
         These chips are just conversation flavor; matching never uses them.</div>
-      <div style="font-size:12px; color:var(--muted); margin-bottom:10px;">Tap to add:</div>
-      <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:16px;">
-        <span class="ichip" style="cursor:pointer;">travel</span>
-        <span class="ichip" style="cursor:pointer;">outdoors</span>
-        <span class="ichip" style="cursor:pointer;">music</span>
-        <span class="ichip" style="cursor:pointer;">films</span>
-        <span class="ichip" style="cursor:pointer;">books</span>
-        <span class="ichip" style="cursor:pointer;">food</span>
-        <span class="ichip" style="cursor:pointer;">space</span>
-        <span class="ichip" style="cursor:pointer;">hiking</span>
-        <span class="ichip" style="cursor:pointer;">concerts</span>
-        <span class="ichip" style="cursor:pointer;">photography</span>
-        <span class="ichip" style="cursor:pointer;">gaming</span>
-        <span class="ichip" style="cursor:pointer;">dancing</span>
+      <div>Tap to add:</div>
+      <div>
+        <span class="ichip">travel</span>
+        <span class="ichip">outdoors</span>
+        <span class="ichip">music</span>
+        <span class="ichip">films</span>
+        <span class="ichip">books</span>
+        <span class="ichip">food</span>
+        <span class="ichip">space</span>
+        <span class="ichip">hiking</span>
+        <span class="ichip">concerts</span>
+        <span class="ichip">photography</span>
+        <span class="ichip">gaming</span>
+        <span class="ichip">dancing</span>
       </div>
       <div class="block">
         <div class="t">Yours so far</div>
         <div class="tl">travel · outdoors · films</div>
       </div>
-      <div class="block" style="display:flex; gap:8px; align-items:center;">
-        <input type="text" placeholder="Add your own word" style="flex:1; border:2px solid var(--line); border-radius:999px; padding:11px 16px; font-size:14px; background:var(--surface); color:var(--text); font-family:inherit;">
-        <button class="btn ghost" style="flex:0 0 auto; margin-top:0; padding:11px 18px;">Add</button>
+      <div class="block">
+        <input type="text" placeholder="Add your own word">
+        <button class="btn ghost">Add</button>
       </div>
       <button class="btn">Done</button>
-      <div style="font-size:12px; color:var(--muted); margin-top:14px; line-height:1.5;">
+      <div>
         Same chips as an import would give you — and they can suggest conversation starters later.</div>
     </div>
   </div>
