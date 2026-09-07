@@ -124,7 +124,7 @@
       <strong>Questionnaire – Sun sign <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
       <nav><a href="#" title="Help"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></a><a href="#" title="Safety"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></a></nav>
     </header>
-    <div class="expl" id="h-expl">A sun sign is the zodiac sign of your birth month. Shown on your profile, visible after a match. Some apps call it star sign. You can change it any time.</div>
+    <div class="expl" id="h-expl">Optional, shown to people you match with after a match. A test or birth-date picker may come later.</div>
 <div class="progress">
       <span class="done"></span>
       <span class="done"></span>
@@ -144,7 +144,8 @@
     </div>
     <div class="body">
       <h1>What’s your sun sign?</h1>
-<div class="lead" style="font-size:14px; color:var(--muted); margin-bottom:14px;">Optional — shown to people you match with. A test or birth-date picker may come later.</div><button class="opt" onclick="this.parentNode.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span>Aries</button>
+<div class="signgrid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:7px;">
+<button class="opt" onclick="this.parentNode.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span>Aries</button>
 <button class="opt" onclick="this.parentNode.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span>Taurus</button>
 <button class="opt" onclick="this.parentNode.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span>Gemini</button>
 <button class="opt" onclick="this.parentNode.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span>Cancer</button>
@@ -156,7 +157,9 @@
 <button class="opt" onclick="this.parentNode.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span>Capricorn</button>
 <button class="opt" onclick="this.parentNode.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span>Aquarius</button>
 <button class="opt" onclick="this.parentNode.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span>Pisces</button>
-<button class="opt" onclick="this.parentNode.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span>I don’t identify with any</button>    </div>
+</div>
+<button class="opt" onclick="this.parentNode.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span>I don’t identify with any</button>
+    </div>
     <div class="footer" style="margin-top:auto; padding:14px 18px; display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--line);">
       <button class="back" style="background:none; border:none; color:var(--muted); font-size:15px; cursor:pointer; font-family:inherit;">Back</button>
       <button class="next" disabled style="background:var(--positive); color:var(--positive-text); border:none; border-radius:999px; padding:12px 24px; font-size:15px; cursor:pointer; font-family:inherit;">Continue</button>

@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PARTNER-002 design draft — questionnaire, one question per page</title>
 <style>
-
   :root{
     --bg:#FAF6EF; --surface:#F3EBDD; --text:#2E2620; --muted:#6B5D50;
     --accent:#B0431F; --accent-text:#FFFFFF; --line:#D8CCBA; --exclude:#A63A2B;
@@ -73,6 +72,7 @@
   .opt.cells.sel .cell.ctext{border-right:1.5px solid var(--accent);
        border-top-right-radius:11px; border-bottom-right-radius:11px;}
   .opt.cells.sel .cell.flag{border-color:transparent; background:var(--bg);}
+  .opt.cells.anyrow.sel .cell.flag{border-color:var(--line); background:var(--surface);}
   /* flag selected (.flagged): red border around text+flag; mark borderless; pale bg */
   .opt.cells.flagged .cell.ctext,.opt.cells.flagged .cell.flag{border-color:var(--flag-dark,#8A2B1F);}
   .opt.cells.flagged .cell.ctext{border-left:1.5px solid var(--flag-dark,#8A2B1F);
@@ -115,17 +115,19 @@
   .numpair{display:flex; gap:8px; align-items:center;}
   .numpair .numinput{flex:1;}
   .unit{font-size:13px; color:var(--muted); white-space:nowrap;}
-
+  .opt.cells.disabled{opacity:.45; pointer-events:none;}
 </style>
 </head>
 <body>
   <div class="phone">
-<header>
-      <strong>Questionnaire – 4-letter personality style <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
-      <nav><a href="#" title="Help"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></a><a href="#" title="Safety"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></a></nav>
+    <header>
+      <strong>Questionnaire – 4-letter style<button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
+      <nav>
+        <a href="#" title="Help"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></a>
+      </nav>
     </header>
-    <div class="expl" id="h-expl">The four-letter personality style (E/I, S/N, T/F, J/P — 16 combinations). Very popular in Asia, often on dating profiles. We use an unbranded version; a test is planned. Shown after a match.</div>
-<div class="progress">
+    <div class="expl" id="h-expl">The four-letter personality style (E/I, S/N, T/F, J/P — 16 combinations). Very popular in Asia, often on dating profiles. We use an unbranded version; a test is planned. One letter per line, as it fits you. Shown only after a match.</div>
+    <div class="progress">
       <span class="done"></span>
       <span class="done"></span>
       <span class="done"></span>
@@ -143,14 +145,53 @@
       <span class="done"></span>
     </div>
     <div class="body">
-      <h1>Your 4-letter style</h1>
-<div class="lead" style="font-size:14px; color:var(--muted); margin-bottom:14px;">One letter per line, as it fits you.</div><div style="margin-bottom:4px; font-size:12px; color:var(--muted); letter-spacing:.04em;">Choose one per line</div><div style="display:flex; gap:8px; margin-bottom:7px;"><button class="opt" style="margin:0;" onclick="var s=this.parentNode; s.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel')); this.classList.add('sel');"><span class="mark round"></span>E</button><button class="opt" style="margin:0;" onclick="var s=this.parentNode; s.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel')); this.classList.add('sel');"><span class="mark round"></span>I</button></div><div style="display:flex; gap:8px; margin-bottom:7px;"><button class="opt" style="margin:0;" onclick="var s=this.parentNode; s.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel')); this.classList.add('sel');"><span class="mark round"></span>S</button><button class="opt" style="margin:0;" onclick="var s=this.parentNode; s.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel')); this.classList.add('sel');"><span class="mark round"></span>N</button></div><div style="display:flex; gap:8px; margin-bottom:7px;"><button class="opt" style="margin:0;" onclick="var s=this.parentNode; s.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel')); this.classList.add('sel');"><span class="mark round"></span>T</button><button class="opt" style="margin:0;" onclick="var s=this.parentNode; s.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel')); this.classList.add('sel');"><span class="mark round"></span>F</button></div><div style="display:flex; gap:8px; margin-bottom:7px;"><button class="opt" style="margin:0;" onclick="var s=this.parentNode; s.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel')); this.classList.add('sel');"><span class="mark round"></span>J</button><button class="opt" style="margin:0;" onclick="var s=this.parentNode; s.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel')); this.classList.add('sel');"><span class="mark round"></span>P</button></div><div style="margin-top:8px; font-size:13px; color:var(--muted);">A test for this is coming later — for now, pick what fits.</div>    </div>
-    <div class="footer" style="margin-top:auto; padding:14px 18px; display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--line);">
-      <button class="back" style="background:none; border:none; color:var(--muted); font-size:15px; cursor:pointer; font-family:inherit;">Back</button>
-      <button class="next" disabled style="background:var(--positive); color:var(--positive-text); border:none; border-radius:999px; padding:12px 24px; font-size:15px; cursor:pointer; font-family:inherit;">Continue</button>
+      <div class="cols">
+      <div class="col">
+        <div style="display:flex; gap:8px; margin-bottom:7px;"><button class="opt" style="margin:0; flex:1;" onclick="var s=this.parentNode;s.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span><span style="font-weight:700;">E</span><span style="display:block; font-size:11px; color:var(--muted); font-weight:400;">Energy</span></button><button class="opt" style="margin:0; flex:1;" onclick="var s=this.parentNode;s.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span><span style="font-weight:700;">I</span><span style="display:block; font-size:11px; color:var(--muted); font-weight:400;">Energy</span></button></div>
+<div style="display:flex; gap:8px; margin-bottom:7px;"><button class="opt" style="margin:0; flex:1;" onclick="var s=this.parentNode;s.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span><span style="font-weight:700;">S</span><span style="display:block; font-size:11px; color:var(--muted); font-weight:400;">Information</span></button><button class="opt" style="margin:0; flex:1;" onclick="var s=this.parentNode;s.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span><span style="font-weight:700;">N</span><span style="display:block; font-size:11px; color:var(--muted); font-weight:400;">Information</span></button></div>
+<div style="display:flex; gap:8px; margin-bottom:7px;"><button class="opt" style="margin:0; flex:1;" onclick="var s=this.parentNode;s.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span><span style="font-weight:700;">T</span><span style="display:block; font-size:11px; color:var(--muted); font-weight:400;">Decisions</span></button><button class="opt" style="margin:0; flex:1;" onclick="var s=this.parentNode;s.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span><span style="font-weight:700;">F</span><span style="display:block; font-size:11px; color:var(--muted); font-weight:400;">Decisions</span></button></div>
+<div style="display:flex; gap:8px; margin-bottom:7px;"><button class="opt" style="margin:0; flex:1;" onclick="var s=this.parentNode;s.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span><span style="font-weight:700;">J</span><span style="display:block; font-size:11px; color:var(--muted); font-weight:400;">Planning</span></button><button class="opt" style="margin:0; flex:1;" onclick="var s=this.parentNode;s.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span><span style="font-weight:700;">P</span><span style="display:block; font-size:11px; color:var(--muted); font-weight:400;">Planning</span></button></div>
+      </div>
+    </div>
+    </div>
+    <div class="footer">
+      <button class="back">Back</button>
+      <button class="next" disabled>Continue</button>
     </div>
   </div>
-  <script src="palette-switcher.js"></script>
+  <script>
+  function cellClick(row){
+    var ev = row.ownerDocument.defaultView.event || window.event;
+    if(ev && ev.target && ev.target.closest && ev.target.closest('.flagbtn')) return;
+    if(row.classList.contains('disabled')) return;
+    var col = row.closest('.col');
+    var rows = col.querySelectorAll('.opt.cells');
+    var any = col.querySelector('.opt.cells.anyrow');
+    if(row.classList.contains('anyrow')){
+      var on = !row.classList.contains('sel');
+      if(on){
+        rows.forEach(function(r){
+          if(r === row) return;
+          r.classList.remove('sel','flagged');
+          var fb = r.querySelector('.flagbtn'); if(fb) fb.classList.remove('on');
+          r.classList.add('disabled');
+        });
+        row.classList.add('sel');
+      } else {
+        row.classList.remove('sel');
+        rows.forEach(function(r){ if(r !== row) r.classList.remove('disabled'); });
+      }
+      return;
+    }
+    if(any && any.classList.contains('sel')){
+      any.classList.remove('sel');
+      rows.forEach(function(r){ if(r !== any) r.classList.remove('disabled'); });
+    }
+    row.classList.toggle('sel');
+    row.classList.remove('flagged');
+    var fb = row.querySelector('.flagbtn'); if(fb) fb.classList.remove('on');
+  }
+</script><script src="palette-switcher.js"></script>
 <script src="draft-nav.js"></script>
 </body>
 </html>
