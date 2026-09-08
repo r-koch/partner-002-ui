@@ -81,8 +81,8 @@
       <div id="q-wrap">
         <h1>How old are you?</h1>
         <div class="lead">This app is only for people 18 or older.</div>
-        <label class="choice now" onclick="pick(true)">I am 18 or older</label>
-        <label class="choice" onclick="pick(false)">I am under 18</label>
+        <label class="choice now" onclick="pick(this, true)">I am 18 or older</label>
+        <label class="choice" onclick="pick(this, false)">I am under 18</label>
       </div>
       <div id="exit-wrap" style="display:none;">
         <h1>We can&rsquo;t create an account for you</h1>
@@ -96,10 +96,11 @@
   </div>
   <script>
   var over18 = true;
-  function pick(isOver) {
+  function pick(el, isOver) {
     over18 = isOver;
     var labels = document.querySelectorAll('.choice');
     for (var i = 0; i < labels.length; i++) labels[i].classList.remove('now');
+    el.classList.add('now');
     if (over18) {
       document.getElementById('q-wrap').style.display = '';
       document.getElementById('exit-wrap').style.display = 'none';
