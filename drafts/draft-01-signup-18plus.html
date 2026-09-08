@@ -32,7 +32,7 @@
   .expl{display:none; font-size:12px; color:var(--muted); line-height:1.5;
         margin:10px 18px 0; border-left:2px solid var(--line); padding:4px 10px;}
   .expl.show{display:block;}
-  .progress{display:flex; gap:6px; padding:18px 18px 0;}
+  .progress{display:flex; gap:6px; padding:16px 18px 0; flex:none;}
   .progress span{flex:1; height:4px; background:var(--line); border-radius:2px;}
   .progress span.on{background:var(--accent);}
   .body{flex:1; display:flex; flex-direction:column; justify-content:center; padding:24px 18px;}
@@ -52,6 +52,10 @@
         padding:13px 26px; font-size:15px; cursor:pointer; font-family:inherit;}
   .next[disabled]{opacity:.4; cursor:not-allowed;}
 
+  .progress{display:flex; gap:6px; padding:16px 18px 0; flex:none;}
+  .progress span{flex:1; height:5px; border-radius:3px; background:var(--line);}
+  .progress span.done{background:var(--match);}
+  .progress span.now{background:var(--accent);}
 </style>
 </head>
 <body>
@@ -72,10 +76,7 @@
       <span class=""></span>
     </div>
     <div class="expl" id="h-expl">We ask this once, on your way in. It's a self declaration, no proof needed — and it's the law: people under 18 can't use this app.</div>
-    <div class="progress">
-      <span class="on"></span><span></span><span></span><span></span>
-      <span></span><span></span>
-    </div>
+    
     <div class="body">
       <h1>How old are you?</h1>
       <div class="lead">This app is only for people 18 or older.</div>
