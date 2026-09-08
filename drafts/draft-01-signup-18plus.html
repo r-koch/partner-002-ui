@@ -52,34 +52,24 @@
         padding:13px 26px; font-size:15px; cursor:pointer; font-family:inherit;}
   .next[disabled]{opacity:.4; cursor:not-allowed;}
 
-  .meter-label{font-size:11px; letter-spacing:.06em; color:var(--muted);
-       margin-bottom:8px; text-transform:lowercase;}
-  .meter{display:flex; gap:8px; margin-bottom:18px;}
-  .meter .m{width:26px; height:26px; border-radius:50%; display:inline-flex;
-       align-items:center; justify-content:center; font-size:12px;
-       border:1.5px solid var(--line); color:var(--muted); background:var(--bg);}
-  .meter .m.done{background:var(--match); border-color:var(--match); color:var(--bg);}
-  .meter .m.now{background:var(--bg); border-color:var(--accent); color:var(--accent);
-       box-shadow:0 0 0 2px var(--bg), 0 0 0 3.5px var(--accent);}
 </style>
 </head>
 <body>
   <div class="phone">
     <header>
-      <strong>Age check <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
+      <strong>Setup – Age check <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
       <nav>
         <a href="#" title="Help"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></a>
         <a href="#" title="Safety"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></a>
       </nav>
     </header>
-    <div class="meter-label">setup</div>
-    <div class="meter">
-      <span class="m now">1</span>
-      <span class="m ">2</span>
-      <span class="m ">3</span>
-      <span class="m ">4</span>
-      <span class="m ">5</span>
-      <span class="m ">6</span>
+    <div class="progress">
+      <span class="now"></span>
+      <span class=""></span>
+      <span class=""></span>
+      <span class=""></span>
+      <span class=""></span>
+      <span class=""></span>
     </div>
     <div class="expl" id="h-expl">We ask this once, on your way in. It's a self declaration, no proof needed — and it's the law: people under 18 can't use this app.</div>
     <div class="progress">
