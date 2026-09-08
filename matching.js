@@ -4,8 +4,8 @@
    Implements the slice 7c matching semantics, deterministically, with
    SYNTHETIC candidate data only. Vanilla JS, no network, no persistence.
 
-   Semantics (per dispatch-20260830-ui-redflags-score.md + the matching record
-   candidate-display-matching.md §3):
+   Semantics (red flags = hard, private exclusions; matching design per the
+   product's candidate-display + matching-decision records):
 
    1. RED FLAGS = HARD EXCLUSIONS (private).  A candidate whose preference
       includes any answer value the user has red-flagged NEVER appears — no
