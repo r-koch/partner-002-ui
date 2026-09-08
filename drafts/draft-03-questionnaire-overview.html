@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PARTNER-002 design draft — Your profile</title>
+<title>PARTNER-002 design draft — questionnaire overview</title>
 <style>
   :root{
     --bg:#FAF6EF; --surface:#F3EBDD; --text:#2E2620; --muted:#6B5D50;
@@ -72,40 +72,61 @@
         padding:4px 15px; margin-bottom:12px;}
   .seg{font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em;
        margin:14px 0 8px;}
+
+  .sec{display:flex; align-items:center; justify-content:space-between; gap:8px;
+       border:1.5px solid var(--line); border-radius:11px; padding:12px 14px;
+       margin-bottom:9px; background:var(--surface);}
+  .sec .name{font-size:14px;}
+  .sec .count{font-size:12px; color:var(--muted); white-space:nowrap;}
+  .qrow{display:flex; align-items:center; gap:8px;
+        padding:9px 0 9px 16px; border-bottom:1px solid var(--line); font-size:13px;}
+  .qrow:last-child{border-bottom:none;}
+  .qrow .q{flex:1; min-width:0;}
+  .qrow .a{font-size:12px; color:var(--muted); max-width:45%; text-align:right;
+           white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+  .qrow .un{font-size:12px; color:var(--muted);}
+  .qrow .dot{width:10px; height:10px; border-radius:50%; border:1.5px solid var(--muted); flex:none;}
+  .qrow .dot.filled{background:var(--match); border-color:var(--match);}
 </style>
 </head>
 <body>
-  <div class="phone" style="min-height:680px;">
+  <div class="phone" style="min-height:620px;">
     <header>
-      <strong>Your profile <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
+      <strong>Your answers <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
       <nav><a href="#" title="Help"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></a><a href="#" title="Safety"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></a></nav>
     </header>
-    <div class="expl" id="h-expl">Everything about you, in one place. Edits refresh your candidates; matches stay as they were.</div>
+    <div class="expl" id="h-expl">Everything you’ve answered, plus the optional extras: personality, extended and deep questions. Required questions are needed to match; everything else is voluntary and editable anytime. Nothing here is ever stored on a server.</div>
 
     <div class="body">
-      <div style="text-align:center; padding-bottom:6px;">
-        <div style="font-size:20px; font-weight:600;">brave-fox-2148</div>
-        <div style="font-size:12px; color:var(--muted); margin-top:2px;">yours · editable anytime</div>
-      </div>
-      <div class="seg">Your answers</div>
       <div class="card">
-        <div class="row"><span>Basic questions<span class="meta">what you're like, what you're looking for</span></span><button class="act">Edit</button></div>
-        <div class="row"><span>Extended questions<span class="meta">optional, unlock more depth</span></span><button class="act">Edit</button></div>
-        <div class="row"><span>Deep questions<span class="meta">optional, for stage 3</span></span><button class="act">Edit</button></div>
-      </div>
-      <div class="seg">Appearance</div>
-      <div class="card">
-        <div class="row"><span>Color theme<span class="meta">a few curated palettes, dark and light</span></span><button class="act">Choose</button></div>
-        <div class="row"><span>Avatar<span class="meta">stylized, optional, on-device</span></span><button class="act">Manage</button></div>
-      </div>
-      <div class="seg">Data</div>
-      <div class="card">
-        <div class="row"><span>Import interests<span class="meta">Google, Goodreads, Spotify — chips only</span></span><button class="act">Import</button></div>
-      </div>
-      <div class="seg">Also</div>
-      <div class="card">
-        <div class="row"><span>Sign out<span class="meta">already signed in with Google</span></span><button class="act">Sign out</button></div>
-      </div>
+  <div class="sec"><span class="name">Required questions</span><span class="count">4/15</span></div>
+    <div class="qrow"><span class="dot filled"></span><span class="q">Gender</span><span class="a">Woman</span></div>
+    <div class="qrow"><span class="dot filled"></span><span class="q">Age</span><span class="a">30</span></div>
+    <div class="qrow"><span class="dot"></span><span class="q">Height</span><span class="un">not answered</span></div>
+    <div class="qrow"><span class="dot"></span><span class="q">Body type</span><span class="un">not answered</span></div>
+    <div class="qrow"><span class="dot filled"></span><span class="q">Relationship style</span><span class="a">Long-term</span></div>
+    <div class="qrow"><span class="dot"></span><span class="q">Have kids</span><span class="un">not answered</span></div>
+    <div class="qrow"><span class="dot"></span><span class="q">Want kids</span><span class="un">not answered</span></div>
+    <div class="qrow"><span class="dot"></span><span class="q">Smoking</span><span class="un">not answered</span></div>
+    <div class="qrow"><span class="dot"></span><span class="q">Religion</span><span class="un">not answered</span></div>
+    <div class="qrow"><span class="dot"></span><span class="q">Location</span><span class="un">not answered</span></div>
+    <div class="qrow"><span class="dot"></span><span class="q">Living</span><span class="un">not answered</span></div>
+    <div class="qrow"><span class="dot"></span><span class="q">Work rhythm</span><span class="un">not answered</span></div>
+    <div class="qrow"><span class="dot"></span><span class="q">Pets</span><span class="un">not answered</span></div>
+    <div class="qrow"><span class="dot"></span><span class="q">Politics</span><span class="un">not answered</span></div>
+    <div class="qrow"><span class="dot"></span><span class="q">Free time</span><span class="un">not answered</span></div>
+  <div class="sec"><span class="name">Personality</span><span class="count">1/3</span></div>
+    <div class="qrow"><span class="dot filled"></span><span class="q">Sun sign</span><span class="a">Taurus</span></div>
+    <div class="qrow"><span class="dot"></span><span class="q">4-letter style</span><span class="un">not answered</span></div>
+    <div class="qrow"><span class="dot"></span><span class="q">Big Five</span><span class="un">not answered</span></div>
+  <div class="sec"><span class="name">Extended questions</span><span class="count">optional</span></div>
+    <div class="qrow"><span class="dot"></span><span class="q">Relationship history</span><span class="un">not answered</span></div>
+    <div class="qrow"><span class="dot"></span><span class="q">Love languages</span><span class="un">not answered</span></div>
+    <div class="qrow"><span class="dot"></span><span class="q">Communication style</span><span class="un">not answered</span></div>
+  <div class="sec"><span class="name">Deep questions</span><span class="count">optional</span></div>
+    <div class="qrow"><span class="dot"></span><span class="q">Attachment style</span><span class="un">not answered</span></div>
+    <div class="qrow"><span class="dot"></span><span class="q">Intimacy needs</span><span class="un">not answered</span></div>
+</div>
     </div>
   </div>
   <script src="palette-switcher.js"></script>
