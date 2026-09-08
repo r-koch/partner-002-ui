@@ -24,9 +24,6 @@
     "draft-02-13-pets.html",
     "draft-02-14-politics.html",
     "draft-02-15-freetime.html",
-    "draft-02-16-sun-sign.html",
-    "draft-02-17-four-letter-style.html",
-    "draft-02-18-big-five.html",
     "draft-03-questionnaire-overview.html",
     "draft-04-candidate-list.html",
     "draft-05-matches-list.html",
@@ -34,6 +31,9 @@
     "draft-06-match-stage2.html",
     "draft-08-match-rung3.html",
     "draft-09-icebreaker-pair.html",
+    "draft-02-16-sun-sign.html",
+    "draft-02-17-four-letter-style.html",
+    "draft-02-18-big-five.html",
     "draft-09b-icebreaker-result.html",
     "draft-06a-history.html",
     "draft-06b-extended-qa.html",
@@ -41,7 +41,9 @@
     "draft-04d-import.html",
     "draft-04e-interests-manual.html",
     "draft-04f-pricing.html",
-    "draft-04c-faq.html"
+    "draft-04c-faq.html",
+    "draft-04g-settings.html",
+    "draft-04h-avatar-create.html"
   ];
   var here = location.pathname.split("/").pop() || "draft-01a-welcome.html";
   var idx = SEQUENCE.indexOf(here);

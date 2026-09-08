@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PARTNER-002 design draft</title>
+<style>
+  :root{
+    --bg:#FAF6EF; --surface:#F3EBDD; --text:#2E2620; --muted:#6B5D50;
+    --accent:#B0431F; --accent-text:#FFFFFF; --line:#D8CCBA; --exclude:#A63A2B;
+    --match:#3E6B4F; --positive:#3E6B4F; --positive-text:#FFFFFF;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--text); font-family:Georgia,'Times New Roman',serif;
+       min-height:100vh; padding:0;}
+    .phone{width:100%; background:var(--bg);
+         display:flex; flex-direction:column; min-height:100vh;}
+  @media (min-width:600px){
+    .phone{max-width:420px; margin:0 auto; border-radius:24px; overflow:hidden;
+           border:1px solid var(--line); min-height:700px;
+           box-shadow:0 4px 24px rgba(0,0,0,.08);}
+    body{padding:24px;}
+  }
+  header{display:flex; justify-content:space-between; align-items:center; padding:16px 18px;
+         border-bottom:1px solid var(--line);}
+  header strong{font-weight:600;}
+  header nav{display:flex; gap:10px; align-items:center;}
+  header a{color:var(--muted); font-size:14px; text-decoration:none;}
+  .qmark{width:20px; height:20px; border-radius:50%; border:1.5px solid var(--muted);
+         color:var(--muted); font-size:12px; display:inline-flex; align-items:center;
+         justify-content:center; cursor:pointer; background:none; font-family:inherit;}
+  .expl{display:none; font-size:12px; color:var(--muted); line-height:1.5;
+        margin:10px 18px 0; border-left:2px solid var(--line); padding:4px 10px;}
+  .expl.show{display:block;}
+  .body{flex:1; padding:18px; overflow-y:auto;}
+  .step{font-size:13px; color:var(--muted); margin-bottom:12px;}
+  h1{font-size:26px; font-weight:600; margin-bottom:8px; line-height:1.25;}
+  .lead{font-size:15px; color:var(--muted); margin-bottom:22px; line-height:1.5;}
+  .block{border:1px solid var(--line); border-radius:14px; background:var(--surface);
+         padding:14px 16px; margin-bottom:12px;}
+  .block .t{font-size:14px; font-weight:600; margin-bottom:6px;}
+  .block .tl{font-size:13px; color:var(--muted); line-height:1.5;}
+  .block .precise{font-size:12px; color:var(--muted); line-height:1.6; margin-top:8px;
+         border-top:1px solid var(--line); padding-top:8px;}
+  .btn{display:block; width:100%; background:var(--positive); color:var(--positive-text);
+       border:none; border-radius:999px; padding:13px 0; font-size:15px; cursor:pointer;
+       font-family:inherit; margin-top:6px; text-align:center; text-decoration:none;}
+  .btn.ghost{background:var(--surface); color:var(--text); border:2px solid var(--line);}
+  .btn.google{background:#FFFFFF; color:#1E2430; border:2px solid var(--line);}
+  .choice{display:block; border:2px solid var(--line); border-radius:12px;
+          padding:15px 16px; margin-bottom:12px; font-size:15px; cursor:pointer;
+          background:var(--surface);}
+  .choice small{display:block; color:var(--muted); font-size:12px; margin-top:4px;}
+  .choice.now{border-color:var(--accent);}
+  .footer{margin-top:auto; padding:18px; display:flex; justify-content:space-between;
+          align-items:center; max-width:420px; width:100%; margin-left:auto; margin-right:auto;}
+  .back{background:none; border:none; color:var(--muted); font-size:15px; cursor:pointer;
+        font-family:inherit;}
+  .next{background:var(--positive); color:var(--positive-text); border:none; border-radius:999px;
+        padding:13px 26px; font-size:15px; cursor:pointer; font-family:inherit;}
+  .demo-note{display:none;}
+
+  .row{display:flex; align-items:center; justify-content:space-between; gap:8px;
+       padding:12px 0; border-bottom:1px solid var(--line); font-size:14px;}
+  .row:last-child{border-bottom:none;}
+  .row .meta{font-size:12px; color:var(--muted); display:block;}
+  .row .act{border:1px solid var(--line); border-radius:999px; padding:7px 14px;
+       font-size:12px; cursor:pointer; background:var(--bg); color:var(--text);
+       font-family:inherit; flex:0 0 auto;}
+  .row .act.danger{color:var(--exclude); border-color:var(--exclude);}
+  .card{border:1px solid var(--line); border-radius:14px; background:var(--surface);
+        padding:4px 15px; margin-bottom:12px;}
+  .seg{font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em;
+       margin:14px 0 8px;}
+
+  .avatar-stage{display:flex; justify-content:center; padding:22px 0 8px;}
+  .avatar-ring{width:120px; height:120px; border-radius:50%; background:var(--surface);
+       border:1.5px solid var(--line); display:flex; align-items:center; justify-content:center;
+       font-size:44px; color:var(--muted);}
+  .avatar-controls{display:grid; grid-template-columns:1fr 1fr; gap:9px; margin-top:14px;}
+  .avatar-controls .ctl{border:1.5px solid var(--line); border-radius:11px; padding:11px 12px;
+       background:var(--surface); font-size:13px; text-align:left;}
+  .avatar-controls .ctl b{display:block; font-size:12px; color:var(--muted); font-weight:400;
+       text-transform:none; letter-spacing:.03em;}
+</style>
+</head>
+<body>
+  <div class="phone" style="min-height:620px;">
+    <header>
+      <strong>Avatar <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
+      <nav><a href="#" title="Help"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></a><a href="#" title="Safety"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></a></nav>
+    </header>
+    <div class="expl" id="h-expl">A stylized avatar stands in for photos: generated on your device from a few choices, optional, and never uploaded. No real face, no photos.</div>
+
+    <div class="body">
+      <div class="avatar-stage"><div class="avatar-ring">♡</div></div>
+      
+      <div class="avatar-controls">
+        <div class="ctl"><b>Style</b>· picks the art family</div>
+        <div class="ctl"><b>Hair</b>· color &amp; length</div>
+        <div class="ctl"><b>Skin tone</b>· a small honest set</div>
+        <div class="ctl"><b>Outfit</b>· casual to smart</div>
+      </div>
+      <div style="margin-top:16px; display:flex; gap:8px;">
+        <button class="back">Shuffle</button>
+        <button class="next" style="flex:1;">Use this avatar</button>
+      </div>
+    </div>
+  </div>
+  <script src="palette-switcher.js"></script>
+<script src="draft-nav.js"></script>
+</body>
+</html>
