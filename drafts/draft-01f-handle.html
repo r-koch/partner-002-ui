@@ -69,7 +69,7 @@
 <body>
   <div class="phone" style="min-height:620px;">
     <header>
-      <strong>Setup – Your name here <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
+      <strong>Setup – Choose your name <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
       <nav><a href="#" title="Help"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></a></nav>
     </header>
     <div class="progress">
@@ -84,25 +84,18 @@
     
     <div class="body">
       
-      <h1>Pick a name to show</h1>
-      <div class="lead">Real names aren't used here. Choose words that feel like you,
-        a number is added so the name stays unique.</div>
-      <div class="block" style="display:flex; gap:8px; flex-wrap:wrap;">
-        <button class="btn ghost" style="flex:1; margin-top:0; padding:11px 0; font-size:14px;">quiet</button>
-        <button class="btn ghost" style="flex:1; margin-top:0; padding:11px 0; font-size:14px;">brave</button>
-        <button class="btn ghost" style="flex:1; margin-top:0; padding:11px 0; font-size:14px;">sunny</button>
+      <h1>What should we call you?</h1>
+      <div class="lead">Real names aren't used here. Pick two words — a number is added so the name stays unique.</div>
+      <div class="avatar-name-row" style="margin:18px 0;">
+        <div style="margin-bottom:10px;"><div class="field-label" style="font-size:12px; color:var(--muted); margin-bottom:5px;">First word</div><select style="width:100%; background:var(--surface); border:1.5px solid var(--line); border-radius:11px; padding:12px 14px; font-family:inherit; font-size:15px; color:var(--text); outline:none; -webkit-appearance:none; appearance:none;"><option value="" disabled selected>%s</option><option>quiet</option><option>brave</option><option>sunny</option><option>calm</option><option>clever</option><option>kind</option><option>witty</option><option>cosy</option><option>bright</option><option>gentle</option><option>honest</option><option>lucky</option><option>merry</option><option>mellow</option><option>nimble</option><option>patient</option><option>steady</option><option>swift</option><option>warm</option><option>wise</option></select></div>
+        <div style="margin-bottom:10px;"><div class="field-label" style="font-size:12px; color:var(--muted); margin-bottom:5px;">Second word</div><select style="width:100%; background:var(--surface); border:1.5px solid var(--line); border-radius:11px; padding:12px 14px; font-family:inherit; font-size:15px; color:var(--text); outline:none; -webkit-appearance:none; appearance:none;"><option value="" disabled selected>%s</option><option>fox</option><option>lion</option><option>deer</option><option>otter</option><option>seal</option><option>wren</option><option>lynx</option><option>bison</option><option>koala</option><option>panda</option><option>raven</option><option>swan</option><option>badger</option><option>beaver</option><option>dove</option><option>elm</option><option>hare</option><option>kiwi</option><option>moth</option><option>pike</option></select></div>
+        <button class="btn ghost" style="width:100%; margin-top:4px; padding:11px 0; font-size:14px;" onclick="document.getElementById('surprise-pick').style.opacity=1">Surprise me</button>
       </div>
-      <div class="block" style="display:flex; gap:8px; flex-wrap:wrap; margin-top:0;">
-        <button class="btn ghost" style="flex:1; margin-top:0; padding:11px 0; font-size:14px;">fox</button>
-        <button class="btn ghost" style="flex:1; margin-top:0; padding:11px 0; font-size:14px;">lion</button>
-        <button class="btn ghost" style="flex:1; margin-top:0; padding:11px 0; font-size:14px;">deer</button>
+      <div class="block" style="text-align:center;" id="surprise-pick">
+        <div class="t" style="font-size:20px; letter-spacing:.02em;">brave-fox-2148</div>
+        <div class="tl">Checking what&rsquo;s free ...</div>
       </div>
-      <div class="block" style="text-align:center;">
-        <div class="t">brave-fox-2148</div>
-        <div class="tl">Searching if this one is still free ...</div>
-      </div>
-      <button class="btn">That's me, done</button>
-      <button class="btn ghost" style="margin-top:10px;">Surprise me</button>
+      <button class="btn">That’s me, done</button>
     </div>
   </div>
   <script src="palette-switcher.js"></script>
