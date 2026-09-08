@@ -78,17 +78,40 @@
     <div class="expl" id="h-expl">We ask this once, on your way in. It's a self declaration, no proof needed — and it's the law: people under 18 can't use this app.</div>
     
     <div class="body">
-      <h1>How old are you?</h1>
-      <div class="lead">This app is only for people 18 or older.</div>
-      <label class="choice now">I am 18 or older</label>
-      <label class="choice">I am under 18</label>
+      <div id="q-wrap">
+        <h1>How old are you?</h1>
+        <div class="lead">This app is only for people 18 or older.</div>
+        <label class="choice now" onclick="pick(true)">I am 18 or older</label>
+        <label class="choice" onclick="pick(false)">I am under 18</label>
+      </div>
+      <div id="exit-wrap" style="display:none;">
+        <h1>We can&rsquo;t create an account for you</h1>
+        <div class="lead">This app is only for people 18 or older.</div>
+      </div>
     </div>
     <div class="footer">
       <button class="back">Back</button>
-      <button class="next" disabled>Continue</button>
+      <button class="next" disabled>Confirm</button>
     </div>
   </div>
-  <script src="palette-switcher.js"></script>
+  <script>
+  var over18 = true;
+  function pick(isOver) {
+    over18 = isOver;
+    var labels = document.querySelectorAll('.choice');
+    for (var i = 0; i < labels.length; i++) labels[i].classList.remove('now');
+    if (over18) {
+      document.getElementById('q-wrap').style.display = '';
+      document.getElementById('exit-wrap').style.display = 'none';
+      document.querySelector('.next').disabled = false;
+    } else {
+      document.getElementById('q-wrap').style.display = 'none';
+      document.getElementById('exit-wrap').style.display = '';
+      document.querySelector('.next').disabled = true;
+    }
+  }
+</script>
+<script src="palette-switcher.js"></script>
 <script src="draft-nav.js"></script>
 </body>
 </html>
