@@ -42,11 +42,18 @@
   .block .tl{font-size:13px; color:var(--muted); line-height:1.5;}
   .block .precise{font-size:12px; color:var(--muted); line-height:1.6; margin-top:8px;
          border-top:1px solid var(--line); padding-top:8px;}
-  .btn{display:block; width:100%; background:var(--positive); color:var(--positive-text);
+  .positive{display:block; width:100%; background:var(--positive); color:var(--positive-text);
        border:none; border-radius:999px; padding:13px 0; font-size:15px; cursor:pointer;
        font-family:inherit; margin-top:6px; text-align:center; text-decoration:none;}
-  .btn.ghost{background:var(--surface); color:var(--text); border:2px solid var(--line);}
-  .btn.google{background:#FFFFFF; color:#1E2430; border:2px solid var(--line);}
+  .positive[disabled]{opacity:.4; cursor:not-allowed;}
+  .negative{display:block; width:100%; background:var(--surface); color:var(--exclude);
+       border:1.5px solid var(--exclude); border-radius:999px; padding:11px 0; font-size:15px;
+       cursor:pointer; font-family:inherit; margin-top:6px; text-align:center; text-decoration:none;}
+  .negative.filled{background:var(--exclude); color:var(--bg);}
+  .neutral{display:block; width:100%; background:var(--surface); color:var(--text);
+       border:1.5px solid var(--line); border-radius:999px; padding:11px 0; font-size:15px;
+       cursor:pointer; font-family:inherit; margin-top:6px; text-align:center; text-decoration:none;}
+  .min{padding:6px 14px; font-size:13px;}
   .choice{display:block; border:2px solid var(--line); border-radius:12px;
           padding:15px 16px; margin-bottom:12px; font-size:15px; cursor:pointer;
           background:var(--surface);}
@@ -54,10 +61,6 @@
   .choice.now{border-color:var(--accent);}
   .footer{margin-top:auto; padding:18px; display:flex; justify-content:space-between;
           align-items:center; max-width:420px; width:100%; margin-left:auto; margin-right:auto;}
-  .back{background:none; border:none; color:var(--muted); font-size:15px; cursor:pointer;
-        font-family:inherit;}
-  .next{background:var(--positive); color:var(--positive-text); border:none; border-radius:999px;
-        padding:13px 26px; font-size:15px; cursor:pointer; font-family:inherit;}
   .demo-note{display:none;}
 
   .progress{display:flex; gap:6px; padding:16px 18px 0; flex:none;}
@@ -93,8 +96,8 @@
           may be used for the purpose of finding compatible users and being found by them.
           Withdrawal is possible at any time.</div>
       </div>
-      <button class="btn">I agree, continue</button>
-      <button class="btn ghost" style="margin-top:10px;">No, let me rethink</button>
+      <button class="positive">I agree, continue</button>
+      <button class="neutral" style="margin-top:10px;">No, let me rethink</button>
     </div>
   </div>
   <script src="palette-switcher.js"></script>

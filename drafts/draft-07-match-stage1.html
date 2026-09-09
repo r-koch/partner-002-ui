@@ -66,15 +66,17 @@
         padding:8px 0; border-bottom:1px solid var(--line); font-size:14px;}
   .prow:last-child{border-bottom:none;}
   .prow .meta{font-size:12px; color:var(--muted); display:block;}
-  .prow .act{border:none; background:var(--positive); color:var(--positive-text);
-        border-radius:999px; padding:7px 14px; font-size:12px; cursor:pointer;
-        font-family:inherit; flex:0 0 auto;}
+
   .actions{display:grid; grid-template-columns:1fr 1fr; gap:10px; padding:16px 18px; margin-top:auto;}
-  .btn{padding:13px 10px; border-radius:999px; font-size:14px; cursor:pointer;
-       font-family:inherit; text-align:center; border:none;}
-  .btn.primary{background:var(--positive); color:var(--positive-text);}
-  .btn.ghost{background:var(--surface); color:var(--text); border:2px solid var(--line);}
-  .btn.wide{grid-column:1 / -1;}
+  .positive{background:var(--positive); color:var(--positive-text); border:none; border-radius:999px;
+       padding:13px 10px; font-size:14px; cursor:pointer; font-family:inherit; text-align:center;}
+  .negative{background:var(--surface); color:var(--exclude); border:1.5px solid var(--exclude); border-radius:999px;
+       padding:13px 10px; font-size:14px; cursor:pointer; font-family:inherit; text-align:center;}
+  .neutral{background:var(--surface); color:var(--text); border:1.5px solid var(--line); border-radius:999px;
+       padding:13px 10px; font-size:14px; cursor:pointer; font-family:inherit; text-align:center;}
+  .min{padding:6px 14px; font-size:13px;}
+  .wide{grid-column:1 / -1;}
+  .prow button{flex:0 0 auto;}
   .demo-note{display:none;}
 
   .h-row{display:flex; align-items:center; gap:6px; margin:4px 0 10px;}
@@ -127,24 +129,24 @@
     <div class="pending">
       <div class="prow">
         <span>Ideal weekend? <span class="meta">awaiting your answer</span></span>
-        <button class="act">Answer</button>
+        <button class="neutral min">Answer</button>
       </div>
       <div class="prow">
         <span>Life motto? <span class="meta">awaiting their answer</span></span>
-        <button class="act">Nudge</button>
+        <button class="neutral min">Nudge</button>
       </div>
       <div class="prow">
         <span>Deepest fear? <span class="meta">not requested</span></span>
-        <button class="act">Ask</button>
+        <button class="neutral min">Ask</button>
       </div>
     </div>
 
     <div class="actions">
-      <button class="btn primary">Ask for info</button>
-      <button class="btn ghost">Revealed info</button>
-      <button class="btn primary">Next stage</button>
-      <button class="btn ghost">History</button>
-      <button class="btn ghost wide">Cancel match</button>
+      <button class="positive">Ask for info</button>
+      <button class="neutral">Revealed info</button>
+      <button class="positive">Next stage</button>
+      <button class="neutral">History</button>
+      <button class="negative wide">Cancel match</button>
     </div>
   </div>
   <script src="palette-switcher.js"></script>

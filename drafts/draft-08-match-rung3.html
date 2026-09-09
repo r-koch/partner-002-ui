@@ -55,9 +55,13 @@
         color:var(--accent); border-color:var(--accent); vertical-align:-2px;}
 
   .chiprow{display:flex; flex-wrap:wrap; gap:6px; padding:10px 18px 0; border-top:1px solid var(--line);}
-  .minibtn{background:var(--surface); border:1px solid var(--line); border-radius:999px;
-        padding:6px 11px; font-size:11px; color:var(--text); cursor:pointer; font-family:inherit;}
-  .minibtn.cancel{margin-left:auto; background:none; color:var(--muted);}
+  .positive{background:var(--positive); color:var(--positive-text); border:none; border-radius:999px;
+       padding:12px 24px; font-size:15px; cursor:pointer; font-family:inherit;}
+  .negative{background:var(--surface); color:var(--exclude); border:1.5px solid var(--exclude); border-radius:999px;
+       padding:12px 24px; font-size:15px; cursor:pointer; font-family:inherit; margin-left:auto;}
+  .neutral{background:var(--surface); color:var(--text); border:1.5px solid var(--line); border-radius:999px;
+       padding:12px 24px; font-size:15px; cursor:pointer; font-family:inherit;}
+  .min{padding:6px 14px; font-size:13px;}
 
   .suggest{display:none; margin:8px 18px; border:1.5px solid var(--accent); border-radius:14px;
         padding:10px 12px; font-size:13px; line-height:1.5;}
@@ -80,8 +84,6 @@
   .inputbar input{flex:1; border:2px solid var(--line); border-radius:999px;
         padding:10px 15px; font-size:15px; background:var(--surface); color:var(--text);
         font-family:inherit;}
-  .inputbar button{background:var(--positive); color:var(--positive-text); border:none;
-        border-radius:999px; padding:10px 18px; font-size:15px; cursor:pointer; font-family:inherit;}
   input[type="number"], input[type="text"]{background:var(--surface);
        border:1.5px solid var(--line); border-radius:11px; padding:10px 12px;
        font-family:inherit; font-size:14px; color:var(--text); outline:none;}
@@ -125,14 +127,14 @@
     </div>
 
     <div class="chiprow">
-      <button class="minibtn" onclick="document.getElementById('suggest-a').style.display='block';">Suggest message</button>
-      <button class="minibtn">Break the ice</button>
-      <button class="minibtn">Starters</button>
-      <button class="minibtn">Ask for info</button>
-      <button class="minibtn">Revealed info</button>
-      <button class="minibtn">History</button>
+      <button class="neutral min" onclick="document.getElementById('suggest-a').style.display='block';">Suggest message</button>
+      <button class="neutral min">Break the ice</button>
+      <button class="neutral min">Starters</button>
+      <button class="neutral min">Ask for info</button>
+      <button class="neutral min">Revealed info</button>
+      <button class="neutral min">History</button>
       
-      <button class="minibtn cancel">Cancel match</button>
+      <button class="negative min">Cancel match</button>
     </div>
 
     <div class="chat">
@@ -151,7 +153,7 @@
     </div>
     <div class="inputbar">
       <input id="compose" type="text" placeholder="Message (text only)">
-      <button>Send</button>
+      <button class="positive min">Send</button>
     </div>
   </div>
   <script src="palette-switcher.js"></script>

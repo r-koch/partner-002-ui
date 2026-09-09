@@ -42,11 +42,6 @@
   .block .tl{font-size:13px; color:var(--muted); line-height:1.5;}
   .block .precise{font-size:12px; color:var(--muted); line-height:1.6; margin-top:8px;
          border-top:1px solid var(--line); padding-top:8px;}
-  .btn{display:block; width:100%; background:var(--positive); color:var(--positive-text);
-       border:none; border-radius:999px; padding:13px 0; font-size:15px; cursor:pointer;
-       font-family:inherit; margin-top:6px; text-align:center; text-decoration:none;}
-  .btn.ghost{background:var(--surface); color:var(--text); border:2px solid var(--line);}
-  .btn.google{background:#FFFFFF; color:#1E2430; border:2px solid var(--line);}
   .choice{display:block; border:2px solid var(--line); border-radius:12px;
           padding:15px 16px; margin-bottom:12px; font-size:15px; cursor:pointer;
           background:var(--surface);}
@@ -54,20 +49,21 @@
   .choice.now{border-color:var(--accent);}
   .footer{margin-top:auto; padding:18px; display:flex; justify-content:space-between;
           align-items:center; max-width:420px; width:100%; margin-left:auto; margin-right:auto;}
-  .back{background:none; border:none; color:var(--muted); font-size:15px; cursor:pointer;
-        font-family:inherit;}
-  .next{background:var(--positive); color:var(--positive-text); border:none; border-radius:999px;
-        padding:13px 26px; font-size:15px; cursor:pointer; font-family:inherit;}
   .demo-note{display:none;}
 
   .row{display:flex; align-items:center; justify-content:space-between; gap:8px;
        padding:12px 0; border-bottom:1px solid var(--line); font-size:14px;}
   .row:last-child{border-bottom:none;}
   .row .meta{font-size:12px; color:var(--muted); display:block;}
-  .row .act{border:1px solid var(--line); border-radius:999px; padding:7px 14px;
-       font-size:12px; cursor:pointer; background:var(--bg); color:var(--text);
-       font-family:inherit; flex:0 0 auto;}
-  .row .act.danger{color:var(--exclude); border-color:var(--exclude);}
+  .positive{background:var(--positive); color:var(--positive-text); border:none; border-radius:999px;
+       padding:12px 24px; font-size:15px; cursor:pointer; font-family:inherit;}
+  .negative{background:var(--surface); color:var(--exclude); border:1.5px solid var(--exclude); border-radius:999px;
+       padding:12px 24px; font-size:15px; cursor:pointer; font-family:inherit;}
+  .negative.filled{background:var(--exclude); color:var(--bg);}
+  .neutral{background:var(--surface); color:var(--text); border:1.5px solid var(--line); border-radius:999px;
+       padding:12px 24px; font-size:15px; cursor:pointer; font-family:inherit;}
+  .min{padding:6px 14px; font-size:13px;}
+  .row button{flex:0 0 auto;}
   .card{border:1px solid var(--line); border-radius:14px; background:var(--surface);
         padding:4px 15px; margin-bottom:12px;}
   .seg{font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em;
@@ -84,17 +80,17 @@
 
     <div class="body">
       <div class="card">
-        <div class="row"><span>Color theme<span class="meta">a few curated palettes, dark and light</span></span><button class="act">Choose</button></div>
-        <div class="row"><span>Avatar<span class="meta">stylized, optional, on-device</span></span><button class="act">Create or edit</button></div>
-        <div class="row"><span>Import interests<span class="meta">Google, Goodreads, Spotify — chips only</span></span><button class="act">Import</button></div>
+        <div class="row"><span>Color theme<span class="meta">a few curated palettes, dark and light</span></span><button class="neutral min">Choose</button></div>
+        <div class="row"><span>Avatar<span class="meta">stylized, optional, on-device</span></span><button class="neutral min">Create or edit</button></div>
+        <div class="row"><span>Import interests<span class="meta">Google, Goodreads, Spotify — chips only</span></span><button class="neutral min">Import</button></div>
       </div>
       <div class="card">
-        <div class="row"><span>Account<span class="meta">provider: Google</span></span><button class="act">Manage</button></div>
-        <div class="row"><span>Payment methods<span class="meta">PayPal, card, SEPA</span></span><button class="act">Manage</button></div>
-        <div class="row"><span>Subscription &amp; bundles<span class="meta">unlimited month or advance packs</span></span><button class="act">View</button></div>
+        <div class="row"><span>Account<span class="meta">provider: Google</span></span><button class="neutral min">Manage</button></div>
+        <div class="row"><span>Payment methods<span class="meta">PayPal, card, SEPA</span></span><button class="neutral min">Manage</button></div>
+        <div class="row"><span>Subscription &amp; bundles<span class="meta">unlimited month or advance packs</span></span><button class="neutral min">View</button></div>
       </div>
       <div class="card">
-        <div class="row"><span>Sign out<span class="meta">this device only</span></span><button class="act danger">Sign out</button></div>
+        <div class="row"><span>Sign out<span class="meta">this device only</span></span><button class="negative filled min">Sign out</button></div>
       </div>
     </div>
   </div>

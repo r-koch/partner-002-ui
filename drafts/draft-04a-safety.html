@@ -42,11 +42,6 @@
   .block .tl{font-size:13px; color:var(--muted); line-height:1.5;}
   .block .precise{font-size:12px; color:var(--muted); line-height:1.6; margin-top:8px;
          border-top:1px solid var(--line); padding-top:8px;}
-  .btn{display:block; width:100%; background:var(--positive); color:var(--positive-text);
-       border:none; border-radius:999px; padding:13px 0; font-size:15px; cursor:pointer;
-       font-family:inherit; margin-top:6px; text-align:center; text-decoration:none;}
-  .btn.ghost{background:var(--surface); color:var(--text); border:2px solid var(--line);}
-  .btn.google{background:#FFFFFF; color:#1E2430; border:2px solid var(--line);}
   .choice{display:block; border:2px solid var(--line); border-radius:12px;
           padding:15px 16px; margin-bottom:12px; font-size:15px; cursor:pointer;
           background:var(--surface);}
@@ -54,20 +49,21 @@
   .choice.now{border-color:var(--accent);}
   .footer{margin-top:auto; padding:18px; display:flex; justify-content:space-between;
           align-items:center; max-width:420px; width:100%; margin-left:auto; margin-right:auto;}
-  .back{background:none; border:none; color:var(--muted); font-size:15px; cursor:pointer;
-        font-family:inherit;}
-  .next{background:var(--positive); color:var(--positive-text); border:none; border-radius:999px;
-        padding:13px 26px; font-size:15px; cursor:pointer; font-family:inherit;}
   .demo-note{display:none;}
 
   .row{display:flex; align-items:center; justify-content:space-between; gap:8px;
        padding:12px 0; border-bottom:1px solid var(--line); font-size:14px;}
   .row:last-child{border-bottom:none;}
   .row .meta{font-size:12px; color:var(--muted); display:block;}
-  .row .act{border:1px solid var(--line); border-radius:999px; padding:7px 14px;
-       font-size:12px; cursor:pointer; background:var(--bg); color:var(--text);
-       font-family:inherit; flex:0 0 auto;}
-  .row .act.danger{color:var(--exclude); border-color:var(--exclude);}
+  .positive{background:var(--positive); color:var(--positive-text); border:none; border-radius:999px;
+       padding:12px 24px; font-size:15px; cursor:pointer; font-family:inherit;}
+  .negative{background:var(--surface); color:var(--exclude); border:1.5px solid var(--exclude); border-radius:999px;
+       padding:12px 24px; font-size:15px; cursor:pointer; font-family:inherit;}
+  .negative.filled{background:var(--exclude); color:var(--bg);}
+  .neutral{background:var(--surface); color:var(--text); border:1.5px solid var(--line); border-radius:999px;
+       padding:12px 24px; font-size:15px; cursor:pointer; font-family:inherit;}
+  .min{padding:6px 14px; font-size:13px;}
+  .row button{flex:0 0 auto;}
   .card{border:1px solid var(--line); border-radius:14px; background:var(--surface);
         padding:4px 15px; margin-bottom:12px;}
   .seg{font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em;
@@ -85,10 +81,10 @@
     <div class="body">
       <div class="seg">Your controls</div>
       <div class="card">
-        <div class="row"><span>Report a user<span class="meta">help us keep things decent</span></span><button class="act">Report</button></div>
-        <div class="row"><span>Blocked users<span class="meta">they can't see or message you</span></span><button class="act">Manage</button></div>
-        <div class="row"><span>Cancel a match<span class="meta">it ends quietly on both sides</span></span><button class="act">Cancel</button></div>
-        <div class="row"><span>Delete my account<span class="meta">all server records, matching, chat — gone</span></span><button class="act danger">Delete</button></div>
+        <div class="row"><span>Report a user<span class="meta">help us keep things decent</span></span><button class="neutral min">Report</button></div>
+        <div class="row"><span>Blocked users<span class="meta">they can't see or message you</span></span><button class="neutral min">Manage</button></div>
+        <div class="row"><span>Cancel a match<span class="meta">it ends quietly on both sides</span></span><button class="neutral min">Cancel</button></div>
+        <div class="row"><span>Delete my account<span class="meta">all server records, matching, chat — gone</span></span><button class="negative filled min">Delete</button></div>
       </div>
       <div class="seg">About privacy</div>
       <div class="card">

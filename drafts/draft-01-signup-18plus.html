@@ -46,11 +46,15 @@
   .choice small{display:block; color:var(--muted); font-size:12px; margin-top:4px; line-height:1.4;}
   .footer{margin-top:auto; padding:18px; display:flex; justify-content:space-between;
           align-items:center;}
-  .back{background:none; border:none; color:var(--muted); font-size:15px; cursor:pointer;
-        font-family:inherit;}
-  .next{background:var(--positive); color:var(--positive-text); border:none; border-radius:999px;
-        padding:13px 26px; font-size:15px; cursor:pointer; font-family:inherit;}
-  .next[disabled]{opacity:.4; cursor:not-allowed;}
+  .positive{background:var(--positive); color:var(--positive-text); border:none; border-radius:999px;
+       padding:12px 24px; font-size:15px; cursor:pointer; font-family:inherit;}
+  .positive[disabled]{opacity:.4; cursor:not-allowed;}
+  .negative{background:var(--surface); color:var(--exclude); border:1.5px solid var(--exclude); border-radius:999px;
+       padding:12px 24px; font-size:15px; cursor:pointer; font-family:inherit;}
+  .negative.filled{background:var(--exclude); color:var(--bg);}
+  .neutral{background:var(--surface); color:var(--text); border:1.5px solid var(--line); border-radius:999px;
+       padding:12px 24px; font-size:15px; cursor:pointer; font-family:inherit;}
+  .min{padding:6px 14px; font-size:13px;}
 
   .progress{display:flex; gap:6px; padding:16px 18px 0; flex:none;}
   .progress span{flex:1; height:5px; border-radius:3px; background:var(--line);}
@@ -90,8 +94,8 @@
       </div>
     </div>
     <div class="footer">
-      <button class="back">Back</button>
-      <button class="next" disabled>Confirm</button>
+      <button class="neutral">Back</button>
+      <button class="positive" disabled>Confirm</button>
     </div>
   </div>
   <script>
@@ -104,11 +108,11 @@
     if (over18) {
       document.getElementById('q-wrap').style.display = '';
       document.getElementById('exit-wrap').style.display = 'none';
-      document.querySelector('.next').disabled = false;
+      document.querySelector('.positive').disabled = false;
     } else {
       document.getElementById('q-wrap').style.display = 'none';
       document.getElementById('exit-wrap').style.display = '';
-      document.querySelector('.next').disabled = true;
+      document.querySelector('.positive').disabled = true;
     }
   }
 </script>

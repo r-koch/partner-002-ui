@@ -43,9 +43,18 @@
   .plan .desc{font-size:13px; color:var(--muted); line-height:1.5; margin:6px 0 10px;}
   .plan .incl{font-size:13px; line-height:1.7;}
   .plan .incl span{color:var(--muted);}
-  .btn{display:block; width:100%; background:var(--positive); color:var(--positive-text);
-       border:none; border-radius:999px; padding:12px 0; font-size:15px; cursor:pointer;
-       font-family:inherit; margin-top:6px; text-align:center;}
+  .positive{display:block; width:100%; background:var(--positive); color:var(--positive-text);
+       border:none; border-radius:999px; padding:13px 0; font-size:15px; cursor:pointer;
+       font-family:inherit; margin-top:6px; text-align:center; text-decoration:none;}
+  .positive[disabled]{opacity:.4; cursor:not-allowed;}
+  .negative{display:block; width:100%; background:var(--surface); color:var(--exclude);
+       border:1.5px solid var(--exclude); border-radius:999px; padding:11px 0; font-size:15px;
+       cursor:pointer; font-family:inherit; margin-top:6px; text-align:center; text-decoration:none;}
+  .negative.filled{background:var(--exclude); color:var(--bg);}
+  .neutral{display:block; width:100%; background:var(--surface); color:var(--text);
+       border:1.5px solid var(--line); border-radius:999px; padding:11px 0; font-size:15px;
+       cursor:pointer; font-family:inherit; margin-top:6px; text-align:center; text-decoration:none;}
+  .min{padding:6px 14px; font-size:13px;}
   .providers{font-size:13px; color:var(--muted); margin-top:14px; line-height:1.6;}
   .fine{font-size:11px; color:var(--muted); margin-top:12px; line-height:1.6;
         border-top:1px solid var(--line); padding-top:10px;}
@@ -66,21 +75,21 @@
         <div class="name"><span>Free</span><span class="price">EUR 0</span></div>
         <div class="desc">3 stage-3 advances per 30 days.</div>
         <div class="incl"><span>&#10003; Matching, stage 1 and stage 2</span><br><span>&#10003; 3 chat unlocks per period</span></div>
-        <button class="btn" style="background:var(--line); color:var(--text);">Current plan</button>
+        <button class="positive">Current plan</button>
       </div>
 
       <div class="plan">
         <div class="name"><span>Unlimited month</span><span class="price">EUR [price]</span></div>
         <div class="desc">Unlimited stage-3 advances for 30 days. Cancel anytime.</div>
         <div class="incl"><span>&#10003; Unlimited chat unlocks</span><br><span>&#10003; Cancel anytime, no tricks</span></div>
-        <button class="btn">Subscribe</button>
+        <button class="positive">Subscribe</button>
       </div>
 
       <div class="plan">
         <div class="name"><span>Advance bundles</span><span class="price">EUR [price]</span></div>
         <div class="desc">Prepaid chat unlocks that never expire — and make the under-a-euro price workable, even with card fees.</div>
         <div class="incl"><span>&#10003; 5 / 10 / 20 advances</span><br><span>&#10003; A month's membership never ends your bundle</span></div>
-        <button class="btn">Buy advances</button>
+        <button class="positive">Buy advances</button>
       </div>
 
       <div class="providers">PayPal, credit card, Apple/Google Pay — and direct debit (SEPA) where the provider offers it.</div>

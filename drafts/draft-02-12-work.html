@@ -105,11 +105,15 @@
   .imp .dots i.on{border-color:var(--accent); color:var(--accent); font-weight:700;}
   .footer{margin-top:auto; padding:14px 18px; display:flex; justify-content:space-between;
           align-items:center; border-top:1px solid var(--line);}
-  .back{background:none; border:none; color:var(--muted); font-size:15px; cursor:pointer;
-        font-family:inherit;}
-  .next{background:var(--positive); color:var(--positive-text); border:none; border-radius:999px;
-        padding:12px 24px; font-size:15px; cursor:pointer; font-family:inherit;}
-  .next[disabled]{opacity:.4; cursor:not-allowed;}
+  .positive{background:var(--positive); color:var(--positive-text); border:none; border-radius:999px;
+       padding:12px 24px; font-size:15px; cursor:pointer; font-family:inherit;}
+  .positive[disabled]{opacity:.4; cursor:not-allowed;}
+  .negative{background:var(--surface); color:var(--exclude); border:1.5px solid var(--exclude); border-radius:999px;
+       padding:12px 24px; font-size:15px; cursor:pointer; font-family:inherit;}
+  .negative.filled{background:var(--exclude); color:var(--bg);}
+  .neutral{background:var(--surface); color:var(--text); border:1.5px solid var(--line); border-radius:999px;
+       padding:12px 24px; font-size:15px; cursor:pointer; font-family:inherit;}
+  .min{padding:6px 14px; font-size:13px;}
 
   /* number / text-field variants */
   .field-label{display:block; font-size:12px; color:var(--muted); margin:10px 0 4px;}
@@ -154,8 +158,8 @@
       </div>
     </div>
     <div class="footer">
-      <button class="back">Back</button>
-      <button class="next" disabled>Continue</button>
+      <button class="neutral">Back</button>
+      <button class="positive" disabled>Continue</button>
     </div>
   </div>
   <script>
