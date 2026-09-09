@@ -58,10 +58,8 @@
          background:var(--accent); flex:0 0 auto;}
   .anslab{font-size:11px; color:var(--muted); letter-spacing:.04em; flex:0 0 auto; line-height:24px;}
   .actrow{display:flex; gap:8px; margin-top:12px;}
-  .int{flex:1; background:var(--positive); color:var(--positive-text); border:none;
-       border-radius:999px; padding:10px 0; font-size:14px; cursor:pointer; font-family:inherit;}
-  .no{flex:1; background:var(--bg); color:var(--text); border:2px solid var(--line);
-      border-radius:999px; padding:10px 0; font-size:14px; cursor:pointer; font-family:inherit;}
+  .positive{flex:1; background:var(--positive); color:var(--positive-text); border:none; border-radius:999px; padding:10px 0; font-size:14px; cursor:pointer; font-family:inherit;}
+  .negative{flex:1; background:var(--bg); color:var(--exclude); border:2px solid var(--exclude); border-radius:999px; padding:10px 0; font-size:14px; cursor:pointer; font-family:inherit;}
 </style>
 </head>
 <body>
@@ -87,8 +85,8 @@
           <div class="interests"><span class="ilab">Interests</span><span class="ichip">travel</span><span class="ichip">outdoors</span><span class="ichip">city culture</span></div>
         </div>
         <div class="actrow">
-          <button class="int">Interested</button>
-          <button class="no">Not for me</button>
+          <button class="positive">Interested</button>
+          <button class="negative">Not for me</button>
         </div>
       </div>
       <div class="card">
@@ -104,8 +102,8 @@
           <div class="interests"><span class="ilab">Interests</span><span class="ichip">concerts</span><span class="ichip">food</span></div>
         </div>
         <div class="actrow">
-          <button class="int">Interested</button>
-          <button class="no">Not for me</button>
+          <button class="positive">Interested</button>
+          <button class="negative">Not for me</button>
         </div>
       </div>
       <div class="card">
@@ -121,8 +119,8 @@
           <div class="interests"><span class="ilab">Interests</span><span class="ichip">hiking</span><span class="ichip">films</span></div>
         </div>
         <div class="actrow">
-          <button class="int">Interested</button>
-          <button class="no">Not for me</button>
+          <button class="positive">Interested</button>
+          <button class="negative">Not for me</button>
         </div>
       </div>
     </div>
