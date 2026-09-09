@@ -33,11 +33,11 @@
         margin:10px 18px 0; border-left:2px solid var(--line); padding:4px 10px;}
   .expl.show{display:block;}
   .list{flex:1; padding:16px; display:flex; flex-direction:column; gap:14px; overflow-y:auto;}
-  .match{border:1px solid var(--line); border-radius:16px; background:var(--surface);
+  .card{border:1px solid var(--line); border-radius:16px; background:var(--surface);
          padding:14px 16px; cursor:pointer;}
   .topline{display:flex; justify-content:space-between; align-items:center; gap:8px;}
   .scoreline{display:flex; align-items:baseline; gap:8px;}
-  .score{font-size:22px; font-weight:700; line-height:1;}
+  .score{font-size:26px; font-weight:700; line-height:1;}
   .handle{font-size:15px; font-weight:600; color:var(--muted);}
   .stage-tag{font-size:11px; color:var(--muted); border:1px solid var(--line);
         border-radius:999px; padding:3px 9px; flex:0 0 auto;}
@@ -68,7 +68,7 @@
     </header>
     <div class="expl" id="h-expl">Your matches, sorted by newest interaction first. Tap a card to open its stage. Scores are fixed at match time.</div>
     <div class="list">
-      <div class="match">
+      <div class="card" style="cursor:pointer;" onclick="window.open('draft-06-match-stage2.html');return false;">
         <div class="topline">
           <div class="scoreline"><span class="score">82</span> <span class="handle">brave-lion-4417</span></div>
           <span class="stage-tag">stage 2</span>
@@ -79,13 +79,14 @@
           <span class="oval">wants kids</span>
           <span class="oval">non-smoker</span>
           <span class="oval">long-term</span>
+          <span class="oval">no pets</span>
         </div>
         <div class="interests">
-          <span class="ilab">Interests</span><span class="ichip">travel</span><span class="ichip">outdoors</span><span class="ichip">space</span>
+          <span class="ilab">Interests</span><span class="ichip">travel</span> <span class="ichip">outdoors</span> <span class="ichip">space</span>
         </div>
         <div class="last"><span class="new-dot"></span>Ice breaker "beach/mountains" — 3 of 5 same · 2 hours ago</div>
       </div>
-      <div class="match">
+      <div class="card" style="cursor:pointer;" onclick="window.open('draft-07-match-stage1.html');return false;">
         <div class="topline">
           <div class="scoreline"><span class="score">61</span> <span class="handle">steady-owl-8831</span></div>
           <span class="stage-tag">stage 1</span>
@@ -95,13 +96,15 @@
           <span class="oval gender">?</span>
           <span class="oval">open to kids</span>
           <span class="oval">non-smoker</span>
+          <span class="oval">city culture</span>
+          <span class="oval">long-term</span>
         </div>
         <div class="interests">
-          <span class="ilab">Interests</span><span class="ichip">films</span><span class="ichip">hiking</span>
+          <span class="ilab">Interests</span><span class="ichip">films</span> <span class="ichip">hiking</span>
         </div>
         <div class="last">They asked: "ideal weekend?" · awaiting your answer · yesterday</div>
       </div>
-      <div class="match">
+      <div class="card" style="cursor:pointer;" onclick="window.open('draft-08-match-rung3.html');return false;">
         <div class="topline">
           <div class="scoreline"><span class="score">77</span> <span class="handle">sunny-deer-5024</span></div>
           <span class="stage-tag">stage 3</span>
@@ -111,9 +114,11 @@
           <span class="oval gender">&#9792;</span>
           <span class="oval">wants kids</span>
           <span class="oval">flexible hours</span>
+          <span class="oval">long-term</span>
+          <span class="oval">non-smoker</span>
         </div>
         <div class="interests">
-          <span class="ilab">Interests</span><span class="ichip">concerts</span><span class="ichip">food</span><span class="ichip">books</span>
+          <span class="ilab">Interests</span><span class="ichip">concerts</span> <span class="ichip">food</span> <span class="ichip">books</span>
         </div>
         <div class="last">Last message: "have you tried the quiet coastline?" · 3 days ago</div>
       </div>
