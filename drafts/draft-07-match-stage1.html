@@ -74,6 +74,7 @@
        font-family:inherit; text-align:center; border:none;}
   .btn.primary{background:var(--positive); color:var(--positive-text);}
   .btn.ghost{background:var(--surface); color:var(--text); border:2px solid var(--line);}
+  .btn.wide{grid-column:1 / -1;}
   .demo-note{display:none;}
 
   .h-row{display:flex; align-items:center; gap:6px; margin:4px 0 10px;}
@@ -98,7 +99,7 @@
         <a href="#" title="Safety"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></a>
       </nav>
     </header>
-    <div class="expl" id="h-expl">Stage 1 is about getting to know each other’s answers. Everything they answered is open now — ask for what’s missing (you can only ask what you've answered yourself).</div>
+    <div class="expl" id="h-expl">Stage 1 is about building a fuller picture. All their answered optional info is open to read here, and anything left unanswered can be asked for — but only after you've answered it yourself.</div>
 
     <div class="match">
       <div class="avatar-col">
@@ -125,16 +126,25 @@
 
     <div class="pending">
       <div class="prow">
-        <span>Question "ideal weekend?" <span class="meta">they asked you · awaiting your answer</span></span>
+        <span>Ideal weekend? <span class="meta">awaiting your answer</span></span>
         <button class="act">Answer</button>
+      </div>
+      <div class="prow">
+        <span>Life motto? <span class="meta">awaiting their answer</span></span>
+        <button class="act">Nudge</button>
+      </div>
+      <div class="prow">
+        <span>Deepest fear? <span class="meta">not requested</span></span>
+        <button class="act">Ask</button>
       </div>
     </div>
 
     <div class="actions">
-      <button class="btn primary">Ask a question</button>
-      <button class="btn ghost" style="visibility:hidden;">&nbsp;</button>
-      <button class="btn primary">Ready to advance</button>
-      <button class="btn ghost">Cancel match</button>
+      <button class="btn primary">Ask for info</button>
+      <button class="btn ghost">Revealed info</button>
+      <button class="btn primary">Next stage</button>
+      <button class="btn ghost">History</button>
+      <button class="btn ghost wide">Cancel match</button>
     </div>
   </div>
   <script src="palette-switcher.js"></script>

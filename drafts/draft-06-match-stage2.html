@@ -77,6 +77,7 @@
   .btn.primary{background:var(--positive); color:var(--positive-text);}
   .btn.text{background:none; color:var(--text); border:2px solid var(--line);}
   .btn.ghost{background:var(--surface); color:var(--text); border:2px solid var(--line);}
+  .btn.wide{grid-column:1 / -1;}
   a.btn{text-decoration:none; display:flex; align-items:center; justify-content:center;}
   .demo-note{display:none;}
 </style>
@@ -90,7 +91,7 @@
         <a href="#" title="Safety"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></a>
       </nav>
     </header>
-    <div class="expl" id="h-expl">Stages open together when you both agree. Stage 2 adds the avatar, ice breakers and conversation starters. You can stop at any time.</div>
+    <div class="expl" id="h-expl">Stage 2 adds events — ice breakers and interest questions — along with the avatar. Stages open as you both agree, and you can stop at any time.</div>
 
     <div class="match">
       <div class="avatar-col">
@@ -116,24 +117,31 @@
 
     <div class="pending">
       <div class="prow">
-        <span>Ice breaker <span class="meta">started by you · waiting on them</span></span>
+        <span>Ice breaker <span class="meta">you started it · awaiting them</span></span>
         <button class="act">Continue</button>
-      </div>
-      <div class="prow">
-        <span>Favorite travel type? <span class="meta">awaiting her answer</span></span>
-        <button class="act">Nudge</button>
       </div>
       <div class="prow">
         <span>Big city or countryside? <span class="meta">awaiting your answer</span></span>
         <button class="act">Answer</button>
       </div>
+      <div class="prow">
+        <span>Favorite travel type? <span class="meta">awaiting their answer</span></span>
+        <button class="act">Nudge</button>
+      </div>
+      <div class="prow">
+        <span>Work-life balance? <span class="meta">not requested</span></span>
+        <button class="act">Ask</button>
+      </div>
     </div>
 
     <div class="actions">
       <button class="btn primary">Break the ice</button>
-      <button class="btn text">What could I ask her?</button>
-      <button class="btn primary">Ready to advance</button>
-      <button class="btn ghost">Cancel match</button>
+      <button class="btn ghost">Starters</button>
+      <button class="btn primary">Ask for info</button>
+      <button class="btn ghost">Revealed info</button>
+      <button class="btn primary">Next stage</button>
+      <button class="btn ghost">History</button>
+      <button class="btn ghost wide">Cancel match</button>
     </div>
   </div>
   <script src="palette-switcher.js"></script>
