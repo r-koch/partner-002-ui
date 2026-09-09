@@ -909,6 +909,93 @@
           }
         ]
       }
+    },
+    {
+      "id": "orientation",
+      "label": "Orientation",
+      "axis": "both",
+      "conditional": null,
+      "you": {
+        "type": "radio",
+        "options": [
+          {
+            "value": "straight",
+            "label": "Straight"
+          },
+          {
+            "value": "gay",
+            "label": "Gay"
+          },
+          {
+            "value": "lesbian",
+            "label": "Lesbian"
+          },
+          {
+            "value": "bisexual",
+            "label": "Bisexual"
+          },
+          {
+            "value": "pansexual",
+            "label": "Pansexual"
+          },
+          {
+            "value": "asexual",
+            "label": "Asexual"
+          },
+          {
+            "value": "queer",
+            "label": "Queer"
+          },
+          {
+            "checked": true,
+            "value": "prefer-not-to-say",
+            "label": "Prefer not to say"
+          }
+        ]
+      },
+      "seek": {
+        "type": "multi",
+        "importance": true,
+        "importanceAriaLabel": "how much this matters",
+        "importanceDefault": 3,
+        "redflag": true,
+        "options": [
+          {
+            "value": "straight",
+            "label": "Straight"
+          },
+          {
+            "value": "gay",
+            "label": "Gay"
+          },
+          {
+            "value": "lesbian",
+            "label": "Lesbian"
+          },
+          {
+            "value": "bisexual",
+            "label": "Bisexual"
+          },
+          {
+            "value": "pansexual",
+            "label": "Pansexual"
+          },
+          {
+            "value": "asexual",
+            "label": "Asexual"
+          },
+          {
+            "value": "queer",
+            "label": "Queer"
+          },
+          {
+            "value": "any",
+            "label": "Any",
+            "checked": true,
+            "redflag": false
+          }
+        ]
+      }
     }
   ]
 }

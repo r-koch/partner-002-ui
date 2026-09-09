@@ -64,7 +64,7 @@
      SET of acceptable values. A candidate value in the set matches; an empty
      set means "any" (= no preference = skipped from the score). */
   var MULTI = ["living", "work", "relationshipStyle", "smoking", "religion", "pets", "politics",
-               "bodyType", "gender", "kidsNow", "wantKids", "freetime"];
+               "bodyType", "gender", "kidsNow", "wantKids", "freetime", "orientation"];
 
   /* ITEMS keys are camelCase (score registry); the DOM emits kebab-case names
      from questionnaire.json ids ("relationship-style", "kids-now", "want-kids").
