@@ -46,6 +46,7 @@
     "draft-04g-settings.html",
     "draft-04h-avatar-create.html"
   ];
+  var here = location.pathname.split("/").pop() || "draft-01a-welcome.html";
   var idx = SEQUENCE.indexOf(here);
   if (idx < 0) return; // not a draft page — do nothing
 
