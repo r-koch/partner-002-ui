@@ -45,9 +45,7 @@
   .scoreline{display:flex; align-items:baseline; gap:8px;}
   .score{font-size:26px; font-weight:700; line-height:1;}
   .handle{font-size:16px; font-weight:600; color:var(--muted);}
-  .ichip{display:inline-flex; align-items:center; gap:5px; background:var(--bg);
-         border:1.5px dashed var(--accent); border-radius:999px; padding:3px 10px;
-         font-size:11px; color:var(--text); opacity:.92;}
+  .ichip{background:var(--accent); color:var(--accent-text); border:1.5px solid var(--accent); border-radius:999px; padding:3px 11px; font-size:12px; display:inline-flex; align-items:center; gap:5px;}
   .pending{border-bottom:1px solid var(--line); padding:10px 18px;}
   .prow{display:flex; align-items:center; justify-content:space-between; gap:8px;
         padding:8px 0; border-bottom:1px solid var(--line); font-size:14px;}
@@ -88,13 +86,11 @@
        border-radius:999px; padding:3px 11px; font-size:12px;}
   .dtopic{background:transparent; border:1.5px solid var(--exclude); color:var(--exclude);
        border-radius:999px; padding:3px 11px; font-size:12px;}
-  .ichip{background:var(--accent); color:var(--accent-text); border:1.5px solid var(--accent);
-       border-radius:999px; padding:3px 11px; font-size:12px;}
+  .ichip{background:var(--accent); color:var(--accent-text); border:1.5px solid var(--accent); border-radius:999px; padding:3px 11px; font-size:12px; display:inline-flex; align-items:center; gap:5px;}
   .coll{cursor:pointer;}
   .more{display:none;}
   .coll.open .more{display:inline-flex;}
-  .morepill{border-radius:999px; border:1px solid var(--line); color:var(--muted);
-       padding:3px 9px; font-size:12px;}
+  .morepill{border-radius:999px; padding:3px 11px; font-size:12px; flex:0 0 auto;}
   .coll.open .morepill{display:none;}
 </style>
 </head>
@@ -119,21 +115,21 @@
         
   <div class="secrow coll" onclick="this.classList.toggle('open')">
           <span class="alab">Matching</span>
-          <span class="mpill">wants kids</span> <span class="mpill">non-smoker</span> <span class="mpill">long-term</span>
-          <span class="mpill more">flexible hours</span> <span class="mpill more">center</span>
-          <span class="morepill">+2</span>
+          <span class="mpill">wants kids</span> <span class="mpill">non-smoker</span>
+          <span class="mpill more">long-term</span> <span class="mpill more">flexible hours</span> <span class="mpill more">center</span>
+          <span class="morepill mpill">+3</span>
         </div>
         <div class="secrow coll" onclick="this.classList.toggle('open')">
           <span class="alab">Difference</span>
           <span class="dtopic">pets</span> <span class="dtopic">work hours</span>
           <span class="dtopic more">free time</span> <span class="dtopic more">smoking</span>
-          <span class="morepill">+2</span>
+          <span class="morepill dtopic">+2</span>
         </div>
         <div class="secrow coll" onclick="this.classList.toggle('open')">
           <span class="alab">Interests</span>
-          <span class="ichip">travel</span> <span class="ichip">outdoors</span> <span class="ichip">city culture</span>
-          <span class="ichip more">music</span> <span class="ichip more">films</span>
-          <span class="morepill">+2</span>
+          <span class="ichip">travel</span> <span class="ichip">outdoors</span>
+          <span class="ichip more">city culture</span> <span class="ichip more">music</span> <span class="ichip more">films</span>
+          <span class="morepill ichip">+3</span>
         </div>
       </div>
     </div>
