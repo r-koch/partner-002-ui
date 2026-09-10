@@ -81,14 +81,14 @@
   /** fill = chosen (matches the interests-select visual language) **/
   .pans.nofill{background:transparent; color:var(--text); padding:0;}
   .alab{font-size:12px; color:var(--muted); letter-spacing:.05em; flex:0 0 auto;}
-  .secrow{display:flex; align-items:center; gap:8px; margin-top:10px; flex-wrap:wrap;}
+  .secrow{display:flex; align-items:flex-start; gap:8px; margin-top:10px; flex-wrap:nowrap;}
   .mpill{background:transparent; border:1.5px solid var(--accent); color:var(--accent);
        border-radius:999px; padding:3px 11px; font-size:12px;}
   .dtopic{background:transparent; border:1.5px solid var(--exclude); color:var(--exclude);
        border-radius:999px; padding:3px 11px; font-size:12px;}
   .ichip{background:var(--accent); color:var(--accent-text); border:1.5px solid var(--accent); border-radius:999px; padding:3px 11px; font-size:12px; display:inline-flex; align-items:center; gap:5px;}
-  .coll{cursor:pointer; align-items:center;}
-  .vwrap{display:flex; gap:5px; flex:1 1 auto; min-width:0; overflow:hidden;}
+  .coll{cursor:pointer;}
+  .vwrap{display:flex; gap:5px; flex:1 1 auto; min-width:0; overflow:hidden; align-content:flex-start;}
   .coll.open .vwrap{flex-wrap:wrap; overflow:visible;}
   .more{display:none;}
   .coll.open .more{display:inline-flex;}
