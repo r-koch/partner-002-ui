@@ -45,14 +45,9 @@
   .scoreline{display:flex; align-items:baseline; gap:8px;}
   .score{font-size:26px; font-weight:700; line-height:1;}
   .handle{font-size:16px; font-weight:600; color:var(--muted);}
-  .anslab{font-size:11px; color:var(--muted); letter-spacing:.04em; flex:0 0 auto; line-height:24px;}
-  .interests{display:flex; align-items:center; flex-wrap:wrap; gap:6px; margin-top:10px;}
-  .interests .ilab{font-size:11px; color:var(--muted); letter-spacing:.04em; margin-right:2px;}
   .ichip{display:inline-flex; align-items:center; gap:5px; background:var(--bg);
          border:1.5px dashed var(--accent); border-radius:999px; padding:3px 10px;
          font-size:11px; color:var(--text); opacity:.92;}
-  .ichip::before{content:""; width:6px; height:6px; border-radius:50%;
-         background:var(--accent); flex:0 0 auto;}
   .pending{border-bottom:1px solid var(--line); padding:10px 18px;}
   .prow{display:flex; align-items:center; justify-content:space-between; gap:8px;
         padding:8px 0; border-bottom:1px solid var(--line); font-size:14px;}
@@ -84,15 +79,23 @@
   .row .meta{font-size:12px; color:var(--muted); display:block;}
   .avatar-note{font-size:11px; color:var(--muted); text-align:center; margin-top:6px;}
   .actions.bottom{margin-top:10px;}
-  .pans{font-size:14px; color:var(--text);}
-  .plab{font-size:9px; letter-spacing:.08em; color:var(--muted); margin-top:1px;}
-  .plist{display:flex; flex-direction:column; gap:9px; margin-top:8px;}
-  .pcell{display:flex; flex-direction:column;}
   .pgrid{display:grid; grid-template-columns:1fr 1fr; gap:10px 16px; margin-top:8px;}
   /** fill = chosen (matches the interests-select visual language) **/
-  .pans{background:var(--accent); color:var(--accent-text); border-radius:999px;
-       padding:4px 12px; font-size:13px; align-self:flex-start;}
   .pans.nofill{background:transparent; color:var(--text); padding:0;}
+  .alab{font-size:12px; color:var(--muted); letter-spacing:.05em; flex:0 0 auto;}
+  .secrow{display:flex; align-items:center; gap:8px; margin-top:10px; flex-wrap:wrap;}
+  .mpill{background:transparent; border:1.5px solid var(--accent); color:var(--accent);
+       border-radius:999px; padding:3px 11px; font-size:12px;}
+  .dtopic{background:transparent; border:1.5px solid var(--exclude); color:var(--exclude);
+       border-radius:999px; padding:3px 11px; font-size:12px;}
+  .ichip{background:var(--accent); color:var(--accent-text); border:1.5px solid var(--accent);
+       border-radius:999px; padding:3px 11px; font-size:12px;}
+  .coll{cursor:pointer;}
+  .more{display:none;}
+  .coll.open .more{display:inline-flex;}
+  .morepill{border-radius:999px; border:1px solid var(--line); color:var(--muted);
+       padding:3px 9px; font-size:12px;}
+  .coll.open .morepill{display:none;}
 </style>
 </head>
 <body>
@@ -114,17 +117,23 @@
       <div class="ident">
         <div class="scoreline"><span class="score">82</span> <span class="handle">brave-lion-4417</span></div>
         
-  <div class="profile">
-    <span class="anslab">Profile</span>
-    <div class="plist">
-      <div class="pcell"><span class="pans">&#9895;</span><span class="plab">woman</span></div>
-      <div class="pcell"><span class="pans">wants kids</span><span class="plab">kids</span></div>
-      <div class="pcell"><span class="pans">non-smoker</span><span class="plab">smoking</span></div>
-      <div class="pcell"><span class="pans">long-term</span><span class="plab">looking for</span></div>
-    </div>
-  </div>
-        <div class="interests">
-          <span class="ilab">Interests</span><span class="ichip">travel</span><span class="ichip">outdoors</span>
+  <div class="secrow coll" onclick="this.classList.toggle('open')">
+          <span class="alab">Matching</span>
+          <span class="mpill">wants kids</span> <span class="mpill">non-smoker</span> <span class="mpill">long-term</span>
+          <span class="mpill more">flexible hours</span> <span class="mpill more">center</span>
+          <span class="morepill">+2</span>
+        </div>
+        <div class="secrow coll" onclick="this.classList.toggle('open')">
+          <span class="alab">Difference</span>
+          <span class="dtopic">pets</span> <span class="dtopic">work hours</span>
+          <span class="dtopic more">free time</span> <span class="dtopic more">smoking</span>
+          <span class="morepill">+2</span>
+        </div>
+        <div class="secrow coll" onclick="this.classList.toggle('open')">
+          <span class="alab">Interests</span>
+          <span class="ichip">travel</span> <span class="ichip">outdoors</span> <span class="ichip">city culture</span>
+          <span class="ichip more">music</span> <span class="ichip more">films</span>
+          <span class="morepill">+2</span>
         </div>
       </div>
     </div>
