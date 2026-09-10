@@ -46,13 +46,7 @@
   .scoreline{display:flex; align-items:baseline; gap:8px;}
   .score{font-size:24px; font-weight:700; line-height:1;}
   .handle{font-size:15px; font-weight:600; color:var(--muted);}
-  .ovals{display:flex; flex-wrap:wrap; gap:5px; margin-top:6px; align-items:center; line-height:22px;}
   .anslab{font-size:10px; color:var(--muted); letter-spacing:.04em; flex:0 0 auto; line-height:22px;}
-  .oval{background:var(--surface); border:1px solid var(--line); border-radius:999px;
-        padding:2px 9px; font-size:10px; color:var(--text);}
-  .oval.gender{width:22px; height:22px; border-radius:50%; padding:0; display:inline-flex;
-        align-items:center; justify-content:center; font-size:11px; font-weight:700;
-        color:var(--accent); border-color:var(--accent); vertical-align:-2px;}
 
   .chiprow{display:flex; flex-wrap:wrap; gap:6px; padding:10px 18px 0; border-top:1px solid var(--line);}
   .positive{background:var(--positive); color:var(--positive-text); border:none; border-radius:999px;
@@ -88,6 +82,15 @@
        border:1.5px solid var(--line); border-radius:11px; padding:10px 12px;
        font-family:inherit; font-size:14px; color:var(--text); outline:none;}
   input[type="number"]:focus, input[type="text"]:focus{border-color:var(--accent);}
+  .pans{font-size:14px; color:var(--text);}
+  .plab{font-size:9px; letter-spacing:.08em; color:var(--muted); margin-top:1px;}
+  .plist{display:flex; flex-direction:column; gap:9px; margin-top:8px;}
+  .pcell{display:flex; flex-direction:column;}
+  .pgrid{display:grid; grid-template-columns:1fr 1fr; gap:10px 16px; margin-top:8px;}
+  /** fill = chosen (matches the interests-select visual language) **/
+  .pans{background:var(--accent); color:var(--accent-text); border-radius:999px;
+       padding:4px 12px; font-size:13px; align-self:flex-start;}
+  .pans.nofill{background:transparent; color:var(--text); padding:0;}
 </style>
 </head>
 <body>
@@ -111,12 +114,15 @@
       </div>
       <div class="ident">
         <div class="scoreline"><span class="score">82</span> <span class="handle">brave-lion-4417</span></div>
-        <div class="ovals">
-          <span class="anslab">Profile</span>
-          <span class="oval gender">&#9895;</span>
-          <span class="oval">wants kids</span>
-          <span class="oval">non-smoker</span>
-        </div>
+        
+  <div class="profile">
+    <span class="anslab">Profile</span>
+    <div class="pgrid">
+      <div class="pcell"><span class="pans">&#9895;</span><span class="plab">woman</span></div>
+      <div class="pcell"><span class="pans">wants kids</span><span class="plab">kids</span></div>
+      <div class="pcell"><span class="pans">non-smoker</span><span class="plab">smoking</span></div>
+    </div>
+  </div>
       </div>
     </div>
 

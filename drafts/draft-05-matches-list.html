@@ -40,13 +40,7 @@
   .handle{font-size:14px; font-weight:600; color:var(--muted);}
   .stage-tag{font-size:11px; color:var(--muted); border:1px solid var(--line);
         border-radius:999px; padding:3px 9px; flex:0 0 auto;}
-  .ovals{display:flex; flex-wrap:wrap; gap:5px; margin-top:8px; align-items:center; line-height:24px;}
   .anslab{font-size:11px; color:var(--muted); letter-spacing:.04em; flex:0 0 auto; line-height:24px;}
-  .oval{background:var(--bg); border:1px solid var(--line); border-radius:999px;
-        padding:3px 10px; font-size:11px; color:var(--text);}
-  .oval.gender{width:24px; height:24px; border-radius:50%; padding:0; display:inline-flex;
-        align-items:center; justify-content:center; font-size:12px; font-weight:700;
-        color:var(--accent); border-color:var(--accent); vertical-align:-2px;}
   .interests{display:flex; align-items:center; flex-wrap:wrap; gap:6px; margin-top:10px;}
   .interests .ilab{font-size:11px; color:var(--muted); letter-spacing:.04em; margin-right:2px;}
   .ichip{display:inline-flex; align-items:center; gap:5px; background:var(--bg);
@@ -57,6 +51,15 @@
   .last{font-size:12px; color:var(--muted); margin-top:8px;}
   .new-dot{width:8px; height:8px; border-radius:50%; background:var(--match); display:inline-block;
         margin-right:4px;}
+  .pans{font-size:14px; color:var(--text);}
+  .plab{font-size:9px; letter-spacing:.08em; color:var(--muted); margin-top:1px;}
+  .plist{display:flex; flex-direction:column; gap:9px; margin-top:8px;}
+  .pcell{display:flex; flex-direction:column;}
+  .pgrid{display:grid; grid-template-columns:1fr 1fr; gap:10px 16px; margin-top:8px;}
+  /** fill = chosen (matches the interests-select visual language) **/
+  .pans{background:var(--accent); color:var(--accent-text); border-radius:999px;
+       padding:4px 12px; font-size:13px; align-self:flex-start;}
+  .pans.nofill{background:transparent; color:var(--text); padding:0;}
 </style>
 </head>
 <body>
@@ -72,14 +75,17 @@
           <div class="scoreline"><span class="score">82</span> <span class="handle">brave-lion-4417</span></div>
           <span class="stage-tag">Stage 2 · Events</span>
         </div>
-        <div class="ovals">
-          <span class="anslab">Profile</span>
-          <span class="oval gender">&#9895;</span>
-          <span class="oval">wants kids</span>
-          <span class="oval">non-smoker</span>
-          <span class="oval">long-term</span>
-          <span class="oval">no pets</span>
-        </div>
+        
+  <div class="profile">
+    <span class="anslab">Profile</span>
+    <div class="plist">
+      <div class="pcell"><span class="pans">&#9895;</span><span class="plab">woman</span></div>
+      <div class="pcell"><span class="pans">wants kids</span><span class="plab">kids</span></div>
+      <div class="pcell"><span class="pans">non-smoker</span><span class="plab">smoking</span></div>
+      <div class="pcell"><span class="pans">long-term</span><span class="plab">looking for</span></div>
+      <div class="pcell"><span class="pans">no pets</span><span class="plab">pets</span></div>
+    </div>
+  </div>
         <div class="interests">
           <span class="ilab">Interests</span><span class="ichip">travel</span> <span class="ichip">outdoors</span> <span class="ichip">space</span>
         </div>
@@ -90,14 +96,17 @@
           <div class="scoreline"><span class="score">61</span> <span class="handle">steady-owl-8831</span></div>
           <span class="stage-tag">Stage 1 · Getting to know</span>
         </div>
-        <div class="ovals">
-          <span class="anslab">Profile</span>
-          <span class="oval gender">?</span>
-          <span class="oval">open to kids</span>
-          <span class="oval">non-smoker</span>
-          <span class="oval">city culture</span>
-          <span class="oval">long-term</span>
-        </div>
+        
+  <div class="profile">
+    <span class="anslab">Profile</span>
+    <div class="plist">
+      <div class="pcell"><span class="pans">?</span><span class="plab">prefers not to say</span></div>
+      <div class="pcell"><span class="pans">open to kids</span><span class="plab">kids</span></div>
+      <div class="pcell"><span class="pans">non-smoker</span><span class="plab">smoking</span></div>
+      <div class="pcell"><span class="pans">city culture</span><span class="plab">free time</span></div>
+      <div class="pcell"><span class="pans">long-term</span><span class="plab">looking for</span></div>
+    </div>
+  </div>
         <div class="interests">
           <span class="ilab">Interests</span><span class="ichip">films</span> <span class="ichip">hiking</span>
         </div>
@@ -108,14 +117,17 @@
           <div class="scoreline"><span class="score">77</span> <span class="handle">sunny-deer-5024</span></div>
           <span class="stage-tag">Stage 3 · Chat</span>
         </div>
-        <div class="ovals">
-          <span class="anslab">Profile</span>
-          <span class="oval gender">&#9792;</span>
-          <span class="oval">wants kids</span>
-          <span class="oval">flexible hours</span>
-          <span class="oval">long-term</span>
-          <span class="oval">non-smoker</span>
-        </div>
+        
+  <div class="profile">
+    <span class="anslab">Profile</span>
+    <div class="plist">
+      <div class="pcell"><span class="pans">&#9792;</span><span class="plab">man</span></div>
+      <div class="pcell"><span class="pans">wants kids</span><span class="plab">kids</span></div>
+      <div class="pcell"><span class="pans">flexible hours</span><span class="plab">work</span></div>
+      <div class="pcell"><span class="pans">long-term</span><span class="plab">looking for</span></div>
+      <div class="pcell"><span class="pans">non-smoker</span><span class="plab">smoking</span></div>
+    </div>
+  </div>
         <div class="interests">
           <span class="ilab">Interests</span><span class="ichip">concerts</span> <span class="ichip">food</span> <span class="ichip">books</span>
         </div>
