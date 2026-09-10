@@ -32,21 +32,16 @@
   .expl{display:none; font-size:12px; color:var(--muted); line-height:1.5;
         margin:10px 18px 0; border-left:2px solid var(--line); padding:4px 10px;}
   .expl.show{display:block;}
-  .top{display:flex; gap:14px; padding:14px 18px; border-bottom:1px solid var(--line);}
+  .match{display:flex; gap:14px; padding:14px 18px; border-bottom:1px solid var(--line);}
   .avatar-col{flex:0 0 auto; width:88px; display:flex; flex-direction:column;
         align-items:center; gap:8px;}
   .avatar{width:74px; height:74px; border-radius:50%; overflow:hidden;
           border:3px solid var(--line); background:var(--surface);}
   .avatar img{width:100%; height:100%; object-fit:cover; display:block;}
-  .avatar-btns{display:flex; flex-direction:column; gap:5px; width:78px;}
-  .abtn{background:var(--surface); color:var(--text); border:1.5px solid var(--line);
-        border-radius:999px; padding:5px 4px; font-size:10px; line-height:1.2;
-        cursor:pointer; font-family:inherit; text-align:center; text-decoration:none;}
   .ident{flex:1; display:flex; flex-direction:column; gap:3px; min-width:0;}
   .scoreline{display:flex; align-items:baseline; gap:8px;}
-  .score{font-size:24px; font-weight:700; line-height:1;}
-  .handle{font-size:15px; font-weight:600; color:var(--muted);}
-  .anslab{font-size:10px; color:var(--muted); letter-spacing:.04em; flex:0 0 auto; line-height:22px;}
+  .score{font-size:26px; font-weight:700; line-height:1;}
+  .handle{font-size:16px; font-weight:600; color:var(--muted);}
 
   .chiprow{display:flex; flex-wrap:wrap; gap:6px; padding:10px 18px 0; border-top:1px solid var(--line);}
   .positive{background:var(--positive); color:var(--positive-text); border:none; border-radius:999px;
@@ -82,15 +77,26 @@
        border:1.5px solid var(--line); border-radius:11px; padding:10px 12px;
        font-family:inherit; font-size:14px; color:var(--text); outline:none;}
   input[type="number"]:focus, input[type="text"]:focus{border-color:var(--accent);}
-  .pans{font-size:14px; color:var(--text);}
-  .plab{font-size:9px; letter-spacing:.08em; color:var(--muted); margin-top:1px;}
   .plist{display:flex; flex-direction:column; gap:9px; margin-top:8px;}
-  .pcell{display:flex; flex-direction:column;}
-  .pgrid{display:grid; grid-template-columns:1fr 1fr; gap:10px 16px; margin-top:8px;}
   /** fill = chosen (matches the interests-select visual language) **/
-  .pans{background:var(--accent); color:var(--accent-text); border-radius:999px;
-       padding:4px 12px; font-size:13px; align-self:flex-start;}
   .pans.nofill{background:transparent; color:var(--text); padding:0;}
+  .alab{font-size:12px; color:var(--muted); letter-spacing:.05em; flex:0 0 auto;}
+  .secrow{display:flex; align-items:flex-start; gap:8px; margin-top:10px; flex-wrap:nowrap;}
+  .vwrap{display:flex; gap:5px; flex:1 1 auto; min-width:0; overflow:hidden; align-content:flex-start;}
+  .coll{cursor:pointer;}
+  .coll.open .vwrap{flex-wrap:wrap; overflow:visible;}
+  .more{display:none;}
+  .coll.open .more{display:inline-flex;}
+  .mpill,.dtopic,.ichip{flex:0 0 auto;}
+  .mpill{background:transparent; border:1.5px solid var(--accent); color:var(--accent);
+       border-radius:999px; padding:3px 11px; font-size:12px;}
+  .dtopic{background:transparent; border:1.5px solid var(--exclude); color:var(--exclude);
+       border-radius:999px; padding:3px 11px; font-size:12px;}
+  .ichip{background:var(--accent); color:var(--accent-text); border:1.5px solid var(--accent);
+       border-radius:999px; padding:3px 11px; font-size:12px; display:inline-flex; align-items:center; gap:5px;}
+  .morepill{border-radius:999px; padding:3px 11px; font-size:12px; flex:0 0 auto;}
+  .coll.open .morepill{display:none;}
+  .avatar-note{font-size:11px; color:var(--muted); text-align:center; margin-top:6px;}
 </style>
 </head>
 <body>
@@ -104,27 +110,29 @@
     </header>
     <div class="expl" id="h-expl">End-to-end encrypted chat, text only. Ice breakers, starters, and suggested messages are all still here to get the conversation going.</div>
 
-    <div class="top">
+    <div class="match">
       <div class="avatar-col">
         <div class="avatar"><img src="anime-avatar-example.png" alt="stylized avatar — not a photo"></div>
-        <div class="avatar-btns">
-          <a class="abtn" href="draft-06a-history.html">history</a>
-          <a class="abtn" href="draft-06b-extended-qa.html">extended / deep</a>
-        </div>
+        <div class="avatar-note">2 open · 1 waiting</div>
       </div>
       <div class="ident">
         <div class="scoreline"><span class="score">82</span> <span class="handle">brave-lion-4417</span></div>
-        
-  <div class="profile">
-    <span class="anslab">Profile</span>
-    <div class="pgrid">
-      <div class="pcell"><span class="pans">&#9895;</span><span class="plab">woman</span></div>
-      <div class="pcell"><span class="pans">wants kids</span><span class="plab">kids</span></div>
-      <div class="pcell"><span class="pans">non-smoker</span><span class="plab">smoking</span></div>
-    </div>
-  </div>
-      </div>
-    </div>
+        <div class="secrow coll" onclick="this.classList.toggle('open')">
+          <span class="alab">Matching</span>
+          <span class="vwrap"><span class="mpill">wants kids</span> <span class="mpill">non-smoker</span><span class="mpill more">long-term</span><span class="mpill more">flexible hours</span><span class="mpill more">center</span></span>
+          <span class="morepill mpill">+3</span>
+        </div>
+        <div class="secrow coll" onclick="this.classList.toggle('open')">
+          <span class="alab">Difference</span>
+          <span class="vwrap"><span class="dtopic">pets</span> <span class="dtopic">work hours</span><span class="dtopic more">free time</span><span class="dtopic more">smoking</span></span>
+          <span class="morepill dtopic">+2</span>
+        </div>
+        <div class="secrow coll" onclick="this.classList.toggle('open')">
+          <span class="alab">Interests</span>
+          <span class="vwrap"><span class="ichip">travel</span> <span class="ichip">outdoors</span><span class="ichip more">city culture</span><span class="ichip more">music</span><span class="ichip more">films</span></span>
+          <span class="morepill ichip">+3</span>
+        </div>
+      </div></div>
 
     <div class="suggest" id="suggest-a">
       <div class="t">Suggested messages</div>
