@@ -99,6 +99,16 @@
        border-radius:50%; text-align:center; padding:20px; box-sizing:border-box; overflow:hidden;}
   .final-row{display:flex; margin-top:16px;}
   .final-row .positive{flex:1;}
+  .seg-switch{display:flex; gap:6px; margin-bottom:8px; background:var(--surface);
+       border:1px solid var(--line); border-radius:999px; padding:4px;}
+  .segbtn{flex:1; background:none; border:none; border-radius:999px; padding:9px 0;
+       font-size:14px; color:var(--muted); cursor:pointer; font-family:inherit;}
+  .segbtn.on{background:var(--accent); color:var(--accent-text);}
+  .candgrid{display:grid; grid-template-columns:repeat(4, 1fr); gap:10px; margin-top:14px;}
+  .cand{aspect-ratio:1; border-radius:50%; border:2px solid var(--line); background:var(--surface);
+       color:var(--muted); cursor:pointer; display:flex; align-items:center; justify-content:center; padding:14px;}
+  .cand svg{width:100%; height:100%;}
+  .cand.on{border-color:var(--accent); color:var(--accent);}
 </style>
 </head>
 <body>
@@ -107,23 +117,58 @@
       <strong>Avatar <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
       <nav><a href="#" title="Help"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></a><a href="#" title="Safety"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></a></nav>
     </header>
-    <div class="expl" id="h-expl">A stylized avatar stands in for photos: generated on your device from a few choices, optional, and never uploaded. No real face, no photos.</div>
+    <div class="expl" id="h-expl">A stylized avatar stands in for photos — optional, generated on your device, never uploaded. Pick one of the placeholder defaults for now, or create yours from a photo: the on-device line-art transform turns it into an avatar. These defaults are placeholders until the real default art is decided.</div>
 
     <div class="body">
-      <div class="avatar-stage">
-        <div class="avatar-ring"><div class="avatar-placeholder">your avatar<br>comes later</div></div>
+      <div class="seg-switch">
+        <button class="segbtn on" onclick="showPane('defaults')">Pick a default</button>
+        <button class="segbtn" onclick="showPane('create')">Create yours</button>
       </div>
-      <p class="leadline">Add a photo and we'll transform it into your avatar's style — on your device.</p>
-      <div class="src-actions">
-        <button class="neutral">Take a selfie</button>
-        <button class="neutral">Choose a photo</button>
+
+      <div id="pane-defaults">
+        <div class="avatar-stage">
+          <div class="avatar-ring"><div class="avatar-placeholder">your avatar<br>comes later</div></div>
+        </div>
+        <p class="leadline">Placeholder defaults — the real default art is still to be decided.</p>
+        <div class="candgrid">
+          <button class="cand on" onclick="pickCand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg></button>
+          <button class="cand" onclick="pickCand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l9 16H3z"/></svg></button>
+          <button class="cand" onclick="pickCand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/></svg></button>
+          <button class="cand" onclick="pickCand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21C7 16 4 12 4 8a8 8 0 0 1 16 0c0 4-3 8-8 13z"/></svg></button>
+        </div>
+        <div class="final-row">
+          <button class="positive" style="flex:1;">Use this default</button>
+        </div>
       </div>
-      <div class="transform-note" id="transform-note">Your transformed preview appears here.</div>
-      <div class="final-row">
-        <button class="positive" style="flex:1;">Use this avatar</button>
+
+      <div id="pane-create" style="display:none;">
+        <div class="avatar-stage">
+          <div class="avatar-ring"><div class="avatar-placeholder">your avatar<br>comes later</div></div>
+        </div>
+        <p class="leadline">Add a photo and we'll transform it into your avatar's style — on your device.</p>
+        <div class="src-actions">
+          <button class="neutral">Take a selfie</button>
+          <button class="neutral">Choose a photo</button>
+        </div>
+        <div class="transform-note" id="transform-note">Your transformed preview appears here.</div>
+        <div class="final-row">
+          <button class="positive" style="flex:1;">Use this avatar</button>
+        </div>
       </div>
     </div>
   </div>
+<script>
+  function showPane(name){
+    document.getElementById('pane-defaults').style.display = name === 'defaults' ? 'block' : 'none';
+    document.getElementById('pane-create').style.display = name === 'create' ? 'block' : 'none';
+    document.querySelectorAll('.segbtn').forEach(function(b){ b.classList.remove('on'); });
+    document.querySelectorAll('.segbtn')[name === 'defaults' ? 0 : 1].classList.add('on');
+  }
+  function pickCand(el){
+    el.parentElement.querySelectorAll('.cand').forEach(function(c){ c.classList.remove('on'); });
+    el.classList.add('on');
+  }
+</script>
   <script src="palette-switcher.js"></script>
 <script src="draft-nav.js"></script>
 </body>
