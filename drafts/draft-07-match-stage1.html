@@ -87,9 +87,12 @@
   .dtopic{background:transparent; border:1.5px solid var(--exclude); color:var(--exclude);
        border-radius:999px; padding:3px 11px; font-size:12px;}
   .ichip{background:var(--accent); color:var(--accent-text); border:1.5px solid var(--accent); border-radius:999px; padding:3px 11px; font-size:12px; display:inline-flex; align-items:center; gap:5px;}
-  .coll{cursor:pointer;}
+  .coll{cursor:pointer; align-items:center;}
+  .vwrap{display:flex; gap:5px; flex:1 1 auto; min-width:0; overflow:hidden;}
+  .coll.open .vwrap{flex-wrap:wrap; overflow:visible;}
   .more{display:none;}
   .coll.open .more{display:inline-flex;}
+  .mpill,.dtopic,.ichip{flex:0 0 auto;}
   .morepill{border-radius:999px; padding:3px 11px; font-size:12px; flex:0 0 auto;}
   .coll.open .morepill{display:none;}
 </style>
@@ -115,20 +118,20 @@
         
   <div class="secrow coll" onclick="this.classList.toggle('open')">
           <span class="alab">Matching</span>
-          <span class="mpill">wants kids</span> <span class="mpill">non-smoker</span>
-          <span class="mpill more">long-term</span> <span class="mpill more">flexible hours</span> <span class="mpill more">center</span>
+          <span class="vwrap"><span class="mpill">wants kids</span> <span class="mpill">non-smoker</span>
+          <span class="mpill more">long-term</span> <span class="mpill more">flexible hours</span> <span class="mpill more">center</span></span>
           <span class="morepill mpill">+3</span>
         </div>
         <div class="secrow coll" onclick="this.classList.toggle('open')">
           <span class="alab">Difference</span>
-          <span class="dtopic">pets</span> <span class="dtopic">work hours</span>
-          <span class="dtopic more">free time</span> <span class="dtopic more">smoking</span>
+          <span class="vwrap"><span class="dtopic">pets</span> <span class="dtopic">work hours</span>
+          <span class="dtopic more">free time</span> <span class="dtopic more">smoking</span></span>
           <span class="morepill dtopic">+2</span>
         </div>
         <div class="secrow coll" onclick="this.classList.toggle('open')">
           <span class="alab">Interests</span>
-          <span class="ichip">travel</span> <span class="ichip">outdoors</span>
-          <span class="ichip more">city culture</span> <span class="ichip more">music</span> <span class="ichip more">films</span>
+          <span class="vwrap"><span class="ichip">travel</span> <span class="ichip">outdoors</span>
+          <span class="ichip more">city culture</span> <span class="ichip more">music</span> <span class="ichip more">films</span></span>
           <span class="morepill ichip">+3</span>
         </div>
       </div>
