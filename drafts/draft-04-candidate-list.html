@@ -50,19 +50,17 @@
          font-size:11px; color:var(--text); opacity:.92;}
   .ichip::before{content:""; width:6px; height:6px; border-radius:50%;
          background:var(--accent); flex:0 0 auto;}
-  .anslab{font-size:11px; color:var(--muted); letter-spacing:.04em; flex:0 0 auto; line-height:24px;}
   .actrow{display:flex; gap:8px; margin-top:12px;}
   .positive{flex:1; background:var(--positive); color:var(--positive-text); border:none; border-radius:999px; padding:10px 0; font-size:14px; cursor:pointer; font-family:inherit;}
   .negative{flex:1; background:var(--bg); color:var(--exclude); border:2px solid var(--exclude); border-radius:999px; padding:10px 0; font-size:14px; cursor:pointer; font-family:inherit;}
-  .pans{font-size:14px; color:var(--text);}
-  .plab{font-size:9px; letter-spacing:.08em; color:var(--muted); margin-top:1px;}
-  .plist{display:flex; flex-direction:column; gap:9px; margin-top:8px;}
-  .pcell{display:flex; flex-direction:column;}
-  .pgrid{display:grid; grid-template-columns:1fr 1fr; gap:10px 16px; margin-top:8px;}
   /** fill = chosen (matches the interests-select visual language) **/
-  .pans{background:var(--accent); color:var(--accent-text); border-radius:999px;
-       padding:4px 12px; font-size:13px; align-self:flex-start;}
   .pans.nofill{background:transparent; color:var(--text); padding:0;}
+  .alab{font-size:11px; color:var(--muted); letter-spacing:.05em; display:block; margin-top:10px;}
+  .mrow{display:flex; flex-wrap:wrap; gap:5px; margin-top:6px;}
+  .mpill{background:transparent; border:1.5px solid var(--accent); color:var(--accent);
+       border-radius:999px; padding:3px 11px; font-size:12px;}
+  .drow{margin-top:6px; font-size:12px; color:var(--muted);}
+  .dtopic{color:var(--muted);}
 </style>
 </head>
 <body>
@@ -81,15 +79,11 @@
           </div>
           
   <div class="profile">
-    <span class="anslab">Profile</span>
-    <div class="pgrid">
-      <div class="pcell"><span class="pans">&#9895;</span><span class="plab">woman</span></div>
-      <div class="pcell"><span class="pans">wants kids</span><span class="plab">kids</span></div>
-      <div class="pcell"><span class="pans">non-smoker</span><span class="plab">smoking</span></div>
-      <div class="pcell"><span class="pans">long-term</span><span class="plab">looking for</span></div>
-      <div class="pcell"><span class="pans">no pets</span><span class="plab">pets</span></div>
-    </div>
-  </div>
+          <span class="alab">Matching</span>
+          <div class="mrow"><span class="mpill">wants kids</span> <span class="mpill">non-smoker</span> <span class="mpill">long-term</span></div>
+          <span class="alab">Difference</span>
+          <div class="drow"><span class="dtopic">pets</span> · <span class="dtopic">work hours</span></div>
+        </div>
           <div class="interests"><span class="ilab">Interests</span><span class="ichip">travel</span><span class="ichip">outdoors</span><span class="ichip">city culture</span></div>
         </div>
         <div class="actrow">
@@ -105,15 +99,11 @@
           </div>
           
   <div class="profile">
-    <span class="anslab">Profile</span>
-    <div class="pgrid">
-      <div class="pcell"><span class="pans">?</span><span class="plab">prefers not to say</span></div>
-      <div class="pcell"><span class="pans">open to kids</span><span class="plab">kids</span></div>
-      <div class="pcell"><span class="pans">city culture</span><span class="plab">free time</span></div>
-      <div class="pcell"><span class="pans">non-smoker</span><span class="plab">smoking</span></div>
-      <div class="pcell"><span class="pans">long-term</span><span class="plab">looking for</span></div>
-    </div>
-  </div>
+          <span class="alab">Matching</span>
+          <div class="mrow"><span class="mpill">open to kids</span> <span class="mpill">city culture</span></div>
+          <span class="alab">Difference</span>
+          <div class="drow"><span class="dtopic">smoking</span> · <span class="dtopic">pets</span> · <span class="dtopic">work hours</span></div>
+        </div>
           <div class="interests"><span class="ilab">Interests</span><span class="ichip">concerts</span><span class="ichip">food</span></div>
         </div>
         <div class="actrow">
@@ -129,15 +119,11 @@
           </div>
           
   <div class="profile">
-    <span class="anslab">Profile</span>
-    <div class="pgrid">
-      <div class="pcell"><span class="pans">&#9792;</span><span class="plab">man</span></div>
-      <div class="pcell"><span class="pans">wants kids</span><span class="plab">kids</span></div>
-      <div class="pcell"><span class="pans">long-term</span><span class="plab">looking for</span></div>
-      <div class="pcell"><span class="pans">non-smoker</span><span class="plab">smoking</span></div>
-      <div class="pcell"><span class="pans">city culture</span><span class="plab">free time</span></div>
-    </div>
-  </div>
+          <span class="alab">Matching</span>
+          <div class="mrow"><span class="mpill">wants kids</span> <span class="mpill">long-term</span></div>
+          <span class="alab">Difference</span>
+          <div class="drow"><span class="dtopic">smoking</span> · <span class="dtopic">free time</span> · <span class="dtopic">work hours</span></div>
+        </div>
           <div class="interests"><span class="ilab">Interests</span><span class="ichip">hiking</span><span class="ichip">films</span></div>
         </div>
         <div class="actrow">
