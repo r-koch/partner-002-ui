@@ -43,7 +43,6 @@
   .score{font-size:26px; font-weight:700; line-height:1;}
   .handle{font-size:16px; font-weight:600; color:var(--muted);}
 
-  .chiprow{display:flex; flex-wrap:wrap; gap:6px; padding:10px 18px 0; border-top:1px solid var(--line);}
   .positive{background:var(--positive); color:var(--positive-text); border:none; border-radius:999px;
        padding:12px 24px; font-size:15px; cursor:pointer; font-family:inherit;}
   .negative{background:var(--surface); color:var(--exclude); border:1.5px solid var(--exclude); border-radius:999px;
@@ -97,6 +96,19 @@
   .morepill{border-radius:999px; padding:3px 11px; font-size:12px; flex:0 0 auto;}
   .coll.open .morepill{display:none;}
   .avatar-note{font-size:11px; color:var(--muted); text-align:center; margin-top:6px;}
+  .bgroup{display:flex; flex-wrap:wrap; gap:6px; margin-top:10px;}
+  .bgroup .neutral.min,.bgroup .negative.min{padding:5px 11px; font-size:12px;}
+  .pending-strip{margin-top:10px; cursor:pointer; border:1px solid var(--line);
+       border-radius:12px; background:var(--surface); padding:7px 12px;}
+  .pstrip-line{font-size:12px; color:var(--muted); display:block;}
+  .pstrip-rows{display:none; margin-top:6px; border-top:1px solid var(--line); padding-top:6px;}
+  .pending-strip.open .pstrip-rows{display:block;}
+  .prow{display:flex; align-items:center; justify-content:space-between; gap:8px;
+       padding:5px 0; border-bottom:1px solid var(--line); font-size:13px;}
+  .prow:last-child{border-bottom:none;}
+  .prow .meta{font-size:11px; color:var(--muted);}
+  .drawer{margin:8px 18px 0;}
+  .drawer .suggest{margin:0 0 8px;}
 </style>
 </head>
 <body>
@@ -117,41 +129,40 @@
       </div>
       <div class="ident">
         <div class="scoreline"><span class="score">82</span> <span class="handle">brave-lion-4417</span></div>
-        <div class="secrow coll" onclick="this.classList.toggle('open')">
-          <span class="alab">Matching</span>
-          <span class="vwrap"><span class="mpill">wants kids</span> <span class="mpill">non-smoker</span><span class="mpill more">long-term</span><span class="mpill more">flexible hours</span><span class="mpill more">center</span></span>
-          <span class="morepill mpill">+3</span>
+        <div class="bgroup">
+          <button class="neutral min" onclick="showDrawer('suggest-a')">Message ideas</button>
+          <button class="neutral min" onclick="showDrawer('ice-a')">Ice breaker</button>
+          <button class="neutral min" onclick="showDrawer('start-a')">Conversation starters</button>
+          <button class="neutral min">Ask</button>
+          <button class="neutral min">Their answers</button>
+          <button class="neutral min" onclick="location.href='draft-06a-history.html'">Activity log</button>
+          <button class="negative min" style="margin-left:auto;">Cancel match</button>
         </div>
-        <div class="secrow coll" onclick="this.classList.toggle('open')">
-          <span class="alab">Difference</span>
-          <span class="vwrap"><span class="dtopic">pets</span> <span class="dtopic">work hours</span><span class="dtopic more">free time</span><span class="dtopic more">smoking</span></span>
-          <span class="morepill dtopic">+2</span>
-        </div>
-        <div class="secrow coll" onclick="this.classList.toggle('open')">
-          <span class="alab">Interests</span>
-          <span class="vwrap"><span class="ichip">travel</span> <span class="ichip">outdoors</span><span class="ichip more">city culture</span><span class="ichip more">music</span><span class="ichip more">films</span></span>
-          <span class="morepill ichip">+3</span>
+        <div class="pending-strip" onclick="this.classList.toggle('open')">
+          <span class="pstrip-line">2 open · 1 waiting</span>
+          <div class="pstrip-rows">
+            <div class="prow"><span>Ideal weekend? <span class="meta">awaiting your answer</span></span><button class="neutral min">Answer</button></div>
+            <div class="prow"><span>Life motto? <span class="meta">awaiting their answer</span></span><button class="neutral min">Nudge</button></div>
+            <div class="prow"><span>Deepest fear? <span class="meta">not requested</span></span><button class="neutral min">Ask</button></div>
+          </div>
         </div>
       </div></div>
 
-    <div class="suggest" id="suggest-a">
-      <div class="t">Suggested messages</div>
-      <button class="opt" onclick="document.getElementById('suggest-a').style.display='none';document.getElementById('compose').value='Remember our ice breaker where we split on fire vs water? I picked water because it is quieter. What made you go for fire?';return false;">&#8220;Remember our ice breaker where we split on fire vs water? I picked water because it is quieter. What made you go for fire?&#8221;</button>
-      <button class="opt" onclick="document.getElementById('suggest-a').style.display='none';document.getElementById('compose').value='That fire vs water one kept nagging me, ha. My water logic: calm wins. Your fire logic?';return false;">&#8220;That fire vs water one kept nagging me, ha. My water logic: calm wins. Your fire logic?&#8221;</button>
-    </div>
-
-    <div class="chiprow">
-      <button class="neutral min" onclick="document.getElementById('suggest-a').style.display='block';">Message ideas</button>
-      <button class="neutral min">Ice breaker</button>
-      <button class="neutral min">Conversation starters</button>
-      <button class="neutral min">Ask</button>
-      <button class="neutral min">Their answers</button>
-      <button class="neutral min" onclick="location.href='draft-06a-history.html'">Activity log</button>
-      
-      <button class="negative min">Cancel match</button>
-    </div>
-
-    <div class="chat">
+    <div class="drawer">
+      <div class="suggest" id="suggest-a">
+        <div class="t">Suggested messages</div>
+        <button class="opt" onclick="document.getElementById('suggest-a').style.display='none';document.getElementById('compose').value='Remember our ice breaker where we split on fire vs water? I picked water because it is quieter. What made you go for fire?';return false;">“Remember our ice breaker where we split on fire vs water? I picked water because it is quieter. What made you go for fire?”</button>
+        <button class="opt" onclick="document.getElementById('suggest-a').style.display='none';document.getElementById('compose').value='That fire vs water one kept nagging me, ha. My water logic: calm wins. Your fire logic?';return false;">“That fire vs water one kept nagging me, ha. My water logic: calm wins. Your fire logic?”</button>
+      </div>
+      <div class="suggest" id="ice-a">
+        <div class="t">Ice breaker — beach or mountains?</div>
+        <div>You: beach · them: <b>pending</b></div>
+      </div>
+      <div class="suggest" id="start-a">
+        <div class="t">Conversation starters</div>
+        <div>Travel · Outdoors · Space — tap a starter to send it.</div>
+      </div>
+    </div><div class="chat">
       <div class="msg them">the mountains one, definitely.
         <span class="t">yesterday 19:02</span>
       </div>
@@ -170,6 +181,12 @@
       <button class="positive min">Send</button>
     </div>
   </div>
+<script>
+  function showDrawer(id){
+    document.querySelectorAll('.drawer .suggest').forEach(function(p){ p.style.display = 'none'; });
+    document.getElementById(id).style.display = 'block';
+  }
+</script>
   <script src="palette-switcher.js"></script>
 <script src="draft-nav.js"></script>
 </body>
