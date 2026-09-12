@@ -133,6 +133,8 @@
   .meter .m.done{background:var(--match); border-color:var(--match); color:var(--bg);}
   .meter .m.now{background:var(--bg); border-color:var(--accent); color:var(--accent);
        box-shadow:0 0 0 2px var(--bg), 0 0 0 3.5px var(--accent);}
+  .opt .zod{font-size:13px; color:var(--accent); margin-right:6px;}
+  .opt.any{grid-column:1 / -1; justify-content:center;}
 </style>
 </head>
 <body>
@@ -143,22 +145,11 @@
     </header>
     <div class="expl" id="h-expl">Shown on your profile and to people you match with — context, not a matching criterion, like your interests. A test or birth-date picker may come later.</div>
 <div class="body">
-      <h1>What’s your sun sign?</h1>
-<div class="signgrid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:7px;">
-<button class="opt" onclick="this.parentNode.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span>Aries</button>
-<button class="opt" onclick="this.parentNode.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span>Taurus</button>
-<button class="opt" onclick="this.parentNode.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span>Gemini</button>
-<button class="opt" onclick="this.parentNode.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span>Cancer</button>
-<button class="opt" onclick="this.parentNode.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span>Leo</button>
-<button class="opt" onclick="this.parentNode.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span>Virgo</button>
-<button class="opt" onclick="this.parentNode.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span>Libra</button>
-<button class="opt" onclick="this.parentNode.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span>Scorpio</button>
-<button class="opt" onclick="this.parentNode.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span>Sagittarius</button>
-<button class="opt" onclick="this.parentNode.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span>Capricorn</button>
-<button class="opt" onclick="this.parentNode.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span>Aquarius</button>
-<button class="opt" onclick="this.parentNode.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span>Pisces</button>
+      <h1>Sun sign</h1>
+<div class="signgrid" style="display:grid; grid-template-columns:repeat(2,1fr); gap:7px;">
+<button class="opt" onclick="this.parentNode.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="zod">♈</span>Aries</button><button class="opt" onclick="this.parentNode.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="zod">♉</span>Taurus</button><button class="opt" onclick="this.parentNode.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="zod">♊</span>Gemini</button><button class="opt" onclick="this.parentNode.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="zod">♋</span>Cancer</button><button class="opt" onclick="this.parentNode.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="zod">♌</span>Leo</button><button class="opt" onclick="this.parentNode.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="zod">♍</span>Virgo</button><button class="opt" onclick="this.parentNode.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="zod">♎</span>Libra</button><button class="opt" onclick="this.parentNode.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="zod">♏</span>Scorpio</button><button class="opt" onclick="this.parentNode.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="zod">♐</span>Sagittarius</button><button class="opt" onclick="this.parentNode.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="zod">♑</span>Capricorn</button><button class="opt" onclick="this.parentNode.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="zod">♒</span>Aquarius</button><button class="opt" onclick="this.parentNode.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="zod">♓</span>Pisces</button>
 </div>
-<button class="opt" onclick="this.parentNode.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span>I don’t identify with any</button>
+<button class="opt any" onclick="this.parentNode.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel');"><span class="mark round"></span>I don’t identify with any</button>
     </div>
     <div class="footer" style="margin-top:auto; padding:14px 18px; display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--line);">
       <button class="neutral" onclick="location.href='draft-09-icebreaker-pair.html'">Back</button>
