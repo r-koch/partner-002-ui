@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PARTNER-002 design draft</title>
+<style>
+  :root{
+    --bg:#FAF6EF; --surface:#F3EBDD; --text:#2E2620; --muted:#6B5D50;
+    --accent:#B0431F; --accent-text:#FFFFFF; --line:#D8CCBA; --exclude:#A63A2B;
+    --match:#3E6B4F; --positive:#3E6B4F; --positive-text:#FFFFFF;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--text); font-family:Georgia,'Times New Roman',serif;
+       min-height:100vh; padding:0;}
+  .phone{width:100%; background:var(--bg);
+         display:flex; flex-direction:column; min-height:100vh;}
+  @media (min-width:600px){
+    .phone{max-width:420px; margin:0 auto; border-radius:24px; overflow:hidden;
+           border:1px solid var(--line); min-height:700px;
+           box-shadow:0 4px 24px rgba(0,0,0,.08);}
+    body{padding:24px;}
+  }
+  header{display:flex; justify-content:space-between; align-items:center; padding:16px 18px;
+         border-bottom:1px solid var(--line);}
+  header strong{font-weight:600;}
+  header nav{display:flex; gap:10px; align-items:center;}
+  header a{color:var(--muted); font-size:14px; text-decoration:none;}
+  .qmark{width:20px; height:20px; border-radius:50%; border:1.5px solid var(--muted);
+         color:var(--muted); font-size:12px; display:inline-flex; align-items:center;
+         justify-content:center; cursor:pointer; background:none; font-family:inherit;}
+  .expl{display:none; font-size:12px; color:var(--muted); line-height:1.5;
+        margin:10px 18px 0; border-left:2px solid var(--line); padding:4px 10px;}
+  .expl.show{display:block;}
+  .body{flex:1; padding:18px; overflow-y:auto;
+        display:flex; flex-direction:column; justify-content:center;}
+  h1{font-size:26px; font-weight:600; margin-bottom:8px; line-height:1.25;}
+  .lead{font-size:15px; color:var(--muted); margin-bottom:22px; line-height:1.5;}
+  .positive{background:var(--positive); color:var(--positive-text); border:none; border-radius:999px;
+       padding:13px 0; font-size:15px; cursor:pointer; font-family:inherit; display:block; width:100%;}
+  .neutral{background:var(--surface); color:var(--text); border:1.5px solid var(--line); border-radius:999px;
+       padding:12px 0; font-size:15px; cursor:pointer; font-family:inherit; display:block; width:100%; margin-top:10px;}
+</style>
+</head>
+<body>
+  <div class="phone" style="min-height:560px;">
+    <header>
+      <strong>Design draft <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
+    </header>
+    <div class="expl" id="h-expl">This is the full interactive draft. The journey: sign in with a provider, complete setup (age, terms, privacy, consents, avatar, name), answer 16 required questions, optionally add more info, then discover — where you can match, enter a "Getting to know" stage (optional info, ice breakers, requests), and finally chat. Every page is a functional sketch: buttons navigate or demo their state. Start at the login screen, or use the arrows at the bottom to jump anywhere.</div>
+    <div class="body">
+      <h1>Find people who fit, not just photos.</h1>
+      <div class="lead">A clickable draft of the whole experience — start at login.</div>
+      <button class="positive" onclick="location.href='draft-01a-welcome.html'">Start at login</button>
+    </div>
+  </div>
+  <script src="palette-switcher.js"></script>
+</body>
+</html>

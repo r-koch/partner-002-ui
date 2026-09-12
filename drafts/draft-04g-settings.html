@@ -80,20 +80,32 @@
 
     <div class="body">
       <div class="card">
-        <div class="row"><span>Color theme<span class="meta">a few curated palettes, dark and light</span></span><button class="neutral min">Choose</button></div>
+        <div class="row"><span>Color theme<span class="meta">a few curated palettes, dark and light</span></span><button class="neutral min" onclick="toggleTheme()">Choose</button></div>
         <div class="row"><span>Avatar<span class="meta">stylized, optional, on-device</span></span><button class="neutral min" onclick="location.href='draft-04h-avatar-create.html'">Create or edit</button></div>
-        <div class="row"><span>Import interests<span class="meta">Google, Goodreads, Spotify — chips only</span></span><button class="neutral min">Import</button></div>
+        <div class="row"><span>Import interests<span class="meta">Google, Goodreads, Spotify — chips only</span></span><button class="neutral min" onclick="location.href='draft-04d-import.html'">Import</button></div>
       </div>
       <div class="card">
-        <div class="row"><span>Account<span class="meta">provider: Google</span></span><button class="neutral min">Manage</button></div>
-        <div class="row"><span>Payment methods<span class="meta">PayPal, card, SEPA</span></span><button class="neutral min">Manage</button></div>
-        <div class="row"><span>Subscription &amp; bundles<span class="meta">unlimited month or advance packs</span></span><button class="neutral min">View</button></div>
+        <div class="row"><span>Account<span class="meta">provider: Google</span></span><button class="neutral min" onclick="rowNote(this)">Manage</button></div>
+        <div class="row"><span>Payment methods<span class="meta">PayPal, card, SEPA</span></span><button class="neutral min" onclick="location.href='draft-04f-pricing.html'">Manage</button></div>
+        <div class="row"><span>Subscription &amp; bundles<span class="meta">unlimited month or advance packs</span></span><button class="neutral min" onclick="location.href='draft-04f-pricing.html'">View</button></div>
       </div>
       <div class="card">
-        <div class="row"><span>Sign out<span class="meta">this device only</span></span><button class="negative filled min">Sign out</button></div>
+        <div class="row"><span>Sign out<span class="meta">this device only</span></span><button class="negative filled min" onclick="signOut(this)">Sign out</button></div>
       </div>
     </div>
   </div>
+  <script>
+  function rowNote(btn){ var o = btn.textContent; btn.textContent = 'demo'; setTimeout(function(){ btn.textContent = o; }, 800); }
+  function signOut(btn){ if (btn.dataset.armed){ location.href = 'draft-01a-welcome.html'; return; } btn.dataset.armed = '1'; btn.textContent = 'Tap again to sign out'; }
+  function toggleTheme(){
+    var r = document.documentElement.style;
+    var dark = r.getPropertyValue('--bg') === '#2B2622';
+    r.setProperty('--bg', dark ? '#FAF6EF' : '#2B2622');
+    r.setProperty('--surface', dark ? '#F3EBDD' : '#3A332B');
+    r.setProperty('--text', dark ? '#2E2620' : '#EDE6DC');
+    r.setProperty('--muted', dark ? '#6B5D50' : '#A99B88');
+  }
+  </script>
   <script src="palette-switcher.js"></script>
 <script src="draft-nav.js"></script>
 </body>

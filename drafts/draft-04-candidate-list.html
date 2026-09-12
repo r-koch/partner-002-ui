@@ -35,18 +35,17 @@
   .list{flex:1; padding:16px; display:flex; flex-direction:column; gap:16px; overflow-y:auto;}
   .card{border:1px solid var(--line); border-radius:16px; background:var(--surface);
         padding:14px;}
-  .m-ident{width:100%;}
+  .m-ident{display:flex; gap:12px; align-items:flex-start;}
+  .cavwrap{flex:0 0 auto;}
+  .cav{width:78px; height:78px; border-radius:50%; border:3px solid var(--line);
+       object-fit:cover; display:block; background:var(--surface);}
+  .ident{flex:1; min-width:0;}
   .topline{display:flex; justify-content:space-between; align-items:center; gap:8px;}
   .stage-tag{font-size:11px; color:var(--muted); border:1px solid var(--line);
         border-radius:999px; padding:3px 9px; flex:0 0 auto;}
   .scoreline{display:flex; align-items:baseline; gap:8px;}
-  .scoreline{display:flex; align-items:baseline; gap:8px;}
   .score{font-size:26px; font-weight:700; line-height:1;}
   .handle{font-size:14px; font-weight:600; color:var(--muted);}
-  .interests .ilab{font-size:12px; color:var(--muted); letter-spacing:.05em; flex:0 0 auto;}
-  .ichip{background:var(--accent); color:var(--accent-text); border:1.5px solid var(--accent); border-radius:999px; padding:3px 11px; font-size:12px;}
-  .ichip::before{content:""; width:6px; height:6px; border-radius:50%;
-         background:var(--accent); flex:0 0 auto;}
   .actrow{display:flex; gap:8px; margin-top:12px;}
   .positive{flex:1; background:var(--positive); color:var(--positive-text); border:none; border-radius:999px; padding:10px 0; font-size:14px; cursor:pointer; font-family:inherit;}
   .negative{flex:1; background:var(--bg); color:var(--exclude); border:2px solid var(--exclude); border-radius:999px; padding:10px 0; font-size:14px; cursor:pointer; font-family:inherit;}
@@ -54,7 +53,6 @@
   .pans.nofill{background:transparent; color:var(--text); padding:0;}
   .alab{font-size:12px; color:var(--muted); letter-spacing:.05em; flex:0 0 auto;}
   .secrow{display:flex; align-items:center; gap:8px; margin-top:10px; flex-wrap:wrap;}
-
   .mpill{background:transparent; border:1.5px solid var(--accent); color:var(--accent);
        border-radius:999px; padding:3px 11px; font-size:12px;}
   .dtopic{background:transparent; border:1.5px solid var(--exclude); color:var(--exclude);
@@ -71,60 +69,70 @@
     <div class="list">
       <div class="card">
         <div class="m-ident">
-          <div class="topline">
-            <div class="scoreline"><span class="score">82</span> <span class="handle">brave-lion-4417</span></div>
-            <span class="stage-tag">strong fit</span>
+          <div class="cavwrap"><img class="cav" src="anime-avatar-example.png" alt="stylized avatar — not a photo"></div>
+          <div class="ident">
+            <div class="topline">
+              <div class="scoreline"><span class="score">82</span> <span class="handle">brave-lion-4417</span></div>
+              <span class="stage-tag">strong fit</span>
+            </div>
+            <div class="secrow"><span class="alab">Matching</span><span class="mpill">wants kids</span> <span class="mpill">non-smoker</span> <span class="mpill">long-term</span> <span class="mpill">flexible hours</span> <span class="mpill">center</span> <span class="mpill">homebody</span></div>
+            <div class="secrow"><span class="alab">Difference</span><span class="dtopic">pets</span> <span class="dtopic">work hours</span> <span class="dtopic">free time</span> <span class="dtopic">smoking</span> <span class="dtopic">religion</span> <span class="dtopic">location</span></div>
           </div>
-          
-  <div class="profile">
-          <div class="secrow"><span class="alab">Matching</span><span class="mpill">wants kids</span> <span class="mpill">non-smoker</span> <span class="mpill">long-term</span> <span class="mpill">flexible hours</span> <span class="mpill">center</span> <span class="mpill">homebody</span></div>
-          <div class="secrow"><span class="alab">Difference</span><span class="dtopic">pets</span> <span class="dtopic">work hours</span> <span class="dtopic">free time</span> <span class="dtopic">smoking</span> <span class="dtopic">religion</span> <span class="dtopic">location</span></div>
-        </div>
-          <div class="secrow"><span class="alab">Interests</span><span class="ichip">travel</span><span class="ichip">outdoors</span><span class="ichip">city culture</span><span class="ichip">music</span> <span class="ichip">films</span> <span class="ichip">books</span></div>
         </div>
         <div class="actrow">
-          <button class="positive">Interested</button>
-          <button class="negative">Not for me</button>
+          <button class="positive" onclick="actCard(this,false)">Interested</button>
+          <button class="negative" onclick="actCard(this,true)">Not for me</button>
         </div>
       </div>
       <div class="card">
         <div class="m-ident">
-          <div class="topline">
-            <div class="scoreline"><span class="score">61</span> <span class="handle">quiet-fox-2148</span></div>
-            <span class="stage-tag">decent fit</span>
+          <div class="cavwrap"><img class="cav" src="anime-avatar-example.png" alt="stylized avatar — not a photo"></div>
+          <div class="ident">
+            <div class="topline">
+              <div class="scoreline"><span class="score">61</span> <span class="handle">quiet-fox-2148</span></div>
+              <span class="stage-tag">decent fit</span>
+            </div>
+            <div class="secrow"><span class="alab">Matching</span><span class="mpill">open to kids</span> <span class="mpill">city culture</span></div>
+            <div class="secrow"><span class="alab">Difference</span><span class="dtopic">smoking</span> <span class="dtopic">pets</span> <span class="dtopic">work hours</span></div>
           </div>
-          
-  <div class="profile">
-          <div class="secrow"><span class="alab">Matching</span><span class="mpill">open to kids</span> <span class="mpill">city culture</span></div>
-          <div class="secrow"><span class="alab">Difference</span><span class="dtopic">smoking</span> <span class="dtopic">pets</span> <span class="dtopic">work hours</span></div>
-        </div>
-          <div class="secrow"><span class="alab">Interests</span><span class="ichip">concerts</span><span class="ichip">food</span></div>
         </div>
         <div class="actrow">
-          <button class="positive">Interested</button>
-          <button class="negative">Not for me</button>
+          <button class="positive" onclick="actCard(this,false)">Interested</button>
+          <button class="negative" onclick="actCard(this,true)">Not for me</button>
         </div>
       </div>
       <div class="card">
         <div class="m-ident">
-          <div class="topline">
-            <div class="scoreline"><span class="score">44</span> <span class="handle">steady-owl-8831</span></div>
-            <span class="stage-tag">weak fit</span>
+          <div class="cavwrap"><img class="cav" src="anime-avatar-example.png" alt="stylized avatar — not a photo"></div>
+          <div class="ident">
+            <div class="topline">
+              <div class="scoreline"><span class="score">44</span> <span class="handle">steady-owl-8831</span></div>
+              <span class="stage-tag">weak fit</span>
+            </div>
+            <div class="secrow"><span class="alab">Matching</span><span class="mpill">wants kids</span> <span class="mpill">long-term</span></div>
+            <div class="secrow"><span class="alab">Difference</span><span class="dtopic">smoking</span> <span class="dtopic">free time</span> <span class="dtopic">work hours</span></div>
           </div>
-          
-  <div class="profile">
-          <div class="secrow"><span class="alab">Matching</span><span class="mpill">wants kids</span> <span class="mpill">long-term</span></div>
-          <div class="secrow"><span class="alab">Difference</span><span class="dtopic">smoking</span> <span class="dtopic">free time</span> <span class="dtopic">work hours</span></div>
-        </div>
-          <div class="secrow"><span class="alab">Interests</span><span class="ichip">hiking</span><span class="ichip">films</span></div>
         </div>
         <div class="actrow">
-          <button class="positive">Interested</button>
-          <button class="negative">Not for me</button>
+          <button class="positive" onclick="actCard(this,false)">Interested</button>
+          <button class="negative" onclick="actCard(this,true)">Not for me</button>
         </div>
       </div>
     </div>
   </div>
+  <script>
+  function actCard(btn, declined){
+    var card = btn.closest('.card');
+    if (declined){
+      var tag = card.querySelector('.stage-tag');
+      if (tag) tag.textContent = 'declined';
+      card.style.opacity = '0.25';
+    } else {
+      card.style.opacity = '0.5';
+    }
+    setTimeout(function(){ if (card.parentElement) card.remove(); }, 400);
+  }
+  </script>
   <script src="palette-switcher.js"></script>
 <script src="draft-nav.js"></script>
 </body>

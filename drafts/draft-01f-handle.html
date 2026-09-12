@@ -98,9 +98,22 @@
         <div class="t" style="font-size:20px; letter-spacing:.02em;">brave-fox-2148</div>
         <div class="tl">Checking what&rsquo;s free ...</div>
       </div>
-      <button class="positive">That’s me, done</button>
+      <div class="block">
+        <div class="t">Name changes</div>
+        <div class="tl">You can change your name once per week. A taken name is never reused.</div>
+      </div>
+      <button class="positive" onclick="doneHandle(this)">That&rsquo;s me, done</button>
     </div>
   </div>
+  <script>
+  var handleDone = false;
+  function doneHandle(btn){
+    if (handleDone) return;
+    handleDone = true;
+    btn.textContent = 'Confirmed — locked for a week';
+    setTimeout(function(){ location.href = 'draft-02-01-gender.html'; }, 700);
+  }
+  </script>
   <script src="palette-switcher.js"></script>
 <script src="draft-nav.js"></script>
 </body>

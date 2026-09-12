@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PARTNER-002 design draft — Import interests</title>
+<title>PARTNER-002 design draft — Decision</title>
 <style>
   :root{
     --bg:#FAF6EF; --surface:#F3EBDD; --text:#2E2620; --muted:#6B5D50;
@@ -33,56 +33,35 @@
         margin:10px 18px 0; border-left:2px solid var(--line); padding:4px 10px;}
   .expl.show{display:block;}
   .body{flex:1; padding:18px; overflow-y:auto;}
-  .step{font-size:13px; color:var(--muted); margin-bottom:12px;}
-  h1{font-size:26px; font-weight:600; margin-bottom:8px; line-height:1.25;}
-  .lead{font-size:15px; color:var(--muted); margin-bottom:22px; line-height:1.5;}
   .block{border:1px solid var(--line); border-radius:14px; background:var(--surface);
          padding:14px 16px; margin-bottom:12px;}
   .block .t{font-size:14px; font-weight:600; margin-bottom:6px;}
   .block .tl{font-size:13px; color:var(--muted); line-height:1.5;}
   .block .precise{font-size:12px; color:var(--muted); line-height:1.6; margin-top:8px;
          border-top:1px solid var(--line); padding-top:8px;}
-  .btn{display:block; width:100%; background:var(--positive); color:var(--positive-text);
-       border:none; border-radius:999px; padding:13px 0; font-size:15px; cursor:pointer;
-       font-family:inherit; margin-top:6px; text-align:center; text-decoration:none;}
-  .btn.ghost{background:var(--surface); color:var(--text); border:2px solid var(--line);}
-  .btn.google{background:#FFFFFF; color:#1E2430; border:2px solid var(--line);}
-  .choice{display:block; border:2px solid var(--line); border-radius:12px;
-          padding:15px 16px; margin-bottom:12px; font-size:15px; cursor:pointer;
-          background:var(--surface);}
-  .choice small{display:block; color:var(--muted); font-size:12px; margin-top:4px;}
+  h1{font-size:24px; font-weight:600; margin-bottom:8px; line-height:1.25;}
+  .lead{font-size:15px; color:var(--muted); margin-bottom:22px; line-height:1.5;}
+  .choice{display:block; width:100%; text-align:left; border:2px solid var(--line); border-radius:12px;
+          padding:16px 18px; margin-bottom:12px; font-size:15px; cursor:pointer;
+          background:var(--surface); font-family:inherit; color:var(--text);}
+  .choice small{display:block; color:var(--muted); font-size:12px; margin-top:5px; line-height:1.4;}
   .choice.now{border-color:var(--accent);}
-  .footer{margin-top:auto; padding:18px; display:flex; justify-content:space-between;
-          align-items:center; max-width:420px; width:100%; margin-left:auto; margin-right:auto;}
   .demo-note{display:none;}
-
-  .row{display:flex; align-items:center; justify-content:space-between; gap:8px;
-       padding:12px 0; border-bottom:1px solid var(--line); font-size:14px;}
-  .row:last-child{border-bottom:none;}
-  .row .meta{font-size:12px; color:var(--muted); display:block;}
-  .card{border:1px solid var(--line); border-radius:14px; background:var(--surface);
-        padding:4px 15px; margin-bottom:12px;}
-  .seg{font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em;
-       margin:14px 0 8px;}
 </style>
 </head>
 <body>
-  <div class="phone" style="min-height:560px;">
+  <div class="phone" style="min-height:520px;">
     <header>
-      <strong>Import interests <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
+      <strong>Next step <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
       <nav><a href="#" title="Help"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></a><a href="#" title="Safety"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></a></nav>
     </header>
-    <div class="expl" id="h-expl">Chips only — never a dating signal, never changes your matching.</div>
+    <div class="expl" id="h-expl">Your 16 required answers are in. Optional info — interests, personality, extended and deep questions — is never required, and you can add it at any time. Discover matches on your required answers alone.</div>
 
     <div class="body">
-      <h1 style="font-size:22px;">Optional: bring in a few interests</h1>
-      <div class="lead">Import from a service you use to get a few context chips about you.
-        It never changes your answers or matching. Just flavor that can spark talks.</div>
-      <button class="btn google" onclick="location.href='draft-04e-interests-manual.html'">Continue with Google</button>
-      <button class="btn ghost" style="margin-top:10px;" onclick="location.href='draft-04e-interests-manual.html'">Continue with Goodreads</button>
-      <button class="btn ghost" style="margin-top:10px;" onclick="location.href='draft-04e-interests-manual.html'">Continue with Spotify</button>
-      <div style="font-size:12px; color:var(--muted); margin-top:16px; line-height:1.5;">
-        Everything is read and kept on your phone. We can't see the files you import.</div>
+      <h1>Add more, or start matching?</h1>
+      <div class="lead">Optional info helps matches know you faster, but Discover works on your 16 answers alone.</div>
+      <button class="choice" onclick="location.href='draft-03-questionnaire-overview.html'">Add optional info now</button>
+      <button class="choice" onclick="location.href='draft-04-candidate-list.html'">Go to Discover</button>
     </div>
   </div>
   <script src="palette-switcher.js"></script>

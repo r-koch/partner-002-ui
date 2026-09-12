@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PARTNER-002 design draft — Match Stage 3 (chat)</title>
+<title>PARTNER-002 design draft — Chat</title>
 <style>
   :root{
     --bg:#FAF6EF; --surface:#F3EBDD; --text:#2E2620; --muted:#6B5D50;
@@ -69,32 +69,11 @@
   .msg .t{display:block; font-size:10px; color:var(--muted); margin-top:3px;}
   .msg.me .t{color:rgba(255,255,255,.75);}
   .inputbar{display:flex; gap:10px; padding:10px 16px; border-top:1px solid var(--line);}
-  .inputbar input{flex:1; border:2px solid var(--line); border-radius:999px;
+  .inputbar input{flex:1; border:1.5px solid var(--line); border-radius:999px;
         padding:10px 15px; font-size:15px; background:var(--surface); color:var(--text);
         font-family:inherit;}
-  input[type="number"], input[type="text"]{background:var(--surface);
-       border:1.5px solid var(--line); border-radius:11px; padding:10px 12px;
-       font-family:inherit; font-size:14px; color:var(--text); outline:none;}
-  input[type="number"]:focus, input[type="text"]:focus{border-color:var(--accent);}
   .plist{display:flex; flex-direction:column; gap:9px; margin-top:8px;}
-  /** fill = chosen (matches the interests-select visual language) **/
-  .pans.nofill{background:transparent; color:var(--text); padding:0;}
-  .alab{font-size:12px; color:var(--muted); letter-spacing:.05em; flex:0 0 auto;}
-  .secrow{display:flex; align-items:flex-start; gap:8px; margin-top:10px; flex-wrap:nowrap;}
-  .vwrap{display:flex; gap:5px; flex:1 1 auto; min-width:0; overflow:hidden; align-content:flex-start;}
-  .coll{cursor:pointer;}
-  .coll.open .vwrap{flex-wrap:wrap; overflow:visible;}
-  .more{display:none;}
-  .coll.open .more{display:inline-flex;}
-  .mpill,.dtopic,.ichip{flex:0 0 auto;}
-  .mpill{background:transparent; border:1.5px solid var(--accent); color:var(--accent);
-       border-radius:999px; padding:3px 11px; font-size:12px;}
-  .dtopic{background:transparent; border:1.5px solid var(--exclude); color:var(--exclude);
-       border-radius:999px; padding:3px 11px; font-size:12px;}
-  .ichip{background:var(--accent); color:var(--accent-text); border:1.5px solid var(--accent);
-       border-radius:999px; padding:3px 11px; font-size:12px; display:inline-flex; align-items:center; gap:5px;}
-  .morepill{border-radius:999px; padding:3px 11px; font-size:12px; flex:0 0 auto;}
-  .coll.open .morepill{display:none;}
+  .alab{font-size:11px; color:var(--muted); letter-spacing:.05em; flex:0 0 auto;}
   .bgroup{display:flex; flex-wrap:wrap; gap:6px; margin-top:10px;}
   .bgroup .neutral.min,.bgroup .negative.min{padding:5px 11px; font-size:12px;}
   .pending-strip{margin-top:10px; cursor:pointer; border:1px solid var(--line);
@@ -108,12 +87,14 @@
   .prow .meta{font-size:11px; color:var(--muted);}
   .drawer{margin:8px 18px 0;}
   .drawer .suggest{margin:0 0 8px;}
+  .optin-ok{margin:0 18px 8px; border:1px solid var(--match); border-radius:12px;
+       background:var(--surface); padding:7px 12px; font-size:12px; color:var(--match);}
 </style>
 </head>
 <body>
   <div class="phone">
     <header>
-      <strong>Stage 3 – Chat <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
+      <strong>Chat <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
       <nav>
         <a href="#" title="Help"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></a>
         <a href="#" title="Safety"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></a>
@@ -124,7 +105,7 @@
     <div class="match">
       <div class="avatar-col">
         <div class="avatar"><img src="anime-avatar-example.png" alt="stylized avatar — not a photo"></div>
-        <button class="negative min">Cancel match</button>
+        <button class="negative min" onclick="confirmCancel(this)">Cancel match</button>
       </div>
       <div class="ident">
         <div class="scoreline"><span class="score">82</span> <span class="handle">brave-lion-4417</span></div>
@@ -132,19 +113,21 @@
           <button class="neutral min" onclick="showDrawer('suggest-a')">Message ideas</button>
           <button class="neutral min" onclick="showDrawer('ice-a')">Ice breaker</button>
           <button class="neutral min" onclick="showDrawer('start-a')">Conversation starters</button>
-          <button class="neutral min">Ask</button>
-          <button class="neutral min">Their answers</button>
+          <button class="neutral min" onclick="location.href='draft-06b-extended-qa.html'">Ask</button>
+          <button class="neutral min" onclick="location.href='draft-06b-extended-qa.html'">Their answers</button>
           <button class="neutral min" onclick="location.href='draft-06a-history.html'">Activity log</button>
-                  </div>
+        </div>
       </div>
     </div>
+
+    <div class="optin-ok">Both opted in — chat unlocked</div>
 
     <div class="pending-strip" onclick="this.classList.toggle('open')">
       <span class="pstrip-line"><b>2 open · 1 waiting</b></span>
       <div class="pstrip-rows">
-        <div class="prow"><span>Ideal weekend? <span class="meta">awaiting your answer</span></span><button class="neutral min">Answer</button></div>
-        <div class="prow"><span>Life motto? <span class="meta">awaiting their answer</span></span><button class="neutral min">Nudge</button></div>
-        <div class="prow"><span>Deepest fear? <span class="meta">not requested</span></span><button class="neutral min">Ask</button></div>
+        <div class="prow"><span>Ideal weekend? <span class="meta">awaiting your answer</span></span><button class="neutral min" onclick="location.href='draft-06b-extended-qa.html'">Answer</button></div>
+        <div class="prow"><span>Life motto? <span class="meta">awaiting their answer</span></span><button class="neutral min" onclick="pending(this)">Nudge</button></div>
+        <div class="prow"><span>Deepest fear? <span class="meta">not requested</span></span><button class="neutral min" onclick="pending(this)">Ask</button></div>
       </div>
     </div>
     <div class="drawer">
@@ -161,7 +144,8 @@
         <div class="t">Conversation starters</div>
         <div>Travel · Outdoors · Space — tap a starter to send it.</div>
       </div>
-    </div><div class="chat">
+    </div>
+    <div class="chat">
       <div class="msg them">the mountains one, definitely.
         <span class="t">yesterday 19:02</span>
       </div>
@@ -177,13 +161,41 @@
     </div>
     <div class="inputbar">
       <input id="compose" type="text" placeholder="Message (text only)">
-      <button class="positive min">Send</button>
+      <button class="positive min" onclick="send()">Send</button>
     </div>
   </div>
 <script>
   function showDrawer(id){
     document.querySelectorAll('.drawer .suggest').forEach(function(p){ p.style.display = 'none'; });
     document.getElementById(id).style.display = 'block';
+  }
+  function confirmCancel(btn){
+    if (btn.dataset.armed){ location.href = 'draft-05-matches-list.html'; return; }
+    btn.dataset.armed = '1';
+    btn.textContent = 'End match? tap to confirm';
+  }
+  function pending(btn){
+    var old = btn.textContent;
+    btn.textContent = 'Sent';
+    btn.disabled = true;
+    var b = btn;
+    setTimeout(function(){ b.textContent = old; b.disabled = false; }, 1200);
+  }
+  function send(){
+    var input = document.getElementById('compose');
+    var v = input.value.replace(/^\s+|\s+$/g, '');
+    if (!v) return;
+    var chat = document.querySelector('.chat');
+    var d = document.createElement('div');
+    d.className = 'msg me';
+    d.textContent = v;
+    var s = document.createElement('span');
+    s.className = 't';
+    s.textContent = 'just now';
+    d.appendChild(s);
+    chat.appendChild(d);
+    input.value = '';
+    chat.scrollTop = chat.scrollHeight;
   }
 </script>
   <script src="palette-switcher.js"></script>

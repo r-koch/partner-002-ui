@@ -67,6 +67,24 @@
   .progress span{flex:1; height:5px; border-radius:3px; background:var(--line);}
   .progress span.done{background:var(--match);}
   .progress span.now{background:var(--accent);}
+
+  .seg-switch{display:flex; gap:6px; margin:14px 0 8px; background:var(--surface);
+       border:1px solid var(--line); border-radius:999px; padding:4px;}
+  .segbtn{flex:1; background:none; border:none; border-radius:999px; padding:9px 0;
+       font-size:14px; color:var(--muted); cursor:pointer; font-family:inherit;}
+  .segbtn.on{background:var(--accent); color:var(--accent-text);}
+  .candgrid{display:grid; grid-template-columns:repeat(4, 1fr); gap:10px; margin-top:14px;}
+  .cand{aspect-ratio:1; border-radius:50%; border:2px solid var(--line); background:var(--surface);
+       color:var(--muted); cursor:pointer; display:flex; align-items:center; justify-content:center; padding:14px;}
+  .cand svg{width:100%; height:100%;}
+  .cand.on{border-color:var(--accent); color:var(--accent);}
+  .src-actions{display:flex; gap:8px; margin-top:10px;}
+  .src-actions .neutral{flex:1; width:auto; display:inline-block;}
+  .transform-note{width:120px; height:120px; margin:14px auto 0; display:flex; align-items:center;
+       justify-content:center; font-size:12px; color:var(--muted); border:1.5px dashed var(--line);
+       border-radius:50%; text-align:center; padding:20px; box-sizing:border-box; overflow:hidden;}
+  .final-row{display:flex; margin-top:16px;}
+  .final-row .positive{flex:1;}
 </style>
 </head>
 <body>
@@ -84,9 +102,9 @@
       <span class=""></span>
     </div>
     <div class="expl" id="h-expl">Your photo never leaves your phone. Ever.</div>
-    
+
     <div class="body">
-      
+
       <h1>Your stylized avatar</h1>
       <div class="block">
         <div class="t">How it works</div>
@@ -96,10 +114,59 @@
         <div class="precise">On-device processing only. No photo, no face data is ever
           uploaded, stored, or transmitted. A default avatar exists for everyone.</div>
       </div>
-      <button class="positive">Sounds good</button>
-      <button class="neutral" style="margin-top:10px;">I'd rather keep the default</button>
+
+      <div class="seg-switch">
+        <button class="segbtn on" onclick="showPane('defaults')">Pick a default</button>
+        <button class="segbtn" onclick="showPane('create')">Create yours</button>
+      </div>
+
+      <div id="pane-defaults">
+        <div class="candgrid">
+          <button class="cand on" onclick="pickCand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg></button>
+          <button class="cand" onclick="pickCand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l9 16H3z"/></svg></button>
+          <button class="cand" onclick="pickCand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/></svg></button>
+          <button class="cand" onclick="pickCand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21C7 16 4 12 4 8a8 8 0 0 1 16 0c0 4-3 8-8 13z"/></svg></button>
+          <button class="cand" onclick="pickCand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 12a2 2 0 0 1-2-2 2 2 0 0 1 2-2 2 2 0 0 1 2 2 2 2 0 0 1-2 2z"/><path d="M12 12v8M12 4v2"/></svg></button>
+          <button class="cand" onclick="pickCand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="3"/></svg></button>
+          <button class="cand" onclick="pickCand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l6 6H6z"/><path d="M12 12l6 6H6z"/></svg></button>
+          <button class="cand" onclick="pickCand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V8l8-5 8 5v12"/><path d="M4 20h16"/></svg></button>
+        </div>
+        <div class="final-row">
+          <button class="positive" style="flex:1;" onclick="location.href='draft-01f-handle.html'">Use this default</button>
+        </div>
+      </div>
+
+      <div id="pane-create" style="display:none;">
+        <div class="src-actions">
+          <button class="neutral" onclick="previewSelfie('Take a selfie')">Take a selfie</button>
+          <button class="neutral" onclick="previewSelfie('Choose a photo')">Choose a photo</button>
+        </div>
+        <div class="transform-note" id="transform-note">Your transformed preview appears here.</div>
+        <div class="final-row">
+          <button class="positive" style="flex:1;" onclick="location.href='draft-01f-handle.html'">Use this avatar</button>
+        </div>
+      </div>
     </div>
   </div>
+  <script>
+  function showPane(name){
+    document.getElementById('pane-defaults').style.display = name === 'defaults' ? 'block' : 'none';
+    document.getElementById('pane-create').style.display = name === 'create' ? 'block' : 'none';
+    var btns = document.querySelectorAll('.segbtn');
+    for (var i = 0; i < btns.length; i++) btns[i].classList.remove('on');
+    btns[name === 'defaults' ? 0 : 1].classList.add('on');
+  }
+  function pickCand(el){
+    var cands = el.parentElement.querySelectorAll('.cand');
+    for (var i = 0; i < cands.length; i++) cands[i].classList.remove('on');
+    el.classList.add('on');
+  }
+  function previewSelfie(src){
+    var n = document.getElementById('transform-note');
+    n.textContent = 'Transforming on this device (demo) …';
+    setTimeout(function(){ n.textContent = 'Done — stylized preview ready'; }, 900);
+  }
+  </script>
   <script src="palette-switcher.js"></script>
 <script src="draft-nav.js"></script>
 </body>

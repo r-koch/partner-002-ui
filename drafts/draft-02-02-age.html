@@ -183,11 +183,20 @@
       </div>
     </div>
     <div class="footer">
-      <button class="neutral">Back</button>
-      <button class="positive" disabled>Continue</button>
+      <button class="neutral" onclick="location.href='draft-02-01-gender.html'">Back</button>
+      <button class="positive" onclick="location.href='draft-02-03-height.html'">Continue</button>
     </div>
   </div>
-  <script src="palette-switcher.js"></script>
+  <script>
+  window.addEventListener('click', function(e){
+    var b = e.target && e.target.closest ? e.target.closest('button.opt') : null;
+    if (!b || b.classList.contains('cells')) return;
+    var col = b.parentNode;
+    col.querySelectorAll('button.opt').forEach(function(o){ o.classList.remove('sel'); });
+    b.classList.add('sel');
+  });
+</script>
+<script src="palette-switcher.js"></script>
 <script src="draft-nav.js"></script>
 </body>
 </html>

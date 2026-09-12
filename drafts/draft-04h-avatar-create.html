@@ -130,19 +130,19 @@
           <button class="cand" onclick="pickCand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V8l8-5 8 5v12"/><path d="M4 20h16"/></svg></button>
         </div>
         <div class="final-row">
-          <button class="positive" style="flex:1;">Use this default</button>
+          <button class="positive" style="flex:1;" onclick="saveAvatar(this)">Use this default</button>
         </div>
       </div>
 
       <div id="pane-create" style="display:none;">
         <p class="leadline">Add a photo and we'll transform it into your avatar's style — on your device.</p>
         <div class="src-actions">
-          <button class="neutral">Take a selfie</button>
-          <button class="neutral">Choose a photo</button>
+          <button class="neutral" onclick="previewSelfie()">Take a selfie</button>
+          <button class="neutral" onclick="previewSelfie()">Choose a photo</button>
         </div>
         <div class="transform-note" id="transform-note">Your transformed preview appears here.</div>
         <div class="final-row">
-          <button class="positive" style="flex:1;">Use this avatar</button>
+          <button class="positive" style="flex:1;" onclick="saveAvatar(this)">Use this avatar</button>
         </div>
       </div>
     </div>
@@ -157,6 +157,16 @@
   function pickCand(el){
     el.parentElement.querySelectorAll('.cand').forEach(function(c){ c.classList.remove('on'); });
     el.classList.add('on');
+  }
+  function saveAvatar(btn){
+    btn.textContent = 'Saved';
+    btn.disabled = true;
+    setTimeout(function(){ location.href = 'draft-04g-settings.html'; }, 600);
+  }
+  function previewSelfie(){
+    var n = document.getElementById('transform-note');
+    n.textContent = 'Transforming on this device …';
+    setTimeout(function(){ n.textContent = 'Done — stylized preview ready'; }, 900);
   }
 </script>
   <script src="palette-switcher.js"></script>

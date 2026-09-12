@@ -54,7 +54,7 @@
   <div class="phone">
     <header>
       <strong>Extended / deep Q&amp;A <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
-      <a href="draft-06-match-stage2.html">Close</a>
+      <a href="draft-07-match-stage1.html">Close</a>
     </header>
     <div class="expl" id="h-expl">Answers shown for both of you. Green = same, red = no match. Unanswered questions can be sent as a request — you can only ask what you've answered yourself.</div>
     <div class="body">
@@ -76,12 +76,12 @@
       <div class="qa">
         <div class="q">Travel style?</div>
         <div class="a none">They haven't answered this one.</div>
-        <button class="ask">Ask them</button>
+        <button class="ask" onclick="asked(this)">Ask them</button>
       </div>
       <div class="qa">
         <div class="q">Favorite season?</div>
         <div class="a none">You haven't answered this one — answer first, then you can ask.</div>
-        <button class="ask route">Answer it first</button>
+        <button class="ask route" onclick="answerFirst(this)">Answer it first</button>
       </div>
 
       <div class="seg-title">Deep</div>
@@ -95,6 +95,10 @@
       </div>
     </div>
   </div>
+  <script>
+  function asked(btn){ btn.textContent = 'Asked'; btn.disabled = true; }
+  function answerFirst(btn){ btn.textContent = 'Answer it to unlock asking'; btn.disabled = true; }
+  </script>
   <script src="palette-switcher.js"></script>
 <script src="draft-nav.js"></script>
 </body>

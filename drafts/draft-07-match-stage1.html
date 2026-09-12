@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PARTNER-002 design draft — Match Stage 1</title>
+<title>PARTNER-002 design draft — Getting to know</title>
 <style>
   :root{
     --bg:#FAF6EF; --surface:#F3EBDD; --text:#2E2620; --muted:#6B5D50;
@@ -34,18 +34,17 @@
   .expl.show{display:block;}
   .match{display:flex; gap:14px; padding:16px 18px; border-bottom:1px solid var(--line);}
   .avatar-col{flex:0 0 auto; width:88px; display:flex; flex-direction:column;
-        align-items:center; gap:10px;}
+        align-items:center; gap:8px;}
   .avatar{width:78px; height:78px; border-radius:50%; overflow:hidden;
           border:3px solid var(--line); background:var(--surface);
           display:flex; align-items:center; justify-content:center;
           font-size:11px; color:var(--muted); text-align:center;}
-  .avatar-btns{display:flex; flex-direction:column; gap:6px; width:70px;}
-  
+  .avatar img{width:100%; height:100%; object-fit:cover; display:block;}
+  .avatar-note{font-size:11px; color:var(--muted); text-align:center; margin-top:6px;}
   .ident{flex:1; min-width:0;}
   .scoreline{display:flex; align-items:baseline; gap:8px;}
   .score{font-size:26px; font-weight:700; line-height:1;}
   .handle{font-size:16px; font-weight:600; color:var(--muted);}
-  .ichip{background:var(--accent); color:var(--accent-text); border:1.5px solid var(--accent); border-radius:999px; padding:3px 11px; font-size:12px; display:inline-flex; align-items:center; gap:5px;}
   .pending{border-bottom:1px solid var(--line); padding:10px 18px;}
   .prow{display:flex; align-items:center; justify-content:space-between; gap:8px;
         padding:8px 0; border-bottom:1px solid var(--line); font-size:14px;}
@@ -60,33 +59,10 @@
   .neutral{background:var(--surface); color:var(--text); border:1.5px solid var(--line); border-radius:999px;
        padding:13px 10px; font-size:14px; cursor:pointer; font-family:inherit; text-align:center;}
   .min{padding:6px 14px; font-size:13px;}
-  
+
   .prow button{flex:0 0 auto;}
   .demo-note{display:none;}
 
-  .h-row{display:flex; align-items:center; gap:6px; margin:4px 0 10px;}
-  .h2{font-size:15px; font-weight:600;}
-  .card{border:1px solid var(--line); border-radius:14px; background:var(--surface);
-        margin-bottom:12px; overflow:hidden;}
-  .card summary{cursor:pointer; font-size:14px; font-weight:600; padding:13px 15px;
-        list-style:none;}
-  .rows{padding:0 15px 13px;}
-  .row{display:flex; align-items:center; justify-content:space-between; gap:8px;
-       padding:10px 0; border-bottom:1px solid var(--line); font-size:14px;}
-  .row:last-child{border-bottom:none;}
-  .row .meta{font-size:12px; color:var(--muted); display:block;}
-  .avatar-note{font-size:11px; color:var(--muted); text-align:center; margin-top:6px;}
-  .actions.bottom{margin-top:10px;}
-  .pgrid{display:grid; grid-template-columns:1fr 1fr; gap:10px 16px; margin-top:8px;}
-  /** fill = chosen (matches the interests-select visual language) **/
-  .pans.nofill{background:transparent; color:var(--text); padding:0;}
-  .alab{font-size:12px; color:var(--muted); letter-spacing:.05em; flex:0 0 auto;}
-  .secrow{display:flex; align-items:flex-start; gap:8px; margin-top:10px; flex-wrap:nowrap;}
-  .mpill{background:transparent; border:1.5px solid var(--accent); color:var(--accent);
-       border-radius:999px; padding:3px 11px; font-size:12px;}
-  .dtopic{background:transparent; border:1.5px solid var(--exclude); color:var(--exclude);
-       border-radius:999px; padding:3px 11px; font-size:12px;}
-  .ichip{background:var(--accent); color:var(--accent-text); border:1.5px solid var(--accent); border-radius:999px; padding:3px 11px; font-size:12px; display:inline-flex; align-items:center; gap:5px;}
   .coll{cursor:pointer;}
   .vwrap{display:flex; gap:5px; flex:1 1 auto; min-width:0; overflow:hidden; align-content:flex-start;}
   .coll.open .vwrap{flex-wrap:wrap; overflow:visible;}
@@ -95,28 +71,43 @@
   .mpill,.dtopic,.ichip{flex:0 0 auto;}
   .morepill{border-radius:999px; padding:3px 11px; font-size:12px; flex:0 0 auto;}
   .coll.open .morepill{display:none;}
+  .alab{font-size:12px; color:var(--muted); letter-spacing:.05em; flex:0 0 auto;}
+  .secrow{display:flex; align-items:flex-start; gap:8px; margin-top:10px; flex-wrap:nowrap;}
+  .mpill{background:transparent; border:1.5px solid var(--accent); color:var(--accent);
+       border-radius:999px; padding:3px 11px; font-size:12px;}
+  .dtopic{background:transparent; border:1.5px solid var(--exclude); color:var(--exclude);
+       border-radius:999px; padding:3px 11px; font-size:12px;}
+  .ichip{background:var(--accent); color:var(--accent-text); border:1.5px solid var(--accent);
+       border-radius:999px; padding:3px 11px; font-size:12px; display:inline-flex; align-items:center; gap:5px;}
+  .optin{display:none; margin:12px 18px 0; border:1px solid var(--line); border-radius:12px;
+        background:var(--surface); padding:10px 14px; font-size:13px; color:var(--muted);}
+  .optin-t{display:block;}
+  .drawer{margin:0 18px;}
+  .suggest{display:none; margin:10px 0; border:1.5px solid var(--accent); border-radius:14px;
+        padding:10px 12px; font-size:13px; line-height:1.5;}
+  .suggest .t{font-weight:600; margin-bottom:4px;}
 </style>
 </head>
 <body>
   <div class="phone">
     <header>
-      <strong>Stage 1 – Getting to know <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
+      <strong>Getting to know <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
       <nav>
         <a href="#" title="Help"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></a>
         <a href="#" title="Safety"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></a>
       </nav>
     </header>
-    <div class="expl" id="h-expl">Stage 1 is about building a fuller picture. All their answered optional info is open to read here, and anything left unanswered can be asked for — but only after you've answered it yourself.</div>
+    <div class="expl" id="h-expl">All their answered optional info is open to read here, and anything unanswered can be asked — after you've answered it yourself. Ice breakers, conversation starters, and the activity log all live here. Advancing to chat needs both of you to opt in.</div>
 
     <div class="match">
       <div class="avatar-col">
-        <div class="avatar">avatar<br>comes at<br>stage 2</div>
+        <div class="avatar"><img src="anime-avatar-example.png" alt="stylized avatar — not a photo"></div>
+        <button class="negative min" onclick="confirmCancel(this)">Cancel match</button>
         <div class="avatar-note">2 open · 1 waiting</div>
       </div>
       <div class="ident">
         <div class="scoreline"><span class="score">82</span> <span class="handle">brave-lion-4417</span></div>
-        
-  <div class="secrow coll" onclick="this.classList.toggle('open')">
+        <div class="secrow coll" onclick="this.classList.toggle('open')">
           <span class="alab">Matching</span>
           <span class="vwrap"><span class="mpill">wants kids</span> <span class="mpill">non-smoker</span>
           <span class="mpill more">long-term</span> <span class="mpill more">flexible hours</span> <span class="mpill more">center</span></span>
@@ -140,28 +131,71 @@
     <div class="pending">
       <div class="prow">
         <span>Ideal weekend? <span class="meta">awaiting your answer</span></span>
-        <button class="neutral min">Answer</button>
+        <button class="neutral min" onclick="location.href='draft-06b-extended-qa.html'">Answer</button>
       </div>
       <div class="prow">
         <span>Life motto? <span class="meta">awaiting their answer</span></span>
-        <button class="neutral min">Nudge</button>
+        <button class="neutral min" onclick="pending(this)">Nudge</button>
       </div>
       <div class="prow">
         <span>Deepest fear? <span class="meta">not requested</span></span>
-        <button class="neutral min">Ask</button>
+        <button class="neutral min" onclick="pending(this)">Ask</button>
       </div>
     </div>
 
-    <div class="actions">
-      <button class="neutral">Ask</button>
-      <button class="neutral">Their answers</button>
-      <button class="neutral" onclick="location.href='draft-06a-history.html'">Activity log</button>
+    <div class="drawer">
+      <div class="suggest" id="ice-b">
+        <div class="t">Ice breaker — beach or mountains?</div>
+        <div>You: beach · them: pending</div>
+      </div>
+      <div class="suggest" id="start-b">
+        <div class="t">Conversation starters</div>
+        <div>Travel · Outdoors · Space — tap a starter to send it.</div>
+      </div>
     </div>
-    <div class="actions bottom">
-      <button class="positive">Advance to Connection</button>
-      <button class="negative">Cancel match</button>
+
+    <div class="optin" id="optin">
+      <span class="optin-t" id="optin-t">Credit reserved — waiting for them to opt in</span>
+    </div>
+
+    <div class="actions">
+      <button class="neutral" onclick="location.href='draft-06b-extended-qa.html'">Ask for info</button>
+      <button class="neutral" onclick="location.href='draft-06b-extended-qa.html'">Their answers</button>
+      <button class="neutral" onclick="openDrawer('ice-b')">Ice breaker</button>
+      <button class="neutral" onclick="openDrawer('start-b')">Conversation starters</button>
+      <button class="neutral" onclick="location.href='draft-06a-history.html'">Activity log</button>
+      <button class="positive" onclick="advanceChat(this)">Advance to Chat</button>
     </div>
   </div>
+  <script>
+  function confirmCancel(btn){
+    if (btn.dataset.armed){ location.href = 'draft-05-matches-list.html'; return; }
+    btn.dataset.armed = '1';
+    btn.textContent = 'End match? tap to confirm';
+  }
+  function openDrawer(id){
+    var d = document.querySelectorAll('.drawer .suggest');
+    for (var i = 0; i < d.length; i++) d[i].style.display = 'none';
+    document.getElementById(id).style.display = 'block';
+  }
+  function advanceChat(btn){
+    btn.disabled = true;
+    btn.textContent = 'Reserving…';
+    document.getElementById('optin').style.display = 'block';
+    document.getElementById('optin-t').textContent = 'Credit reserved — waiting for them to opt in';
+    setTimeout(function(){
+      document.getElementById('optin-t').textContent = 'They opted in — chat unlocked';
+      setTimeout(function(){ location.href = 'draft-08-match-rung3.html'; }, 800);
+    }, 900);
+  }
+  function pending(btn){
+    var old = btn.textContent;
+    btn.textContent = 'Sent';
+    btn.disabled = true;
+    var b = btn;
+    setTimeout(function(){ b.textContent = old; b.disabled = false; }, 1200);
+  }
+  </script>
   <script src="palette-switcher.js"></script>
 <script src="draft-nav.js"></script>
 </body>

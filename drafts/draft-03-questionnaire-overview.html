@@ -117,6 +117,45 @@
 </div>
     </div>
   </div>
+  <script>
+  (function(){
+    // section headers expand / collapse their following rows
+    var secs = document.querySelectorAll('.sec');
+    for (var i = 0; i < secs.length; i++){
+      secs[i].style.cursor = 'pointer';
+      secs[i].addEventListener('click', function(){
+        var collapsed = this.classList.toggle('open') ? false : true;
+        var el = this.nextElementSibling;
+        while (el && !el.classList.contains('sec')){
+          if (el.classList.contains('qrow')) el.style.display = collapsed ? 'none' : '';
+          el = el.nextElementSibling;
+        }
+        var cnt = this.querySelector('.count');
+        if (cnt) cnt.textContent = collapsed ? '—' : cnt.getAttribute('data-full');
+      });
+    }
+    var cs = document.querySelectorAll('.sec .count');
+    for (var j = 0; j < cs.length; j++) cs[j].setAttribute('data-full', cs[j].textContent);
+    // question rows navigate to their question page (edit mode)
+    var pages = [
+      'draft-02-01-gender.html','draft-02-02-age.html','draft-02-03-height.html',
+      'draft-02-04-body-type.html','draft-02-05-relationship-style.html','draft-02-06-kids-now.html',
+      'draft-02-07-want-kids.html','draft-02-08-smoking.html','draft-02-09-religion.html',
+      'draft-02-10-location.html','draft-02-11-living.html','draft-02-12-work.html',
+      'draft-02-13-pets.html','draft-02-14-politics.html','draft-02-15-freetime.html',
+      'draft-02-16-orientation.html','draft-02-17-sun-sign.html','draft-02-18-four-letter-style.html',
+      'draft-02-19-big-five.html','draft-06b-extended-qa.html','draft-06b-extended-qa.html',
+      'draft-06b-extended-qa.html','draft-06b-extended-qa.html','draft-06b-extended-qa.html'
+    ];
+    var qrows = document.querySelectorAll('.qrow');
+    for (var k = 0; k < qrows.length; k++){
+      qrows[k].style.cursor = 'pointer';
+      (function(idx){
+        qrows[k].addEventListener('click', function(){ location.href = pages[idx]; });
+      })(k);
+    }
+  })();
+  </script>
   <script src="palette-switcher.js"></script>
 <script src="draft-nav.js"></script>
 </body>

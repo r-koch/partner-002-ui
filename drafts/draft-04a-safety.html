@@ -81,10 +81,10 @@
     <div class="body">
       <div class="seg">Your controls</div>
       <div class="card">
-        <div class="row"><span>Report a user<span class="meta">help us keep things decent</span></span><button class="neutral min">Report</button></div>
-        <div class="row"><span>Blocked users<span class="meta">they can't see or message you</span></span><button class="neutral min">Manage</button></div>
-        <div class="row"><span>Cancel a match<span class="meta">it ends quietly on both sides</span></span><button class="neutral min">Cancel</button></div>
-        <div class="row"><span>Delete my account<span class="meta">all server records, matching, chat — gone</span></span><button class="negative filled min">Delete</button></div>
+        <div class="row"><span>Report a user<span class="meta">help us keep things decent</span></span><button class="neutral min" onclick="report(this)">Report</button></div>
+        <div class="row"><span>Blocked users<span class="meta">they can't see or message you</span></span><button class="neutral min" onclick="rowNote(this)">Manage</button></div>
+        <div class="row"><span>Cancel a match<span class="meta">it ends quietly on both sides</span></span><button class="neutral min" onclick="rowNote(this)">Cancel</button></div>
+        <div class="row"><span>Delete my account<span class="meta">all server records, matching, chat — gone</span></span><button class="negative filled min" onclick="delAccount(this)">Delete</button></div>
       </div>
       <div class="seg">About privacy</div>
       <div class="card">
@@ -99,6 +99,11 @@
       </div>
     </div>
   </div>
+  <script>
+  function rowNote(btn){ var o = btn.textContent; btn.textContent = 'demo'; setTimeout(function(){ btn.textContent = o; }, 800); }
+  function report(btn){ if (btn.dataset.armed){ btn.textContent = 'Reported'; btn.disabled = true; return; } btn.dataset.armed = '1'; btn.textContent = 'Tap again to confirm'; }
+  function delAccount(btn){ if (btn.dataset.armed){ btn.textContent = 'Deleting…'; setTimeout(function(){ location.href = 'draft-01a-welcome.html'; }, 600); return; } btn.dataset.armed = '1'; btn.textContent = 'This cannot be undone — tap again'; }
+  </script>
   <script src="palette-switcher.js"></script>
 <script src="draft-nav.js"></script>
 </body>

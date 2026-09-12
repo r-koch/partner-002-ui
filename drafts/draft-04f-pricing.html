@@ -75,21 +75,21 @@
         <div class="name"><span>Free</span><span class="price">EUR 0</span></div>
         <div class="desc">3 stage-3 advances per 30 days.</div>
         <div class="incl"><span>&#10003; Matching, stage 1 and stage 2</span><br><span>&#10003; 3 chat unlocks per period</span></div>
-        <button class="positive">Current plan</button>
+        <button class="positive" onclick="choosePlan(this,'Current plan')">Current plan</button>
       </div>
 
       <div class="plan">
         <div class="name"><span>Unlimited month</span><span class="price">EUR [price]</span></div>
         <div class="desc">Unlimited stage-3 advances for 30 days. Cancel anytime.</div>
         <div class="incl"><span>&#10003; Unlimited chat unlocks</span><br><span>&#10003; Cancel anytime, no tricks</span></div>
-        <button class="positive">Subscribe</button>
+        <button class="positive" onclick="choosePlan(this,'Subscribe')">Subscribe</button>
       </div>
 
       <div class="plan">
         <div class="name"><span>Advance bundles</span><span class="price">EUR [price]</span></div>
         <div class="desc">Prepaid chat unlocks that never expire — and make the under-a-euro price workable, even with card fees.</div>
         <div class="incl"><span>&#10003; 5 / 10 / 20 advances</span><br><span>&#10003; A month's membership never ends your bundle</span></div>
-        <button class="positive">Buy advances</button>
+        <button class="positive" onclick="choosePlan(this,'Buy advances')">Buy advances</button>
       </div>
 
       <div class="providers">PayPal, credit card, Apple/Google Pay — and direct debit (SEPA) where the provider offers it.</div>
@@ -100,6 +100,18 @@
       </label>
     </div>
   </div>
+  <script>
+  function choosePlan(btn, base){
+    var plans = document.querySelectorAll('.body button.positive');
+    for (var i = 0; i < plans.length; i++) plans[i].textContent = plans[i].getAttribute('data-lbl');
+    btn.textContent = 'Selected';
+    setTimeout(function(){ btn.textContent = base; }, 1400);
+  }
+  (function(){
+    var plans = document.querySelectorAll('.body button.positive');
+    for (var i = 0; i < plans.length; i++) plans[i].setAttribute('data-lbl', plans[i].textContent);
+  })();
+  </script>
   <script src="palette-switcher.js"></script>
 <script src="draft-nav.js"></script>
 </body>
