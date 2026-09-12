@@ -86,7 +86,7 @@
     <div class="expl" id="h-expl">Purpose-scoped: only matching. Nothing else, ever.</div>
     
     <div class="body">
-      
+      <div id="q-wrap">
       <h1>One thing needs your explicit OK</h1>
       <div class="block">
         <div class="t">The honest version</div>
@@ -97,9 +97,21 @@
           Withdrawal is possible at any time.</div>
       </div>
       <button class="positive" onclick="location.href='draft-01e-consent-avatar.html'">I agree, continue</button>
-      <button class="neutral" style="margin-top:10px;" onclick="location.href='draft-01b-terms.html'">No, let me rethink</button>
+        </div>
+        <div id="exit-wrap" style="display:none;">
+          <h1>We can’t create an account for you</h1>
+          <div class="lead">This app works by using your answers to find compatible users — including answers the law treats as sensitive. Without that consent, there is no way to match you. You can close this page and return another time if you change your mind.</div>
+          <button class="neutral" style="margin-top:8px;" onclick="location.href='draft-01a-welcome.html'">Leave</button>
+        </div>
+      <button class="neutral" style="margin-top:10px;" onclick="decline()">No, let me rethink</button>
     </div>
   </div>
+<script>
+  function decline(){
+    document.getElementById('q-wrap').style.display = 'none';
+    document.getElementById('exit-wrap').style.display = '';
+  }
+</script>
   <script src="palette-switcher.js"></script>
 <script src="draft-nav.js"></script>
 </body>
