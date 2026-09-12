@@ -51,8 +51,10 @@
        border-radius:999px; padding:3px 11px; font-size:12px;}
   .dtopic{background:transparent; border:1.5px solid var(--exclude); color:var(--exclude);
        border-radius:999px; padding:3px 11px; font-size:12px;}
-  .cancel-row{display:flex; justify-content:flex-end; margin-top:8px; padding-top:8px;
-       border-top:1px solid var(--line);}
+  .m-ident{display:flex; gap:12px; align-items:flex-start;}
+  .cavwrap{flex:0 0 auto;}
+  .cav{width:78px; height:78px; border-radius:50%; border:3px solid var(--line); object-fit:cover; display:block; background:var(--surface);}
+  .avatar-col{flex:0 0 auto; width:88px; display:flex; flex-direction:column; align-items:center; gap:10px;}
 </style>
 </head>
 <body>
@@ -64,38 +66,56 @@
     <div class="expl" id="h-expl">Your matches, sorted by newest interaction first. Tap a card to open its stage. Scores are fixed at match time.</div>
     <div class="list">
       <div class="card" onclick="location.href='draft-07-match-stage1.html'">
-        <div class="topline">
-          <div class="scoreline"><span class="score">82</span> <span class="handle">brave-lion-4417</span></div>
-          <span class="stage-tag">Getting to know</span>
+        <div class="m-ident">
+          <div class="avatar-col">
+            <div class="cavwrap"><img class="cav" src="anime-avatar-example.png" alt="stylized avatar — not a photo"></div>
+            <button class="negative min" onclick="event.stopPropagation();cancelMatch(this)">Cancel match</button>
+          </div>
+          <div class="ident">
+            <div class="topline">
+              <div class="scoreline"><span class="score">82</span> <span class="handle">brave-lion-4417</span></div>
+              <span class="stage-tag">Getting to know</span>
+            </div>
+            <div class="secrow"><span class="alab">Matching</span><span class="mpill">wants kids</span> <span class="mpill">non-smoker</span> <span class="mpill">long-term</span> <span class="mpill">flexible hours</span> <span class="mpill">center</span> <span class="mpill">homebody</span></div>
+            <div class="secrow"><span class="alab">Difference</span><span class="dtopic">pets</span> <span class="dtopic">work hours</span> <span class="dtopic">free time</span> <span class="dtopic">smoking</span> <span class="dtopic">religion</span> <span class="dtopic">location</span></div>
+            <div class="last"><span class="new-dot"></span>Ice breaker "beach/mountains" — 3 of 5 same · 2 hours ago</div>
+          </div>
         </div>
-        <div class="secrow"><span class="alab">Matching</span><span class="mpill">wants kids</span> <span class="mpill">non-smoker</span> <span class="mpill">long-term</span> <span class="mpill">flexible hours</span> <span class="mpill">center</span> <span class="mpill">homebody</span></div>
-        <div class="secrow"><span class="alab">Difference</span><span class="dtopic">pets</span> <span class="dtopic">work hours</span> <span class="dtopic">free time</span> <span class="dtopic">smoking</span> <span class="dtopic">religion</span> <span class="dtopic">location</span></div>
-        <div class="last"><span class="new-dot"></span>Ice breaker "beach/mountains" — 3 of 5 same · 2 hours ago</div>
-      <div class="cancel-row">
-        <button class="negative min" onclick="event.stopPropagation();cancelMatch(this)">Cancel match</button>
-      </div></div>
+      </div>
       <div class="card" onclick="location.href='draft-07-match-stage1.html'">
-        <div class="topline">
-          <div class="scoreline"><span class="score">61</span> <span class="handle">steady-owl-8831</span></div>
-          <span class="stage-tag">Getting to know</span>
+        <div class="m-ident">
+          <div class="avatar-col">
+            <div class="cavwrap"><img class="cav" src="anime-avatar-example.png" alt="stylized avatar — not a photo"></div>
+            <button class="negative min" onclick="event.stopPropagation();cancelMatch(this)">Cancel match</button>
+          </div>
+          <div class="ident">
+            <div class="topline">
+              <div class="scoreline"><span class="score">61</span> <span class="handle">steady-owl-8831</span></div>
+              <span class="stage-tag">Getting to know</span>
+            </div>
+            <div class="secrow"><span class="alab">Matching</span><span class="mpill">open to kids</span> <span class="mpill">city culture</span></div>
+            <div class="secrow"><span class="alab">Difference</span><span class="dtopic">smoking</span> <span class="dtopic">pets</span> <span class="dtopic">free time</span></div>
+            <div class="last">They asked: "ideal weekend?" · awaiting your answer · yesterday</div>
+          </div>
         </div>
-        <div class="secrow"><span class="alab">Matching</span><span class="mpill">open to kids</span> <span class="mpill">city culture</span></div>
-        <div class="secrow"><span class="alab">Difference</span><span class="dtopic">smoking</span> <span class="dtopic">pets</span> <span class="dtopic">free time</span></div>
-        <div class="last">They asked: "ideal weekend?" · awaiting your answer · yesterday</div>
-      <div class="cancel-row">
-        <button class="negative min" onclick="event.stopPropagation();cancelMatch(this)">Cancel match</button>
-      </div></div>
+      </div>
       <div class="card" onclick="location.href='draft-08-match-rung3.html'">
-        <div class="topline">
-          <div class="scoreline"><span class="score">77</span> <span class="handle">sunny-deer-5024</span></div>
-          <span class="stage-tag">Chat</span>
+        <div class="m-ident">
+          <div class="avatar-col">
+            <div class="cavwrap"><img class="cav" src="anime-avatar-example.png" alt="stylized avatar — not a photo"></div>
+            <button class="negative min" onclick="event.stopPropagation();cancelMatch(this)">Cancel match</button>
+          </div>
+          <div class="ident">
+            <div class="topline">
+              <div class="scoreline"><span class="score">77</span> <span class="handle">sunny-deer-5024</span></div>
+              <span class="stage-tag">Chat</span>
+            </div>
+            <div class="secrow"><span class="alab">Matching</span><span class="mpill">wants kids</span> <span class="mpill">long-term</span></div>
+            <div class="secrow"><span class="alab">Difference</span><span class="dtopic">smoking</span> <span class="dtopic">work hours</span> <span class="dtopic">free time</span></div>
+            <div class="last">Last message: "have you tried the quiet coastline?" · 3 days ago</div>
+          </div>
         </div>
-        <div class="secrow"><span class="alab">Matching</span><span class="mpill">wants kids</span> <span class="mpill">long-term</span></div>
-        <div class="secrow"><span class="alab">Difference</span><span class="dtopic">smoking</span> <span class="dtopic">work hours</span> <span class="dtopic">free time</span></div>
-        <div class="last">Last message: "have you tried the quiet coastline?" · 3 days ago</div>
-      <div class="cancel-row">
-        <button class="negative min" onclick="event.stopPropagation();cancelMatch(this)">Cancel match</button>
-      </div></div>
+      </div>
     </div>
   </div>
 <script>
