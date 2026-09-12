@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PARTNER-002 design draft — extended questions</title>
+<style>
+  :root{
+    --bg:#FAF6EF; --surface:#F3EBDD; --text:#2E2620; --muted:#6B5D50;
+    --accent:#B0431F; --accent-text:#FFFFFF; --line:#D8CCBA; --exclude:#A63A2B;
+    --match:#3E6B4F; --positive:#3E6B4F; --positive-text:#FFFFFF;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--text); font-family:Georgia,'Times New Roman',serif;
+       min-height:100vh; padding:0;}
+  .phone{width:100%; background:var(--bg);
+         display:flex; flex-direction:column; min-height:100vh;}
+  @media (min-width:600px){
+    .phone{max-width:420px; margin:0 auto; border-radius:24px; overflow:hidden;
+           border:1px solid var(--line); min-height:700px;
+           box-shadow:0 4px 24px rgba(0,0,0,.08);}
+    body{padding:24px;}
+  }
+  header{display:flex; justify-content:space-between; align-items:center; padding:14px 18px;
+         border-bottom:1px solid var(--line);}
+  header strong{font-weight:600;}
+  header nav{display:flex; gap:10px; align-items:center;}
+  header a{color:var(--muted); font-size:14px; text-decoration:none;}
+  .qmark{width:20px; height:20px; border-radius:50%; border:1.5px solid var(--muted);
+         color:var(--muted); font-size:12px; display:inline-flex; align-items:center;
+         justify-content:center; cursor:pointer; background:none; font-family:inherit;}
+  .expl{display:none; font-size:12px; color:var(--muted); line-height:1.5;
+        margin:8px 18px 0; border-left:2px solid var(--line); padding:4px 10px;}
+  .expl.show{display:block;}
+  .body{flex:1; padding:14px 16px; overflow-y:auto;}
+  h1{font-size:23px; font-weight:600; margin-bottom:16px; line-height:1.25;}
+  .qblock{margin-bottom:20px;}
+  .qlabel{font-size:14px; font-weight:600; margin-bottom:8px; line-height:1.3;}
+  .opts{display:flex; flex-direction:column; gap:7px;}
+  .opts.row{flex-direction:row; flex-wrap:wrap; gap:7px;}
+  .opt{display:flex; align-items:center; gap:8px; border:1.5px solid var(--line);
+       border-radius:11px; padding:10px 12px; font-size:14px;
+       cursor:pointer; background:var(--surface); text-align:left; width:100%;
+       font-family:inherit; color:var(--text); line-height:1.3;}
+  .opt:hover{border-color:var(--muted);}
+  .opt.sel{border-color:var(--accent); background:var(--bg);}
+  .opt .mark{flex:0 0 auto; width:18px; height:18px; border:1.5px solid var(--muted);
+       display:inline-flex; align-items:center; justify-content:center;}
+  .opt .mark.round{border-radius:50%;}
+  .opt .mark.square{border-radius:5px;}
+  .opt.sel .mark{border-color:var(--accent);}
+  .opt.sel .mark.round::after{content:""; width:10px; height:10px; border-radius:50%;
+       background:var(--accent);}
+  .opt.sel .mark.square::after{content:"\2713"; font-size:13px; color:var(--accent);
+       font-weight:700;}
+  .rate{width:38px; height:38px; border-radius:50%; border:1.5px solid var(--line);
+        background:var(--surface); color:var(--text); font-size:14px; font-family:inherit;
+        cursor:pointer; display:inline-flex; align-items:center; justify-content:center;}
+  .rate:hover{border-color:var(--muted);}
+  .rate.sel{border-color:var(--accent); background:var(--accent); color:var(--accent-text);}
+  .footer{margin-top:auto; padding:14px 18px; display:flex; justify-content:space-between;
+          align-items:center; border-top:1px solid var(--line);}
+  .positive{background:var(--positive); color:var(--positive-text); border:none; border-radius:999px;
+       padding:12px 24px; font-size:15px; cursor:pointer; font-family:inherit;}
+  .neutral{background:var(--surface); color:var(--text); border:1.5px solid var(--line); border-radius:999px;
+       padding:12px 24px; font-size:15px; cursor:pointer; font-family:inherit;}
+</style>
+</head>
+<body>
+<div class="phone">
+<header>
+      <strong>Extended questions <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
+      <nav><a href="draft-04i-menu.html" title="Menu"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></a><a href="draft-04a-safety.html" title="Safety"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></a></nav>
+    </header>
+<div class="expl" id="h-expl">Optional — answer later, on your device. Answer on demand when a match asks, or answer it first to unlock asking. Nothing here blocks you from matching.</div>
+<div class="body">
+      <h1>Extended questions</h1>
+<div class="qblock"><div class="qlabel">Ambition</div><div class="opts row"><button type="button" class="rate" onclick="pick(this)">1</button><button type="button" class="rate" onclick="pick(this)">2</button><button type="button" class="rate" onclick="pick(this)">3</button><button type="button" class="rate" onclick="pick(this)">4</button><button type="button" class="rate" onclick="pick(this)">5</button></div></div>
+<div class="qblock"><div class="qlabel">Introvert / extrovert</div><div class="opts row"><button type="button" class="rate" onclick="pick(this)">1</button><button type="button" class="rate" onclick="pick(this)">2</button><button type="button" class="rate" onclick="pick(this)">3</button><button type="button" class="rate" onclick="pick(this)">4</button><button type="button" class="rate" onclick="pick(this)">5</button></div></div>
+<div class="qblock"><div class="qlabel">Spending style</div><div class="opts"><button type="button" class="opt" onclick="pick(this)"><span class="mark round"></span>Saver</button><button type="button" class="opt" onclick="pick(this)"><span class="mark round"></span>Balanced</button><button type="button" class="opt" onclick="pick(this)"><span class="mark round"></span>Spender</button></div></div>
+<div class="qblock"><div class="qlabel">Family closeness</div><div class="opts row"><button type="button" class="rate" onclick="pick(this)">1</button><button type="button" class="rate" onclick="pick(this)">2</button><button type="button" class="rate" onclick="pick(this)">3</button><button type="button" class="rate" onclick="pick(this)">4</button><button type="button" class="rate" onclick="pick(this)">5</button></div></div>
+<div class="qblock"><div class="qlabel">Humor</div><div class="opts"><button type="button" class="opt" onclick="pick(this)"><span class="mark round"></span>Dry</button><button type="button" class="opt" onclick="pick(this)"><span class="mark round"></span>Silly</button><button type="button" class="opt" onclick="pick(this)"><span class="mark round"></span>Sarcastic</button><button type="button" class="opt" onclick="pick(this)"><span class="mark round"></span>Warm</button></div></div>
+<div class="qblock"><div class="qlabel">Affection style</div><div class="opts"><button type="button" class="opt" onclick="this.classList.toggle('sel')"><span class="mark square"></span>Words</button><button type="button" class="opt" onclick="this.classList.toggle('sel')"><span class="mark square"></span>Time</button><button type="button" class="opt" onclick="this.classList.toggle('sel')"><span class="mark square"></span>Gifts</button><button type="button" class="opt" onclick="this.classList.toggle('sel')"><span class="mark square"></span>Acts</button><button type="button" class="opt" onclick="this.classList.toggle('sel')"><span class="mark square"></span>Touch</button></div></div>
+<div class="qblock"><div class="qlabel">Communication style</div><div class="opts"><button type="button" class="opt" onclick="pick(this)"><span class="mark round"></span>Frequent texter</button><button type="button" class="opt" onclick="pick(this)"><span class="mark round"></span>Calls</button><button type="button" class="opt" onclick="pick(this)"><span class="mark round"></span>Spaced-out</button><button type="button" class="opt" onclick="pick(this)"><span class="mark round"></span>Needs space</button></div></div>
+<div class="qblock"><div class="qlabel">Drinking</div><div class="opts"><button type="button" class="opt" onclick="pick(this)"><span class="mark round"></span>None</button><button type="button" class="opt" onclick="pick(this)"><span class="mark round"></span>Social</button><button type="button" class="opt" onclick="pick(this)"><span class="mark round"></span>Regular</button></div></div>
+<div class="qblock"><div class="qlabel">Exercise</div><div class="opts"><button type="button" class="opt" onclick="pick(this)"><span class="mark round"></span>None</button><button type="button" class="opt" onclick="pick(this)"><span class="mark round"></span>Light</button><button type="button" class="opt" onclick="pick(this)"><span class="mark round"></span>Regular</button><button type="button" class="opt" onclick="pick(this)"><span class="mark round"></span>Athlete</button></div></div>
+<div class="qblock"><div class="qlabel">Food</div><div class="opts"><button type="button" class="opt" onclick="pick(this)"><span class="mark round"></span>Any</button><button type="button" class="opt" onclick="pick(this)"><span class="mark round"></span>Vegetarian</button><button type="button" class="opt" onclick="pick(this)"><span class="mark round"></span>Vegan</button><button type="button" class="opt" onclick="pick(this)"><span class="mark round"></span>Specific dietary needs</button></div></div>
+<div class="qblock"><div class="qlabel">Career centrality</div><div class="opts row"><button type="button" class="rate" onclick="pick(this)">1</button><button type="button" class="rate" onclick="pick(this)">2</button><button type="button" class="rate" onclick="pick(this)">3</button><button type="button" class="rate" onclick="pick(this)">4</button><button type="button" class="rate" onclick="pick(this)">5</button></div></div>
+<div class="qblock"><div class="qlabel">Travel appetite</div><div class="opts row"><button type="button" class="rate" onclick="pick(this)">1</button><button type="button" class="rate" onclick="pick(this)">2</button><button type="button" class="rate" onclick="pick(this)">3</button><button type="button" class="rate" onclick="pick(this)">4</button><button type="button" class="rate" onclick="pick(this)">5</button></div></div>
+<div class="qblock"><div class="qlabel">Weekend ideal</div><div class="opts"><button type="button" class="opt" onclick="pick(this)"><span class="mark round"></span>Calm</button><button type="button" class="opt" onclick="pick(this)"><span class="mark round"></span>Social</button><button type="button" class="opt" onclick="pick(this)"><span class="mark round"></span>Adventure</button><button type="button" class="opt" onclick="pick(this)"><span class="mark round"></span>Productive</button></div></div>
+    </div>
+<div class="footer">
+      <button class="neutral" onclick="location.href='draft-03-questionnaire-overview.html'">Back</button>
+      <button class="positive" onclick="location.href='draft-06d-deep.html'">Continue</button>
+    </div>
+  </div>
+<script>
+  function pick(btn){var k=btn.parentNode.children;for(var i=0;i<k.length;i++)k[i].classList.remove('sel');btn.classList.add('sel');}
+  </script>
+<script src="palette-switcher.js"></script>
+<script src="draft-nav.js"></script>
+</body>
+</html>

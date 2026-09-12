@@ -41,11 +41,14 @@
     "draft-09b-icebreaker-result.html",
     "draft-06a-history.html",
     "draft-06b-extended-qa.html",
+    "draft-06c-extended.html",
+    "draft-06d-deep.html",
     "draft-04a-safety.html",
     "draft-04f-pricing.html",
     "draft-04c-faq.html",
     "draft-04g-settings.html",
-    "draft-04h-avatar-create.html"
+    "draft-04h-avatar-create.html",
+    "draft-04i-menu.html"
   ];
   var here = location.pathname.split("/").pop() || "draft-01a-welcome.html";
   var idx = SEQUENCE.indexOf(here);

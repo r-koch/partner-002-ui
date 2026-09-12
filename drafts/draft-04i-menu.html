@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PARTNER-002 design draft — menu</title>
+<style>
+  :root{
+    --bg:#FAF6EF; --surface:#F3EBDD; --text:#2E2620; --muted:#6B5D50;
+    --accent:#B0431F; --accent-text:#FFFFFF; --line:#D8CCBA; --exclude:#A63A2B;
+    --match:#3E6B4F; --positive:#3E6B4F; --positive-text:#FFFFFF;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--text); font-family:Georgia,'Times New Roman',serif;
+       min-height:100vh; padding:0;}
+  .phone{width:100%; background:var(--bg);
+         display:flex; flex-direction:column; min-height:100vh;}
+  @media (min-width:600px){
+    .phone{max-width:420px; margin:0 auto; border-radius:24px; overflow:hidden;
+           border:1px solid var(--line); min-height:700px;
+           box-shadow:0 4px 24px rgba(0,0,0,.08);}
+    body{padding:24px;}
+  }
+  header{display:flex; justify-content:space-between; align-items:center; padding:16px 18px;
+         border-bottom:1px solid var(--line);}
+  header strong{font-weight:600;}
+  header nav{display:flex; gap:10px; align-items:center;}
+  header a{color:var(--muted); font-size:14px; text-decoration:none;}
+  .qmark{width:20px; height:20px; border-radius:50%; border:1.5px solid var(--muted);
+         color:var(--muted); font-size:12px; display:inline-flex; align-items:center;
+         justify-content:center; cursor:pointer; background:none; font-family:inherit;}
+  .expl{display:none; font-size:12px; color:var(--muted); line-height:1.5;
+        margin:10px 18px 0; border-left:2px solid var(--line); padding:4px 10px;}
+  .expl.show{display:block;}
+  .body{flex:1; padding:18px; overflow-y:auto;}
+  h1{font-size:26px; font-weight:600; margin-bottom:14px; line-height:1.25;}
+  .card{border:1px solid var(--line); border-radius:14px; background:var(--surface);
+        padding:4px 15px; margin-bottom:12px;}
+  .row{display:flex; align-items:center; justify-content:space-between; gap:8px;
+       padding:14px 0; border-bottom:1px solid var(--line); font-size:14px; cursor:pointer;}
+  .row:last-child{border-bottom:none;}
+  .row .meta{font-size:12px; color:var(--muted); display:block;}
+  .chev{color:var(--muted); font-size:18px; flex:0 0 auto;}
+</style>
+</head>
+<body>
+  <div class="phone" style="min-height:620px;">
+    <header>
+      <strong>Menu <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
+      <nav><a href="draft-04i-menu.html" title="Menu"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></a><a href="draft-04a-safety.html" title="Safety"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></a></nav>
+    </header>
+    <div class="expl" id="h-expl">Every page you can always reach, in one place. These utilities stay available after setup and the required questions.</div>
+
+    <div class="body">
+      <div class="card">
+        <div class="row" onclick="location.href='draft-04g-settings.html'"><span>Settings<span class="meta">theme, avatar, account, payments</span></span><span class="chev">&#8250;</span></div>
+        <div class="row" onclick="location.href='draft-04h-avatar-create.html'"><span>Avatar<span class="meta">create or edit your stylized avatar</span></span><span class="chev">&#8250;</span></div>
+        <div class="row" onclick="location.href='draft-03-questionnaire-overview.html'"><span>Your answers<span class="meta">required, personality, extended, deep</span></span><span class="chev">&#8250;</span></div>
+        <div class="row" onclick="location.href='draft-04e-interests-manual.html'"><span>Interests<span class="meta">add interests manually</span></span><span class="chev">&#8250;</span></div>
+        <div class="row" onclick="location.href='draft-04a-safety.html'"><span>Safety<span class="meta">report inappropriate content</span></span><span class="chev">&#8250;</span></div>
+        <div class="row" onclick="location.href='draft-06a-history.html'"><span>Activity log<span class="meta">past ice breakers and events</span></span><span class="chev">&#8250;</span></div>
+        <div class="row" onclick="location.href='draft-04f-pricing.html'"><span>Pricing<span class="meta">subscriptions and chat-unlock bundles</span></span><span class="chev">&#8250;</span></div>
+        <div class="row" onclick="location.href='draft-01b-terms.html'"><span>Legal<span class="meta">terms, privacy, consents</span></span><span class="chev">&#8250;</span></div>
+        <div class="row" onclick="location.href='draft-04c-faq.html'"><span>General info / FAQ<span class="meta">common questions</span></span><span class="chev">&#8250;</span></div>
+        <div class="row" onclick="location.href='draft-04c-faq.html'"><span>Help<span class="meta">how the app works</span></span><span class="chev">&#8250;</span></div>
+      </div>
+    </div>
+  </div>
+  <script src="palette-switcher.js"></script>
+<script src="draft-nav.js"></script>
+</body>
+</html>
