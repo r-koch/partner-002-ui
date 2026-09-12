@@ -74,6 +74,17 @@
        font-size:13px; color:var(--text); cursor:pointer; user-select:none;}
   .ichip.on{background:var(--accent); color:var(--accent-text); border-style:solid;}
   .ilabel{font-size:12px; color:var(--muted); margin-bottom:8px;}
+  .seg-switch{display:flex; gap:6px; margin-bottom:14px; background:var(--surface);
+       border:1px solid var(--line); border-radius:999px; padding:4px;}
+  .segbtn{flex:1; background:none; border:none; border-radius:999px; padding:9px 0;
+       font-size:14px; color:var(--muted); cursor:pointer; font-family:inherit;}
+  .segbtn.on{background:var(--accent); color:var(--accent-text);}
+  .btn.google{display:block; width:100%; background:var(--surface); color:var(--text);
+       border:1.5px solid var(--line); border-radius:999px; padding:13px 0; font-size:15px;
+       cursor:pointer; font-family:inherit; text-align:center; text-decoration:none;}
+  .btn.ghost{display:block; width:100%; background:var(--surface); color:var(--text);
+       border:1.5px solid var(--line); border-radius:999px; padding:11px 0; font-size:15px;
+       cursor:pointer; font-family:inherit; margin-top:10px; text-align:center; text-decoration:none;}
 </style>
 </head>
 <body>
@@ -85,28 +96,60 @@
     <div class="expl" id="h-expl">For when you’d rather not import. Chips are conversation flavor only — they never change matching.</div>
 
     <div class="body">
-      <h1>Pick your interests</h1>
-      <div class="expl" id="h-expl">Just conversation flavor — matching never uses these chips. They can suggest conversation starters later.</div>
-      <div class="ilabel">Your interests</div>
-      <div>
-        <span class="ichip on" onclick="this.classList.toggle('on')">travel</span>
-        <span class="ichip" onclick="this.classList.toggle('on')">outdoors</span>
-        <span class="ichip" onclick="this.classList.toggle('on')">music</span>
-        <span class="ichip" onclick="this.classList.toggle('on')">films</span>
-        <span class="ichip" onclick="this.classList.toggle('on')">books</span>
-        <span class="ichip on" onclick="this.classList.toggle('on')">food</span>
-        <span class="ichip" onclick="this.classList.toggle('on')">space</span>
-        <span class="ichip" onclick="this.classList.toggle('on')">hiking</span>
-        <span class="ichip" onclick="this.classList.toggle('on')">concerts</span>
-        <span class="ichip on" onclick="this.classList.toggle('on')">photography</span>
-        <span class="ichip" onclick="this.classList.toggle('on')">gaming</span>
-        <span class="ichip" onclick="this.classList.toggle('on')">dancing</span>
+      <h1 style="font-size:22px;">Your interests</h1>
+      <div class="seg-switch">
+        <button class="segbtn on" onclick="showPane('manual')">Pick manually</button>
+        <button class="segbtn" onclick="showPane('import')">Import</button>
       </div>
-      
-      <button class="positive" onclick="location.href='draft-03-questionnaire-overview.html'">Done</button>
-      
+
+      <div id="pane-manual">
+        <div class="ilabel">Your interests — conversation flavor only, never used for matching</div>
+        <div id="chip-list">
+          <span class="ichip on" onclick="this.classList.toggle('on')">travel</span>
+          <span class="ichip" onclick="this.classList.toggle('on')">outdoors</span>
+          <span class="ichip" onclick="this.classList.toggle('on')">music</span>
+          <span class="ichip" onclick="this.classList.toggle('on')">films</span>
+          <span class="ichip" onclick="this.classList.toggle('on')">books</span>
+          <span class="ichip on" onclick="this.classList.toggle('on')">food</span>
+          <span class="ichip" onclick="this.classList.toggle('on')">space</span>
+          <span class="ichip" onclick="this.classList.toggle('on')">hiking</span>
+          <span class="ichip" onclick="this.classList.toggle('on')">concerts</span>
+          <span class="ichip on" onclick="this.classList.toggle('on')">photography</span>
+          <span class="ichip" onclick="this.classList.toggle('on')">gaming</span>
+          <span class="ichip" onclick="this.classList.toggle('on')">dancing</span>
+        </div>
+        <button class="positive" style="margin-top:16px;" onclick="location.href='draft-03-questionnaire-overview.html'">Done</button>
+      </div>
+
+      <div id="pane-import" style="display:none;">
+        <div class="lead" style="font-size:14px;">Import from a service you use to get a few context chips about you. Read and kept on your phone — we never see the files.</div>
+        <button class="btn google" onclick="doImport('Google')">Continue with Google</button>
+        <button class="btn ghost" onclick="doImport('Goodreads')">Continue with Goodreads</button>
+        <button class="btn ghost" onclick="doImport('Spotify')">Continue with Spotify</button>
+      </div>
     </div>
   </div>
+<script>
+  function showPane(name){
+    document.getElementById('pane-manual').style.display = name === 'manual' ? 'block' : 'none';
+    document.getElementById('pane-import').style.display = name === 'import' ? 'block' : 'none';
+    document.querySelectorAll('.segbtn').forEach(function(b){ b.classList.remove('on'); });
+    document.querySelectorAll('.segbtn')[name === 'manual' ? 0 : 1].classList.add('on');
+  }
+  function doImport(src){
+    var list = document.getElementById('chip-list');
+    var picked = src === 'Google' ? ['kitchen', 'plants'] : src === 'Goodreads' ? ['sci-fi', 'poetry'] : ['shoegaze', 'vinyl'];
+    picked.forEach(function(t){
+      if (list.textContent.indexOf(t) < 0){
+        var sp = document.createElement('span');
+        sp.className = 'ichip on'; sp.textContent = t;
+        sp.onclick = function(){ this.classList.toggle('on'); };
+        list.appendChild(sp);
+      }
+    });
+    showPane('manual');
+  }
+</script>
   <script src="palette-switcher.js"></script>
 <script src="draft-nav.js"></script>
 </body>
