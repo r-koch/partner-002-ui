@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PARTNER-002 design draft — Button overview</title>
+<style>
+  :root{
+    --bg:#FAF6EF; --surface:#F3EBDD; --text:#2E2620; --muted:#6B5D50;
+    --accent:#B0431F; --accent-text:#FFFFFF; --line:#D8CCBA; --exclude:#A63A2B;
+    --match:#3E6B4F; --positive:#3E6B4F; --positive-text:#FFFFFF;
+    --exclude-tint:#F7E4E1;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--text); font-family:Georgia,'Times New Roman',serif;
+       min-height:100vh; padding:0;}
+  .phone{width:100%; background:var(--bg);
+         display:flex; flex-direction:column; min-height:100vh;}
+  @media (min-width:600px){
+    .phone{max-width:420px; margin:0 auto; border-radius:24px; overflow:hidden;
+           border:1px solid var(--line); min-height:700px;
+           box-shadow:0 4px 24px rgba(0,0,0,.08);}
+    body{padding:24px;}
+  }
+  header{display:flex; justify-content:space-between; align-items:center; padding:16px 18px;
+         border-bottom:1px solid var(--line);}
+  header strong{font-weight:600;}
+  .qmark{width:20px; height:20px; border-radius:50%; border:1.5px solid var(--muted);
+         color:var(--muted); font-size:12px; display:inline-flex; align-items:center;
+         justify-content:center; cursor:pointer; background:none; font-family:inherit;}
+  .expl{display:none; font-size:12px; color:var(--muted); line-height:1.5;
+        margin:10px 18px 0; border-left:2px solid var(--line); padding:4px 10px;}
+  .expl.show{display:block;}
+  .body{flex:1; padding:18px; overflow-y:auto;}
+  h1{font-size:22px; font-weight:600; margin-bottom:4px;}
+  .hint{font-size:12px; color:var(--muted); margin-bottom:16px;}
+  .grp{margin-bottom:20px;}
+  .grp .gt{font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em;
+       margin-bottom:8px; border-bottom:1px solid var(--line); padding-bottom:4px;}
+  .grp .row{display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:6px;}
+  .grp .lbl{font-size:11px; color:var(--muted); width:100%;}
+  .pill{display:inline-block; border-radius:999px; padding:5px 14px; font-size:12px;}
+
+  /* the real classes, copied from the drafts */
+  .positive{background:var(--positive); color:var(--positive-text); border:none; border-radius:999px;
+       padding:10px 0; font-size:14px; cursor:pointer; font-family:inherit;}
+  .positive.min{padding:5px 11px; font-size:12px;}
+  .negative{background:var(--surface); color:var(--exclude); border:1.5px solid var(--exclude); border-radius:999px;
+       padding:10px 0; font-size:14px; cursor:pointer; font-family:inherit;}
+  .negative.min{padding:5px 11px; font-size:12px;}
+  .negative.tint{background:var(--exclude-tint); color:var(--exclude); border:1.5px solid var(--exclude); border-radius:999px;
+       padding:10px 0; font-size:14px; cursor:pointer; font-family:inherit;}
+  .negative.tint.min{padding:5px 11px; font-size:12px;}
+  .negative.filled{background:var(--exclude); color:var(--bg); border:none;}
+  .neutral{background:var(--surface); color:var(--text); border:1.5px solid var(--line); border-radius:999px;
+       padding:10px 0; font-size:14px; cursor:pointer; font-family:inherit;}
+  .neutral.min{padding:5px 11px; font-size:12px;}
+  .mpill{background:transparent; border:1.5px solid var(--accent); color:var(--accent);
+       border-radius:999px; padding:3px 11px; font-size:12px;}
+  .dtopic{background:transparent; border:1.5px solid var(--exclude); color:var(--exclude);
+       border-radius:999px; padding:3px 11px; font-size:12px;}
+  .ichip{background:var(--accent); color:var(--accent-text); border:none; border-radius:999px;
+       padding:3px 11px; font-size:12px;}
+  .ichip.dashed{background:transparent; border:1.5px dashed var(--accent); color:var(--accent);}
+  .morepill{background:transparent; border:1.5px dashed var(--line); color:var(--muted);
+       border-radius:999px; padding:3px 11px; font-size:12px;}
+  .stage-tag{font-size:11px; color:var(--muted); border:1px solid var(--line); border-radius:999px;
+       padding:3px 9px;}
+  .opt{background:var(--bg); border:1px solid var(--line); border-radius:999px; padding:5px 10px;
+       font-size:11px; cursor:pointer; font-family:inherit;}
+  .opt.sel{border-color:var(--accent); background:var(--accent); color:var(--accent-text);}
+  .segbtn{background:none; border:none; border-radius:999px; padding:8px 0; font-size:13px;
+       color:var(--muted); cursor:pointer; font-family:inherit;}
+  .segbtn.on{background:var(--accent); color:var(--accent-text);}
+  .seg-switch{display:flex; gap:4px; background:var(--surface); border:1px solid var(--line);
+       border-radius:999px; padding:3px; max-width:220px;}
+  .seg-switch .segbtn{flex:1;}
+</style>
+</head>
+<body>
+  <div class="phone">
+    <header>
+      <strong>Button overview <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
+    </header>
+    <div class="expl" id="h-expl">Temp reference page — every interactive element type, with the proposed rule: background colored in any way = button, outline-only = not a button. Compare the current negative (surface bg, reads outline-only) vs the tinted variant.</div>
+    <div class="body">
+      <h1>Buttons</h1>
+      <div class="hint">Rule being tested: background colored = button · outline only = not a button.</div>
+
+      <div class="grp">
+        <div class="gt">Primary actions — filled (button ✓)</div>
+        <div class="row"><span class="pill positive">Continue</span><span class="pill positive min">Send</span></div>
+      </div>
+
+      <div class="grp">
+        <div class="gt">Negative actions</div>
+        <div class="lbl">Current: surface bg + outline — reads outline-only (violates the rule)</div>
+        <div class="row"><span class="pill negative">Cancel match</span><span class="pill negative min">Report</span></div>
+        <div class="lbl">Proposed: red tint bg + outline — clearly a button (rule ✓)</div>
+        <div class="row"><span class="pill negative tint">Cancel match</span><span class="pill negative tint min">Report</span></div>
+        <div class="lbl">Destructive confirm: filled red</div>
+        <div class="row"><span class="pill negative filled">Delete account</span></div>
+      </div>
+
+      <div class="grp">
+        <div class="gt">Neutral / secondary</div>
+        <div class="lbl">Current: surface bg + outline — same ambiguity</div>
+        <div class="row"><span class="pill neutral">Back</span><span class="pill neutral min">Shuffle</span></div>
+      </div>
+
+      <div class="grp">
+        <div class="gt">Non-buttons — outline only (rule ✓)</div>
+        <div class="lbl">Matching pill (accent outline)</div>
+        <div class="row"><span class="pill mpill">wants kids</span><span class="pill mpill">non-smoker</span></div>
+        <div class="lbl">Difference pill (red outline)</div>
+        <div class="row"><span class="pill dtopic">pets</span><span class="pill dtopic">work hours</span></div>
+        <div class="lbl">Unselected interest chip (dashed)</div>
+        <div class="row"><span class="pill ichip dashed">travel</span></div>
+        <div class="lbl">Selected interest chip (filled = chosen, but IS a toggle button)</div>
+        <div class="row"><span class="pill ichip">travel</span></div>
+        <div class="lbl">(+x) count pill / stage tag</div>
+        <div class="row"><span class="pill morepill">+3</span><span class="pill stage-tag">Getting to know</span></div>
+      </div>
+
+      <div class="grp">
+        <div class="gt">Selection controls</div>
+        <div class="row"><span class="pill opt">Aries</span><span class="pill opt sel">Taurus</span></div>
+        <div class="row" style="margin-top:8px;"><div class="seg-switch"><button class="segbtn on">Pick manually</button><button class="segbtn">Import</button></div></div>
+      </div>
+    </div>
+  </div>
+  <script src="palette-switcher.js"></script>
+</body>
+</html>
