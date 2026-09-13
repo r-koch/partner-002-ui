@@ -108,16 +108,16 @@
     <div class="qrow"><span class="dot"></span><span class="q">4-letter style</span><span class="un">not answered</span></div>
     <div class="qrow"><span class="dot"></span><span class="q">Big Five</span><span class="un">not answered</span></div>
   <div class="sec"><span class="name">Interests</span><span class="count">3 picked</span></div>
-      <div class="qrow" onclick="location.href='draft-04e-interests-manual.html'"><span class="dot filled"></span><span class="q">Travel</span><span class="a">edit</span></div>
-      <div class="qrow" onclick="location.href='draft-04e-interests-manual.html'"><span class="dot filled"></span><span class="q">Outdoors</span><span class="a">edit</span></div>
-      <div class="qrow" onclick="location.href='draft-04e-interests-manual.html'"><span class="dot filled"></span><span class="q">Photography</span><span class="a">edit</span></div>
+      <div class="qrow" data-href="draft-04e-interests-manual.html"><span class="dot filled"></span><span class="q">Travel</span><span class="a">edit</span></div>
+      <div class="qrow" data-href="draft-04e-interests-manual.html"><span class="dot filled"></span><span class="q">Outdoors</span><span class="a">edit</span></div>
+      <div class="qrow" data-href="draft-04e-interests-manual.html"><span class="dot filled"></span><span class="q">Photography</span><span class="a">edit</span></div>
       <div class="sec"><span class="name">Extended questions</span><span class="count">optional</span></div>
-    <div class="qrow"><span class="dot"></span><span class="q">Relationship history</span><span class="un">not answered</span></div>
-    <div class="qrow"><span class="dot"></span><span class="q">Love languages</span><span class="un">not answered</span></div>
-    <div class="qrow"><span class="dot"></span><span class="q">Communication style</span><span class="un">not answered</span></div>
+    <div class="qrow" data-href="draft-06c-extended.html"><span class="dot"></span><span class="q">Relationship history</span><span class="un">not answered</span></div>
+    <div class="qrow" data-href="draft-06c-extended.html"><span class="dot"></span><span class="q">Love languages</span><span class="un">not answered</span></div>
+    <div class="qrow" data-href="draft-06c-extended.html"><span class="dot"></span><span class="q">Communication style</span><span class="un">not answered</span></div>
   <div class="sec"><span class="name">Deep questions</span><span class="count">optional</span></div>
-    <div class="qrow"><span class="dot"></span><span class="q">Attachment style</span><span class="un">not answered</span></div>
-    <div class="qrow"><span class="dot"></span><span class="q">Intimacy needs</span><span class="un">not answered</span></div>
+    <div class="qrow" data-href="draft-06d-deep.html"><span class="dot"></span><span class="q">Attachment style</span><span class="un">not answered</span></div>
+    <div class="qrow" data-href="draft-06d-deep.html"><span class="dot"></span><span class="q">Intimacy needs</span><span class="un">not answered</span></div>
 </div>
     </div>
   </div>
@@ -140,7 +140,12 @@
     }
     var cs = document.querySelectorAll('.sec .count');
     for (var j = 0; j < cs.length; j++) cs[j].setAttribute('data-full', cs[j].textContent);
-    // question rows navigate to their question page (edit mode)
+    // question rows navigate to their question page (edit mode).
+    // Index-mapped rows: required (16) + personality (3), in DOM order — pages[]
+    // has exactly those 19 entries. Understanding that the tail rows (interests /
+    // extended / deep) carry an explicit data-href, the loop binds ONLY the
+    // index-mapped rows by sequential index and lets data-href rows bind once from
+    // their own attribute, so no row has two listeners and nothing maps past 19.
     var pages = [
       'draft-02-01-gender.html','draft-02-02-age.html','draft-02-03-height.html',
       'draft-02-04-body-type.html','draft-02-05-relationship-style.html','draft-02-06-kids-now.html',
@@ -148,15 +153,21 @@
       'draft-02-10-location.html','draft-02-11-living.html','draft-02-12-work.html',
       'draft-02-13-pets.html','draft-02-14-politics.html','draft-02-15-freetime.html',
       'draft-02-16-orientation.html','draft-02-17-sun-sign.html','draft-02-18-four-letter-style.html',
-      'draft-02-19-big-five.html','draft-06c-extended.html','draft-06c-extended.html',
-      'draft-06c-extended.html','draft-06d-deep.html','draft-06d-deep.html'
+      'draft-02-19-big-five.html'
     ];
     var qrows = document.querySelectorAll('.qrow');
+    var pi = 0;
     for (var k = 0; k < qrows.length; k++){
       qrows[k].style.cursor = 'pointer';
-      (function(idx){
-        qrows[k].addEventListener('click', function(){ location.href = pages[idx]; });
-      })(k);
+      (function(row){
+        var href = row.getAttribute('data-href');
+        if (href){
+          row.addEventListener('click', function(){ location.href = href; });
+        } else {
+          var dest = pages[pi++];
+          row.addEventListener('click', function(){ location.href = dest; });
+        }
+      })(qrows[k]);
     }
   })();
   </script>
