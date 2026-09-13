@@ -86,6 +86,8 @@
   .suggest{display:none; margin:10px 0; border:1.5px solid var(--accent); border-radius:14px;
         padding:10px 12px; font-size:13px; line-height:1.5;}
   .suggest .t{font-weight:600; margin-bottom:4px;}
+
+  .negative.filled{background:var(--exclude); color:var(--bg); border-color:var(--exclude);}
 </style>
 </head>
 <body>
@@ -101,8 +103,8 @@
     <div class="match">
       <div class="avatar-col">
         <div class="avatar"><img src="anime-avatar-example.png" alt="stylized avatar — not a photo"></div>
-        <button class="negative min" onclick="confirmCancel(this)">Cancel match</button>
-        <button class="negative min" onclick="report(this)">Report</button>
+        <button class="negative filled min" onclick="confirmCancel(this)">Cancel match</button>
+        <button class="negative filled min" onclick="report(this)">Report</button>
         <div class="avatar-note">2 open · 1 waiting</div>
       </div>
       <div class="ident">

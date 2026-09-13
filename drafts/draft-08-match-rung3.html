@@ -76,6 +76,7 @@
   .alab{font-size:11px; color:var(--muted); letter-spacing:.05em; flex:0 0 auto;}
   .bgroup{display:flex; flex-wrap:wrap; gap:6px; margin-top:10px;}
   .bgroup .neutral.min,.bgroup .negative.min{padding:5px 11px; font-size:12px;}
+  .negative.filled{background:var(--exclude); color:var(--bg); border-color:var(--exclude);}
   .pending-strip{margin-top:10px; cursor:pointer; border:1px solid var(--line);
        border-radius:12px; background:var(--surface); padding:7px 12px;}
   .pstrip-line{font-size:12px; color:var(--muted); display:block;}
@@ -102,8 +103,8 @@
     <div class="match">
       <div class="avatar-col">
         <div class="avatar"><img src="anime-avatar-example.png" alt="stylized avatar — not a photo"></div>
-        <button class="negative min" onclick="confirmCancel(this)">Cancel match</button>
-        <button class="negative min" onclick="showDrawer('report-a')">Report</button>
+        <button class="negative filled min" onclick="confirmCancel(this)">Cancel match</button>
+        <button class="negative filled min" onclick="showDrawer('report-a')">Report</button>
       </div>
       <div class="ident">
         <div class="scoreline"><span class="score">82</span> <span class="handle">brave-lion-4417</span></div>

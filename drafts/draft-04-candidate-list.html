@@ -52,6 +52,7 @@
   .avatar-col{flex:0 0 auto; width:88px; display:flex; flex-direction:column; align-items:center; gap:10px;}
   .min{padding:6px 14px; font-size:13px; display:inline-block;}
   .negative.min{flex:0 0 auto; background:var(--surface); border:1.5px solid var(--exclude);}
+  .negative.filled{background:var(--exclude); color:var(--bg); border-color:var(--exclude);}
   /** fill = chosen (matches the interests-select visual language) **/
   .pans.nofill{background:transparent; color:var(--text); padding:0;}
   .alab{font-size:12px; color:var(--muted); letter-spacing:.05em; flex:0 0 auto;}
@@ -74,7 +75,7 @@
         <div class="m-ident">
             <div class="avatar-col">
               <div class="cavwrap"><img class="cav" src="anime-avatar-example.png" alt="stylized avatar — not a photo"></div>
-              <button class="negative min" onclick="report(this)">Report</button>
+              <button class="negative filled min" onclick="report(this)">Report</button>
             </div>
           <div class="ident">
             <div class="topline">
@@ -94,7 +95,7 @@
         <div class="m-ident">
             <div class="avatar-col">
               <div class="cavwrap"><img class="cav" src="anime-avatar-example.png" alt="stylized avatar — not a photo"></div>
-              <button class="negative min" onclick="report(this)">Report</button>
+              <button class="negative filled min" onclick="report(this)">Report</button>
             </div>
           <div class="ident">
             <div class="topline">
@@ -114,7 +115,7 @@
         <div class="m-ident">
             <div class="avatar-col">
               <div class="cavwrap"><img class="cav" src="anime-avatar-example.png" alt="stylized avatar — not a photo"></div>
-              <button class="negative min" onclick="report(this)">Report</button>
+              <button class="negative filled min" onclick="report(this)">Report</button>
             </div>
           <div class="ident">
             <div class="topline">
