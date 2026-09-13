@@ -48,7 +48,8 @@
     "draft-04c-faq.html",
     "draft-04g-settings.html",
     "draft-04h-avatar-create.html",
-    "draft-04i-menu.html"
+    "draft-04i-menu.html",
+    "draft-04j-legal.html"
   ];
   var here = location.pathname.split("/").pop() || "draft-01a-welcome.html";
   var idx = SEQUENCE.indexOf(here);

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PARTNER-002 design draft — menu</title>
+<title>PARTNER-002 design draft — Legal</title>
 <style>
   :root{
     --bg:#FAF6EF; --surface:#F3EBDD; --text:#2E2620; --muted:#6B5D50;
@@ -33,31 +33,31 @@
         margin:10px 18px 0; border-left:2px solid var(--line); padding:4px 10px;}
   .expl.show{display:block;}
   .body{flex:1; padding:18px; overflow-y:auto;}
-  h1{font-size:26px; font-weight:600; margin-bottom:14px; line-height:1.25;}
+  h1{font-size:26px; font-weight:600; margin-bottom:8px; line-height:1.25;}
   .card{border:1px solid var(--line); border-radius:14px; background:var(--surface);
         padding:4px 15px; margin-bottom:12px;}
   .row{display:flex; align-items:center; justify-content:space-between; gap:8px;
-       padding:14px 0; border-bottom:1px solid var(--line); font-size:14px; cursor:pointer;}
+       padding:12px 0; border-bottom:1px solid var(--line); font-size:14px; cursor:pointer;}
   .row:last-child{border-bottom:none;}
   .row .meta{font-size:12px; color:var(--muted); display:block;}
-  .chev{color:var(--muted); font-size:18px; flex:0 0 auto;}
+  .row .chev{color:var(--muted); font-size:18px;}
 </style>
 </head>
 <body>
-  <div class="phone" style="min-height:620px;">
+  <div class="phone">
     <header>
-      <strong>Menu <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
-      <nav><a href="draft-04i-menu.html" title="Menu"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></a><a href="draft-04a-safety.html" title="Safety"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></a></nav>
+      <strong>Legal <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
+      <nav><a href="draft-04i-menu.html" title="Menu"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></a></nav>
     </header>
-    <div class="expl" id="h-expl">Every page you can always reach, in one place. These utilities stay available after setup and the required questions.</div>
-
+    <div class="expl" id="h-expl">The plain-language agreements and consents behind the app. Each one opens its full text. Nothing here is hidden in legalese we don't show you.</div>
     <div class="body">
+      <h1>Legal</h1>
       <div class="card">
-        <div class="row" onclick="location.href='draft-04g-settings.html'"><span>Settings<span class="meta">theme, avatar, account, payments</span></span><span class="chev">&#8250;</span></div>
-        <div class="row" onclick="location.href='draft-03-questionnaire-overview.html'"><span>Your answers<span class="meta">required, personality, extended, deep, interests</span></span><span class="chev">&#8250;</span></div>
-        <div class="row" onclick="location.href='draft-04a-safety.html'"><span>Safety<span class="meta">report inappropriate content</span></span><span class="chev">&#8250;</span></div>
-        <div class="row" onclick="location.href='draft-04j-legal.html'"><span>Legal<span class="meta">terms, privacy, consents, refunds</span></span><span class="chev">&#8250;</span></div>
-        <div class="row" onclick="location.href='draft-04c-faq.html'"><span>Help<span class="meta">how the app works</span></span><span class="chev">&#8250;</span></div>
+        <div class="row" onclick="location.href='draft-01b-terms.html'"><span>Terms of use<span class="meta">the fine print, in human first</span></span><span class="chev">&#8250;</span></div>
+        <div class="row" onclick="location.href='draft-01c-privacy.html'"><span>Privacy<span class="meta">what happens with your data, incl. the payment-provider email note</span></span><span class="chev">&#8250;</span></div>
+        <div class="row" onclick="location.href='draft-01d-consent-sensitive.html'"><span>Consent — sensitive answers<span class="meta">explicit OK for Art. 9 data, withdrawable</span></span><span class="chev">&#8250;</span></div>
+        <div class="row" onclick="location.href='draft-01e-consent-avatar.html'"><span>Consent — avatar<span class="meta">stylized on-device, no photo ever leaves the phone</span></span><span class="chev">&#8250;</span></div>
+        <div class="row" onclick="location.href='draft-01c-privacy.html'"><span>Refund &amp; withdrawal<span class="meta">14-day period, then pro-rata for bundles</span></span><span class="chev">&#8250;</span></div>
       </div>
     </div>
   </div>
