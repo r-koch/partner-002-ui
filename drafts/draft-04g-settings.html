@@ -74,7 +74,7 @@
   <div class="phone" style="min-height:620px;">
     <header>
       <strong>Settings <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
-      <nav><a href="draft-04i-menu.html" title="Menu"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></a><a href="#" title="Safety"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></a></nav>
+      <nav><a href="draft-04i-menu.html" title="Menu"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></a></nav>
     </header>
     <div class="expl" id="h-expl">App settings: theme, avatar, imports, account and payments. Signing out only removes this device.</div>
 
@@ -93,11 +93,18 @@
       <div class="card">
         <div class="row"><span>Sign out<span class="meta">this device only</span></span><button class="negative filled min" onclick="signOut(this)">Sign out</button></div>
       </div>
+      <div class="card">
+        <div class="row"><span>Delete account<span class="meta">all server records, matching, chat — gone</span></span><button class="negative filled min" onclick="delAccount(this)">Delete</button></div>
+      </div>
     </div>
   </div>
   <script>
   function rowNote(btn){ var o = btn.textContent; btn.textContent = 'demo'; setTimeout(function(){ btn.textContent = o; }, 800); }
   function signOut(btn){ if (btn.dataset.armed){ location.href = 'draft-01a-welcome.html'; return; } btn.dataset.armed = '1'; btn.textContent = 'Tap again to sign out'; }
+  function delAccount(btn){
+    if (!confirm('Delete your account? All server records, matching and chat are permanently erased. This cannot be undone.')) return;
+    location.href = 'draft-01i-sorry-closed.html';
+  }
   function toggleTheme(){
     var r = document.documentElement.style;
     var dark = r.getPropertyValue('--bg') === '#2B2622';

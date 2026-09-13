@@ -95,7 +95,6 @@
       <strong>Chat <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
       <nav>
         <a href="draft-04i-menu.html" title="Menu"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></a>
-        <a href="#" title="Safety"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></a>
       </nav>
     </header>
     <div class="expl" id="h-expl">End-to-end encrypted chat, text only. Ice breakers, starters, and suggested messages are all still here to get the conversation going.</div>
@@ -104,6 +103,7 @@
       <div class="avatar-col">
         <div class="avatar"><img src="anime-avatar-example.png" alt="stylized avatar — not a photo"></div>
         <button class="negative min" onclick="confirmCancel(this)">Cancel match</button>
+        <button class="negative min" onclick="showDrawer('report-a')">Report</button>
       </div>
       <div class="ident">
         <div class="scoreline"><span class="score">82</span> <span class="handle">brave-lion-4417</span></div>
@@ -139,6 +139,12 @@
       <div class="suggest" id="start-a">
         <div class="t">Conversation starters</div>
         <div>Travel · Outdoors · Space — tap a starter to send it.</div>
+      </div>
+      <div class="suggest" id="report-a">
+        <div class="t">Report</div>
+        <button class="opt" onclick="report('avatar')">Report avatar</button>
+        <button class="opt" onclick="report('message')">Report chat message</button>
+        <div class="hint">Your report is anonymous. At 3 reports an account is permanently closed.</div>
       </div>
     </div>
     <div class="chat">
@@ -192,6 +198,25 @@
     chat.appendChild(d);
     input.value = '';
     chat.scrollTop = chat.scrollHeight;
+  }
+  var FLAGS = {};
+  var DEFAULT_AVATAR = "data:image/svg+xml;charset=utf-8," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="78" height="78" viewBox="0 0 78 78"><circle cx="39" cy="39" r="37" fill="#F3EBDD" stroke="#6B5D50" stroke-width="2"/><circle cx="39" cy="32" r="11" fill="none" stroke="#6B5D50" stroke-width="2"/><path d="M15 66c5-12 14-18 24-18s19 6 24 18" fill="none" stroke="#6B5D50" stroke-width="2"/></svg>');
+  function report(type){
+    var handle = document.querySelector('.handle').textContent;
+    var label = (type === 'avatar') ? 'their avatar' : 'a chat message';
+    var msg = "Report " + label + " from " + handle + "?\n\nYour report is anonymous. It adds to their flag count \u2014 at 3 reports an account is permanently closed, with no appeal.";
+    if (!confirm(msg)) return;
+    FLAGS[handle] = (FLAGS[handle] || 0) + 1;
+    if (type === 'avatar'){
+      var img = document.querySelector('.match .avatar img');
+      if (img) img.src = DEFAULT_AVATAR;
+    }
+    notify(handle, type);
+    if (FLAGS[handle] >= 3){ location.href = 'draft-01i-sorry-closed.html'; return; }
+    location.href = 'draft-05-matches-list.html';
+  }
+  function notify(handle, type){
+    // real app: anonymous one-line notice to the reported account, never who reported
   }
 </script>
   <script src="palette-switcher.js"></script>

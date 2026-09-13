@@ -49,6 +49,9 @@
   .actrow{display:flex; gap:8px; margin-top:12px;}
   .positive{flex:1; background:var(--positive); color:var(--positive-text); border:none; border-radius:999px; padding:10px 0; font-size:14px; cursor:pointer; font-family:inherit;}
   .negative{flex:1; background:var(--bg); color:var(--exclude); border:2px solid var(--exclude); border-radius:999px; padding:10px 0; font-size:14px; cursor:pointer; font-family:inherit;}
+  .avatar-col{flex:0 0 auto; width:88px; display:flex; flex-direction:column; align-items:center; gap:10px;}
+  .min{padding:6px 14px; font-size:13px; display:inline-block;}
+  .negative.min{flex:0 0 auto; background:var(--surface); border:1.5px solid var(--exclude);}
   /** fill = chosen (matches the interests-select visual language) **/
   .pans.nofill{background:transparent; color:var(--text); padding:0;}
   .alab{font-size:12px; color:var(--muted); letter-spacing:.05em; flex:0 0 auto;}
@@ -63,13 +66,16 @@
   <div class="phone">
     <header>
       <strong>Discover <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
-      <nav><a href="draft-04i-menu.html" title="Menu"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></a><a href="#" title="Safety"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></a></nav>
+      <nav><a href="draft-04i-menu.html" title="Menu"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></a></nav>
     </header>
     <div class="expl" id="h-expl">Candidates sorted by how well they fit what you're looking for. Score is value only — higher is better. Gender is the first answer, like on matched pages.</div>
     <div class="list">
       <div class="card">
         <div class="m-ident">
-          <div class="cavwrap"><img class="cav" src="anime-avatar-example.png" alt="stylized avatar — not a photo"></div>
+            <div class="avatar-col">
+              <div class="cavwrap"><img class="cav" src="anime-avatar-example.png" alt="stylized avatar — not a photo"></div>
+              <button class="negative min" onclick="report(this)">Report</button>
+            </div>
           <div class="ident">
             <div class="topline">
               <div class="scoreline"><span class="score">82</span> <span class="handle">brave-lion-4417</span></div>
@@ -86,7 +92,10 @@
       </div>
       <div class="card">
         <div class="m-ident">
-          <div class="cavwrap"><img class="cav" src="anime-avatar-example.png" alt="stylized avatar — not a photo"></div>
+            <div class="avatar-col">
+              <div class="cavwrap"><img class="cav" src="anime-avatar-example.png" alt="stylized avatar — not a photo"></div>
+              <button class="negative min" onclick="report(this)">Report</button>
+            </div>
           <div class="ident">
             <div class="topline">
               <div class="scoreline"><span class="score">61</span> <span class="handle">quiet-fox-2148</span></div>
@@ -103,7 +112,10 @@
       </div>
       <div class="card">
         <div class="m-ident">
-          <div class="cavwrap"><img class="cav" src="anime-avatar-example.png" alt="stylized avatar — not a photo"></div>
+            <div class="avatar-col">
+              <div class="cavwrap"><img class="cav" src="anime-avatar-example.png" alt="stylized avatar — not a photo"></div>
+              <button class="negative min" onclick="report(this)">Report</button>
+            </div>
           <div class="ident">
             <div class="topline">
               <div class="scoreline"><span class="score">44</span> <span class="handle">steady-owl-8831</span></div>
@@ -131,6 +143,24 @@
       card.style.opacity = '0.5';
     }
     setTimeout(function(){ if (card.parentElement) card.remove(); }, 400);
+  }
+  var FLAGS = {};
+  var DEFAULT_AVATAR = "data:image/svg+xml;charset=utf-8," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="78" height="78" viewBox="0 0 78 78"><circle cx="39" cy="39" r="37" fill="#F3EBDD" stroke="#6B5D50" stroke-width="2"/><circle cx="39" cy="32" r="11" fill="none" stroke="#6B5D50" stroke-width="2"/><path d="M15 66c5-12 14-18 24-18s19 6 24 18" fill="none" stroke="#6B5D50" stroke-width="2"/></svg>');
+  function report(btn){
+    var card = btn.closest('.card');
+    var handleEl = card.querySelector('.handle');
+    var handle = handleEl ? handleEl.textContent : 'this user';
+    var msg = "Report " + handle + "'s avatar?\n\nYour report is anonymous. It adds to their flag count \u2014 at 3 reports an account is permanently closed, with no appeal. Reporting also blocks future matches with them.";
+    if (!confirm(msg)) return;
+    FLAGS[handle] = (FLAGS[handle] || 0) + 1;
+    var img = card.querySelector('.cav');
+    if (img) img.src = DEFAULT_AVATAR;
+    notify(handle, 'avatar');
+    if (FLAGS[handle] >= 3){ location.href = 'draft-01i-sorry-closed.html'; return; }
+    card.remove();
+  }
+  function notify(handle, type){
+    // real app: anonymous one-line notice to the reported account, never who reported
   }
   </script>
   <script src="palette-switcher.js"></script>

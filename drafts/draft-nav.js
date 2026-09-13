@@ -43,7 +43,6 @@
     "draft-06b-extended-qa.html",
     "draft-06c-extended.html",
     "draft-06d-deep.html",
-    "draft-04a-safety.html",
     "draft-04f-pricing.html",
     "draft-04c-faq.html",
     "draft-04g-settings.html",
