@@ -118,7 +118,12 @@
       </div>
 
       <div id="pane-defaults">
-        <p class="leadline">Placeholder defaults — the real default art is still to be decided.</p>
+        <p class="leadline">How avatars appear to you — a viewing preference, not a setting others can see.</p>
+        <div class="seg-switch avatar-style-seg" style="margin-bottom:12px;">
+          <button class="segbtn on" data-style="pixar" onclick="setAvatarStyleGlobal('pixar'); applyAvatarStyleGlobal()">3D Pixar</button>
+          <button class="segbtn" data-style="line" onclick="setAvatarStyleGlobal('line'); applyAvatarStyleGlobal()">Line art</button>
+        </div>
+        <p class="leadline">Pick a default avatar</p>
         <div class="candgrid">
           <button class="cand on" onclick="pickCand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg></button>
           <button class="cand" onclick="pickCand(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l9 16H3z"/></svg></button>
@@ -170,6 +175,7 @@
   }
 </script>
   <script src="palette-switcher.js"></script>
+  <script src="avatar-style.js"></script>
 <script src="draft-nav.js"></script>
 </body>
 </html>

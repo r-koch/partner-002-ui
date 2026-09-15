@@ -37,6 +37,7 @@
         padding:14px;}
   .m-ident{display:flex; gap:12px; align-items:flex-start;}
   .cavwrap{flex:0 0 auto;}
+  .avatar-swap{margin-top:6px; font-size:11px; padding:1px 8px; border-radius:999px;}
   .cav{width:78px; height:78px; border-radius:50%; border:3px solid var(--line);
        object-fit:cover; display:block; background:var(--surface);}
   .ident{flex:1; min-width:0;}
@@ -75,7 +76,7 @@
       <div class="card">
         <div class="m-ident">
             <div class="avatar-col">
-              <div class="cavwrap"><img class="cav" src="avatar-sample-1.png" alt="stylized avatar — not a photo"></div>
+              <div class="cavwrap"><img class="cav" src="avatar-sample-1.png" data-avatar-pixar="avatar-sample-1.png" data-avatar-line="avatar-sample-1-line.png" alt="stylized avatar — not a photo"><button class="min neutral avatar-swap" onclick="toggleCardAvatar(this)" title="switch avatar style">switch</button></div>
               <button class="negative filled min" onclick="report(this)">Report</button>
             </div>
           <div class="ident">
@@ -95,7 +96,7 @@
       <div class="card">
         <div class="m-ident">
             <div class="avatar-col">
-              <div class="cavwrap"><img class="cav" src="avatar-sample-2.png" alt="stylized avatar — not a photo"></div>
+              <div class="cavwrap"><img class="cav" src="avatar-sample-2.png" data-avatar-pixar="avatar-sample-2.png" data-avatar-line="avatar-sample-2-line.png" alt="stylized avatar — not a photo"><button class="min neutral avatar-swap" onclick="toggleCardAvatar(this)" title="switch avatar style">switch</button></div>
               <button class="negative filled min" onclick="report(this)">Report</button>
             </div>
           <div class="ident">
@@ -115,7 +116,7 @@
       <div class="card">
         <div class="m-ident">
             <div class="avatar-col">
-              <div class="cavwrap"><img class="cav" src="avatar-sample-3.png" alt="stylized avatar — not a photo"></div>
+              <div class="cavwrap"><img class="cav" src="avatar-sample-3.png" data-avatar-pixar="avatar-sample-3.png" data-avatar-line="avatar-sample-3-line.png" alt="stylized avatar — not a photo"><button class="min neutral avatar-swap" onclick="toggleCardAvatar(this)" title="switch avatar style">switch</button></div>
               <button class="negative filled min" onclick="report(this)">Report</button>
             </div>
           <div class="ident">
@@ -167,5 +168,6 @@
   </script>
   <script src="palette-switcher.js"></script>
 <script src="draft-nav.js"></script>
+<script src="avatar-style.js"></script>
 </body>
 </html>
