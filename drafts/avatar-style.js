@@ -27,15 +27,14 @@ function applyAvatarStyleGlobal() {
     b.classList.toggle('on', b.getAttribute('data-style') === style);
   });
 }
-function toggleCardAvatar(btn) {
-  var card = btn.closest('[data-avatar-pixar]') ? btn.closest('img[data-avatar-pixar]') : btn.closest('.card');
-  var img = card && card.querySelector ? card.querySelector('[data-avatar-pixar]') : null;
-  if (!img) return;
+function toggleCardAvatar(img) {
+  // img IS the avatar image (owner: the avatar itself is the switch, no button)
+  if (!img || !img.getAttribute || !img.getAttribute('data-avatar-pixar')) return;
   var cur = img.getAttribute('src') === img.getAttribute('data-avatar-line') ? 'line' : 'pixar';
   var next = (cur === 'line') ? 'pixar' : 'line';
   img.src = (next === 'line') ? img.getAttribute('data-avatar-line') : img.getAttribute('data-avatar-pixar');
   img._style = next;
-  img.closest('.card') && img.closest('.card').classList.add('card-style-changed');
+  img.classList.add('card-style-changed');
 }
 /* init on DOMContentLoaded if the page has avatar cards */
 document.addEventListener('DOMContentLoaded', function () {
