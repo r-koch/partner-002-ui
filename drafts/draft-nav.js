@@ -26,8 +26,6 @@
     "draft-02-14-politics.html",
     "draft-02-15-freetime.html",
     "draft-02-16-orientation.html",
-    "draft-04e-interests-manual.html",
-    "draft-03-questionnaire-overview.html",
     "draft-03b-decision-gate.html",
     "draft-04-candidate-list.html",
     "draft-05-matches-list.html",

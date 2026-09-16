@@ -103,7 +103,7 @@
 
     <div class="match">
       <div class="avatar-col">
-        <div class="avatar"><img src="anime-avatar-example.png" alt="stylized avatar — not a photo"></div>
+        <div class="avatar"><img src="avatar-sample-3.png" data-avatar-pixar="avatar-sample-3.png" data-avatar-line="avatar-sample-3-line.png" alt="stylized avatar — not a photo" onclick="toggleCardAvatar(this,event)" title="tap to switch style"></div><div class="avatar-style-dots" style="display:flex;gap:4px;justify-content:center;margin-top:5px;"><span class="avatar-style-dot" data-dot="pixar"></span><span class="avatar-style-dot" data-dot="line"></span></div>
         <button class="negative filled min" onclick="confirmCancel(this)">Cancel match</button>
         <button class="negative filled min" onclick="showDrawer('report-a')">Report</button>
       </div>
@@ -222,6 +222,7 @@
   }
 </script>
   <script src="palette-switcher.js"></script>
+  <script src="avatar-style.js"></script>
 <script src="draft-nav.js"></script>
 </body>
 </html>

@@ -39,6 +39,9 @@
   .cavwrap{flex:0 0 auto;}
   .avatar-swap-img{cursor:pointer;}
   .avatar-swap-img:active{transform:scale(0.94); transition:transform .08s;}
+  .avatar-style-dots{display:flex; gap:4px; justify-content:center; margin-top:5px;}
+  .avatar-style-dot{width:6px; height:6px; border-radius:50%; background:var(--line); opacity:.5;}
+  .avatar-style-dot.on{background:var(--accent); opacity:1;}
   .cav{width:78px; height:78px; border-radius:50%; border:3px solid var(--line);
        object-fit:cover; display:block; background:var(--surface);}
   .ident{flex:1; min-width:0;}
@@ -77,7 +80,7 @@
       <div class="card">
         <div class="m-ident">
             <div class="avatar-col">
-              <div class="cavwrap"><img class="cav avatar-swap-img" src="avatar-sample-1.png" data-avatar-pixar="avatar-sample-1.png" data-avatar-line="avatar-sample-1-line.png" alt="stylized avatar — not a photo" onclick="toggleCardAvatar(this)" title="tap to switch style"></div>
+              <div class="cavwrap"><img class="cav avatar-swap-img" src="avatar-sample-1.png" data-avatar-pixar="avatar-sample-1.png" data-avatar-line="avatar-sample-1-line.png" alt="stylized avatar — not a photo" onclick="toggleCardAvatar(this,event)" title="tap to switch style"></div>
               <button class="negative filled min" onclick="report(this)">Report</button>
             </div>
           <div class="ident">
@@ -97,7 +100,7 @@
       <div class="card">
         <div class="m-ident">
             <div class="avatar-col">
-              <div class="cavwrap"><img class="cav avatar-swap-img" src="avatar-sample-2.png" data-avatar-pixar="avatar-sample-2.png" data-avatar-line="avatar-sample-2-line.png" alt="stylized avatar — not a photo" onclick="toggleCardAvatar(this)" title="tap to switch style"></div>
+              <div class="cavwrap"><img class="cav avatar-swap-img" src="avatar-sample-2.png" data-avatar-pixar="avatar-sample-2.png" data-avatar-line="avatar-sample-2-line.png" alt="stylized avatar — not a photo" onclick="toggleCardAvatar(this,event)" title="tap to switch style"></div>
               <button class="negative filled min" onclick="report(this)">Report</button>
             </div>
           <div class="ident">
@@ -117,7 +120,7 @@
       <div class="card">
         <div class="m-ident">
             <div class="avatar-col">
-              <div class="cavwrap"><img class="cav avatar-swap-img" src="avatar-sample-3.png" data-avatar-pixar="avatar-sample-3.png" data-avatar-line="avatar-sample-3-line.png" alt="stylized avatar — not a photo" onclick="toggleCardAvatar(this)" title="tap to switch style"></div>
+              <div class="cavwrap"><img class="cav avatar-swap-img" src="avatar-sample-3.png" data-avatar-pixar="avatar-sample-3.png" data-avatar-line="avatar-sample-3-line.png" alt="stylized avatar — not a photo" onclick="toggleCardAvatar(this,event)" title="tap to switch style"></div>
               <button class="negative filled min" onclick="report(this)">Report</button>
             </div>
           <div class="ident">
