@@ -146,8 +146,16 @@
           <button class="neutral" onclick="previewSelfie()">Choose a photo</button>
         </div>
         <div class="transform-note" id="transform-note">Your transformed preview appears here.</div>
+        <div id="avatar-preview-area" style="display:none; text-align:center; margin:12px 0;">
+          <img id="avatar-preview" class="cav" src="avatar-sample-1.png"
+               alt="your stylized avatar" style="width:120px; height:120px;">
+        </div>
         <div class="final-row">
           <button class="positive" style="flex:1;" onclick="saveAvatar(this)">Use this avatar</button>
+        </div>
+        <div class="final-row" style="margin-top:8px;">
+          <button class="neutral" style="flex:1;" onclick="rerollAvatar(this)">Reroll (new seed)</button>
+          <button class="neutral" style="flex:1;" onclick="downloadAvatar(this)">Download image</button>
         </div>
       </div>
     </div>
@@ -171,7 +179,33 @@
   function previewSelfie(){
     var n = document.getElementById('transform-note');
     n.textContent = 'Transforming on this device …';
+    document.getElementById('avatar-preview-area').style.display = 'block';
     setTimeout(function(){ n.textContent = 'Done — stylized preview ready'; }, 900);
+  }
+  var REROLL_VARIANTS = ['avatar-sample-1.png', 'avatar-sample-1-line.png',
+                         'avatar-sample-2.png', 'avatar-sample-2-line.png',
+                         'avatar-sample-3.png', 'avatar-sample-3-line.png'];
+  var rerollIdx = 0;
+  function rerollAvatar(btn){
+    // demo: cycles through available renders (prod: re-runs the on-device
+    // pipeline with a new seed under the viewer's style preference)
+    rerollIdx = (rerollIdx + 1) % REROLL_VARIANTS.length;
+    document.getElementById('avatar-preview').src = REROLL_VARIANTS[rerollIdx];
+    document.getElementById('transform-note').textContent =
+      'New seed applied — preview updated';
+  }
+  function downloadAvatar(btn){
+    // downloads YOUR OWN avatar image to the device (owner note: users can
+    // save their own avatar; other people's avatars are not downloadable)
+    var img = document.getElementById('avatar-preview');
+    var link = document.createElement('a');
+    link.href = img.src;
+    link.download = 'my-avatar.png';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    document.getElementById('transform-note').textContent =
+      'Avatar image saved to your device';
   }
 </script>
   <script src="palette-switcher.js"></script>
