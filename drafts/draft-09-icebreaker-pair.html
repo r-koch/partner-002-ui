@@ -48,9 +48,9 @@
            border-top:1px solid var(--line); padding:12px 18px; background:var(--bg);}
   .flowbar button{font-family:inherit; font-size:14px; border-radius:999px; cursor:pointer;
          padding:10px 20px; border:1.5px solid var(--line); background:var(--surface); color:var(--text);}
-  .flowbar button.primary{background:var(--positive); color:var(--positive-text); border:none;}
   .flowbar button:disabled{opacity:.35; cursor:not-allowed;}
   .flowbar .back{font-size:13px; padding:8px 14px;}
+  .flowbar .advstate{flex:1; text-align:right; font-size:13px; color:var(--positive); font-weight:600;}
   .demo-note{text-align:center; font-size:11px; color:var(--muted); padding:4px 16px 10px;}
   .qmark{width:20px; height:20px; border-radius:50%; border:1.5px solid var(--muted);
          color:var(--muted); font-size:12px; display:inline-flex; align-items:center;
@@ -78,9 +78,9 @@
 
     <div class="flowbar">
       <button class="back" id="btnBack" onclick="goBack()" title="Back to the previous pair (your earlier picks stay)">&larr; Back</button>
-      <button class="primary" id="btnNext" onclick="goNext()" disabled>Next</button>
+      <span class="advstate" id="advState"></span>
     </div>
-    <div class="undo" id="undoNote">Back lets you revisit and change any earlier pick.</div>
+    <div class="undo" id="undoNote">Pick an image to continue — your tap moves to the next pair. Back returns to earlier pairs.</div>
     <div class="demo-note" id="demoNote"></div>
   </div>
 <script>
@@ -117,9 +117,6 @@ function render() {
   document.getElementById('pairCount').textContent = 'Pair ' + (cur + 1) + ' of ' + TOTAL;
   var dots = document.querySelectorAll('#pairDots span');
   dots.forEach(function (s, i) { s.classList.toggle('on', i === cur); });
-  // gate: advance only after a pick on the CURRENT pair
-  document.getElementById('btnNext').disabled = (picks[cur] == null);
-  document.getElementById('btnNext').textContent = (cur === TOTAL - 1) ? 'Finish' : 'Next';
   document.getElementById('btnBack').disabled = (cur === 0);
   if (cur === 0) document.getElementById('undoNote').textContent = '';
   else document.getElementById('undoNote').textContent = 'Back lets you revisit and change any earlier pick.';
@@ -129,27 +126,25 @@ function choose(imgIdx) {
   picks[cur] = imgIdx;
   var wraps = document.querySelectorAll('#pair .imgwrap');
   wraps.forEach(function (w, i) { w.classList.toggle('sel', i === imgIdx); });
-  document.getElementById('btnNext').disabled = false;
+  // selecting an image IS the next action (owner): brief flash, then advance
+  document.getElementById('advState').textContent =
+    (cur === TOTAL - 1) ? 'Done — your picks are saved' : 'Next pair…';
   window.setTimeout(function () {
-    document.getElementById('btnNext').classList.add('flash');
-    window.setTimeout(function () { document.getElementById('btnNext').classList.remove('flash'); }, 200);
-  }, 50);
-}
-
-function goNext() {
-  if (picks[cur] == null) return; // impossible via disabled button; double-guard
-  if (cur === TOTAL - 1) {
-    document.getElementById('demoNote').textContent = 'Demo: results would go to the shared result page (ice-breaker result).';
-    return;
-  }
-  cur++;
-  render();
-  document.getElementById('demoNote').textContent = '';
+    if (cur === TOTAL - 1) {
+      document.getElementById('demoNote').textContent =
+        'Demo: results would go to the shared ice-breaker result page.';
+      return; // stay on final pair, showing the saved state
+    }
+    cur++;
+    render();
+    document.getElementById('demoNote').textContent = '';
+  }, 350);
 }
 
 function goBack() {
   if (cur === 0) return;
   document.getElementById('demoNote').textContent = '';
+  document.getElementById('advState').textContent = '';
   cur--;
   render();
 }
