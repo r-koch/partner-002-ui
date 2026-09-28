@@ -26,9 +26,15 @@
   header strong{font-weight:600;}
   header a{color:var(--muted); font-size:13px; text-decoration:none;}
   .count{text-align:center; font-size:13px; color:var(--muted); padding:10px 0 0;}
-  .dots{display:flex; justify-content:center; gap:7px; padding:8px 0 4px;}
-  .dots span{width:8px; height:8px; border-radius:50%; background:var(--line);}
-  .dots span.on{background:var(--accent);}
+  .dots{display:flex; justify-content:center; gap:10px; padding:8px 0 4px;}
+  .dots button{width:14px; height:14px; min-width:28px; min-height:28px; border-radius:50%;
+        border:2px solid var(--line); background:var(--bg); cursor:pointer; padding:0;
+        display:inline-flex; align-items:center; justify-content:center; position:relative;}
+  .dots button.on{background:var(--accent); border-color:var(--accent);}
+  .dots button.done::after{content:""; width:6px; height:6px; border-radius:50%;
+        background:var(--positive); position:absolute; bottom:-2px;}
+  .dots button:disabled{border-color:var(--line); cursor:default; opacity:.4;}
+  .dots button:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
   .hint{text-align:center; font-size:13px; color:var(--muted); padding:0 30px 8px; line-height:1.4;}
   /* ---------- pair: two images fill ALL remaining space, both fully visible ---------- */
   .pair{flex:1; display:flex; flex-direction:column; gap:10px; padding:10px 14px 14px; min-height:0;}
@@ -44,13 +50,6 @@
   .imgwrap.sel .pickmark{display:flex;}
   .imgwrap:active{transform:scale(.99);}
   /* ---------- footer: no advance without a pick; back walks previous picks ---------- */
-  .flowbar{display:flex; align-items:center; justify-content:space-between; gap:10px;
-           border-top:1px solid var(--line); padding:12px 18px; background:var(--bg);}
-  .flowbar button{font-family:inherit; font-size:14px; border-radius:999px; cursor:pointer;
-         padding:10px 20px; border:1.5px solid var(--line); background:var(--surface); color:var(--text);}
-  .flowbar button:disabled{opacity:.35; cursor:not-allowed;}
-  .flowbar .back{font-size:13px; padding:8px 14px;}
-  .flowbar .advstate{flex:1; text-align:right; font-size:13px; color:var(--positive); font-weight:600;}
   .demo-note{text-align:center; font-size:11px; color:var(--muted); padding:4px 16px 10px;}
   .qmark{width:20px; height:20px; border-radius:50%; border:1.5px solid var(--muted);
          color:var(--muted); font-size:12px; display:inline-flex; align-items:center;
@@ -69,18 +68,18 @@
     </header>
     <div class="expl" id="h-expl">Which one feels more like you? Trust the first gut reaction. You can go back and change an earlier choice before finishing — your choices land in the shared results after you both finish.</div>
     <div class="count" id="pairCount">Pair 1 of 5</div>
-    <div class="dots" id="pairDots">
-      <span class="on"></span><span></span><span></span><span></span><span></span>
+    <div class="dots" id="pairDots" role="group" aria-label="Choose pair">
+      <button class="on" onclick="gotoPair(0)" aria-label="Pair 1 of 5" aria-current="true"></button>
+      <button onclick="gotoPair(1)" aria-label="Pair 2 of 5"></button>
+      <button onclick="gotoPair(2)" aria-label="Pair 3 of 5"></button>
+      <button onclick="gotoPair(3)" aria-label="Pair 4 of 5"></button>
+      <button onclick="gotoPair(4)" aria-label="Pair 5 of 5"></button>
     </div>
     <div class="hint">Which one feels more like you?</div>
 
     <div class="pair" id="pair"></div>
 
-    <div class="flowbar">
-      <button class="back" id="btnBack" onclick="goBack()" title="Back to the previous pair (your earlier picks stay)">&larr; Back</button>
-      <span class="advstate" id="advState"></span>
-    </div>
-    <div class="undo" id="undoNote">Pick an image to continue — your tap moves to the next pair. Back returns to earlier pairs.</div>
+    <div class="undo" id="undoNote">Pick an image to continue — your tap moves to the next pair. Use the dots to return to any pair.</div>
     <div class="demo-note" id="demoNote"></div>
   </div>
 <script>
@@ -115,11 +114,18 @@ function render() {
     wrap.appendChild(d);
   });
   document.getElementById('pairCount').textContent = 'Pair ' + (cur + 1) + ' of ' + TOTAL;
-  var dots = document.querySelectorAll('#pairDots span');
-  dots.forEach(function (s, i) { s.classList.toggle('on', i === cur); });
-  document.getElementById('btnBack').disabled = (cur === 0);
-  if (cur === 0) document.getElementById('undoNote').textContent = '';
-  else document.getElementById('undoNote').textContent = 'Back lets you revisit and change any earlier pick.';
+  var dots = document.querySelectorAll('#pairDots button');
+  dots.forEach(function (b, i) {
+    var answered = picks[i] != null;
+    b.classList.toggle('on', i === cur);
+    b.classList.toggle('done', answered && i !== cur);
+    b.setAttribute('aria-current', i === cur ? 'true' : 'false');
+    // gating: forward dots (pairs after the farthest-advanced) stay disabled
+    // until their pair is reachable = every earlier pair answered.
+    var reachable = true;
+    for (var k = 0; k < i; k++) if (picks[k] == null) reachable = false;
+    b.disabled = !reachable;
+  });
 }
 
 function choose(imgIdx) {
@@ -127,7 +133,7 @@ function choose(imgIdx) {
   var wraps = document.querySelectorAll('#pair .imgwrap');
   wraps.forEach(function (w, i) { w.classList.toggle('sel', i === imgIdx); });
   // selecting an image IS the next action (owner): brief flash, then advance
-  document.getElementById('advState').textContent =
+  document.getElementById('undoNote').textContent =
     (cur === TOTAL - 1) ? 'Done — your picks are saved' : 'Next pair…';
   window.setTimeout(function () {
     if (cur === TOTAL - 1) {
@@ -141,11 +147,12 @@ function choose(imgIdx) {
   }, 350);
 }
 
-function goBack() {
-  if (cur === 0) return;
+function gotoPair(i) {
+  if (i < 0 || i >= TOTAL) return;
+  // reachability guard (same as dots' disabled state)
+  for (var k = 0; k < i; k++) if (picks[k] == null) return;
   document.getElementById('demoNote').textContent = '';
-  document.getElementById('advState').textContent = '';
-  cur--;
+  cur = i;
   render();
 }
 render();
