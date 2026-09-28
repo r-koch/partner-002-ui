@@ -25,7 +25,6 @@
          border-bottom:1px solid var(--line);}
   header strong{font-weight:600;}
   header a{color:var(--muted); font-size:13px; text-decoration:none;}
-  .count{text-align:center; font-size:13px; color:var(--muted); padding:10px 0 0;}
   .dots{display:flex; justify-content:center; gap:10px; padding:8px 0 4px;}
   .dots button{width:14px; height:14px; min-width:28px; min-height:28px; border-radius:50%;
         border:2px solid var(--line); background:var(--bg); cursor:pointer; padding:0;
@@ -64,7 +63,6 @@
       <a href="#">with brave-lion-4417</a>
     </header>
     <div class="expl" id="h-expl">Which one feels more like you? Trust the first gut reaction — your choice is permanent and moves you to the next pair. The dots let you review earlier pairs (picks stay fixed). Your choices land in the shared results after you both finish.</div>
-    <div class="count" id="pairCount">Pair 1 of 5</div>
     <div class="dots" id="pairDots" role="group" aria-label="Choose pair">
       <button class="on" onclick="gotoPair(0)" aria-label="Pair 1 of 5" aria-current="true"></button>
       <button onclick="gotoPair(1)" aria-label="Pair 2 of 5"></button>
@@ -111,7 +109,6 @@ function render() {
     if (frozen) d.title = 'Your choice here is permanent';
     wrap.appendChild(d);
   });
-  document.getElementById('pairCount').textContent = 'Pair ' + (cur + 1) + ' of ' + TOTAL;
   var dots = document.querySelectorAll('#pairDots button');
   dots.forEach(function (b, i) {
     var answered = picks[i] != null;
