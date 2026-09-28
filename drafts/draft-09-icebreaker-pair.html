@@ -36,7 +36,9 @@
   .dots button:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
   .hint{text-align:center; font-size:13px; color:var(--muted); padding:0 30px 8px; line-height:1.4;}
   /* ---------- pair: two images fill ALL remaining space, both fully visible ---------- */
-  .pair{flex:1; display:flex; flex-direction:column; gap:10px; padding:10px 14px 14px; min-height:0;}
+  /* full-bleed: no side margins (owner 2026-09-16 — left/right was wasted);
+     the gap between the two images stays as the choice boundary */
+  .pair{flex:1; display:flex; flex-direction:column; gap:10px; padding:10px 0 0; min-height:0;}
   .imgwrap{flex:1 1 0; border-radius:16px; overflow:hidden; border:2px solid var(--line);
            cursor:pointer; position:relative; background:var(--surface); min-height:0;}
   .imgwrap img{width:100%; height:100%; object-fit:cover; display:block;}
