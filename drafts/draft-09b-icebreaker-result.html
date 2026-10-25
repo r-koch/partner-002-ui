@@ -31,17 +31,23 @@
   /* result list: one pair row per row, images carry the meaning */
   .rows{flex:1; display:flex; flex-direction:column; gap:10px; padding:0 14px 18px;}
   .pr{flex:1 1 0; display:flex; gap:10px; min-height:0;}
-  .pr img{flex:1 1 0; width:50%; height:100%; object-fit:cover; border-radius:14px;
-          border:3px solid var(--line); background:var(--surface); min-width:0;}
-  .pr img.both{border-color:var(--accent); box-shadow:0 0 0 2px var(--accent);}
-  .pr img.you{border-color:var(--match); box-shadow:0 0 0 2px var(--match);}
-  .pr img.them{border-color:var(--exclude); box-shadow:0 0 0 2px var(--exclude);}
+  .choice{flex:1 1 0; width:50%; min-width:0; height:100%; position:relative;}
+  .choice > img{width:100%; height:100%; object-fit:cover; display:block; border-radius:14px;
+          border:3px solid var(--line); background:var(--surface);}
+  .choice.both > img{border-color:var(--accent); box-shadow:0 0 0 2px var(--accent);}
+  .choice.you > img{border-color:var(--match); box-shadow:0 0 0 2px var(--match);}
+  .choice.them > img{border-color:var(--exclude); box-shadow:0 0 0 2px var(--exclude);}
+  /* selection owner: small avatar badge(s), top-left of the selected image */
+  .badges{position:absolute; top:7px; left:7px; display:flex; z-index:1;}
+  .badges img{width:26px; height:26px; border-radius:50%; object-fit:cover;
+       border:2px solid var(--bg); background:var(--surface);}
+  .badges img + img{margin-left:-9px;}
 </style>
 </head>
 <body>
   <div class="phone">
     <header>
-      <strong>Result</strong>
+      <strong>Ice breaker #3 — result</strong>
       <a href="draft-04i-menu.html" title="Menu"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></a>
     </header>
 
@@ -54,24 +60,24 @@
          green = only you, red = only them -->
     <div class="rows">
       <div class="pr">
-        <img src="ib-lake.jpg" alt="A calm lake with trees along the shore">
-        <img src="ib-beach-placeholder.png" class="both" alt="A sandy beach with gentle waves">
+        <div class="choice"><img src="ib-lake.jpg" alt="A calm lake with trees along the shore"></div>
+        <div class="choice both"><img src="ib-beach-placeholder.png" alt="A sandy beach with gentle waves"><div class="badges"><img src="mannequin-avatar-pixar.png" alt="Your choice"><img src="avatar-sample-1.png" alt="brave-lion-4417's choice"></div></div>
       </div>
       <div class="pr">
-        <img src="avatar-sample-1.png" class="you" alt="Stylized avatar of a person with curly hair">
-        <img src="avatar-sample-2.png" class="them" alt="Stylized avatar of a person with braided hair">
+        <div class="choice you"><img src="avatar-sample-1.png" alt="Stylized avatar of a person with curly hair"><div class="badges"><img src="mannequin-avatar-pixar.png" alt="Your choice"></div></div>
+        <div class="choice them"><img src="avatar-sample-2.png" alt="Stylized avatar of a person with braided hair"><div class="badges"><img src="avatar-sample-1.png" alt="brave-lion-4417's choice"></div></div>
       </div>
       <div class="pr">
-        <img src="avatar-sample-3.png" class="both" alt="Stylized avatar of an East Asian woman">
-        <img src="avatar-sample-1-line.png" alt="Line-art avatar of a person with curly hair">
+        <div class="choice both"><img src="avatar-sample-3.png" alt="Stylized avatar of an East Asian woman"><div class="badges"><img src="mannequin-avatar-pixar.png" alt="Your choice"><img src="avatar-sample-1.png" alt="brave-lion-4417's choice"></div></div>
+        <div class="choice"><img src="avatar-sample-1-line.png" alt="Line-art avatar of a person with curly hair"></div>
       </div>
       <div class="pr">
-        <img src="avatar-sample-2-line.png" class="both" alt="Line-art avatar of a person with braided hair">
-        <img src="avatar-sample-3-line.png" alt="Line-art avatar of an East Asian woman">
+        <div class="choice both"><img src="avatar-sample-2-line.png" alt="Line-art avatar of a person with braided hair"><div class="badges"><img src="mannequin-avatar-pixar.png" alt="Your choice"><img src="avatar-sample-1.png" alt="brave-lion-4417's choice"></div></div>
+        <div class="choice"><img src="avatar-sample-3-line.png" alt="Line-art avatar of an East Asian woman"></div>
       </div>
       <div class="pr">
-        <img src="mannequin-avatar-pixar.png" class="you" alt="White mannequin avatar, 3D style">
-        <img src="mannequin-avatar-line.png" class="them" alt="White mannequin avatar, line-art style">
+        <div class="choice you"><img src="mannequin-avatar-pixar.png" alt="White mannequin avatar, 3D style"><div class="badges"><img src="mannequin-avatar-pixar.png" alt="Your choice"></div></div>
+        <div class="choice them"><img src="mannequin-avatar-line.png" alt="White mannequin avatar, line-art style"><div class="badges"><img src="avatar-sample-1.png" alt="brave-lion-4417's choice"></div></div>
       </div>
     </div>
   </div>
