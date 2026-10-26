@@ -85,43 +85,71 @@
       <span class=""></span>
       <span class=""></span>
     </div>
-    <div class="expl" id="h-expl">We ask this once, on your way in. It's a self declaration, no proof needed — and it's the law: people under 18 can't use this app.</div>
+    <div class="expl" id="h-expl">We ask this once, on your way in. It is a self-declaration; we do not check proof. Adults only is our own rule, and it is also required by the app stores that distribute the app.</div>
     
     <div class="body">
-      <div id="q-wrap">
-        <h1>How old are you?</h1>
-        <div class="lead">This app is only for people 18 or older.</div>
-        <label class="choice" onclick="pick(this, true)">I am 18 or older</label>
-        <label class="choice" onclick="pick(this, false)">I am under 18</label>
-      </div>
-      <div id="exit-wrap" style="display:none;">
-        <h1>We can&rsquo;t create an account for you</h1>
-        <div class="lead">This app is only for people 18 or older.</div>
-        <button class="negative" onclick="location.href='draft-01g-sorry-age.html'">Close the app</button>
+      <h1>How old are you?</h1>
+      <div class="lead">paiir is for adults only.</div>
+
+      <label class="choice" role="radio" aria-checked="false" tabindex="0"
+             onclick="pick(this, true)" onkeydown="radioKey(event, this, true)">I am 18 or older</label>
+      <label class="choice" role="radio" aria-checked="false" tabindex="0"
+             onclick="pick(this, false)" onkeydown="radioKey(event, this, false)">I am under 18</label>
+
+      <!-- shown only for the under-18 answer; label and action differ per platform -->
+      <div id="close-wrap" style="display:none; margin-top:4px;">
+        <button class="negative" id="closeBtn" onclick="closeApp()">Close the app</button>
+        <div id="closeNote" class="lead" style="display:none; margin:10px 0 0;">You can close this tab now.</div>
       </div>
     </div>
     <div class="footer">
       <button class="neutral" onclick="location.href='draft-01a-welcome.html'">Back</button>
-      <button class="positive" disabled onclick="location.href='draft-01b-terms.html'">Confirm</button>
+      <button class="positive" id="confirmBtn" disabled onclick="location.href='draft-01b-terms.html'">Confirm</button>
     </div>
       <div class="legalfoot"><a href="draft-04j-legal.html">Imprint</a><span>·</span><a href="draft-01c-privacy.html">Privacy</a><span>·</span><a href="draft-01b-terms.html">Terms</a></div>
 </div>
   <script>
-  var over18 = true;
+  /* Age gate behaves like a radio group:
+     18+  -> Confirm enabled, close control hidden
+     under-18 -> Confirm disabled, close control visible (label differs per platform) */
+  function isNative() {
+    return !!(window.Capacitor && window.Capacitor.isNativePlatform &&
+              window.Capacitor.isNativePlatform());
+  }
+
   function pick(el, isOver) {
-    over18 = isOver;
-    var labels = document.querySelectorAll('.choice');
-    for (var i = 0; i < labels.length; i++) labels[i].classList.remove('now');
-    el.classList.add('now');
-    if (over18) {
-      document.getElementById('q-wrap').style.display = '';
-      document.getElementById('exit-wrap').style.display = 'none';
-      document.querySelector('.positive').disabled = false;
-    } else {
-      document.getElementById('q-wrap').style.display = 'none';
-      document.getElementById('exit-wrap').style.display = '';
-      document.querySelector('.positive').disabled = true;
+    var choices = document.querySelectorAll('.choice');
+    for (var i = 0; i < choices.length; i++) {
+      choices[i].classList.remove('now');
+      choices[i].setAttribute('aria-checked', 'false');
     }
+    el.classList.add('now');
+    el.setAttribute('aria-checked', 'true');
+
+    document.getElementById('confirmBtn').disabled = !isOver;
+    var wrap = document.getElementById('close-wrap');
+    var btn = document.getElementById('closeBtn');
+    var note = document.getElementById('closeNote');
+    wrap.style.display = isOver ? 'none' : '';
+    note.style.display = 'none';
+    // native build: the app really can close itself. browser build: it cannot.
+    btn.textContent = isNative() ? 'Close the app' : 'Close this tab';
+  }
+
+  function radioKey(ev, el, isOver) {
+    if (ev.key === ' ' || ev.key === 'Enter') { ev.preventDefault(); pick(el, isOver); }
+  }
+
+  function closeApp() {
+    if (isNative() && window.Capacitor.Plugins && window.Capacitor.Plugins.App) {
+      window.Capacitor.Plugins.App.exitApp();
+      return;
+    }
+    // Browsers refuse window.close() for tabs the script did not open.
+    try { window.close(); } catch (e) {}
+    window.setTimeout(function () {
+      document.getElementById('closeNote').style.display = '';
+    }, 150);
   }
 </script>
 <script src="palette-switcher.js"></script>

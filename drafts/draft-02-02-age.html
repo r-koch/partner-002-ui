@@ -129,6 +129,7 @@
        border:1.5px solid var(--line); border-radius:11px; padding:10px 12px;
        font-family:inherit; font-size:14px; color:var(--text); outline:none;}
   input[type="number"]:focus, input[type="text"]:focus{border-color:var(--accent);}
+  .agenote{font-size:12px; color:var(--exclude); padding:0 18px 6px; background:var(--bg);}
 </style>
 </head>
 <body>
@@ -163,7 +164,7 @@
       <div class="col">
         <span class="col-tag">About you</span>
         <label class="field-label">Your age</label>
-        <input class="numinput" type="number" min="18" max="99" placeholder="e.g. 30" aria-label="your age in years" />
+        <input class="numinput" type="number" min="18" max="99" placeholder="e.g. 30" aria-label="your age in years" id="ageYou" />
       </div>
       <div class="col">
         <span class="col-tag">Looking for</span>
@@ -171,20 +172,21 @@
         <div style="display:flex; flex-direction:column; gap:7px;">
           <div style="display:flex; align-items:center; gap:8px; border:none; padding:0;">
             <span style="flex:0 0 44px; font-size:14px; color:var(--muted);">From</span>
-            <input class="numinput" type="number" min="18" max="99" placeholder="e.g. 25" aria-label="minimum age" style="flex:1;"/>
+            <input class="numinput" type="number" min="18" max="99" placeholder="e.g. 25" aria-label="minimum age" id="ageFrom" style="flex:1;"/>
           </div>
           <div style="display:flex; align-items:center; gap:8px; border:none; padding:0;">
             <span style="flex:0 0 44px; font-size:14px; color:var(--muted);">To</span>
-            <input class="numinput" type="number" min="18" max="99" placeholder="e.g. 40" aria-label="maximum age" style="flex:1;"/>
+            <input class="numinput" type="number" min="18" max="99" placeholder="e.g. 40" aria-label="maximum age" id="ageTo" style="flex:1;"/>
           </div>
         </div>
         <div class="imp"><span class="ilabel">How important is this?</span><span class="dots"><i>1</i><i>2</i><i class="on">3</i><i>4</i><i>5</i></span></div>
       </div>
       </div>
     </div>
+    <div class="agenote" id="ageNote" style="display:none;">Ages below 18 are not accepted.</div>
     <div class="footer">
       <button class="neutral" onclick="location.href='draft-02-01-gender.html'">Back</button>
-      <button class="positive" onclick="location.href='draft-02-03-height.html'">Continue</button>
+      <button class="positive" onclick="nextAge()">Continue</button>
     </div>
   </div>
   <script>
@@ -195,6 +197,26 @@
     col.querySelectorAll('button.opt').forEach(function(o){ o.classList.remove('sel'); });
     b.classList.add('sel');
   });
+</script>
+<script>
+  /* Adults only is a product rule: the questionnaire must not accept an age under 18,
+     and the sought range must start at 18 or above. */
+  function nextAge() {
+    var you = parseInt(document.getElementById('ageYou').value, 10);
+    var from = parseInt(document.getElementById('ageFrom').value, 10);
+    var to = parseInt(document.getElementById('ageTo').value, 10);
+    var note = document.getElementById('ageNote');
+    var bad = false;
+
+    if (!(you >= 18 && you <= 99)) bad = true;
+    if (!isNaN(from) && from < 18) bad = true;
+    if (!isNaN(to) && to < 18) bad = true;
+    if (!isNaN(from) && !isNaN(to) && from > to) bad = true;
+
+    if (bad) { note.style.display = ''; return; }
+    note.style.display = 'none';
+    location.href = 'draft-02-03-height.html';
+  }
 </script>
 <script src="palette-switcher.js"></script>
 <script src="draft-nav.js"></script>
