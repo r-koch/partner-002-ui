@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>paiir.me — consent for sensitive answers</title>
+<style>
+  :root{ --bg:#FAF6EF; --surface:#F3EBDD; --text:#2E2620; --muted:#6B5D50;
+         --accent:#B0431F; --line:#D8CCBA; }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--text); font-family:Georgia,'Times New Roman',serif;
+       min-height:100vh;}
+  .doc{max-width:640px; margin:0 auto; padding:28px 22px 60px;}
+  @media (min-width:600px){ body{padding:24px;} .doc{border:1px solid var(--line);
+       border-radius:18px; box-shadow:0 4px 24px rgba(0,0,0,.06);} }
+  h1{font-size:26px; font-weight:600; line-height:1.25; margin-bottom:6px;}
+  .sub{font-size:14px; color:var(--muted); line-height:1.5; margin-bottom:6px;}
+  .promise{font-size:13px; color:var(--muted); border-left:2px solid var(--line);
+           padding:4px 10px; margin:16px 0 26px; line-height:1.5;}
+  h2{font-size:15px; font-weight:600; margin:22px 0 6px;}
+  p{font-size:14.5px; line-height:1.62; margin-bottom:8px;}
+  p.small{font-size:13px; color:var(--muted);}
+  ul{margin:0 0 8px 18px;} li{font-size:14.5px; line-height:1.6; margin-bottom:4px;}
+  a{color:var(--accent); text-decoration:none;} a:hover{text-decoration:underline;}
+  .back{display:inline-block; margin-top:28px; font-size:13px; color:var(--muted);}
+  .verbatim{background:var(--surface); border:1px solid var(--line); border-radius:12px;
+            padding:14px 16px; font-size:14.5px; line-height:1.6; margin:10px 0 4px;}
+</style>
+</head>
+<body>
+<div class="doc">
+  <h1>Consent for sensitive answers</h1>
+  <div class="sub">Version 1 · 2026-10-25</div>
+  <div class="promise">This is the text you agree to on the setup screen. It covers one purpose and nothing else.</div>
+
+  <h2>1. The exact wording</h2>
+  <div class="verbatim">I agree that my answers — including those that may reveal sensitive information such as religion, political opinion or sexual orientation — may be used for the purpose of finding compatible users and being found by them. I can withdraw this consent at any time.</div>
+
+  <h2>2. What this authorises</h2>
+  <p>One purpose only: comparing your answers with other people's answers so that compatible people are shown to each other. That is the entire scope.</p>
+
+  <h2>3. What it does not authorise</h2>
+  <ul>
+    <li>No advertising, no marketing, no behaviour analytics.</li>
+    <li>No profiling beyond the compatibility comparison itself.</li>
+    <li>No sharing or selling to anyone, and no use in moderation decisions.</li>
+    <li>No use for training any model.</li>
+  </ul>
+
+  <h2>4. Legal basis</h2>
+  <p>Religion, political opinion and sexual orientation are special-category data under Art. 9 GDPR. We rely on your explicit consent under Art. 9(2)(a), and on your consent under Art. 6(1)(a) for the comparison itself. Without that consent we could not use these answers at all — which is why we ask before you answer them, and why the answers are optional.</p>
+
+  <h2>5. Where the data is</h2>
+  <p>On your device, encrypted. We hold no copy. The comparison happens between devices and reveals only how much overlaps, never which answers — see the <a href="draft-legal-privacy.html">privacy notice</a>.</p>
+
+  <h2>6. Withdrawing</h2>
+  <p>Withdraw any time in <em>Settings → Consent</em>, or simply delete the answer. The consequence is limited to what it should be: that answer no longer counts for compatibility, and the rest of the app works exactly as before. No account is closed, no feature is locked, no advantage is lost.</p>
+
+  <h2>7. How long</h2>
+  <p>Until you withdraw or delete the answer — and never on our servers in any case.</p>
+
+  <p class="small" style="margin-top:14px;">Controller and contact: see the <a href="draft-legal-imprint.html">imprint</a>. You may complain to the Austrian Data Protection Authority at any time.</p>
+
+  <a class="back" href="draft-01d-consent-sensitive.html">&larr; Back to setup</a>
+</div>
+<script src="palette-switcher.js"></script>
+</body>
+</html>

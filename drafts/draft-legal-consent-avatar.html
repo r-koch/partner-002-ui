@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>paiir.me — consent for your avatar</title>
+<style>
+  :root{ --bg:#FAF6EF; --surface:#F3EBDD; --text:#2E2620; --muted:#6B5D50;
+         --accent:#B0431F; --line:#D8CCBA; }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--text); font-family:Georgia,'Times New Roman',serif;
+       min-height:100vh;}
+  .doc{max-width:640px; margin:0 auto; padding:28px 22px 60px;}
+  @media (min-width:600px){ body{padding:24px;} .doc{border:1px solid var(--line);
+       border-radius:18px; box-shadow:0 4px 24px rgba(0,0,0,.06);} }
+  h1{font-size:26px; font-weight:600; line-height:1.25; margin-bottom:6px;}
+  .sub{font-size:14px; color:var(--muted); line-height:1.5; margin-bottom:6px;}
+  .promise{font-size:13px; color:var(--muted); border-left:2px solid var(--line);
+           padding:4px 10px; margin:16px 0 26px; line-height:1.5;}
+  h2{font-size:15px; font-weight:600; margin:22px 0 6px;}
+  p{font-size:14.5px; line-height:1.62; margin-bottom:8px;}
+  p.small{font-size:13px; color:var(--muted);}
+  ul{margin:0 0 8px 18px;} li{font-size:14.5px; line-height:1.6; margin-bottom:4px;}
+  a{color:var(--accent); text-decoration:none;} a:hover{text-decoration:underline;}
+  .back{display:inline-block; margin-top:28px; font-size:13px; color:var(--muted);}
+  .verbatim{background:var(--surface); border:1px solid var(--line); border-radius:12px;
+            padding:14px 16px; font-size:14.5px; line-height:1.6; margin:10px 0 4px;}
+</style>
+</head>
+<body>
+<div class="doc">
+  <h1>Consent for your avatar</h1>
+  <div class="sub">Version 1 · 2026-10-25</div>
+  <div class="promise">Your photo is used once, on your phone, to draw an avatar. The photo itself never leaves the device.</div>
+
+  <h2>1. The exact wording</h2>
+  <div class="verbatim">I agree that a photo I choose may be processed on my device to create a stylized avatar of me, and that the resulting avatar may be shared directly with people where interest is mutual. I can withdraw this consent at any time.</div>
+
+  <h2>2. What happens to the photo</h2>
+  <p>It is processed on your device and turned into a drawn avatar. It is never uploaded, never stored by us, and never transmitted to anyone. There is no server copy to leak and none to delete. You can delete the photo from the app whenever you like.</p>
+
+  <h2>3. What is shared, and with whom</h2>
+  <p>Only the drawn avatar. It travels device to device, and only to people where both of you have declared interest. Nobody browsing candidates sees it, and it is never shown before mutual interest.</p>
+
+  <h2>4. What this does not authorise</h2>
+  <ul>
+    <li>No uploading of the photo, in any form, to anyone.</li>
+    <li>No face recognition, no biometric template, no identification of you.</li>
+    <li>No use as training data for any model.</li>
+    <li>No publication, no advertising, no use outside the app.</li>
+  </ul>
+
+  <h2>5. Without consent</h2>
+  <p>Pick a default avatar instead. It is a real choice, not a penalty: nothing in the app is limited for people who use a default.</p>
+
+  <h2>6. Withdrawing — and its honest limit</h2>
+  <p>You can withdraw at any time in <em>Settings → Consent</em> or by removing the avatar. From that moment no new copy is shared and you appear with a default avatar.</p>
+  <p class="small">One honest limit: an avatar that was already delivered lives on the other person's device, exactly as a photo you handed someone would. We cannot reach into their phone to delete it. Copying or redistributing an avatar is prohibited by the terms of use, and the report function exists for that case.</p>
+
+  <h2>7. Legal basis and contact</h2>
+  <p>Your consent under Art. 6(1)(a) GDPR, with any face-related processing confined to your device. Controller and contact are in the <a href="draft-legal-imprint.html">imprint</a>; details of processing are in the <a href="draft-legal-privacy.html">privacy notice</a>.</p>
+
+  <a class="back" href="draft-01e-consent-avatar.html">&larr; Back to setup</a>
+</div>
+<script src="palette-switcher.js"></script>
+</body>
+</html>
