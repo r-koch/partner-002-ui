@@ -13,7 +13,7 @@
   *{box-sizing:border-box; margin:0; padding:0;}
   body{background:var(--bg); color:var(--text); font-family:Georgia,'Times New Roman',serif;
        min-height:100vh; padding:0;}
-    .phone{width:100%; background:var(--bg);
+  .phone{width:100%; background:var(--bg);
          display:flex; flex-direction:column; min-height:100vh;}
   @media (min-width:600px){
     .phone{max-width:420px; margin:0 auto; border-radius:24px; overflow:hidden;
@@ -25,29 +25,39 @@
          border-bottom:1px solid var(--line);}
   header strong{font-weight:600;}
   header a{color:var(--muted); font-size:14px; text-decoration:none;}
-  .body{flex:1; padding:18px; overflow-y:auto;}
+  .body{flex:1; padding:14px 18px 84px; overflow-y:auto;}
   .seg-title{font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em;
-             margin:14px 0 8px;}
+             margin:16px 0 8px;}
+  /* column labels appear ONCE per section, not once per row */
+  .cols{display:grid; grid-template-columns:1fr 1fr; gap:8px;
+        font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em;
+        padding:0 2px 6px;}
   .qa{border:1px solid var(--line); border-radius:12px; background:var(--surface);
-      padding:12px 14px; margin-bottom:10px;}
-  .qa .q{font-size:14px; font-weight:600;}
-  .qa .a{font-size:14px; margin-top:6px; line-height:1.45;}
-  .qa .a.same{color:var(--match);}
-  .qa .a.diff{color:var(--exclude);}
-  .qa .a.none{color:var(--muted); font-style:italic;}
-  .qa .ask{margin-top:8px; border:none; background:var(--positive); color:var(--positive-text);
-           border-radius:999px; padding:8px 16px; font-size:13px; cursor:pointer; font-family:inherit;}
-  .qa .ask.route{background:var(--surface); color:var(--text); border:2px solid var(--line);}
-  .qa small{display:block; font-size:11px; color:var(--muted); margin-top:6px;}
-  .legend{font-size:12px; color:var(--muted); margin-bottom:12px; line-height:1.5;}
-  .legend b{color:var(--match);} .legend i{color:var(--exclude);}
-  .demo-note{display:none;}
+      padding:11px 13px; margin-bottom:9px;}
+  .qa .q{font-size:14px; font-weight:600; margin-bottom:8px;}
+  .pair{display:grid; grid-template-columns:1fr 1fr; gap:8px; align-items:center;}
+  .chip{font-size:13px; padding:7px 10px; border-radius:9px; text-align:center;
+        border:1.5px solid var(--line); background:var(--bg); min-height:34px;
+        display:flex; align-items:center; justify-content:center;}
+  /* same answer: both chips read as one fact */
+  .chip.same{border-color:var(--match); background:rgba(62,107,79,.10); color:var(--match);}
+  /* different answer: theirs carries the contrast, yours stays neutral */
+  .chip.other{border-color:var(--accent); color:var(--accent);}
+  /* not answered: an empty slot, not a sentence */
+  .chip.empty{border-style:dashed; color:var(--muted); font-size:12px;}
+  .act{margin-top:8px; display:flex; justify-content:flex-end;}
+  .btn{font-family:inherit; font-size:13px; border-radius:999px; cursor:pointer;
+       padding:8px 16px; border:1.5px solid var(--line); background:var(--surface); color:var(--text);}
+  .btn.positive{background:var(--positive); color:var(--positive-text); border-color:var(--positive);}
+  .btn.min{font-size:12px; padding:6px 13px;}
+  .btn:disabled{opacity:.45; cursor:default;}
   .qmark{width:20px; height:20px; border-radius:50%; border:1.5px solid var(--muted);
          color:var(--muted); font-size:12px; display:inline-flex; align-items:center;
          justify-content:center; cursor:pointer; background:none; font-family:inherit;}
   .expl{display:none; font-size:12px; color:var(--muted); line-height:1.5;
         margin:10px 18px 0; border-left:2px solid var(--line); padding:4px 10px;}
   .expl.show{display:block;}
+  .demo-note{display:none;}
 </style>
 </head>
 <body>
@@ -56,48 +66,71 @@
       <strong>Extended / deep Q&amp;A <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
       <a href="draft-07-match-stage1.html">Close</a>
     </header>
-    <div class="expl" id="h-expl">Answers shown for both of you. Green = same, red = no match. Unanswered questions can be sent as a request — you can only ask what you've answered yourself.</div>
-    <div class="body">
-      
+    <div class="expl" id="h-expl">Answers sit side by side; green means you both answered the same. You only see an answer of theirs that you have answered yourself — otherwise answer it first, then you can ask.</div>
 
+    <div class="body">
       <div class="seg-title">Extended</div>
+      <div class="cols"><span>you</span><span>them</span></div>
+
       <div class="qa">
         <div class="q">Ideal weekend?</div>
-        <div class="a same">You: outdoors · them: outdoors</div>
+        <div class="pair">
+          <div class="chip same">outdoors</div>
+          <div class="chip same">outdoors</div>
+        </div>
       </div>
       <div class="qa">
         <div class="q">Pets?</div>
-        <div class="a diff">You: no pets · them: cats — no match</div>
+        <div class="pair">
+          <div class="chip">no pets</div>
+          <div class="chip other">cats</div>
+        </div>
       </div>
       <div class="qa">
         <div class="q">Morning or night person?</div>
-        <div class="a diff">You: mornings · them: nights — no match</div>
+        <div class="pair">
+          <div class="chip">mornings</div>
+          <div class="chip other">nights</div>
+        </div>
       </div>
       <div class="qa">
         <div class="q">Travel style?</div>
-        <div class="a none">They haven't answered this one.</div>
-        <button class="ask" onclick="asked(this)">Ask them</button>
+        <div class="pair">
+          <div class="chip">slow travel</div>
+          <div class="chip empty">not answered</div>
+        </div>
+        <div class="act"><button class="btn min" onclick="asked(this)">Ask</button></div>
       </div>
       <div class="qa">
         <div class="q">Favorite season?</div>
-        <div class="a none">You haven't answered this one — answer first, then you can ask.</div>
-        <button class="ask route" onclick="answerFirst(this)">Answer it first</button>
+        <div class="pair">
+          <div class="chip empty">not answered</div>
+          <div class="chip empty">locked</div>
+        </div>
+        <div class="act"><button class="btn positive min" onclick="location.href='draft-06c-extended.html'">Answer</button></div>
       </div>
 
       <div class="seg-title">Deep</div>
+      <div class="cols"><span>you</span><span>them</span></div>
+
       <div class="qa">
         <div class="q">Attachment style?</div>
-        <div class="a same">You: secure · them: secure</div>
+        <div class="pair">
+          <div class="chip same">secure</div>
+          <div class="chip same">secure</div>
+        </div>
       </div>
       <div class="qa">
         <div class="q">How do you handle conflict?</div>
-        <div class="a diff">You: talk it out · them: need space first — no match</div>
+        <div class="pair">
+          <div class="chip">talk it out</div>
+          <div class="chip other">need space first</div>
+        </div>
       </div>
     </div>
   </div>
   <script>
   function asked(btn){ btn.textContent = 'Asked'; btn.disabled = true; }
-  function answerFirst(btn){ btn.textContent = 'Answer it to unlock asking'; btn.disabled = true; }
   </script>
   <script src="palette-switcher.js"></script>
 <script src="draft-nav.js"></script>
