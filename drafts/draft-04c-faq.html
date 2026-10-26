@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PARTNER-002 design draft — Help</title>
+<title>paiir.me design draft — Help</title>
 <style>
   :root{
     --bg:#FAF6EF; --surface:#F3EBDD; --text:#2E2620; --muted:#6B5D50;
@@ -26,35 +26,15 @@
   header strong{font-weight:600;}
   header nav{display:flex; gap:10px; align-items:center;}
   header a{color:var(--muted); font-size:14px; text-decoration:none;}
-  .qmark{width:20px; height:20px; border-radius:50%; border:1.5px solid var(--muted);
-         color:var(--muted); font-size:12px; display:inline-flex; align-items:center;
-         justify-content:center; cursor:pointer; background:none; font-family:inherit;}
-  .expl{display:none; font-size:12px; color:var(--muted); line-height:1.5;
-        margin:10px 18px 0; border-left:2px solid var(--line); padding:4px 10px;}
-  .expl.show{display:block;}
-  .body{flex:1; padding:18px; overflow-y:auto;}
-  .step{font-size:13px; color:var(--muted); margin-bottom:12px;}
+  .body{flex:1; padding:18px; overflow-y:auto; scroll-behavior:smooth;}
   h1{font-size:26px; font-weight:600; margin-bottom:8px; line-height:1.25;}
   .lead{font-size:15px; color:var(--muted); margin-bottom:22px; line-height:1.5;}
-  .block{border:1px solid var(--line); border-radius:14px; background:var(--surface);
-         padding:14px 16px; margin-bottom:12px;}
-  .block .t{font-size:14px; font-weight:600; margin-bottom:6px;}
-  .block .tl{font-size:13px; color:var(--muted); line-height:1.5;}
-  .block .precise{font-size:12px; color:var(--muted); line-height:1.6; margin-top:8px;
-         border-top:1px solid var(--line); padding-top:8px;}
-  .choice{display:block; border:2px solid var(--line); border-radius:12px;
-          padding:15px 16px; margin-bottom:12px; font-size:15px; cursor:pointer;
-          background:var(--surface);}
-  .choice small{display:block; color:var(--muted); font-size:12px; margin-top:4px;}
-  .choice.now{border-color:var(--accent);}
-  .footer{margin-top:auto; padding:18px; display:flex; justify-content:space-between;
-          align-items:center; max-width:420px; width:100%; margin-left:auto; margin-right:auto;}
-  .demo-note{display:none;}
-
-  .row{display:flex; align-items:center; justify-content:space-between; gap:8px;
-       padding:12px 0; border-bottom:1px solid var(--line); font-size:14px;}
+  .row{display:flex; align-items:flex-start; justify-content:space-between; gap:8px;
+       padding:12px 0; border-bottom:1px solid var(--line); font-size:14px;
+       scroll-margin-top:14px;}
   .row:last-child{border-bottom:none;}
-  .row .meta{font-size:12px; color:var(--muted); display:block;}
+  .row .meta{font-size:12.5px; color:var(--muted); display:block; line-height:1.5; margin-top:3px;}
+  .row:target{background:var(--surface); box-shadow:0 0 0 8px var(--surface); border-radius:4px;}
   .card{border:1px solid var(--line); border-radius:14px; background:var(--surface);
         padding:4px 15px; margin-bottom:12px;}
   .seg{font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em;
@@ -64,21 +44,61 @@
 <body>
   <div class="phone" style="min-height:620px;">
     <header>
-      <strong>Help <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
+      <strong>Help</strong>
       <nav><a href="draft-04i-menu.html" title="Menu"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></a></nav>
     </header>
-    <div class="expl" id="h-expl">Short answers to the things people ask us most.</div>
 
     <div class="body">
+      <h1>Help</h1>
+      <div class="lead">Short answers, grouped. Every <strong>?</strong> in the app opens one of these.</div>
+
+      <div class="seg">Getting in</div>
       <div class="card">
-        <div class="row"><span>Which providers can I sign in with?<span class="meta">Google, Apple, Microsoft or LinkedIn. All use OpenID Connect: the provider handles the login and we only store a provider account number — never your email, name or profile.</span></span></div>
-        <div class="row"><span>Why does the match score never change?<span class="meta">It's fixed at match time. Later answers don't rewrite it.</span></span></div>
-        <div class="row"><span>Can I see who liked me?<span class="meta">No. Matching only works both ways, never one-sided.</span></span></div>
-        <div class="row"><span>Are there photos?<span class="meta">No photos on the platform, ever. Stylized avatars only.</span></span></div>
-        <div class="row"><span>Who can see my answers?<span class="meta">Only people you match with, stage by stage.</span></span></div>
-        <div class="row"><span>Is my chat private?<span class="meta">End-to-end encrypted. No one reads it, we don't store it.</span></span></div>
-        <div class="row"><span>What happens if I delete my account?<span class="meta">Server records, matching and chat are deleted. Handles are never reused.</span></span></div>
-        <div class="row"><span>What happens if I lose my phone?<span class="meta">Your answers exist only on that device, encrypted, with no server copy and no backup — so a lost, reset or broken phone means you answer again from scratch. A handle that was taken stays retired regardless.</span></span></div>
+        <div class="row" id="age-gate"><span>Why do you ask my age?<span class="meta">We ask once, on your way in. It is a self-declaration and we do not check proof. Adults only is our own rule, and the app stores require it for an app like this.</span></span></div>
+        <div class="row" id="sign-in"><span>Which providers can I sign in with?<span class="meta">Google, Apple, Microsoft or LinkedIn. All use OpenID Connect: the provider handles the login and we only store a provider account number — never your email, name or profile. One account belongs to one provider identity.</span></span></div>
+        <div class="row" id="handles"><span>Can someone take my handle after I change it?<span class="meta">No. Handles are never reissued — not after a change and not after an account is deleted.</span></span></div>
+      </div>
+
+      <div class="seg">Privacy</div>
+      <div class="card">
+        <div class="row" id="how-it-works"><span>How does paiir.me work?<span class="meta">You answer questions about yourself and what you are looking for. Only those answers affect compatibility; red flags are hard exclusions. Your answers stay encrypted on your device, with no server copy or backup. No real photos of you: a photo-derived avatar is shared peer-to-peer after mutual interest.</span></span></div>
+        <div class="row" id="sensitive-data"><span>Why do you need sensitive answers at all?<span class="meta">Religion, politics and orientation are special-category data, so we ask for explicit consent first. They are used for one purpose only: matching. Nothing else, ever — no advertising, no analytics, no sharing. Skip any of them; they are optional.</span></span></div>
+        <div class="row" id="who-sees-answers"><span>Who can see my answers?<span class="meta">Only people you are paired with, and only stage by stage. Your interest stays private until both people declare one.</span></span></div>
+        <div class="row" id="avatar"><span>Where does my photo go?<span class="meta">Nowhere. Your photo never leaves your phone. The avatar is drawn on your device from it, and only the drawn avatar is sent — directly to people you both chose. We never hold it and we never show a real photo.</span></span></div>
+        <div class="row" id="photos"><span>Are there real photos on the platform?<span class="meta">No. Nobody's real photo is ever uploaded, stored or shown. You see drawn avatars, and they travel device to device.</span></span></div>
+        <div class="row" id="chat"><span>Is my chat private?<span class="meta">End-to-end encrypted, text only — no images no attachments. We cannot read it and we do not store it.</span></span></div>
+        <div class="row" id="lose-phone"><span>What happens if I lose my phone?<span class="meta">Your answers exist only on that device, encrypted, with no server copy and no backup — so a lost, reset or broken phone means you answer again from scratch. A handle that was taken stays retired regardless.</span></span></div>
+      </div>
+
+      <div class="seg">Answers and matching</div>
+      <div class="card">
+        <div class="row" id="score"><span>How is the candidate list sorted?<span class="meta">By how well each person fits what you are looking for. Score is value only — higher is better. There is no cut-off: keep scrolling as far as you like. Only red flags and the ranges you set remove someone.</span></span></div>
+        <div class="row" id="score-fixed"><span>Why does the score never change?<span class="meta">It is fixed at pairing time. Later answers do not rewrite it.</span></span></div>
+        <div class="row" id="red-flags"><span>What is a red flag?<span class="meta">A hard boundary: a person you pair with can never break it. It is kept private and never shown to them.</span></span></div>
+        <div class="row" id="optional-info"><span>What is required and what is optional?<span class="meta">16 required questions drive matching. Everything else — interests, personality, extended and deep questions — is voluntary, answerable later, and never required to browse, be browsed or pair.</span></span></div>
+        <div class="row" id="extended-deep"><span>When do I answer the extra questions?<span class="meta">On demand: when someone asks one, or on your own to unlock asking it yourself. They are answered on your device, edited any time, and nothing there blocks you from pairing.</span></span></div>
+        <div class="row" id="answers-compare"><span>Why is one answer green and another not?<span class="meta">Green means you both answered the same. You only see an answer of theirs that you have answered yourself — otherwise answer yours first, then you can ask.</span></span></div>
+        <div class="row" id="personality"><span>Is my personality type used for matching?<span class="meta">No. It is shown to people after you pair, as context for getting to know each other. Only the required questions are used for matching.</span></span></div>
+        <div class="row" id="interests"><span>Do my interests affect who I see?<span class="meta">No. Interests — imported or picked by hand — are conversation material only. They never change matching.</span></span></div>
+        <div class="row" id="location"><span>How precise is my location?<span class="meta">You state it; it is never detected from your device. You pick a distance band: under 15 km, same city, same region, or anywhere. Only the matched band ever leaves your phone — never a pin or a postcode.</span></span></div>
+      </div>
+
+      <div class="seg">Stages and pairing</div>
+      <div class="card">
+        <div class="row" id="stage-1"><span>What can I see once we are paired?<span class="meta">All their answered optional info is open to read, and anything unanswered can be asked — after you have answered it yourself. Ice breakers, conversation starters and the activity log live here. Moving to chat needs both of you to opt in.</span></span></div>
+        <div class="row" id="icebreaker"><span>Can I change my pick later?<span class="meta">No. A choice is permanent and moves you to the next pair; the dots let you review earlier pairs with your picks kept as they were. Results appear after you both finish.</span></span></div>
+        <div class="row" id="who-liked-me"><span>Can I see who is interested in me?<span class="meta">Not before you declare interest yourself. Declaring is one-sided and private; it is revealed only when both people have declared one.</span></span></div>
+      </div>
+
+      <div class="seg">Money</div>
+      <div class="card">
+        <div class="row" id="pricing"><span>What does it cost?<span class="meta">Matching and getting to know someone are free forever. Only opening the chat costs, and only for the person who starts it. A certified payment provider handles the card; we never see the number. Cancel with one tap.</span></span></div>
+      </div>
+
+      <div class="seg">Your account</div>
+      <div class="card">
+        <div class="row" id="sign-out"><span>What happens when I sign out?<span class="meta">Signing out removes this device only. Your answers stay on it, encrypted; nothing is deleted from anywhere else.</span></span></div>
+        <div class="row" id="delete-account"><span>What happens if I delete my account?<span class="meta">Server records, pairings and chat state are removed. Handles are never reused, and your answers disappear with the device.</span></span></div>
       </div>
     </div>
   </div>

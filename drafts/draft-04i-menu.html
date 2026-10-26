@@ -29,9 +29,6 @@
   .qmark{width:20px; height:20px; border-radius:50%; border:1.5px solid var(--muted);
          color:var(--muted); font-size:12px; display:inline-flex; align-items:center;
          justify-content:center; cursor:pointer; background:none; font-family:inherit;}
-  .expl{display:none; font-size:12px; color:var(--muted); line-height:1.5;
-        margin:10px 18px 0; border-left:2px solid var(--line); padding:4px 10px;}
-  .expl.show{display:block;}
   .body{flex:1; padding:18px; overflow-y:auto;}
   h1{font-size:26px; font-weight:600; margin-bottom:14px; line-height:1.25;}
   .card{border:1px solid var(--line); border-radius:14px; background:var(--surface);
@@ -46,10 +43,9 @@
 <body>
   <div class="phone" style="min-height:620px;">
     <header>
-      <strong>Menu <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
+      <strong>Menu </strong>
       <nav><a href="draft-04i-menu.html" title="Menu"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></a></nav>
     </header>
-    <div class="expl" id="h-expl">Every page you can always reach, in one place. These utilities stay available after setup and the required questions.</div>
 
     <div class="body">
       <div class="card">

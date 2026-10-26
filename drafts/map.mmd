@@ -53,7 +53,6 @@ flowchart TD
   01-signup-18plus --> 01a-welcome
   01-signup-18plus ==> 01b-terms
   01-signup-18plus --> 01c-privacy
-  01-signup-18plus --> 04i-menu
   01-signup-18plus --> 04j-legal
   01-signup-18plus --> legal-terms
   01a-welcome ==> 01-signup-18plus
@@ -62,24 +61,19 @@ flowchart TD
   01a-welcome --> legal-terms
   01b-terms --> 01-signup-18plus
   01b-terms ==> 01c-privacy
-  01b-terms --> 04i-menu
   01b-terms --> 04j-legal
   01b-terms --> legal-terms
   01c-privacy ==> 01d-consent-sensitive
-  01c-privacy --> 04i-menu
   01c-privacy --> 04j-legal
   01c-privacy --> legal-terms
   01d-consent-sensitive --> 01a-welcome
   01d-consent-sensitive --> 01c-privacy
   01d-consent-sensitive ==> 01e-consent-avatar
   01d-consent-sensitive --> 01h-sorry-consent
-  01d-consent-sensitive --> 04i-menu
   01d-consent-sensitive --> 04j-legal
   01d-consent-sensitive --> legal-terms
   01e-consent-avatar ==> 01f-handle
-  01e-consent-avatar --> 04i-menu
   01f-handle ==> 02-01-gender
-  01f-handle --> 04i-menu
   01h-sorry-consent --> 01a-welcome
   01i-sorry-closed --> 01a-welcome
   02-01-gender --> 01f-handle

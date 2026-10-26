@@ -53,7 +53,7 @@
   .btn:disabled{opacity:.45; cursor:default;}
   .qmark{width:20px; height:20px; border-radius:50%; border:1.5px solid var(--muted);
          color:var(--muted); font-size:12px; display:inline-flex; align-items:center;
-         justify-content:center; cursor:pointer; background:none; font-family:inherit;}
+         justify-content:center; cursor:pointer; background:none; font-family:inherit; text-decoration:none;}
   .expl{display:none; font-size:12px; color:var(--muted); line-height:1.5;
         margin:10px 18px 0; border-left:2px solid var(--line); padding:4px 10px;}
   .expl.show{display:block;}
@@ -63,10 +63,9 @@
 <body>
   <div class="phone">
     <header>
-      <strong>Extended / deep Q&amp;A <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
+      <strong>Extended / deep Q&amp;A <a class="qmark" href="draft-04c-faq.html#answers-compare" target="_blank" rel="noopener" title="Open the answer in Help">?</a></strong>
       <a href="draft-07-match-stage1.html">Close</a>
     </header>
-    <div class="expl" id="h-expl">Answers sit side by side; green means you both answered the same. You only see an answer of theirs that you have answered yourself — otherwise answer it first, then you can ask.</div>
 
     <div class="body">
       <div class="seg-title">Extended</div>

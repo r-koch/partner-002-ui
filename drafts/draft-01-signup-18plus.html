@@ -28,7 +28,7 @@
   header a{color:var(--muted); font-size:14px; text-decoration:none;}
   .qmark{width:20px; height:20px; border-radius:50%; border:1.5px solid var(--muted);
          color:var(--muted); font-size:12px; display:inline-flex; align-items:center;
-         justify-content:center; cursor:pointer; background:none; font-family:inherit;}
+         justify-content:center; cursor:pointer; background:none; font-family:inherit; text-decoration:none;}
   .expl{display:none; font-size:12px; color:var(--muted); line-height:1.5;
         margin:10px 18px 0; border-left:2px solid var(--line); padding:4px 10px;}
   .expl.show{display:block;}
@@ -71,7 +71,7 @@
 <body>
   <div class="phone">
     <header>
-      <strong>Setup – Age check <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
+      <strong>Setup – Age check <a class="qmark" href="draft-04c-faq.html#age-gate" target="_blank" rel="noopener" title="Open the answer in Help">?</a></strong>
     </header>
     <div class="progress">
       <span class="now"></span>
@@ -81,7 +81,6 @@
       <span class=""></span>
       <span class=""></span>
     </div>
-    <div class="expl" id="h-expl">We ask this once, on your way in. It is a self-declaration; we do not check proof. Adults only is our own rule, and it is also required by the app stores that distribute the app.</div>
     
     <div class="body">
       <h1>How old are you?</h1>

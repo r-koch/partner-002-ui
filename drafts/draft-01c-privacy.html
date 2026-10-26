@@ -29,9 +29,6 @@
   .qmark{width:20px; height:20px; border-radius:50%; border:1.5px solid var(--muted);
          color:var(--muted); font-size:12px; display:inline-flex; align-items:center;
          justify-content:center; cursor:pointer; background:none; font-family:inherit;}
-  .expl{display:none; font-size:12px; color:var(--muted); line-height:1.5;
-        margin:10px 18px 0; border-left:2px solid var(--line); padding:4px 10px;}
-  .expl.show{display:block;}
   .body{flex:1; padding:18px; overflow-y:auto;}
   .step{font-size:13px; color:var(--muted); margin-bottom:12px;}
   h1{font-size:26px; font-weight:600; margin-bottom:8px; line-height:1.25;}
@@ -78,7 +75,7 @@
 <body>
   <div class="phone" style="min-height:560px;">
     <header>
-      <strong>Setup – Privacy <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
+      <strong>Setup – Privacy </strong>
     </header>
     <div class="progress">
       <span class="done"></span>
@@ -88,7 +85,6 @@
       <span class=""></span>
       <span class=""></span>
     </div>
-    <div class="expl" id="h-expl">The short version now, the legally precise version always one tap away.</div>
     
     <div class="body">
       

@@ -52,7 +52,7 @@
   .demo-note{text-align:center; font-size:11px; color:var(--muted); padding:4px 16px 10px;}
   .qmark{width:20px; height:20px; border-radius:50%; border:1.5px solid var(--muted);
          color:var(--muted); font-size:12px; display:inline-flex; align-items:center;
-         justify-content:center; cursor:pointer; background:none; font-family:inherit;}
+         justify-content:center; cursor:pointer; background:none; font-family:inherit; text-decoration:none;}
   .expl{display:none; font-size:12px; color:var(--muted); line-height:1.5;
         margin:10px 18px 0; border-left:2px solid var(--line); padding:4px 10px;}
   .expl.show{display:block;}
@@ -61,10 +61,9 @@
 <body>
   <div class="phone">
     <header>
-      <strong>Ice breaker <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
+      <strong>Ice breaker <a class="qmark" href="draft-04c-faq.html#icebreaker" target="_blank" rel="noopener" title="Open the answer in Help">?</a></strong>
       <a href="#">with brave-lion-4417</a>
     </header>
-    <div class="expl" id="h-expl">Which one feels more like you? Trust the first gut reaction — your choice is permanent and moves you to the next pair. The dots let you review earlier pairs (picks stay fixed). Your choices land in the shared results after you both finish.</div>
     <div class="dots" id="pairDots" role="group" aria-label="Choose pair">
       <button class="on" onclick="gotoPair(0)" aria-label="Pair 1 of 5" aria-current="true"></button>
       <button onclick="gotoPair(1)" aria-label="Pair 2 of 5"></button>

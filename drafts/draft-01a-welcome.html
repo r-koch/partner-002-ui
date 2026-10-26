@@ -28,7 +28,7 @@
   header a{color:var(--muted); font-size:14px; text-decoration:none;}
   .qmark{width:20px; height:20px; border-radius:50%; border:1.5px solid var(--muted);
          color:var(--muted); font-size:12px; display:inline-flex; align-items:center;
-         justify-content:center; cursor:pointer; background:none; font-family:inherit;}
+         justify-content:center; cursor:pointer; background:none; font-family:inherit; text-decoration:none;}
   .expl{display:none; font-size:12px; color:var(--muted); line-height:1.5;
         margin:10px 18px 0; border-left:2px solid var(--line); padding:4px 10px;}
   .expl.show{display:block;}
@@ -66,9 +66,8 @@
 <body>
   <div class="phone" style="min-height:560px;">
     <header>
-      <strong>Welcome <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></strong>
+      <strong>Welcome <a class="qmark" href="draft-04c-faq.html#how-it-works" target="_blank" rel="noopener" title="Open the answer in Help">?</a></strong>
           </header>
-    <div class="expl" id="h-expl">Answer questions about yourself and what you’re looking for. Only those answers affect compatibility; red flags are hard exclusions. Your answers stay encrypted on your device, with no server copy or backup. No real photos of you; a photo-derived avatar is shared peer-to-peer after mutual interest.</div>
 
     <div class="body" style="display:flex; flex-direction:column; justify-content:center;">
       <h1>A paiir by choice</h1>
