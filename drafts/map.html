@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PARTNER-002 — screen map</title>
+<style>
+  :root{--bg:#FAF6EF;--surface:#F3EBDD;--text:#2E2620;--muted:#6B5D50;--line:#D8CCBA;--accent:#B0431F;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:Georgia,'Times New Roman',serif;}
+  header{display:flex;justify-content:space-between;align-items:center;gap:16px;
+         padding:14px 18px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg);z-index:5}
+  header strong{font-weight:600}
+  header .meta{color:var(--muted);font-size:13px}
+  .wrap{display:flex;gap:18px;padding:18px;align-items:flex-start}
+  .canvas{flex:1;overflow:auto;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+  svg{display:block}
+  .panel{width:330px;font-size:13px;color:var(--muted)}
+  .panel h3{font-size:13px;color:var(--text);margin:14px 0 6px;font-weight:600}
+  .panel h3:first-child{margin-top:0}
+  .panel li{margin:2px 0;line-height:1.4}
+  .panel ul{padding-left:16px}
+  .ok{color:#3E6B4F}
+  .bad{color:var(--accent)}
+  .legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+  .legend span{display:inline-flex;align-items:center;gap:5px}
+  .dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+  a.node{text-decoration:none}
+  a.node text{fill:var(--text);font-size:11px}
+  a.node:hover rect{stroke:var(--accent);stroke-width:2.5}
+  text.lbl{fill:#fff;font-size:10px;font-weight:600}
+  text.lane{fill:#6B5D50;font-size:11px;font-family:inherit}
+  svg.hide-util path.util{display:none}
+</style></head>
+<body>
+<header>
+  <strong>Screen map</strong>
+  <span class="meta">51 pages · 142 links · generated 2026-10-26 09:47 · click a page to open the live draft</span>
+</header>
+<div class="wrap">
+  <div class="canvas"><svg id="map" width="1200" height="600"></svg></div>
+  <aside class="panel">
+    <h3>Legend</h3>
+    <div class="legend" id="legend"></div>
+    <h3>Flow</h3>
+    <ul><li>Thick arrow = wizard order (SEQUENCE)</li><li>Thin arrow = any other link</li></ul>
+    <label style="display:flex;align-items:center;gap:6px;margin-top:6px;cursor:pointer">
+      <input type="checkbox" id="toggle-util" checked> hide menu/settings links
+    </label>
+    <h3>Information-architecture check</h3>
+    <div id="qa"></div>
+  </aside>
+</div>
+<script>
+const DATA = {"nodes":[{"id":"draft-00-buttons.html","file":"draft-00-buttons.html","label":"00-buttons","stage":"entry","order":948,"colour":"#3E6B4F","flags":[]},{"id":"draft-00-entry.html","file":"draft-00-entry.html","label":"00-entry","stage":"entry","order":0,"colour":"#3E6B4F","flags":[]},{"id":"draft-00-palettes.html","file":"draft-00-palettes.html","label":"00-palettes","stage":"entry","order":948,"colour":"#3E6B4F","flags":[]},{"id":"draft-01-signup-18plus.html","file":"draft-01-signup-18plus.html","label":"01-signup-18plus","stage":"setup","order":2,"colour":"#4A6FA5","flags":[]},{"id":"draft-01a-welcome.html","file":"draft-01a-welcome.html","label":"01a-welcome","stage":"setup","order":1,"colour":"#4A6FA5","flags":[]},{"id":"draft-01b-terms.html","file":"draft-01b-terms.html","label":"01b-terms","stage":"setup","order":3,"colour":"#4A6FA5","flags":[]},{"id":"draft-01c-privacy.html","file":"draft-01c-privacy.html","label":"01c-privacy","stage":"setup","order":4,"colour":"#4A6FA5","flags":[]},{"id":"draft-01d-consent-sensitive.html","file":"draft-01d-consent-sensitive.html","label":"01d-consent-sensitive","stage":"setup","order":5,"colour":"#4A6FA5","flags":[]},{"id":"draft-01e-consent-avatar.html","file":"draft-01e-consent-avatar.html","label":"01e-consent-avatar","stage":"setup","order":6,"colour":"#4A6FA5","flags":[]},{"id":"draft-01f-handle.html","file":"draft-01f-handle.html","label":"01f-handle","stage":"setup","order":7,"colour":"#4A6FA5","flags":[]},{"id":"draft-01g-sorry-age.html","file":"draft-01g-sorry-age.html","label":"01g-sorry-age","stage":"setup","order":948,"colour":"#4A6FA5","flags":[]},{"id":"draft-01h-sorry-consent.html","file":"draft-01h-sorry-consent.html","label":"01h-sorry-consent","stage":"setup","order":948,"colour":"#4A6FA5","flags":[]},{"id":"draft-01i-sorry-closed.html","file":"draft-01i-sorry-closed.html","label":"01i-sorry-closed","stage":"setup","order":948,"colour":"#4A6FA5","flags":[]},{"id":"draft-02-01-gender.html","file":"draft-02-01-gender.html","label":"02-01-gender","stage":"required","order":8,"colour":"#B0431F","flags":[]},{"id":"draft-02-02-age.html","file":"draft-02-02-age.html","label":"02-02-age","stage":"required","order":9,"colour":"#B0431F","flags":[]},{"id":"draft-02-03-height.html","file":"draft-02-03-height.html","label":"02-03-height","stage":"required","order":10,"colour":"#B0431F","flags":[]},{"id":"draft-02-04-body-type.html","file":"draft-02-04-body-type.html","label":"02-04-body-type","stage":"required","order":11,"colour":"#B0431F","flags":[]},{"id":"draft-02-05-relationship-style.html","file":"draft-02-05-relationship-style.html","label":"02-05-relationship-style","stage":"required","order":12,"colour":"#B0431F","flags":[]},{"id":"draft-02-06-kids-now.html","file":"draft-02-06-kids-now.html","label":"02-06-kids-now","stage":"required","order":13,"colour":"#B0431F","flags":[]},{"id":"draft-02-07-want-kids.html","file":"draft-02-07-want-kids.html","label":"02-07-want-kids","stage":"required","order":14,"colour":"#B0431F","flags":[]},{"id":"draft-02-08-smoking.html","file":"draft-02-08-smoking.html","label":"02-08-smoking","stage":"required","order":15,"colour":"#B0431F","flags":[]},{"id":"draft-02-09-religion.html","file":"draft-02-09-religion.html","label":"02-09-religion","stage":"required","order":16,"colour":"#B0431F","flags":[]},{"id":"draft-02-10-location.html","file":"draft-02-10-location.html","label":"02-10-location","stage":"required","order":17,"colour":"#B0431F","flags":[]},{"id":"draft-02-11-living.html","file":"draft-02-11-living.html","label":"02-11-living","stage":"required","order":18,"colour":"#B0431F","flags":[]},{"id":"draft-02-12-work.html","file":"draft-02-12-work.html","label":"02-12-work","stage":"required","order":19,"colour":"#B0431F","flags":[]},{"id":"draft-02-13-pets.html","file":"draft-02-13-pets.html","label":"02-13-pets","stage":"required","order":20,"colour":"#B0431F","flags":[]},{"id":"draft-02-14-politics.html","file":"draft-02-14-politics.html","label":"02-14-politics","stage":"required","order":21,"colour":"#B0431F","flags":[]},{"id":"draft-02-15-freetime.html","file":"draft-02-15-freetime.html","label":"02-15-freetime","stage":"required","order":22,"colour":"#B0431F","flags":[]},{"id":"draft-02-16-orientation.html","file":"draft-02-16-orientation.html","label":"02-16-orientation","stage":"required","order":23,"colour":"#B0431F","flags":[]},{"id":"draft-02-17-sun-sign.html","file":"draft-02-17-sun-sign.html","label":"02-17-sun-sign","stage":"required","order":30,"colour":"#B0431F","flags":[]},{"id":"draft-02-18-four-letter-style.html","file":"draft-02-18-four-letter-style.html","label":"02-18-four-letter-style","stage":"required","order":31,"colour":"#B0431F","flags":[]},{"id":"draft-02-19-big-five.html","file":"draft-02-19-big-five.html","label":"02-19-big-five","stage":"required","order":32,"colour":"#B0431F","flags":[]},{"id":"draft-03-questionnaire-overview.html","file":"draft-03-questionnaire-overview.html","label":"03-questionnaire-overview","stage":"hub","order":948,"colour":"#6B5D50","flags":[]},{"id":"draft-03b-decision-gate.html","file":"draft-03b-decision-gate.html","label":"03b-decision-gate","stage":"hub","order":24,"colour":"#6B5D50","flags":[]},{"id":"draft-04-candidate-list.html","file":"draft-04-candidate-list.html","label":"04-candidate-list","stage":"discover","order":25,"colour":"#2E7D6B","flags":[]},{"id":"draft-04c-faq.html","file":"draft-04c-faq.html","label":"04c-faq","stage":"support","order":39,"colour":"#6B6B6B","flags":[]},{"id":"draft-04e-interests-manual.html","file":"draft-04e-interests-manual.html","label":"04e-interests-manual","stage":"discover","order":948,"colour":"#2E7D6B","flags":[]},{"id":"draft-04f-pricing.html","file":"draft-04f-pricing.html","label":"04f-pricing","stage":"support","order":38,"colour":"#6B6B6B","flags":[]},{"id":"draft-04g-settings.html","file":"draft-04g-settings.html","label":"04g-settings","stage":"settings","order":40,"colour":"#7A7265","flags":[]},{"id":"draft-04h-avatar-create.html","file":"draft-04h-avatar-create.html","label":"04h-avatar-create","stage":"settings","order":41,"colour":"#7A7265","flags":[]},{"id":"draft-04i-menu.html","file":"draft-04i-menu.html","label":"04i-menu","stage":"settings","order":42,"colour":"#7A7265","flags":[]},{"id":"draft-04j-legal.html","file":"draft-04j-legal.html","label":"04j-legal","stage":"settings","order":43,"colour":"#7A7265","flags":[]},{"id":"draft-05-matches-list.html","file":"draft-05-matches-list.html","label":"05-matches-list","stage":"matches","order":26,"colour":"#C26B2E","flags":[]},{"id":"draft-06a-history.html","file":"draft-06a-history.html","label":"06a-history","stage":"history","order":34,"colour":"#8A8075","flags":[]},{"id":"draft-06b-extended-qa.html","file":"draft-06b-extended-qa.html","label":"06b-extended-qa","stage":"extended","order":35,"colour":"#8A6FA5","flags":[]},{"id":"draft-06c-extended.html","file":"draft-06c-extended.html","label":"06c-extended","stage":"extended","order":36,"colour":"#8A6FA5","flags":[]},{"id":"draft-06d-deep.html","file":"draft-06d-deep.html","label":"06d-deep","stage":"extended","order":37,"colour":"#8A6FA5","flags":[]},{"id":"draft-07-match-stage1.html","file":"draft-07-match-stage1.html","label":"07-match-stage1","stage":"stage","order":27,"colour":"#2E5E8C","flags":[]},{"id":"draft-08-match-rung3.html","file":"draft-08-match-rung3.html","label":"08-match-rung3","stage":"stage","order":28,"colour":"#2E5E8C","flags":[]},{"id":"draft-09-icebreaker-pair.html","file":"draft-09-icebreaker-pair.html","label":"09-icebreaker-pair","stage":"icebreaker","order":29,"colour":"#A65A2E","flags":[]},{"id":"draft-09b-icebreaker-result.html","file":"draft-09b-icebreaker-result.html","label":"09b-icebreaker-result","stage":"icebreaker","order":33,"colour":"#A65A2E","flags":[]}],"edges":[{"from":"draft-00-entry.html","to":"draft-01a-welcome.html","seq":true,"util":false},{"from":"draft-01-signup-18plus.html","to":"draft-01a-welcome.html","seq":false,"util":false},{"from":"draft-01-signup-18plus.html","to":"draft-01b-terms.html","seq":true,"util":false},{"from":"draft-01-signup-18plus.html","to":"draft-01g-sorry-age.html","seq":false,"util":false},{"from":"draft-01-signup-18plus.html","to":"draft-04i-menu.html","seq":false,"util":true},{"from":"draft-01a-welcome.html","to":"draft-01-signup-18plus.html","seq":true,"util":false},{"from":"draft-01b-terms.html","to":"draft-01c-privacy.html","seq":true,"util":false},{"from":"draft-01b-terms.html","to":"draft-04i-menu.html","seq":false,"util":true},{"from":"draft-01c-privacy.html","to":"draft-01d-consent-sensitive.html","seq":true,"util":false},{"from":"draft-01c-privacy.html","to":"draft-04i-menu.html","seq":false,"util":true},{"from":"draft-01d-consent-sensitive.html","to":"draft-01a-welcome.html","seq":false,"util":false},{"from":"draft-01d-consent-sensitive.html","to":"draft-01e-consent-avatar.html","seq":true,"util":false},{"from":"draft-01d-consent-sensitive.html","to":"draft-01h-sorry-consent.html","seq":false,"util":false},{"from":"draft-01d-consent-sensitive.html","to":"draft-04i-menu.html","seq":false,"util":true},{"from":"draft-01e-consent-avatar.html","to":"draft-01f-handle.html","seq":true,"util":false},{"from":"draft-01e-consent-avatar.html","to":"draft-04i-menu.html","seq":false,"util":true},{"from":"draft-01f-handle.html","to":"draft-02-01-gender.html","seq":true,"util":false},{"from":"draft-01f-handle.html","to":"draft-04i-menu.html","seq":false,"util":true},{"from":"draft-01g-sorry-age.html","to":"draft-00-entry.html","seq":false,"util":false},{"from":"draft-01h-sorry-consent.html","to":"draft-00-entry.html","seq":false,"util":false},{"from":"draft-01i-sorry-closed.html","to":"draft-00-entry.html","seq":false,"util":false},{"from":"draft-02-01-gender.html","to":"draft-01f-handle.html","seq":false,"util":false},{"from":"draft-02-01-gender.html","to":"draft-02-02-age.html","seq":true,"util":false},{"from":"draft-02-01-gender.html","to":"draft-04i-menu.html","seq":false,"util":true},{"from":"draft-02-02-age.html","to":"draft-02-01-gender.html","seq":false,"util":false},{"from":"draft-02-02-age.html","to":"draft-02-03-height.html","seq":true,"util":false},{"from":"draft-02-02-age.html","to":"draft-04i-menu.html","seq":false,"util":true},{"from":"draft-02-03-height.html","to":"draft-02-02-age.html","seq":false,"util":false},{"from":"draft-02-03-height.html","to":"draft-02-04-body-type.html","seq":true,"util":false},{"from":"draft-02-03-height.html","to":"draft-04i-menu.html","seq":false,"util":true},{"from":"draft-02-04-body-type.html","to":"draft-02-03-height.html","seq":false,"util":false},{"from":"draft-02-04-body-type.html","to":"draft-02-05-relationship-style.html","seq":true,"util":false},{"from":"draft-02-04-body-type.html","to":"draft-04i-menu.html","seq":false,"util":true},{"from":"draft-02-05-relationship-style.html","to":"draft-02-04-body-type.html","seq":false,"util":false},{"from":"draft-02-05-relationship-style.html","to":"draft-02-06-kids-now.html","seq":true,"util":false},{"from":"draft-02-05-relationship-style.html","to":"draft-04i-menu.html","seq":false,"util":true},{"from":"draft-02-06-kids-now.html","to":"draft-02-05-relationship-style.html","seq":false,"util":false},{"from":"draft-02-06-kids-now.html","to":"draft-02-07-want-kids.html","seq":true,"util":false},{"from":"draft-02-06-kids-now.html","to":"draft-04i-menu.html","seq":false,"util":true},{"from":"draft-02-07-want-kids.html","to":"draft-02-06-kids-now.html","seq":false,"util":false},{"from":"draft-02-07-want-kids.html","to":"draft-02-08-smoking.html","seq":true,"util":false},{"from":"draft-02-07-want-kids.html","to":"draft-04i-menu.html","seq":false,"util":true},{"from":"draft-02-08-smoking.html","to":"draft-02-07-want-kids.html","seq":false,"util":false},{"from":"draft-02-08-smoking.html","to":"draft-02-09-religion.html","seq":true,"util":false},{"from":"draft-02-08-smoking.html","to":"draft-04i-menu.html","seq":false,"util":true},{"from":"draft-02-09-religion.html","to":"draft-02-08-smoking.html","seq":false,"util":false},{"from":"draft-02-09-religion.html","to":"draft-02-10-location.html","seq":true,"util":false},{"from":"draft-02-09-religion.html","to":"draft-04i-menu.html","seq":false,"util":true},{"from":"draft-02-10-location.html","to":"draft-02-09-religion.html","seq":false,"util":false},{"from":"draft-02-10-location.html","to":"draft-02-11-living.html","seq":true,"util":false},{"from":"draft-02-10-location.html","to":"draft-04i-menu.html","seq":false,"util":true},{"from":"draft-02-11-living.html","to":"draft-02-10-location.html","seq":false,"util":false},{"from":"draft-02-11-living.html","to":"draft-02-12-work.html","seq":true,"util":false},{"from":"draft-02-11-living.html","to":"draft-04i-menu.html","seq":false,"util":true},{"from":"draft-02-12-work.html","to":"draft-02-11-living.html","seq":false,"util":false},{"from":"draft-02-12-work.html","to":"draft-02-13-pets.html","seq":true,"util":false},{"from":"draft-02-12-work.html","to":"draft-04i-menu.html","seq":false,"util":true},{"from":"draft-02-13-pets.html","to":"draft-02-12-work.html","seq":false,"util":false},{"from":"draft-02-13-pets.html","to":"draft-02-14-politics.html","seq":true,"util":false},{"from":"draft-02-13-pets.html","to":"draft-04i-menu.html","seq":false,"util":true},{"from":"draft-02-14-politics.html","to":"draft-02-13-pets.html","seq":false,"util":false},{"from":"draft-02-14-politics.html","to":"draft-02-15-freetime.html","seq":true,"util":false},{"from":"draft-02-14-politics.html","to":"draft-04i-menu.html","seq":false,"util":true},{"from":"draft-02-15-freetime.html","to":"draft-02-14-politics.html","seq":false,"util":false},{"from":"draft-02-15-freetime.html","to":"draft-02-16-orientation.html","seq":true,"util":false},{"from":"draft-02-15-freetime.html","to":"draft-04i-menu.html","seq":false,"util":true},{"from":"draft-02-16-orientation.html","to":"draft-02-15-freetime.html","seq":false,"util":false},{"from":"draft-02-16-orientation.html","to":"draft-03b-decision-gate.html","seq":true,"util":false},{"from":"draft-02-16-orientation.html","to":"draft-04i-menu.html","seq":false,"util":true},{"from":"draft-02-17-sun-sign.html","to":"draft-02-18-four-letter-style.html","seq":true,"util":false},{"from":"draft-02-17-sun-sign.html","to":"draft-04i-menu.html","seq":false,"util":true},{"from":"draft-02-17-sun-sign.html","to":"draft-09-icebreaker-pair.html","seq":false,"util":false},{"from":"draft-02-18-four-letter-style.html","to":"draft-02-17-sun-sign.html","seq":false,"util":false},{"from":"draft-02-18-four-letter-style.html","to":"draft-02-19-big-five.html","seq":true,"util":false},{"from":"draft-02-18-four-letter-style.html","to":"draft-04i-menu.html","seq":false,"util":true},{"from":"draft-02-19-big-five.html","to":"draft-02-18-four-letter-style.html","seq":false,"util":false},{"from":"draft-02-19-big-five.html","to":"draft-04i-menu.html","seq":false,"util":true},{"from":"draft-02-19-big-five.html","to":"draft-09b-icebreaker-result.html","seq":true,"util":false},{"from":"draft-03-questionnaire-overview.html","to":"draft-04e-interests-manual.html","seq":false,"util":false},{"from":"draft-03-questionnaire-overview.html","to":"draft-04i-menu.html","seq":false,"util":true},{"from":"draft-03-questionnaire-overview.html","to":"draft-06c-extended.html","seq":false,"util":false},{"from":"draft-03-questionnaire-overview.html","to":"draft-06d-deep.html","seq":false,"util":false},{"from":"draft-03b-decision-gate.html","to":"draft-03-questionnaire-overview.html","seq":false,"util":false},{"from":"draft-03b-decision-gate.html","to":"draft-04-candidate-list.html","seq":true,"util":false},{"from":"draft-03b-decision-gate.html","to":"draft-04i-menu.html","seq":false,"util":true},{"from":"draft-04-candidate-list.html","to":"draft-01i-sorry-closed.html","seq":false,"util":false},{"from":"draft-04-candidate-list.html","to":"draft-04i-menu.html","seq":false,"util":true},{"from":"draft-04-candidate-list.html","to":"draft-05-matches-list.html","seq":true,"util":false},{"from":"draft-04c-faq.html","to":"draft-04g-settings.html","seq":true,"util":true},{"from":"draft-04c-faq.html","to":"draft-04i-menu.html","seq":false,"util":true},{"from":"draft-04e-interests-manual.html","to":"draft-03-questionnaire-overview.html","seq":false,"util":false},{"from":"draft-04e-interests-manual.html","to":"draft-04i-menu.html","seq":false,"util":true},{"from":"draft-04f-pricing.html","to":"draft-04c-faq.html","seq":true,"util":false},{"from":"draft-04f-pricing.html","to":"draft-04i-menu.html","seq":false,"util":true},{"from":"draft-04g-settings.html","to":"draft-01a-welcome.html","seq":false,"util":true},{"from":"draft-04g-settings.html","to":"draft-01f-handle.html","seq":false,"util":true},{"from":"draft-04g-settings.html","to":"draft-01i-sorry-closed.html","seq":false,"util":true},{"from":"draft-04g-settings.html","to":"draft-04f-pricing.html","seq":false,"util":true},{"from":"draft-04g-settings.html","to":"draft-04h-avatar-create.html","seq":true,"util":true},{"from":"draft-04g-settings.html","to":"draft-04i-menu.html","seq":false,"util":true},{"from":"draft-04h-avatar-create.html","to":"draft-04g-settings.html","seq":false,"util":true},{"from":"draft-04h-avatar-create.html","to":"draft-04i-menu.html","seq":true,"util":true},{"from":"draft-04i-menu.html","to":"draft-03-questionnaire-overview.html","seq":false,"util":true},{"from":"draft-04i-menu.html","to":"draft-04c-faq.html","seq":false,"util":true},{"from":"draft-04i-menu.html","to":"draft-04g-settings.html","seq":false,"util":true},{"from":"draft-04i-menu.html","to":"draft-04j-legal.html","seq":true,"util":true},{"from":"draft-04j-legal.html","to":"draft-01b-terms.html","seq":false,"util":false},{"from":"draft-04j-legal.html","to":"draft-01c-privacy.html","seq":false,"util":false},{"from":"draft-04j-legal.html","to":"draft-01d-consent-sensitive.html","seq":false,"util":false},{"from":"draft-04j-legal.html","to":"draft-01e-consent-avatar.html","seq":false,"util":false},{"from":"draft-04j-legal.html","to":"draft-04i-menu.html","seq":false,"util":true},{"from":"draft-05-matches-list.html","to":"draft-01i-sorry-closed.html","seq":false,"util":false},{"from":"draft-05-matches-list.html","to":"draft-04-candidate-list.html","seq":false,"util":false},{"from":"draft-05-matches-list.html","to":"draft-04i-menu.html","seq":false,"util":true},{"from":"draft-05-matches-list.html","to":"draft-07-match-stage1.html","seq":true,"util":false},{"from":"draft-05-matches-list.html","to":"draft-08-match-rung3.html","seq":false,"util":false},{"from":"draft-06a-history.html","to":"draft-06b-extended-qa.html","seq":true,"util":false},{"from":"draft-06a-history.html","to":"draft-07-match-stage1.html","seq":false,"util":false},{"from":"draft-06b-extended-qa.html","to":"draft-06c-extended.html","seq":true,"util":false},{"from":"draft-06b-extended-qa.html","to":"draft-07-match-stage1.html","seq":false,"util":false},{"from":"draft-06c-extended.html","to":"draft-03-questionnaire-overview.html","seq":false,"util":false},{"from":"draft-06c-extended.html","to":"draft-04i-menu.html","seq":false,"util":true},{"from":"draft-06c-extended.html","to":"draft-06d-deep.html","seq":true,"util":false},{"from":"draft-06d-deep.html","to":"draft-03-questionnaire-overview.html","seq":false,"util":false},{"from":"draft-06d-deep.html","to":"draft-04f-pricing.html","seq":true,"util":false},{"from":"draft-06d-deep.html","to":"draft-04i-menu.html","seq":false,"util":true},{"from":"draft-06d-deep.html","to":"draft-06c-extended.html","seq":false,"util":false},{"from":"draft-07-match-stage1.html","to":"draft-01i-sorry-closed.html","seq":false,"util":false},{"from":"draft-07-match-stage1.html","to":"draft-04i-menu.html","seq":false,"util":true},{"from":"draft-07-match-stage1.html","to":"draft-05-matches-list.html","seq":false,"util":false},{"from":"draft-07-match-stage1.html","to":"draft-06a-history.html","seq":false,"util":false},{"from":"draft-07-match-stage1.html","to":"draft-06b-extended-qa.html","seq":false,"util":false},{"from":"draft-07-match-stage1.html","to":"draft-08-match-rung3.html","seq":true,"util":false},{"from":"draft-08-match-rung3.html","to":"draft-01i-sorry-closed.html","seq":false,"util":false},{"from":"draft-08-match-rung3.html","to":"draft-04i-menu.html","seq":false,"util":true},{"from":"draft-08-match-rung3.html","to":"draft-05-matches-list.html","seq":false,"util":false},{"from":"draft-08-match-rung3.html","to":"draft-06a-history.html","seq":false,"util":false},{"from":"draft-08-match-rung3.html","to":"draft-06b-extended-qa.html","seq":false,"util":false},{"from":"draft-08-match-rung3.html","to":"draft-09-icebreaker-pair.html","seq":true,"util":false},{"from":"draft-09-icebreaker-pair.html","to":"draft-02-17-sun-sign.html","seq":true,"util":false},{"from":"draft-09b-icebreaker-result.html","to":"draft-04i-menu.html","seq":false,"util":true},{"from":"draft-09b-icebreaker-result.html","to":"draft-06a-history.html","seq":true,"util":false}],"stages":[{"name":"entry","colour":"#3E6B4F"},{"name":"setup","colour":"#4A6FA5"},{"name":"required","colour":"#B0431F"},{"name":"hub","colour":"#6B5D50"},{"name":"discover","colour":"#2E7D6B"},{"name":"matches","colour":"#C26B2E"},{"name":"stage","colour":"#2E5E8C"},{"name":"icebreaker","colour":"#A65A2E"},{"name":"extended","colour":"#8A6FA5"},{"name":"history","colour":"#8A8075"},{"name":"settings","colour":"#7A7265"},{"name":"support","colour":"#6B6B6B"}],"qa":{"broken":[],"orphans":[],"dead_ends":[],"unreachable":[],"drift":[]}};
+const svg = document.getElementById('map');
+const NS = 'http://www.w3.org/2000/svg';
+const NW = 132, NH = 26, GAPY = 12, GAPX = 210, PAD = 24;
+
+function el(tag, attrs) {
+  const e = document.createElementNS(NS, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  return e;
+}
+
+// Layout: one swimlane per stage (screen-flow convention), ordered within the lane.
+const STAGE_ORDER = DATA.stages.map(s => s.name);
+const laneY = {};
+STAGE_ORDER.forEach((name, i) => { laneY[name] = PAD + i * (NH + 24); });
+
+const rows = {};
+DATA.nodes.forEach(n => { (rows[n.stage] = rows[n.stage] || []).push(n); });
+
+const positions = {};
+let maxRight = 0;
+STAGE_ORDER.forEach(name => {
+  (rows[name] || []).sort((a, b) => (a.order - b.order) || a.id.localeCompare(b.id));
+  (rows[name] || []).forEach((n, i) => {
+    const x = PAD + 96 + i * (NW + 16);
+    positions[n.id] = {x: x, y: laneY[name]};
+    maxRight = Math.max(maxRight, x + NW);
+  });
+});
+
+const W = maxRight + PAD;
+const H = PAD * 2 + STAGE_ORDER.length * (NH + 24);
+svg.setAttribute('width', W);
+svg.setAttribute('height', H);
+
+// lane labels in the left gutter
+STAGE_ORDER.forEach(name => {
+  const label = el('text', {x: PAD, y: laneY[name] + NH / 2 + 4, class: 'lane'});
+  label.textContent = name;
+  svg.appendChild(label);
+  const rule = el('line', {x1: PAD, y1: laneY[name] - 12, x2: W - PAD, y2: laneY[name] - 12,
+                           stroke: '#D8CCBA', 'stroke-width': 1});
+  svg.appendChild(rule);
+});
+
+const defs = el('defs', {});
+[['thin', 1.4], ['thick', 2.6]].forEach(([id, w]) => {
+  const m = el('marker', {id: 'a-' + id, viewBox: '0 0 8 8', refX: 7, refY: 4,
+                          markerWidth: 6, markerHeight: 6, orient: 'auto'});
+  m.appendChild(el('path', {d: 'M0,0 L8,4 L0,8 z', fill: '#9A8B79'}));
+  defs.appendChild(m);
+});
+svg.appendChild(defs);
+
+DATA.edges.forEach(e => {
+  const a = positions[e.from], b = positions[e.to];
+  if (!a || !b) return;
+  const x1 = a.x + NW, y1 = a.y + NH / 2, x2 = b.x, y2 = b.y + NH / 2;
+  const dx = Math.max(40, Math.abs(x2 - x1) / 2);
+  const path = el('path', {
+    d: `M${x1},${y1} C${x1 + dx},${y1} ${x2 - dx},${y2} ${x2},${y2}`,
+    class: (e.util && !e.seq) ? 'util' : '',
+    fill: 'none', stroke: '#9A8B79',
+    'stroke-width': e.seq ? 2.4 : 1.2,
+    'stroke-opacity': e.seq ? 0.85 : 0.45,
+    'marker-end': `url(#a-${e.seq ? 'thick' : 'thin'})`
+  });
+  svg.appendChild(path);
+});
+
+DATA.nodes.forEach(n => {
+  const p = positions[n.id];
+  const g = el('a', {class: 'node', href: n.file, target: '_blank'});
+  const r = el('rect', {x: p.x, y: p.y, width: NW, height: NH, rx: 7,
+                        fill: n.colour, 'fill-opacity': 0.92,
+                        stroke: '#2E2620', 'stroke-opacity': 0.25, 'stroke-width': 1});
+  g.appendChild(r);
+  const t = el('text', {x: p.x + NW / 2, y: p.y + NH / 2 + 3.5,
+                        'text-anchor': 'middle', class: 'lbl'});
+  t.textContent = n.label.length > 19 ? n.label.slice(0, 18) + '…' : n.label;
+  g.appendChild(t);
+  const title = el('title', {});
+  title.textContent = n.file + (n.flags.length ? ' — ' + n.flags.join(', ') : '');
+  g.appendChild(title);
+  svg.appendChild(g);
+});
+
+svg.classList.add('hide-util');
+document.getElementById('toggle-util').addEventListener('change', ev => {
+  svg.classList.toggle('hide-util', ev.target.checked);
+});
+
+const legend = document.getElementById('legend');
+DATA.stages.forEach(s => {
+  const span = document.createElement('span');
+  const dot = document.createElement('i');
+  dot.className = 'dot';
+  dot.style.background = s.colour;
+  span.appendChild(dot);
+  span.appendChild(document.createTextNode(s.name));
+  legend.appendChild(span);
+});
+
+const qa = document.getElementById('qa');
+const qaRows = [
+  ['broken links', DATA.qa.broken],
+  ['orphans (no inbound)', DATA.qa.orphans],
+  ['dead ends (no outbound)', DATA.qa.dead_ends],
+  ['unreachable from entry', DATA.qa.unreachable],
+  ['sequence drift', DATA.qa.drift]
+];
+let html = '';
+qaRows.forEach(([label, items]) => {
+  const list = items.length
+    ? '<ul class="bad">' + items.map(i => '<li>' + i + '</li>').join('') + '</ul>'
+    : '<div class="ok">none</div>';
+  html += '<div><strong style="color:var(--text)">' + label + ' (' + items.length + ')</strong>' + list + '</div>';
+});
+qa.innerHTML = html;
+</script>
+</body></html>
