@@ -73,6 +73,9 @@
   .legalfoot a{color:var(--muted); text-decoration:none;}
   .legalfoot a:hover{text-decoration:underline;}
   .legalfoot span{opacity:.5;}
+  .accept{display:flex; gap:10px; align-items:flex-start; font-size:13.5px; line-height:1.45;
+          padding:14px 2px 2px; cursor:pointer;}
+  .accept input{width:18px; height:18px; margin-top:1px; accent-color:var(--positive); flex:none;}
 </style>
 </head>
 <body>
@@ -98,19 +101,31 @@
         <div class="t">Plain language</div>
         <div class="tl">You'll behave like a decent human. We'll keep the app honest and
           working. Breaking the rules can end in your account being closed.</div>
-        <div class="precise">Full terms shown here in the real app, linked and readable.
-          Legally precise version always one tap away from the plain-language one.</div>
+        <div class="precise"><a href="draft-legal-terms.html">Read the full terms</a> — one page,
+          written to be read.</div>
       </div>
       <div class="block">
         <div class="t">Reports</div>
-        <div class="tl">An account that receives 3 reports is permanently closed. There is no
-          appeal, and the closure is tied to the sign-in provider it was created with.</div>
+        <div class="tl">Accounts can be closed after repeated verified reports. If a decision
+          affects you, you can ask for it to be reviewed.</div>
       </div>
-      <button class="positive" onclick="location.href='draft-01c-privacy.html'">Accept and continue</button>
+      <label class="accept" for="acceptBox">
+        <input type="checkbox" id="acceptBox" onchange="toggleAccept()">
+        <span>I have read and accept the terms of use.</span>
+      </label>
     </div>
-      <div class="legalfoot"><a href="draft-04j-legal.html">Imprint</a><span>·</span><a href="draft-01c-privacy.html">Privacy</a><span>·</span><a href="draft-01b-terms.html">Terms</a></div>
+    <div class="footer">
+      <button class="neutral" onclick="location.href='draft-01-signup-18plus.html'">Back</button>
+      <button class="positive" id="acceptBtn" disabled onclick="location.href='draft-01c-privacy.html'">Continue</button>
+    </div>
+      <div class="legalfoot"><a href="draft-04j-legal.html">Imprint</a><span>·</span><a href="draft-01c-privacy.html">Privacy</a><span>·</span><a href="draft-legal-terms.html">Terms</a></div>
 </div>
-  <script src="palette-switcher.js"></script>
+  <script>
+  function toggleAccept() {
+    document.getElementById('acceptBtn').disabled = !document.getElementById('acceptBox').checked;
+  }
+</script>
+<script src="palette-switcher.js"></script>
 <script src="draft-nav.js"></script>
 </body>
 </html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>paiir — terms of use</title>
+<style>
+  :root{
+    --bg:#FAF6EF; --surface:#F3EBDD; --text:#2E2620; --muted:#6B5D50;
+    --accent:#B0431F; --line:#D8CCBA; --positive:#3E6B4F; --exclude:#A63A2B;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--text); font-family:Georgia,'Times New Roman',serif;
+       min-height:100vh;}
+  .doc{max-width:640px; margin:0 auto; padding:28px 22px 60px;}
+  @media (min-width:600px){ body{padding:24px;} .doc{background:var(--bg); border:1px solid var(--line);
+       border-radius:18px; box-shadow:0 4px 24px rgba(0,0,0,.06);} }
+  h1{font-size:26px; font-weight:600; line-height:1.25; margin-bottom:6px;}
+  .sub{font-size:14px; color:var(--muted); line-height:1.5; margin-bottom:6px;}
+  .promise{font-size:13px; color:var(--muted); border-left:2px solid var(--line);
+           padding:4px 10px; margin:16px 0 26px; line-height:1.5;}
+  h2{font-size:15px; font-weight:600; margin:22px 0 6px;}
+  p{font-size:14.5px; line-height:1.62; margin-bottom:8px;}
+  p.small{font-size:13px; color:var(--muted);}
+  a{color:var(--accent); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .back{display:inline-block; margin-top:28px; font-size:13px; color:var(--muted);}
+  .qmark{width:20px; height:20px; border-radius:50%; border:1.5px solid var(--muted);
+         color:var(--muted); font-size:12px; display:inline-flex; align-items:center;
+         justify-content:center; cursor:pointer; background:none; font-family:inherit;}
+  .expl{display:none; font-size:12px; color:var(--muted); line-height:1.5;
+        border-left:2px solid var(--line); padding:4px 10px; margin:8px 0 0;}
+  .expl.show{display:block;}
+</style>
+</head>
+<body>
+<div class="doc">
+  <h1>Terms of use <button class="qmark" onclick="document.getElementById('h-expl').classList.toggle('show')">?</button></h1>
+  <div class="sub">Version 1 · 2026-10-25</div>
+  <div class="expl" id="h-expl">This is the whole agreement, written to be read. If any sentence here is unclear, that is a defect on our side — tell us and we will rewrite it.</div>
+
+  <div class="promise">Short version: you answer questions on your phone, we compare them without seeing them, and you only ever meet people you both chose. No photos, no hidden ranking, no data selling.</div>
+
+  <h2>1. What paiir is</h2>
+  <p>paiir helps adults find people whose expectations fit their own. It screens for compatibility. It does not predict chemistry and it does not promise you will meet anyone.</p>
+
+  <h2>2. Your account</h2>
+  <p>You sign in with an identity provider (Google, Apple, Microsoft or LinkedIn). We store the provider and your account number there — never your email address, name or profile. One account belongs to one provider identity.</p>
+  <p>You must be 18 or older. We do not verify age; the declaration is yours, and we close accounts we learn are under 18.</p>
+
+  <h2>3. Your answers</h2>
+  <p>Your answers are stored only on your device, encrypted. We keep no copy and no backup. If you lose, reset or break the device, the answers are gone and you start again.</p>
+  <p>Your device compares your answers with someone else's and reveals only how much overlaps — never which answers.</p>
+
+  <h2>4. Avatars</h2>
+  <p>Your avatar is drawn on your device from a photo you choose. It is never a real photo, and we never hold it: it is sent directly to people you and they both chose, after mutual interest.</p>
+
+  <h2>5. Interest and pairing</h2>
+  <p>An interest is private until both people declare one. A pairing needs both people to opt in and each to have a pairing credit. Either side can end it at any time.</p>
+
+  <h2>6. Chat</h2>
+  <p>Chat opens only after both sides opt in. It is end-to-end encrypted text, without images or attachments. We cannot read it and we do not store it.</p>
+
+  <h2>7. Credits and subscriptions</h2>
+  <p>Pairing credits and subscriptions are paid. The price is shown before you buy, and the payment is handled by a payment provider — we never see your card details.</p>
+  <p class="small">Withdrawal and refunds: see the withdrawal policy. Nothing here limits your statutory consumer rights.</p>
+
+  <h2>8. What we do not do</h2>
+  <p>We do not rank people by popularity or engagement. We do not sell or share your data for advertising. We do not show photos of you. We do not suppress a pair when both people said yes.</p>
+
+  <h2>9. Reporting and moderation</h2>
+  <p>You can report an avatar or a chat message. We act on reports we can verify, and we apply them in steps rather than instantly ending an account. If you are affected by a decision, you can ask for it to be reviewed.</p>
+  <p class="small">Because we do not store avatars or chat, evidence comes from the device that reported it, at the moment of reporting.</p>
+
+  <h2>10. Ending your account</h2>
+  <p>You can delete your account at any time. Server records, pairings and any chat state are removed. A handle that was used stays retired and is never given to anyone else.</p>
+
+  <h2>11. Changes to these terms</h2>
+  <p>If we change these terms in a way that matters, we show you the change and ask you to accept the new version before you continue.</p>
+
+  <h2>12. Who you are dealing with</h2>
+  <p>paiir is operated by <span title="operator details pending">the operator named in the imprint</span>, Austria. Austrian law applies, without limiting the consumer protections you have where you live.</p>
+
+  <p class="small" style="margin-top:22px;">Questions about this document, or a sentence you think is unfair or unclear: use the contact in the imprint.</p>
+
+  <a class="back" href="draft-01b-terms.html">&larr; Back to acceptance</a>
+</div>
+<script src="palette-switcher.js"></script>
+</body>
+</html>
