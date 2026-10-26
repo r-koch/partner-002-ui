@@ -67,6 +67,12 @@
   .progress span{flex:1; height:5px; border-radius:3px; background:var(--line);}
   .progress span.done{background:var(--match);}
   .progress span.now{background:var(--accent);}
+  /* legal reference access on every legal-setup page (one component, reused) */
+  .legalfoot{display:flex; justify-content:center; align-items:center; gap:8px;
+             padding:10px 18px 16px; font-size:11px; color:var(--muted);}
+  .legalfoot a{color:var(--muted); text-decoration:none;}
+  .legalfoot a:hover{text-decoration:underline;}
+  .legalfoot span{opacity:.5;}
 </style>
 </head>
 <body>
@@ -100,7 +106,8 @@
       </div>
       <button class="positive" onclick="location.href='draft-01d-consent-sensitive.html'">Acknowledge and continue</button>
     </div>
-  </div>
+      <div class="legalfoot"><a href="draft-04j-legal.html">Imprint</a><span>·</span><a href="draft-01c-privacy.html">Privacy</a><span>·</span><a href="draft-01b-terms.html">Terms</a></div>
+</div>
   <script src="palette-switcher.js"></script>
 <script src="draft-nav.js"></script>
 </body>
