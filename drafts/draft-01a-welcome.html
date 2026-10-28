@@ -26,9 +26,6 @@
   header strong{font-weight:600;}
   header nav{display:flex; gap:10px; align-items:center;}
   header a{color:var(--muted); font-size:14px; text-decoration:none;}
-  .qmark{width:20px; height:20px; border-radius:50%; border:1.5px solid var(--muted);
-         color:var(--muted); font-size:12px; display:inline-flex; align-items:center;
-         justify-content:center; cursor:pointer; background:none; font-family:inherit; text-decoration:none;}
   .expl{display:none; font-size:12px; color:var(--muted); line-height:1.5;
         margin:10px 18px 0; border-left:2px solid var(--line); padding:4px 10px;}
   .expl.show{display:block;}
@@ -66,12 +63,11 @@
 <body>
   <div class="phone" style="min-height:560px;">
     <header>
-      <strong>Welcome <a class="qmark" href="draft-04c-faq.html#how-it-works" target="_blank" rel="noopener" title="Open the answer in Information">?</a></strong>
-          </header>
+      <strong>paiir.me</strong>
+    </header>
 
     <div class="body" style="display:flex; flex-direction:column; justify-content:center;">
-      <h1>A paiir by choice</h1>
-      <div class="lead">Your expectations sort candidates. Your filters remove the rest. You choose. If both are interested, we connect you. No algorithm deciding for you.</div>
+      <div class="lead" style="margin-top:0;">Your expectations sort candidates. Your filters remove the rest. You choose. If both are interested, we connect you. No algorithm deciding for you.</div>
       <button class="btn google" onclick="location.href='draft-01-signup-18plus.html'">Sign in with Google</button>
       <button class="btn ghost" onclick="location.href='draft-01-signup-18plus.html'">Sign in with Apple</button>
       <button class="btn ghost" onclick="location.href='draft-01-signup-18plus.html'">Sign in with Microsoft</button>
