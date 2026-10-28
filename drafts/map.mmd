@@ -40,13 +40,13 @@ flowchart TD
   04h-avatar-create["04h-avatar-create"]
   04i-menu["04i-menu"]
   04j-legal["04j-legal"]
-  05-matches-list["05-matches-list"]
+  05-interest-browser["05-interest-browser"]
   06a-history["06a-history"]
   06b-extended-qa["06b-extended-qa"]
   06c-extended["06c-extended"]
   06d-deep["06d-deep"]
-  07-match-stage1["07-match-stage1"]
-  08-match-rung3["08-match-rung3"]
+  07-interest-view["07-interest-view"]
+  08-pair-view["08-pair-view"]
   09-warmup-pair["09-warmup-pair"]
   09b-warmup-result["09b-warmup-result"]
   legal-consent-avatar["legal-consent-avatar"]
@@ -152,7 +152,7 @@ flowchart TD
   03b-decision-gate --> 04i-menu
   04-candidate-list --> 01i-sorry-closed
   04-candidate-list --> 04i-menu
-  04-candidate-list ==> 05-matches-list
+  04-candidate-list ==> 05-interest-browser
   04c-faq ==> 04g-settings
   04c-faq --> 04i-menu
   04e-interests-manual --> 03-questionnaire-overview
@@ -179,15 +179,15 @@ flowchart TD
   04j-legal --> legal-privacy
   04j-legal --> legal-refund
   04j-legal --> legal-terms
-  05-matches-list --> 01i-sorry-closed
-  05-matches-list --> 04-candidate-list
-  05-matches-list --> 04i-menu
-  05-matches-list ==> 07-match-stage1
-  05-matches-list --> 08-match-rung3
+  05-interest-browser --> 01i-sorry-closed
+  05-interest-browser --> 04-candidate-list
+  05-interest-browser --> 04i-menu
+  05-interest-browser ==> 07-interest-view
+  05-interest-browser --> 08-pair-view
   06a-history ==> 06b-extended-qa
-  06a-history --> 07-match-stage1
+  06a-history --> 07-interest-view
   06b-extended-qa ==> 06c-extended
-  06b-extended-qa --> 07-match-stage1
+  06b-extended-qa --> 07-interest-view
   06c-extended --> 03-questionnaire-overview
   06c-extended --> 04i-menu
   06c-extended ==> 06d-deep
@@ -195,18 +195,18 @@ flowchart TD
   06d-deep ==> 04f-pricing
   06d-deep --> 04i-menu
   06d-deep --> 06c-extended
-  07-match-stage1 --> 01i-sorry-closed
-  07-match-stage1 --> 04i-menu
-  07-match-stage1 --> 05-matches-list
-  07-match-stage1 --> 06a-history
-  07-match-stage1 --> 06b-extended-qa
-  07-match-stage1 ==> 08-match-rung3
-  08-match-rung3 --> 01i-sorry-closed
-  08-match-rung3 --> 04i-menu
-  08-match-rung3 --> 05-matches-list
-  08-match-rung3 --> 06a-history
-  08-match-rung3 --> 06b-extended-qa
-  08-match-rung3 ==> 09-warmup-pair
+  07-interest-view --> 01i-sorry-closed
+  07-interest-view --> 04i-menu
+  07-interest-view --> 05-interest-browser
+  07-interest-view --> 06a-history
+  07-interest-view --> 06b-extended-qa
+  07-interest-view ==> 08-pair-view
+  08-pair-view --> 01i-sorry-closed
+  08-pair-view --> 04i-menu
+  08-pair-view --> 05-interest-browser
+  08-pair-view --> 06a-history
+  08-pair-view --> 06b-extended-qa
+  08-pair-view ==> 09-warmup-pair
   09-warmup-pair ==> 02-17-sun-sign
   09b-warmup-result --> 04i-menu
   09b-warmup-result ==> 06a-history

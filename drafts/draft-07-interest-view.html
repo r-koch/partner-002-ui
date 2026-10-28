@@ -173,9 +173,9 @@
   </div>
   <script>
   function confirmCancel(btn){
-    if (btn.dataset.armed){ location.href = 'draft-05-matches-list.html'; return; }
+    if (btn.dataset.armed){ location.href = 'draft-05-interest-browser.html'; return; }
     btn.dataset.armed = '1';
-    btn.textContent = 'End match? tap to confirm';
+    btn.textContent = 'End interest? tap to confirm';
   }
   function openDrawer(id){
     var d = document.querySelectorAll('.drawer .suggest');
@@ -189,7 +189,7 @@
     document.getElementById('optin-t').textContent = 'Credit reserved — waiting for them to opt in';
     setTimeout(function(){
       document.getElementById('optin-t').textContent = 'They opted in — chat unlocked';
-      setTimeout(function(){ location.href = 'draft-08-match-rung3.html'; }, 800);
+      setTimeout(function(){ location.href = 'draft-08-pair-view.html'; }, 800);
     }, 900);
   }
   function pending(btn){
@@ -211,7 +211,7 @@
     if (img) img.src = DEFAULT_AVATAR;
     notify(handle, 'avatar');
     if (FLAGS[handle] >= 3){ location.href = 'draft-01i-sorry-closed.html'; return; }
-    location.href = 'draft-05-matches-list.html';
+    location.href = 'draft-05-interest-browser.html';
   }
   function notify(handle, type){
     // real app: anonymous one-line notice to the reported account, never who reported

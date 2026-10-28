@@ -100,7 +100,7 @@
   function rowNote(btn){ var o = btn.textContent; btn.textContent = 'demo'; setTimeout(function(){ btn.textContent = o; }, 800); }
   function signOut(btn){ if (btn.dataset.armed){ location.href = 'draft-01a-welcome.html'; return; } btn.dataset.armed = '1'; btn.textContent = 'Tap again to sign out'; }
   function delAccount(btn){
-    if (!confirm('Delete your account? All server records, matching and chat are permanently erased. This cannot be undone.')) return;
+    if (!confirm('Delete your account? All server records, pairings and chat are permanently erased. This cannot be undone.')) return;
     location.href = 'draft-01i-sorry-closed.html';
   }
   function toggleTheme(){

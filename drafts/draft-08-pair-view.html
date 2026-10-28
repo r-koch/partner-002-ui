@@ -173,9 +173,9 @@
     document.getElementById(id).style.display = 'block';
   }
   function confirmCancel(btn){
-    if (btn.dataset.armed){ location.href = 'draft-05-matches-list.html'; return; }
+    if (btn.dataset.armed){ location.href = 'draft-05-interest-browser.html'; return; }
     btn.dataset.armed = '1';
-    btn.textContent = 'End match? tap to confirm';
+    btn.textContent = 'End pairing? tap to confirm';
   }
   function pending(btn){
     var old = btn.textContent;
@@ -214,7 +214,7 @@
     }
     notify(handle, type);
     if (FLAGS[handle] >= 3){ location.href = 'draft-01i-sorry-closed.html'; return; }
-    location.href = 'draft-05-matches-list.html';
+    location.href = 'draft-05-interest-browser.html';
   }
   function notify(handle, type){
     // real app: anonymous one-line notice to the reported account, never who reported
