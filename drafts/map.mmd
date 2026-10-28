@@ -47,8 +47,8 @@ flowchart TD
   06d-deep["06d-deep"]
   07-match-stage1["07-match-stage1"]
   08-match-rung3["08-match-rung3"]
-  09-icebreaker-pair["09-icebreaker-pair"]
-  09b-icebreaker-result["09b-icebreaker-result"]
+  09-warmup-pair["09-warmup-pair"]
+  09b-warmup-result["09b-warmup-result"]
   legal-consent-avatar["legal-consent-avatar"]
   legal-consent-sensitive["legal-consent-sensitive"]
   legal-imprint["legal-imprint"]
@@ -136,13 +136,13 @@ flowchart TD
   02-16-orientation --> 04i-menu
   02-17-sun-sign ==> 02-18-four-letter-style
   02-17-sun-sign --> 04i-menu
-  02-17-sun-sign --> 09-icebreaker-pair
+  02-17-sun-sign --> 09-warmup-pair
   02-18-four-letter-style --> 02-17-sun-sign
   02-18-four-letter-style ==> 02-19-big-five
   02-18-four-letter-style --> 04i-menu
   02-19-big-five --> 02-18-four-letter-style
   02-19-big-five --> 04i-menu
-  02-19-big-five ==> 09b-icebreaker-result
+  02-19-big-five ==> 09b-warmup-result
   03-questionnaire-overview --> 04e-interests-manual
   03-questionnaire-overview --> 04i-menu
   03-questionnaire-overview --> 06c-extended
@@ -206,10 +206,10 @@ flowchart TD
   08-match-rung3 --> 05-matches-list
   08-match-rung3 --> 06a-history
   08-match-rung3 --> 06b-extended-qa
-  08-match-rung3 ==> 09-icebreaker-pair
-  09-icebreaker-pair ==> 02-17-sun-sign
-  09b-icebreaker-result --> 04i-menu
-  09b-icebreaker-result ==> 06a-history
+  08-match-rung3 ==> 09-warmup-pair
+  09-warmup-pair ==> 02-17-sun-sign
+  09b-warmup-result --> 04i-menu
+  09b-warmup-result ==> 06a-history
   legal-consent-avatar --> 01e-consent-avatar
   legal-consent-avatar --> legal-imprint
   legal-consent-avatar --> legal-privacy
@@ -222,3 +222,4 @@ flowchart TD
   legal-refund --> 04f-pricing
   legal-refund --> legal-imprint
   legal-terms --> 01b-terms
+  legal-terms --> legal-refund

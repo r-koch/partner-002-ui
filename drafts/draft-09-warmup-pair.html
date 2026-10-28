@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PARTNER-002 design draft — ice breaker</title>
+<title>PARTNER-002 design draft — Warm-up</title>
 <style>
   :root{
     --bg:#FAF6EF; --surface:#F3EBDD; --text:#2E2620; --muted:#6B5D50;
@@ -61,7 +61,7 @@
 <body>
   <div class="phone">
     <header>
-      <strong>Ice breaker <a class="qmark" href="draft-04c-faq.html#icebreaker" target="_blank" rel="noopener" title="Open the answer in Information">?</a></strong>
+      <strong>Warm-up <a class="qmark" href="draft-04c-faq.html#warm-up" target="_blank" rel="noopener" title="Open the answer in Information">?</a></strong>
       <a href="#">with brave-lion-4417</a>
     </header>
     <div class="dots" id="pairDots" role="group" aria-label="Choose pair">
@@ -78,7 +78,7 @@
     <div class="demo-note" id="demoNote"></div>
   </div>
 <script>
-/* ===== ice-breaker flow: 5 pairs, gated advance, dots navigation =====
+/* ===== warm-up flow: 5 pairs, gated advance, dots navigation =====
    Impl note (owner): randomize which image shows top vs bottom on every pair.
    Navigation: can't advance without a pick; dots are the nav — forward dots
    enable once all earlier pairs are answered, backward dots free (review only);
@@ -91,7 +91,7 @@ var PAIRS = [
   [ {src:"mannequin-avatar-pixar.png", alt:"White mannequin avatar, 3D style"}, {src:"mannequin-avatar-line.png", alt:"White mannequin avatar, line-art style"} ],
 ];
 var cur = 0;                 // current pair index
-// top/bottom order decided ONCE at ice-breaker start (owner 2026-09-16):
+// top/bottom order decided ONCE at warm-up start (owner 2026-09-16):
 // every pair's layout is fixed for the whole session, revisits included.
 var ORDERS = PAIRS.map(function () { return Math.random() < 0.5 ? [0, 1] : [1, 0]; });
 var picks = [];              // picks[i] = 0|1 (which image was chosen in pair i), or null
@@ -136,7 +136,7 @@ function choose(imgIdx) {
   window.setTimeout(function () {
     if (cur === TOTAL - 1) {
       document.getElementById('demoNote').textContent =
-        'Demo: results would go to the shared ice-breaker result page.';
+        'Demo: results would go to the shared warm-up result page.';
       return; // stay on final pair, showing the saved state
     }
     cur++;
