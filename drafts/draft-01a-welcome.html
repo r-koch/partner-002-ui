@@ -24,29 +24,29 @@
   }
 
   /* brand zone — the wordmark stands in for the logo until the real mark exists */
-  header{padding:26px 24px 0;}
+  header{padding:34px 24px 0;}
   .wordmark{font-size:20px; font-weight:600; letter-spacing:-.01em; color:var(--text);}
   .wordmark-tld{color:var(--accent);}
 
   /* statement zone — the lead is the whole first impression, so it carries the page */
-  .stage{flex:1; display:flex; flex-direction:column; justify-content:flex-start;
-         padding:34px 24px 24px;}
-  .lead{font-size:20px; line-height:1.5; color:var(--text); letter-spacing:-.005em;}
+  .stage{flex:1; display:flex; flex-direction:column; justify-content:center;
+         padding:18px 24px;}
+  .lead{font-size:21px; line-height:1.58; color:var(--text); letter-spacing:-.005em;}
   .lead-close{display:block; margin-top:6px; color:var(--accent);}
 
   /* action zone — four equal doors; no provider is promoted over another */
-  .signins{display:flex; flex-direction:column; gap:10px;
-           padding:16px 24px 4px; border-top:1px solid var(--line);}
-  .neutral{width:100%; min-height:50px; font-family:inherit; font-size:15px;
+  .signins{display:flex; flex-direction:column; gap:14px;
+           padding:26px 24px 12px; border-top:1px solid var(--line);}
+  .neutral{width:100%; min-height:58px; font-family:inherit; font-size:16px;
            color:var(--text); background:var(--surface); border:1px solid var(--line);
-           border-radius:14px; cursor:pointer;}
+           border-radius:16px; cursor:pointer;}
   .neutral:hover{border-color:var(--muted);}
   .neutral:active{background:var(--bg);}
   .neutral:focus-visible,.legalfoot a:focus-visible{outline:2px solid var(--accent);
            outline-offset:2px;}
 
   .legalfoot{display:flex; justify-content:center; align-items:center; gap:8px;
-             padding:14px 24px 2px; font-size:11px; color:var(--muted);}
+             padding:24px 24px 10px; font-size:11px; color:var(--muted);}
   .legalfoot a{color:var(--muted); text-decoration:none;}
   .legalfoot a:hover{text-decoration:underline;}
   .legalfoot span{opacity:.5;}
