@@ -34,7 +34,6 @@ flowchart TD
   03b-decision-gate["03b-decision-gate"]
   04-candidate-list["04-candidate-list"]
   04c-faq["04c-faq"]
-  04d-score["04d-score"]
   04e-interests-manual["04e-interests-manual"]
   04f-pricing["04f-pricing"]
   04g-settings["04g-settings"]
@@ -152,12 +151,10 @@ flowchart TD
   03b-decision-gate ==> 04-candidate-list
   03b-decision-gate --> 04i-menu
   04-candidate-list --> 01i-sorry-closed
-  04-candidate-list --> 04d-score
   04-candidate-list --> 04i-menu
   04-candidate-list ==> 05-interest-browser
   04c-faq ==> 04g-settings
   04c-faq --> 04i-menu
-  04d-score --> 04-candidate-list
   04e-interests-manual --> 03-questionnaire-overview
   04e-interests-manual --> 04i-menu
   04f-pricing ==> 04c-faq
