@@ -82,6 +82,23 @@
     "Kids now": 3, "Want kids": 5, "Smoking": 3, "Religion": 1, "Location": 4,
     "Living": 2, "Work": 2, "Pets": 3, "Politics": 1, "Free time": 4, "Orientation": 2
   };
+  /* the viewer's pips scaled to a 0-100 scale; integers that sum to exactly 100 */
+  function scale100(weights) {
+    var keys = Object.keys(weights);
+    var total = keys.reduce(function (a, k) { return a + weights[k]; }, 0);
+    var raw = keys.map(function (k) { return weights[k] / total * 100; });
+    var out = raw.map(Math.floor);
+    var rem = raw.map(function (v, i) { return v - out[i]; });
+    var need = 100 - out.reduce(function (a, b) { return a + b; }, 0);
+    var order = keys.map(function (k, i) { return i; })
+      .sort(function (a, b) { return rem[b] - rem[a] || a - b; });
+    for (var j = 0; j < need; j++) out[order[j]] += 1;
+    var scaled = {};
+    keys.forEach(function (k, i) { scaled[k] = out[i]; });
+    return scaled;
+  }
+  var POINTS = scale100(WEIGHTS);
+
   var COLLAPSED_ROWS = 4;   /* plus the "Other" summary row */
 
   function pips(n) {
@@ -109,9 +126,8 @@
 
     var rows = Object.keys(WEIGHTS).map(function (label) {
       var same = diff.indexOf(label) === -1;
-      return {label: label, w: WEIGHTS[label], same: same, earned: same ? WEIGHTS[label] : 0};
+      return {label: label, w: WEIGHTS[label], same: same, earned: same ? POINTS[label] : 0};
     });
-    var available = rows.reduce(function (a, r) { return a + r.w; }, 0);
     var earned = rows.reduce(function (a, r) { return a + r.earned; }, 0);
     var sameCount = rows.filter(function (r) { return r.same; }).length;
 
@@ -136,9 +152,8 @@
     card.innerHTML =
       '<div class="head">' +
         '<span class="handle">' + handle + '</span>' +
-        '<div class="bar"><span class="bar-same" style="width:' +
-          Math.round(earned / available * 100) + '%"></span></div>' +
-        '<span class="total">' + earned + '/' + available + '</span>' +
+        '<div class="bar"><span class="bar-same" style="width:' + earned + '%"></span></div>' +
+        '<span class="total">' + earned + '</span>' +
       '</div>' +
       '<div class="rows" data-state="collapsed">' + collapsedHTML + '</div>' +
       '<button class="toggle">Show all ' + rows.length + '</button>' +
