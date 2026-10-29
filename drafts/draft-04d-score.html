@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PARTNER-002 design draft — Score</title>
+<style>
+  :root{
+    --bg:#FAF6EF; --surface:#F3EBDD; --text:#2E2620; --muted:#6B5D50;
+    --accent:#B0431F; --accent-text:#FFFFFF; --line:#D8CCBA; --exclude:#A63A2B;
+    --match:#3E6B4F; --positive:#3E6B4F; --positive-text:#FFFFFF;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--text); font-family:Georgia,'Times New Roman',serif;
+       min-height:100vh; padding:0;}
+  .phone{width:100%; background:var(--bg); display:flex; flex-direction:column; min-height:100vh;}
+  @media (min-width:600px){
+    .phone{max-width:420px; margin:0 auto; border-radius:24px; overflow:hidden;
+           border:1px solid var(--line); min-height:700px; box-shadow:0 4px 24px rgba(0,0,0,.08);}
+    body{padding:24px;}
+  }
+  header{display:flex; justify-content:space-between; align-items:center; padding:16px 18px;
+         border-bottom:1px solid var(--line);}
+  header strong{font-weight:600;}
+  header nav{display:flex; gap:10px; align-items:center;}
+  header a{color:var(--muted); font-size:14px; text-decoration:none;}
+  .qmark{width:20px; height:20px; border-radius:50%; border:1.5px solid var(--muted);
+         color:var(--muted); font-size:12px; display:inline-flex; align-items:center;
+         justify-content:center; cursor:pointer; background:none; font-family:inherit;
+         text-decoration:none;}
+
+  .body{flex:1; padding:18px; overflow-y:auto;}
+
+  /* the number, then the bar that shows how it is put together */
+  .head{display:flex; align-items:baseline; gap:10px;}
+  .score{font-size:26px; font-weight:700;}
+  .band{font-size:12px; color:var(--muted); border:1px solid var(--line); border-radius:999px;
+        padding:3px 9px;}
+  .bar{display:flex; height:10px; border-radius:999px; overflow:hidden; margin:14px 0 8px;
+       background:var(--line);}
+  .bar-same{background:var(--positive);}
+  .bar-diff{background:var(--line);}
+  .tally{display:flex; gap:16px; font-size:12px; color:var(--muted);}
+  .tally b{font-weight:600; color:var(--text);}
+
+  .card{border:1px solid var(--line); border-radius:14px; background:var(--surface);
+        padding:4px 15px; margin:16px 0 0;}
+  .row{display:flex; align-items:center; justify-content:space-between; gap:10px;
+       padding:10px 0; border-bottom:1px solid var(--line); font-size:14px;}
+  .row:last-child{border-bottom:none;}
+  .q{display:flex; align-items:center; gap:9px;}
+  .sdot{width:9px; height:9px; border-radius:50%; background:var(--positive); flex:none;}
+  .ddot{width:9px; height:9px; border-radius:50%; border:1.5px solid var(--muted); flex:none;}
+  .dots{display:flex; gap:3px;}
+  .d{width:5px; height:5px; border-radius:50%; background:var(--line);}
+  .d.on{background:var(--muted);}
+
+  .facts{border:1px solid var(--line); border-radius:14px; padding:4px 15px; margin-top:12px;
+         background:var(--bg);}
+  .fact{display:flex; justify-content:space-between; padding:9px 0; font-size:13px;
+        color:var(--muted); border-bottom:1px solid var(--line);}
+  .fact:last-child{border-bottom:none;}
+  .fact b{font-weight:600; color:var(--text);}
+
+  .footer{margin-top:auto; padding:14px 18px; display:flex; justify-content:space-between;
+          align-items:center;}
+  .neutral{background:var(--surface); color:var(--text); border:1px solid var(--line);
+           border-radius:999px; padding:9px 18px; font-size:13px; font-family:inherit; cursor:pointer;}
+</style>
+</head>
+<body>
+  <div class="phone">
+    <header>
+      <strong>Score <a class="qmark" href="draft-04c-faq.html#score-made" target="_blank" rel="noopener" title="Open the answer in Information">?</a></strong>
+      <nav></nav>
+    </header>
+
+    <div class="body">
+      <div class="head">
+        <span class="score">82</span>
+        <span class="band">strong fit</span>
+        <span style="margin-left:auto; font-size:13px; color:var(--muted);">brave-lion-4417</span>
+      </div>
+
+      <div class="bar"><span class="bar-same" style="width:82%"></span><span class="bar-diff" style="width:18%"></span></div>
+      <div class="tally"><span><b>12</b> same</span><span><b>4</b> different</span><span><b>0</b> red flags</span></div>
+
+      <div class="card">
+        <div class="row"><span class="q"><span class="sdot"></span>Gender</span><span class="dots"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></span></div>
+        <div class="row"><span class="q"><span class="sdot"></span>Age</span><span class="dots"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></span></div>
+        <div class="row"><span class="q"><span class="sdot"></span>Height</span><span class="dots"><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span><span class="d"></span></span></div>
+        <div class="row"><span class="q"><span class="sdot"></span>Body type</span><span class="dots"><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span></span></div>
+        <div class="row"><span class="q"><span class="sdot"></span>Relationship style</span><span class="dots"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span></span></div>
+        <div class="row"><span class="q"><span class="sdot"></span>Kids now</span><span class="dots"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></span></div>
+        <div class="row"><span class="q"><span class="sdot"></span>Want kids</span><span class="dots"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span></span></div>
+        <div class="row"><span class="q"><span class="ddot"></span>Smoking</span><span class="dots"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></span></div>
+        <div class="row"><span class="q"><span class="sdot"></span>Religion</span><span class="dots"><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span><span class="d"></span></span></div>
+        <div class="row"><span class="q"><span class="sdot"></span>Location</span><span class="dots"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></span></div>
+        <div class="row"><span class="q"><span class="sdot"></span>Living</span><span class="dots"><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span></span></div>
+        <div class="row"><span class="q"><span class="ddot"></span>Work</span><span class="dots"><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span></span></div>
+        <div class="row"><span class="q"><span class="ddot"></span>Pets</span><span class="dots"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></span></div>
+        <div class="row"><span class="q"><span class="sdot"></span>Politics</span><span class="dots"><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span><span class="d"></span></span></div>
+        <div class="row"><span class="q"><span class="ddot"></span>Free time</span><span class="dots"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></span></div>
+        <div class="row"><span class="q"><span class="sdot"></span>Orientation</span><span class="dots"><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span></span></div>
+      </div>
+
+      <div class="facts">
+        <div class="fact"><span>Distance</span><b>same city</b></div>
+        <div class="fact"><span>Red flags</span><b>none</b></div>
+        <div class="fact"><span>Weighted match</span><b>41 of 50</b></div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <button class="neutral" onclick="location.href='draft-04-candidate-list.html'">Back</button>
+    </div>
+  </div>
+  <script src="palette-switcher.js"></script>
+<script src="draft-nav.js"></script>
+</body>
+</html>
