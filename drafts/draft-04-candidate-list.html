@@ -36,14 +36,6 @@
   .card{border:1px solid var(--line); border-radius:16px; background:var(--surface);
         padding:14px;}
   .m-ident{display:flex; gap:12px; align-items:flex-start;}
-  .cavwrap{flex:0 0 auto;}
-  .avatar-swap-img{cursor:pointer;}
-  .avatar-swap-img:active{transform:scale(0.94); transition:transform .08s;}
-  .avatar-style-dots{display:flex; gap:4px; justify-content:center; margin-top:5px;}
-  .avatar-style-dot{width:6px; height:6px; border-radius:50%; background:var(--line); opacity:.5;}
-  .avatar-style-dot.on{background:var(--accent); opacity:1;}
-  .cav{width:78px; height:78px; border-radius:50%; border:3px solid var(--line);
-       object-fit:cover; display:block; background:var(--surface);}
   .ident{flex:1; min-width:0;}
   .topline{display:flex; justify-content:space-between; align-items:center; gap:8px;}
   .stage-tag{font-size:11px; color:var(--muted); border:1px solid var(--line);
@@ -54,7 +46,6 @@
   .actrow{display:flex; gap:8px; margin-top:12px;}
   .positive{flex:1; background:var(--positive); color:var(--positive-text); border:none; border-radius:999px; padding:10px 0; font-size:14px; cursor:pointer; font-family:inherit;}
   .negative{flex:1; background:var(--bg); color:var(--exclude); border:2px solid var(--exclude); border-radius:999px; padding:10px 0; font-size:14px; cursor:pointer; font-family:inherit;}
-  .avatar-col{flex:0 0 auto; width:88px; display:flex; flex-direction:column; align-items:center; gap:10px;}
   .min{padding:6px 14px; font-size:13px; display:inline-block;}
   .negative.min{flex:0 0 auto; background:var(--surface); border:1.5px solid var(--exclude);}
   .negative.filled.min{background:var(--exclude); color:var(--bg); border-color:var(--exclude);}
@@ -115,18 +106,6 @@
     <div class="list">
       <div class="card">
         <div class="m-ident">
-            <div class="avatar-col">
-              <div class="cavwrap"><img class="cav avatar-swap-img" src="avatar-sample-1.png" data-avatar-pixar="avatar-sample-1.png" data-avatar-line="avatar-sample-1-line.png" alt="stylized avatar — not a photo" onclick="toggleCardAvatar(this,event)" title="tap to switch style"></div>
-              <button class="negative filled min" onclick="report(this)">Report</button>
-            </div>
-          <div class="ident">
-            <div class="topline">
-              <div class="scoreline"><a class="score" href="#" onclick="openScore(this);return false;" title="How this score is made">82</a> <span class="handle">brave-lion-4417</span></div>
-              <span class="stage-tag">strong fit</span>
-            </div>
-            <div class="secrow"><span class="alab">Same</span><span class="mpill">wants kids</span> <span class="mpill">non-smoker</span> <span class="mpill">long-term</span> <span class="mpill">flexible hours</span> <span class="mpill">center</span> <span class="mpill">homebody</span></div>
-            <div class="secrow"><span class="alab">Different</span><span class="dtopic">pets</span> <span class="dtopic">work hours</span> <span class="dtopic">free time</span> <span class="dtopic">smoking</span> <span class="dtopic">religion</span> <span class="dtopic">location</span></div>
-          </div>
         </div>
         <div class="actrow">
           <button class="positive" onclick="actCard(this,false)">Interested</button>
@@ -135,18 +114,6 @@
       </div>
       <div class="card">
         <div class="m-ident">
-            <div class="avatar-col">
-              <div class="cavwrap"><img class="cav avatar-swap-img" src="avatar-sample-2.png" data-avatar-pixar="avatar-sample-2.png" data-avatar-line="avatar-sample-2-line.png" alt="stylized avatar — not a photo" onclick="toggleCardAvatar(this,event)" title="tap to switch style"></div>
-              <button class="negative filled min" onclick="report(this)">Report</button>
-            </div>
-          <div class="ident">
-            <div class="topline">
-              <div class="scoreline"><a class="score" href="#" onclick="openScore(this);return false;" title="How this score is made">61</a> <span class="handle">quiet-fox-2148</span></div>
-              <span class="stage-tag">decent fit</span>
-            </div>
-            <div class="secrow"><span class="alab">Same</span><span class="mpill">open to kids</span> <span class="mpill">city culture</span></div>
-            <div class="secrow"><span class="alab">Different</span><span class="dtopic">smoking</span> <span class="dtopic">pets</span> <span class="dtopic">work hours</span></div>
-          </div>
         </div>
         <div class="actrow">
           <button class="positive" onclick="actCard(this,false)">Interested</button>
@@ -155,18 +122,6 @@
       </div>
       <div class="card">
         <div class="m-ident">
-            <div class="avatar-col">
-              <div class="cavwrap"><img class="cav avatar-swap-img" src="avatar-sample-3.png" data-avatar-pixar="avatar-sample-3.png" data-avatar-line="avatar-sample-3-line.png" alt="stylized avatar — not a photo" onclick="toggleCardAvatar(this,event)" title="tap to switch style"></div>
-              <button class="negative filled min" onclick="report(this)">Report</button>
-            </div>
-          <div class="ident">
-            <div class="topline">
-              <div class="scoreline"><a class="score" href="#" onclick="openScore(this);return false;" title="How this score is made">44</a> <span class="handle">steady-owl-8831</span></div>
-              <span class="stage-tag">weak fit</span>
-            </div>
-            <div class="secrow"><span class="alab">Same</span><span class="mpill">wants kids</span> <span class="mpill">long-term</span></div>
-            <div class="secrow"><span class="alab">Different</span><span class="dtopic">smoking</span> <span class="dtopic">free time</span> <span class="dtopic">work hours</span></div>
-          </div>
         </div>
         <div class="actrow">
           <button class="positive" onclick="actCard(this,false)">Interested</button>
@@ -205,7 +160,6 @@
     setTimeout(function(){ if (card.parentElement) card.remove(); }, 400);
   }
   var FLAGS = {};
-  var DEFAULT_AVATAR = "data:image/svg+xml;charset=utf-8," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="78" height="78" viewBox="0 0 78 78"><circle cx="39" cy="39" r="37" fill="#F3EBDD" stroke="#6B5D50" stroke-width="2"/><circle cx="39" cy="32" r="11" fill="none" stroke="#6B5D50" stroke-width="2"/><path d="M15 66c5-12 14-18 24-18s19 6 24 18" fill="none" stroke="#6B5D50" stroke-width="2"/></svg>');
   function report(btn){
     var card = btn.closest('.card');
     var handleEl = card.querySelector('.handle');
@@ -213,8 +167,6 @@
     var msg = "Report " + handle + "'s avatar?\n\nYour report is anonymous. It adds to their flag count \u2014 at 3 reports an account is permanently closed, with no appeal. Reporting also blocks future matches with them.";
     if (!confirm(msg)) return;
     FLAGS[handle] = (FLAGS[handle] || 0) + 1;
-    var img = card.querySelector('.cav');
-    if (img) img.src = DEFAULT_AVATAR;
     notify(handle, 'avatar');
     if (FLAGS[handle] >= 3){ location.href = 'draft-01i-sorry-closed.html'; return; }
     card.remove();
@@ -257,6 +209,5 @@
   </div>
   <script src="palette-switcher.js"></script>
 <script src="draft-nav.js"></script>
-<script src="avatar-style.js"></script>
 </body>
 </html>
