@@ -52,8 +52,8 @@
   .qval{width:30px; text-align:right; font-size:13px; flex:none;}
   .qrow.sum .qlabel,.qrow.sum .qval{color:var(--muted);}
 
-  .toggle{background:none; border:none; font-family:inherit; font-size:12.5px; color:var(--accent);
-          padding:9px 0 2px; cursor:pointer; display:block; text-align:left;}
+  .trow{cursor:pointer;}
+  .trow .qlabel{color:var(--accent);}
   .actrow{display:flex; gap:10px; margin-top:8px;}
   .actrow button{flex:1; font-family:inherit; font-size:14px; padding:10px 0; border-radius:999px;
                  cursor:pointer;}
@@ -115,9 +115,15 @@
   }
 
   function sumRowHTML(sameCount, diffCount, sum) {
-    return '<div class="qrow sum"><span class="mark" style="visibility:hidden"></span>' +
+    return '<div class="qrow sum trow"><span class="mark" style="visibility:hidden"></span>' +
            '<span class="qlabel">Other (' + sameCount + ' same · ' + diffCount + ' different)</span>' +
            '<span class="dots"></span><span class="qval">' + sum + '</span></div>';
+  }
+
+  function lessRowHTML() {
+    return '<div class="qrow sum trow"><span class="mark" style="visibility:hidden"></span>' +
+           '<span class="qlabel">Show less</span>' +
+           '<span class="dots"></span><span class="qval"></span></div>';
   }
 
   function build(card) {
@@ -156,19 +162,17 @@
         '<span class="total">' + earned + '</span>' +
       '</div>' +
       '<div class="rows" data-state="collapsed">' + collapsedHTML + '</div>' +
-      '<button class="toggle">Show all ' + rows.length + '</button>' +
       '<div class="actrow">' +
         '<button class="positive">Interested</button>' +
         '<button class="negative">Not for me</button>' +
       '</div>';
 
     var rowsEl = card.querySelector('.rows');
-    var toggle = card.querySelector('.toggle');
-    toggle.addEventListener('click', function () {
+    rowsEl.addEventListener('click', function (ev) {
+      if (!ev.target.closest('.trow')) return;
       var collapsed = rowsEl.getAttribute('data-state') === 'collapsed';
-      rowsEl.innerHTML = collapsed ? byWeight.map(rowHTML).join('') : collapsedHTML;
+      rowsEl.innerHTML = collapsed ? lessRowHTML() + byWeight.map(rowHTML).join('') : collapsedHTML;
       rowsEl.setAttribute('data-state', collapsed ? 'expanded' : 'collapsed');
-      toggle.textContent = collapsed ? 'Show less' : 'Show all ' + rows.length;
     });
 
     card.querySelector('.positive').addEventListener('click', function () { settle(card); });
