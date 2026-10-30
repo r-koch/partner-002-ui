@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PARTNER-002 design draft — Pricing</title>
 <style>
-
   :root{
     --bg:#FAF6EF; --surface:#F3EBDD; --text:#2E2620; --muted:#6B5D50;
     --accent:#B0431F; --accent-text:#FFFFFF; --line:#D8CCBA; --exclude:#A63A2B;
@@ -14,102 +13,117 @@
   *{box-sizing:border-box; margin:0; padding:0;}
   body{background:var(--bg); color:var(--text); font-family:Georgia,'Times New Roman',serif;
        min-height:100vh; padding:0;}
-    .phone{width:100%; background:var(--bg);
-         display:flex; flex-direction:column; min-height:100vh;}
+  .phone{width:100%; background:var(--bg); display:flex; flex-direction:column; min-height:100vh;}
   @media (min-width:600px){
     .phone{max-width:420px; margin:0 auto; border-radius:24px; overflow:hidden;
-           border:1px solid var(--line); min-height:700px;
-           box-shadow:0 4px 24px rgba(0,0,0,.08);}
+           border:1px solid var(--line); min-height:700px; box-shadow:0 4px 24px rgba(0,0,0,.08);}
     body{padding:24px;}
   }
   header{display:flex; justify-content:space-between; align-items:center; padding:16px 18px;
          border-bottom:1px solid var(--line);}
   header strong{font-weight:600;}
-  header nav{display:flex; gap:10px; align-items:center;}
   header a{color:var(--muted); font-size:14px; text-decoration:none; display:inline-flex;}
   .qmark{width:20px; height:20px; border-radius:50%; border:1.5px solid var(--muted);
          color:var(--muted); font-size:12px; display:inline-flex; align-items:center;
-         justify-content:center; cursor:pointer; background:none; font-family:inherit; text-decoration:none;}
-  .expl{display:none; font-size:12px; color:var(--muted); line-height:1.5;
-        margin:10px 18px 0; border-left:2px solid var(--line); padding:4px 10px;}
-  .expl.show{display:block;}
+         justify-content:center; cursor:pointer; background:none; font-family:inherit;
+         text-decoration:none;}
   .body{flex:1; padding:18px; overflow-y:auto;}
-  h1{font-size:23px; font-weight:600; margin-bottom:6px;}
-  .lead{font-size:14px; color:var(--muted); margin-bottom:16px; line-height:1.5;}
-  .plan{border:2px solid var(--line); border-radius:14px; background:var(--surface);
-        padding:14px 16px; margin-bottom:10px;}
-  .plan .name{font-size:16px; font-weight:600; display:flex; justify-content:space-between;}
-  .plan .price{color:var(--accent);}
-  .plan .desc{font-size:13px; color:var(--muted); line-height:1.5; margin:6px 0 10px;}
-  .plan .incl{font-size:13px; line-height:1.7;}
-  .plan .incl span{color:var(--muted);}
+  h1{font-size:23px; font-weight:600; margin-bottom:6px; line-height:1.25;}
+  .balance{display:flex; gap:18px; margin:16px 0 18px;}
+  .bal{border:1px solid var(--line); border-radius:14px; background:var(--surface);
+       padding:12px 14px; flex:1;}
+  .bal .n{font-size:22px; font-weight:700;}
+  .bal .l{font-size:11.5px; color:var(--muted); margin-top:2px;}
+
+  .offer{border:2px solid var(--line); border-radius:14px; background:var(--surface);
+         padding:14px 16px; margin-bottom:10px;}
+  .offer .name{font-size:16px; font-weight:600; display:flex; justify-content:space-between;}
+  .offer .price{color:var(--accent);}
+  .offer .incl{font-size:13px; line-height:1.7; margin-top:8px; color:var(--muted);}
   .positive{display:block; width:100%; background:var(--positive); color:var(--positive-text);
-       border:none; border-radius:999px; padding:13px 0; font-size:15px; cursor:pointer;
-       font-family:inherit; margin-top:6px; text-align:center; text-decoration:none;}
-  .positive[disabled]{opacity:.4; cursor:not-allowed;}
-  .negative{display:block; width:100%; background:var(--surface); color:var(--exclude);
-       border:1.5px solid var(--exclude); border-radius:999px; padding:11px 0; font-size:15px;
-       cursor:pointer; font-family:inherit; margin-top:6px; text-align:center; text-decoration:none;}
-  .negative.filled{background:var(--exclude); color:var(--bg);}
-  .neutral{display:block; width:100%; background:var(--surface); color:var(--text);
-       border:1.5px solid var(--line); border-radius:999px; padding:11px 0; font-size:15px;
-       cursor:pointer; font-family:inherit; margin-top:6px; text-align:center; text-decoration:none;}
-  .min{padding:6px 14px; font-size:13px;}
-  .providers{font-size:13px; color:var(--muted); margin-top:14px; line-height:1.6;}
+       border:1px solid var(--positive); border-radius:999px; padding:13px 0; font-size:15px;
+       cursor:pointer; font-family:inherit; margin-top:12px;}
+  .providers{font-size:12.5px; color:var(--muted); margin-top:14px; line-height:1.6;}
   .fine{font-size:11px; color:var(--muted); margin-top:12px; line-height:1.6;
         border-top:1px solid var(--line); padding-top:10px;}
+  .fine a{color:var(--accent); text-decoration:none;}
+
+  /* checkout sheet */
+  .scrim{position:fixed; inset:0; background:rgba(46,38,32,.34); opacity:0; pointer-events:none;
+         transition:opacity .18s ease; z-index:40;}
+  .scrim.on{opacity:1; pointer-events:auto;}
+  .sheet{position:fixed; left:0; right:0; bottom:0; z-index:41; background:var(--bg);
+         border-radius:20px 20px 0 0; box-shadow:0 -8px 30px rgba(0,0,0,.18);
+         transform:translateY(102%); transition:transform .22s ease;}
+  .sheet.on{transform:translateY(0);}
+  @media (min-width:600px){ .sheet{max-width:420px; margin:0 auto; left:auto; right:auto; width:420px;} }
+  .grab{width:40px; height:4px; border-radius:999px; background:var(--line); margin:8px auto 0;}
+  .sheet-body{padding:14px 18px 26px;}
+  .row{display:flex; justify-content:space-between; align-items:baseline; padding:10px 0;
+       border-bottom:1px solid var(--line); font-size:14px;}
+  .row:last-of-type{border-bottom:none;}
+  .row b{font-weight:700;}
+  .consent{display:flex; gap:10px; align-items:flex-start; font-size:12px; color:var(--muted);
+           line-height:1.45; margin-top:12px; cursor:pointer;}
+  .consent input{margin-top:2px; accent-color:var(--positive);}
 </style>
 </head>
 <body>
-  <div class="phone" style="min-height:640px;">
+  <div class="phone">
     <header>
       <strong>Pricing <a class="qmark" href="draft-04c-faq.html#pricing" target="_blank" rel="noopener" title="Open the answer in Information">?</a></strong>
       <nav><a href="draft-04i-menu.html" title="Menu"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></a></nav>
     </header>
     <div class="body">
-      <h1>Talk to the people you pair with.</h1>
-      <div class="lead">Stages 1 and 2 are free. Opening chat takes one advance on each side — both of you need access, and the system checks both. Cost per advance is kept under a euro, less than a coffee.</div>
+      <h1>Three pairings a month, free.</h1>
 
-      <div class="plan">
-        <div class="name"><span>Free</span><span class="price">EUR 0</span></div>
-        <div class="desc">3 stage-3 advances per 30 days.</div>
-        <div class="incl"><span>&#10003; Matching, stage 1 and stage 2</span><br><span>&#10003; 3 chat unlocks per period</span></div>
-        <button class="positive" onclick="choosePlan(this,'Current plan')">Current plan</button>
+      <div class="balance">
+        <div class="bal"><div class="n" id="balCredits">2</div><div class="l">credits</div></div>
+        <div class="bal"><div class="n" id="balFree">1</div><div class="l">free left this month</div></div>
       </div>
 
-      <div class="plan">
-        <div class="name"><span>Unlimited month</span><span class="price">EUR [price]</span></div>
-        <div class="desc">Unlimited stage-3 advances for 30 days. Cancel anytime.</div>
-        <div class="incl"><span>&#10003; Unlimited chat unlocks</span><br><span>&#10003; Cancel anytime, no tricks</span></div>
-        <button class="positive" onclick="choosePlan(this,'Subscribe')">Subscribe</button>
+      <div class="offer">
+        <div class="name"><span>Pairing credit</span><span class="price">EUR 1</span></div>
+        <div class="incl">One pairing, on your side.<br>Never expires. Free credits do not roll over.</div>
       </div>
 
-      <div class="plan">
-        <div class="name"><span>Advance bundles</span><span class="price">EUR [price]</span></div>
-        <div class="desc">Prepaid chat unlocks that never expire — and make the under-a-euro price workable, even with card fees.</div>
-        <div class="incl"><span>&#10003; 5 / 10 / 20 advances</span><br><span>&#10003; A month's membership never ends your bundle</span></div>
-        <button class="positive" onclick="choosePlan(this,'Buy advances')">Buy advances</button>
-      </div>
+      <button class="positive" onclick="openCheckout()">Buy a credit</button>
 
-      <div class="providers">PayPal, credit card, Apple/Google Pay — and direct debit (SEPA) where the provider offers it.</div>
-      <label style="display:flex; gap:10px; align-items:flex-start; font-size:13px; color:var(--muted);
-             margin-top:14px; line-height:1.4; cursor:pointer;">
-        <input type="checkbox" style="margin-top:2px; accent-color:var(--positive);">
-        <span>I agree that the 14-day withdrawal right ends when the chat unlock is used. Unused advances stay refundable at the price actually paid, minus the payment fee we cannot get back, and a subscription can be cancelled any time &mdash; <a href="draft-legal-refund.html">refunds and withdrawal</a>.</span>
-      </label>
+      <div class="providers">App store billing inside the app.<br>PayPal, card, Apple/Google Pay, direct debit on the web.</div>
+
+      <div class="fine">One credit per side per pairing: both of you need one, and neither is taken until both are in. A declaration that is never answered lapses after 14 days and the credit returns. Unused credits are refundable at the price paid — <a href="draft-legal-refund.html">refunds and withdrawal</a>; app-store purchases are refunded by the store.</div>
     </div>
   </div>
+
+  <div class="scrim" id="scrim" onclick="closeCheckout()"></div>
+  <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Buy a credit">
+    <div class="grab" onclick="closeCheckout()"></div>
+    <div class="sheet-body">
+      <div class="row"><span>Pairing credit</span><b>EUR 1</b></div>
+      <div class="row"><span>Payment</span><b id="payMethod">App store account</b></div>
+      <label class="consent">
+        <input type="checkbox" id="ok">
+        <span>I agree that the 14-day change-your-mind right ends once the credit is used.</span>
+      </label>
+      <button class="positive" onclick="pay()">Pay EUR 1</button>
+    </div>
+  </div>
+
   <script>
-  function choosePlan(btn, base){
-    var plans = document.querySelectorAll('.body button.positive');
-    for (var i = 0; i < plans.length; i++) plans[i].textContent = plans[i].getAttribute('data-lbl');
-    btn.textContent = 'Selected';
-    setTimeout(function(){ btn.textContent = base; }, 1400);
-  }
-  (function(){
-    var plans = document.querySelectorAll('.body button.positive');
-    for (var i = 0; i < plans.length; i++) plans[i].setAttribute('data-lbl', plans[i].textContent);
-  })();
+    function openCheckout(){
+      document.getElementById('scrim').classList.add('on');
+      document.getElementById('sheet').classList.add('on');
+    }
+    function closeCheckout(){
+      document.getElementById('scrim').classList.remove('on');
+      document.getElementById('sheet').classList.remove('on');
+    }
+    function pay(){
+      if (!document.getElementById('ok').checked) return;
+      var n = document.getElementById('balCredits');
+      n.textContent = parseInt(n.textContent, 10) + 1;
+      closeCheckout();
+    }
   </script>
   <script src="palette-switcher.js"></script>
 <script src="draft-nav.js"></script>
