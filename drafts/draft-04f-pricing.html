@@ -78,32 +78,32 @@
       <h1>Three pairings a month, free.</h1>
 
       <div class="balance">
-        <div class="bal"><div class="n" id="balCredits">2</div><div class="l">credits</div></div>
+        <div class="bal"><div class="n" id="balCredits">2</div><div class="l">tickets</div></div>
         <div class="bal"><div class="n" id="balFree">1</div><div class="l">free left this month</div></div>
       </div>
 
       <div class="offer">
-        <div class="name"><span>Pairing credit</span><span class="price">EUR 0.99</span></div>
-        <div class="incl">One pairing, on your side.<br>Never expires. Free credits do not roll over.</div>
+        <div class="name"><span>Pairing ticket</span><span class="price">EUR 0.99</span></div>
+        <div class="incl">One pairing, on your side.<br>Never expires. Free tickets do not roll over.</div>
       </div>
 
-      <button class="positive" onclick="openCheckout()">Buy a credit</button>
+      <button class="positive" onclick="openCheckout()">Buy a ticket</button>
 
       <div class="providers">App store billing inside the app.<br>PayPal, card, Apple/Google Pay, direct debit on the web.</div>
 
-      <div class="fine">Prices include all charges. No VAT is charged: small-business exemption under &sect; 6(1)27 of the Austrian VAT Act.<br>One credit per side per pairing: both of you need one, and neither is taken until both are in. A declaration that is never answered lapses after 14 days and the unit returns. If more than three are open, the three oldest use the free ones. Unused credits are refundable at the price paid — <a href="draft-legal-refund.html">refunds and withdrawal</a>; app-store purchases are refunded by the store.</div>
+      <div class="fine">Prices include all charges. No VAT is charged: small-business exemption under &sect; 6(1)27 of the Austrian VAT Act.<br>One ticket per side per pairing: both of you need one, and neither is taken until both are in. A declaration that is never answered lapses after 14 days and the ticket returns. If more than three are open, the three oldest use the free ones. Unused tickets are refundable at the price paid — <a href="draft-legal-refund.html">refunds and withdrawal</a>; app-store purchases are refunded by the store.</div>
     </div>
   </div>
 
   <div class="scrim" id="scrim" onclick="closeCheckout()"></div>
-  <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Buy a credit">
+  <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Buy a ticket">
     <div class="grab" onclick="closeCheckout()"></div>
     <div class="sheet-body">
-      <div class="row"><span>Pairing credit</span><b>EUR 0.99</b></div>
+      <div class="row"><span>Pairing ticket</span><b>EUR 0.99</b></div>
       <div class="row"><span>Payment</span><b id="payMethod">App store account</b></div>
       <label class="consent">
         <input type="checkbox" id="ok">
-        <span>I agree that the 14-day change-your-mind right ends once the credit is used.</span>
+        <span>I agree that the 14-day change-your-mind right ends once the ticket is used.</span>
       </label>
       <button class="positive" onclick="pay()">Pay EUR 0.99</button>
     </div>

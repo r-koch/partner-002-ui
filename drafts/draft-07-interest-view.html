@@ -159,7 +159,7 @@
     </div>
 
     <div class="optin" id="optin">
-      <span class="optin-t" id="optin-t">Credit reserved — waiting for them to opt in</span>
+      <span class="optin-t" id="optin-t">Ticket reserved — waiting for them to opt in</span>
     </div>
 
     <div class="actions">
@@ -186,7 +186,7 @@
     btn.disabled = true;
     btn.textContent = 'Reserving…';
     document.getElementById('optin').style.display = 'block';
-    document.getElementById('optin-t').textContent = 'Credit reserved — waiting for them to opt in';
+    document.getElementById('optin-t').textContent = 'Ticket reserved — waiting for them to opt in';
     setTimeout(function(){
       document.getElementById('optin-t').textContent = 'They opted in — chat unlocked';
       setTimeout(function(){ location.href = 'draft-08-pair-view.html'; }, 800);
