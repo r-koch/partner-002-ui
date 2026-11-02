@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PARTNER-002 design draft — Terms</title>
+<style>
+  :root{
+    --bg:#FAF6EF; --surface:#F3EBDD; --text:#2E2620; --muted:#6B5D50;
+    --accent:#B0431F; --accent-text:#FFFFFF; --line:#D8CCBA; --exclude:#A63A2B;
+    --match:#3E6B4F; --positive:#3E6B4F; --positive-text:#FFFFFF;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--text); font-family:Georgia,'Times New Roman',serif;
+       min-height:100vh; padding:0;}
+    .phone{width:100%; background:var(--bg);
+         display:flex; flex-direction:column; min-height:100vh;}
+  @media (min-width:600px){
+    .phone{max-width:420px; margin:0 auto; border-radius:24px; overflow:hidden;
+           border:1px solid var(--line); min-height:700px;
+           box-shadow:0 4px 24px rgba(0,0,0,.08);}
+    body{padding:24px;}
+  }
+  header{display:flex; justify-content:space-between; align-items:center; padding:16px 18px;
+         border-bottom:1px solid var(--line);}
+  header strong{font-weight:600;}
+  header nav{display:flex; gap:10px; align-items:center;}
+  header a{color:var(--muted); font-size:14px; text-decoration:none;}
+  .qmark{width:20px; height:20px; border-radius:50%; border:1.5px solid var(--muted);
+         color:var(--muted); font-size:12px; display:inline-flex; align-items:center;
+         justify-content:center; cursor:pointer; background:none; font-family:inherit;}
+  .body{flex:1; padding:18px; overflow-y:auto;}
+  .step{font-size:13px; color:var(--muted); margin-bottom:12px;}
+  h1{font-size:26px; font-weight:600; margin-bottom:8px; line-height:1.25;}
+  .lead{font-size:15px; color:var(--muted); margin-bottom:22px; line-height:1.5;}
+  .block{border:1px solid var(--line); border-radius:14px; background:var(--surface);
+         padding:14px 16px; margin-bottom:12px;}
+  .block .t{font-size:14px; font-weight:600; margin-bottom:6px;}
+  .block .tl{font-size:13px; color:var(--muted); line-height:1.5;}
+  .block .precise{font-size:12px; color:var(--muted); line-height:1.6; margin-top:8px;
+         border-top:1px solid var(--line); padding-top:8px;}
+  .positive{display:block; width:100%; background:var(--positive); color:var(--positive-text);
+       border:none; border-radius:999px; padding:13px 0; font-size:15px; cursor:pointer;
+       font-family:inherit; margin-top:6px; text-align:center; text-decoration:none;}
+  .positive[disabled]{opacity:.4; cursor:not-allowed;}
+  .negative{display:block; width:100%; background:var(--surface); color:var(--exclude);
+       border:1.5px solid var(--exclude); border-radius:999px; padding:11px 0; font-size:15px;
+       cursor:pointer; font-family:inherit; margin-top:6px; text-align:center; text-decoration:none;}
+  .negative.filled{background:var(--exclude); color:var(--bg);}
+  .neutral{display:block; width:100%; background:var(--surface); color:var(--text);
+       border:1.5px solid var(--line); border-radius:999px; padding:11px 0; font-size:15px;
+       cursor:pointer; font-family:inherit; margin-top:6px; text-align:center; text-decoration:none;}
+  .min{padding:6px 14px; font-size:13px;}
+  .choice{display:block; border:2px solid var(--line); border-radius:12px;
+          padding:15px 16px; margin-bottom:12px; font-size:15px; cursor:pointer;
+          background:var(--surface);}
+  .choice small{display:block; color:var(--muted); font-size:12px; margin-top:4px;}
+  .choice.now{border-color:var(--accent);}
+  .footer{margin-top:auto; padding:18px; display:flex; justify-content:space-between;
+          align-items:center; max-width:420px; width:100%; margin-left:auto; margin-right:auto;}
+  .demo-note{display:none;}
+
+  .progress{display:flex; gap:6px; padding:16px 18px 0; flex:none;}
+  .progress span{flex:1; height:5px; border-radius:3px; background:var(--line);}
+  .progress span.done{background:var(--match);}
+  .progress span.now{background:var(--accent);}
+  /* legal reference access on every legal-setup page (one component, reused) */
+  .legalfoot{display:flex; justify-content:center; align-items:center; gap:8px;
+             padding:10px 18px 16px; font-size:11px; color:var(--muted);}
+  .legalfoot a{color:var(--muted); text-decoration:none;}
+  .legalfoot a:hover{text-decoration:underline;}
+  .legalfoot span{opacity:.5;}
+  .accept{display:flex; gap:10px; align-items:flex-start; font-size:13.5px; line-height:1.45;
+          padding:14px 2px 2px; cursor:pointer;}
+  .accept input{width:18px; height:18px; margin-top:1px; accent-color:var(--positive); flex:none;}
+</style>
+</head>
+<body>
+  <div class="phone" style="min-height:560px;">
+    <header>
+      <strong>Setup – Terms </strong>
+    </header>
+    <div class="progress">
+      <span class="done"></span>
+      <span class="now"></span>
+      <span class=""></span>
+      <span class=""></span>
+      <span class=""></span>
+      <span class=""></span>
+    </div>
+    
+    <div class="body">
+      
+      <h1>The fine print, in human first</h1>
+      <div class="block">
+        <div class="t">Plain language</div>
+        <div class="tl">You'll behave like a decent human. We'll keep the app honest and
+          working. Breaking the rules can end in your account being closed.</div>
+        <div class="precise"><a href="draft-legal-terms.html">Read the full terms</a> — one page,
+          written to be read.</div>
+      </div>
+      <div class="block">
+        <div class="t">Reports</div>
+        <div class="tl">Accounts can be closed after repeated verified reports. If a decision
+          affects you, you can ask for it to be reviewed.</div>
+      </div>
+      <label class="accept" for="acceptBox">
+        <input type="checkbox" id="acceptBox" onchange="toggleAccept()">
+        <span>I have read and accept the terms of use.</span>
+      </label>
+    </div>
+    <div class="footer">
+      <button class="neutral" onclick="location.href='draft-01-signup-18plus.html'">Back</button>
+      <button class="positive" id="acceptBtn" disabled onclick="location.href='draft-01c-privacy.html'">Continue</button>
+    </div>
+      <div class="legalfoot"><a href="draft-legal-imprint.html">Imprint</a><span>·</span><a href="draft-legal-privacy.html">Privacy</a><span>·</span><a href="draft-legal-terms.html">Terms</a></div>
+</div>
+  <script>
+  function toggleAccept() {
+    document.getElementById('acceptBtn').disabled = !document.getElementById('acceptBox').checked;
+  }
+</script>
+<script src="palette-switcher.js"></script>
+<script src="draft-nav.js"></script>
+</body>
+</html>

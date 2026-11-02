@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PARTNER-002 design draft — Add interests manually</title>
+<style>
+  :root{
+    --bg:#FAF6EF; --surface:#F3EBDD; --text:#2E2620; --muted:#6B5D50;
+    --accent:#B0431F; --accent-text:#FFFFFF; --line:#D8CCBA; --exclude:#A63A2B;
+    --match:#3E6B4F; --positive:#3E6B4F; --positive-text:#FFFFFF;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--text); font-family:Georgia,'Times New Roman',serif;
+       min-height:100vh; padding:0;}
+    .phone{width:100%; background:var(--bg);
+         display:flex; flex-direction:column; min-height:100vh;}
+  @media (min-width:600px){
+    .phone{max-width:420px; margin:0 auto; border-radius:24px; overflow:hidden;
+           border:1px solid var(--line); min-height:700px;
+           box-shadow:0 4px 24px rgba(0,0,0,.08);}
+    body{padding:24px;}
+  }
+  header{display:flex; justify-content:space-between; align-items:center; padding:16px 18px;
+         border-bottom:1px solid var(--line);}
+  header strong{font-weight:600;}
+  header nav{display:flex; gap:10px; align-items:center;}
+  header a{color:var(--muted); font-size:14px; text-decoration:none;}
+  .qmark{width:20px; height:20px; border-radius:50%; border:1.5px solid var(--muted);
+         color:var(--muted); font-size:12px; display:inline-flex; align-items:center;
+         justify-content:center; cursor:pointer; background:none; font-family:inherit; text-decoration:none;}
+  .expl{display:none; font-size:12px; color:var(--muted); line-height:1.5;
+        margin:10px 18px 0; border-left:2px solid var(--line); padding:4px 10px;}
+  .expl.show{display:block;}
+  .body{flex:1; padding:18px; overflow-y:auto;}
+  .step{font-size:13px; color:var(--muted); margin-bottom:12px;}
+  h1{font-size:26px; font-weight:600; margin-bottom:8px; line-height:1.25;}
+  .lead{font-size:15px; color:var(--muted); margin-bottom:22px; line-height:1.5;}
+  .block{border:1px solid var(--line); border-radius:14px; background:var(--surface);
+         padding:14px 16px; margin-bottom:12px;}
+  .block .t{font-size:14px; font-weight:600; margin-bottom:6px;}
+  .block .tl{font-size:13px; color:var(--muted); line-height:1.5;}
+  .block .precise{font-size:12px; color:var(--muted); line-height:1.6; margin-top:8px;
+         border-top:1px solid var(--line); padding-top:8px;}
+  .positive{display:block; width:100%; background:var(--positive); color:var(--positive-text);
+       border:none; border-radius:999px; padding:13px 0; font-size:15px; cursor:pointer;
+       font-family:inherit; margin-top:6px; text-align:center; text-decoration:none;}
+  .positive[disabled]{opacity:.4; cursor:not-allowed;}
+  .negative{display:block; width:100%; background:var(--surface); color:var(--exclude);
+       border:1.5px solid var(--exclude); border-radius:999px; padding:11px 0; font-size:15px;
+       cursor:pointer; font-family:inherit; margin-top:6px; text-align:center; text-decoration:none;}
+  .negative.filled{background:var(--exclude); color:var(--bg);}
+  .neutral{display:block; width:100%; background:var(--surface); color:var(--text);
+       border:1.5px solid var(--line); border-radius:999px; padding:11px 0; font-size:15px;
+       cursor:pointer; font-family:inherit; margin-top:6px; text-align:center; text-decoration:none;}
+  .min{padding:6px 14px; font-size:13px;}
+  .choice{display:block; border:2px solid var(--line); border-radius:12px;
+          padding:15px 16px; margin-bottom:12px; font-size:15px; cursor:pointer;
+          background:var(--surface);}
+  .choice small{display:block; color:var(--muted); font-size:12px; margin-top:4px;}
+  .choice.now{border-color:var(--accent);}
+  .footer{margin-top:auto; padding:18px; display:flex; justify-content:space-between;
+          align-items:center; max-width:420px; width:100%; margin-left:auto; margin-right:auto;}
+  .demo-note{display:none;}
+
+  
+  
+  input[type="number"], input[type="text"]{background:var(--surface);
+       border:1.5px solid var(--line); border-radius:11px; padding:10px 12px;
+       font-family:inherit; font-size:14px; color:var(--text); outline:none;}
+  input[type="number"]:focus, input[type="text"]:focus{border-color:var(--accent);}
+  .ichip{display:inline-flex; align-items:center; gap:5px; background:var(--bg);
+       border:1.5px dashed var(--accent); border-radius:999px; padding:5px 12px;
+       font-size:13px; color:var(--text); cursor:pointer; user-select:none;}
+  .ichip.on{background:var(--accent); color:var(--accent-text); border-style:solid;}
+  .ilabel{font-size:12px; color:var(--muted); margin-bottom:8px;}
+  .seg-switch{display:flex; gap:6px; margin-bottom:14px; background:var(--surface);
+       border:1px solid var(--line); border-radius:999px; padding:4px;}
+  .segbtn{flex:1; background:none; border:none; border-radius:999px; padding:9px 0;
+       font-size:14px; color:var(--muted); cursor:pointer; font-family:inherit;}
+  .segbtn.on{background:var(--accent); color:var(--accent-text);}
+  .btn.google{display:block; width:100%; background:var(--surface); color:var(--text);
+       border:1.5px solid var(--line); border-radius:999px; padding:13px 0; font-size:15px;
+       cursor:pointer; font-family:inherit; text-align:center; text-decoration:none;}
+  .btn.ghost{display:block; width:100%; background:var(--surface); color:var(--text);
+       border:1.5px solid var(--line); border-radius:999px; padding:11px 0; font-size:15px;
+       cursor:pointer; font-family:inherit; margin-top:10px; text-align:center; text-decoration:none;}
+</style>
+</head>
+<body>
+  <div class="phone">
+    <header>
+      <strong>Add interests <a class="qmark" href="draft-04c-faq.html#interests" target="_blank" rel="noopener" title="Open the answer in Information">?</a></strong>
+      <nav><a href="draft-04i-menu.html" title="Menu"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></a></nav>
+    </header>
+
+    <div class="body">
+      <h1 style="font-size:22px;">Your interests</h1>
+      <div class="seg-switch">
+        <button class="segbtn on" onclick="showPane('manual')">Pick manually</button>
+        <button class="segbtn" onclick="showPane('import')">Import</button>
+      </div>
+
+      <div id="pane-manual">
+        <div class="ilabel">Your interests — conversation flavor only, never used for matching</div>
+        <div id="chip-list">
+          <span class="ichip on" onclick="this.classList.toggle('on')">travel</span>
+          <span class="ichip" onclick="this.classList.toggle('on')">outdoors</span>
+          <span class="ichip" onclick="this.classList.toggle('on')">music</span>
+          <span class="ichip" onclick="this.classList.toggle('on')">films</span>
+          <span class="ichip" onclick="this.classList.toggle('on')">books</span>
+          <span class="ichip on" onclick="this.classList.toggle('on')">food</span>
+          <span class="ichip" onclick="this.classList.toggle('on')">space</span>
+          <span class="ichip" onclick="this.classList.toggle('on')">hiking</span>
+          <span class="ichip" onclick="this.classList.toggle('on')">concerts</span>
+          <span class="ichip on" onclick="this.classList.toggle('on')">photography</span>
+          <span class="ichip" onclick="this.classList.toggle('on')">gaming</span>
+          <span class="ichip" onclick="this.classList.toggle('on')">dancing</span>
+        </div>
+        <button class="positive" style="margin-top:16px;" onclick="location.href='draft-03-questionnaire-overview.html'">Done</button>
+      </div>
+
+      <div id="pane-import" style="display:none;">
+        
+        <button class="btn google" onclick="doImport('Google')">Continue with Google</button>
+        <button class="btn ghost" onclick="doImport('Goodreads')">Continue with Goodreads</button>
+        <button class="btn ghost" onclick="doImport('Spotify')">Continue with Spotify</button>
+      </div>
+    </div>
+  </div>
+<script>
+  function showPane(name){
+    document.getElementById('pane-manual').style.display = name === 'manual' ? 'block' : 'none';
+    document.getElementById('pane-import').style.display = name === 'import' ? 'block' : 'none';
+    document.querySelectorAll('.segbtn').forEach(function(b){ b.classList.remove('on'); });
+    document.querySelectorAll('.segbtn')[name === 'manual' ? 0 : 1].classList.add('on');
+  }
+  function doImport(src){
+    var list = document.getElementById('chip-list');
+    var picked = src === 'Google' ? ['kitchen', 'plants'] : src === 'Goodreads' ? ['sci-fi', 'poetry'] : ['shoegaze', 'vinyl'];
+    picked.forEach(function(t){
+      if (list.textContent.indexOf(t) < 0){
+        var sp = document.createElement('span');
+        sp.className = 'ichip on'; sp.textContent = t;
+        sp.onclick = function(){ this.classList.toggle('on'); };
+        list.appendChild(sp);
+      }
+    });
+    showPane('manual');
+  }
+</script>
+  <script src="palette-switcher.js"></script>
+<script src="draft-nav.js"></script>
+</body>
+</html>

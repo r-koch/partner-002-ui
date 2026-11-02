@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PARTNER-002 design draft — questionnaire overview</title>
+<style>
+  :root{
+    --bg:#FAF6EF; --surface:#F3EBDD; --text:#2E2620; --muted:#6B5D50;
+    --accent:#B0431F; --accent-text:#FFFFFF; --line:#D8CCBA; --exclude:#A63A2B;
+    --match:#3E6B4F; --positive:#3E6B4F; --positive-text:#FFFFFF;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--text); font-family:Georgia,'Times New Roman',serif;
+       min-height:100vh; padding:0;}
+    .phone{width:100%; background:var(--bg);
+         display:flex; flex-direction:column; min-height:100vh;}
+  @media (min-width:600px){
+    .phone{max-width:420px; margin:0 auto; border-radius:24px; overflow:hidden;
+           border:1px solid var(--line); min-height:700px;
+           box-shadow:0 4px 24px rgba(0,0,0,.08);}
+    body{padding:24px;}
+  }
+  header{display:flex; justify-content:space-between; align-items:center; padding:16px 18px;
+         border-bottom:1px solid var(--line);}
+  header strong{font-weight:600;}
+  header nav{display:flex; gap:10px; align-items:center;}
+  header a{color:var(--muted); font-size:14px; text-decoration:none;}
+  .qmark{width:20px; height:20px; border-radius:50%; border:1.5px solid var(--muted);
+         color:var(--muted); font-size:12px; display:inline-flex; align-items:center;
+         justify-content:center; cursor:pointer; background:none; font-family:inherit; text-decoration:none;}
+  .expl{display:none; font-size:12px; color:var(--muted); line-height:1.5;
+        margin:10px 18px 0; border-left:2px solid var(--line); padding:4px 10px;}
+  .expl.show{display:block;}
+  .body{flex:1; padding:18px; overflow-y:auto;}
+  .step{font-size:13px; color:var(--muted); margin-bottom:12px;}
+  h1{font-size:26px; font-weight:600; margin-bottom:8px; line-height:1.25;}
+  .lead{font-size:15px; color:var(--muted); margin-bottom:22px; line-height:1.5;}
+  .block{border:1px solid var(--line); border-radius:14px; background:var(--surface);
+         padding:14px 16px; margin-bottom:12px;}
+  .block .t{font-size:14px; font-weight:600; margin-bottom:6px;}
+  .block .tl{font-size:13px; color:var(--muted); line-height:1.5;}
+  .block .precise{font-size:12px; color:var(--muted); line-height:1.6; margin-top:8px;
+         border-top:1px solid var(--line); padding-top:8px;}
+  .choice{display:block; border:2px solid var(--line); border-radius:12px;
+          padding:15px 16px; margin-bottom:12px; font-size:15px; cursor:pointer;
+          background:var(--surface);}
+  .choice small{display:block; color:var(--muted); font-size:12px; margin-top:4px;}
+  .choice.now{border-color:var(--accent);}
+  .footer{margin-top:auto; padding:18px; display:flex; justify-content:space-between;
+          align-items:center; max-width:420px; width:100%; margin-left:auto; margin-right:auto;}
+  .demo-note{display:none;}
+
+  .row{display:flex; align-items:center; justify-content:space-between; gap:8px;
+       padding:12px 0; border-bottom:1px solid var(--line); font-size:14px;}
+  .row:last-child{border-bottom:none;}
+  .row .meta{font-size:12px; color:var(--muted); display:block;}
+  .card{border:1px solid var(--line); border-radius:14px; background:var(--surface);
+        padding:4px 15px; margin-bottom:12px;}
+  .seg{font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em;
+       margin:14px 0 8px;}
+
+  .sec{display:flex; align-items:center; justify-content:space-between; gap:8px;
+       border:1.5px solid var(--line); border-radius:11px; padding:12px 14px;
+       margin-bottom:9px; background:var(--surface);}
+  .sec .name{font-size:14px;}
+  .sec .count{font-size:12px; color:var(--muted); white-space:nowrap;}
+  .qrow{display:flex; align-items:center; gap:8px;
+        padding:9px 0 9px 16px; border-bottom:1px solid var(--line); font-size:13px;}
+  .qrow:last-child{border-bottom:none;}
+  .qrow .q{flex:1; min-width:0;}
+  .qrow .a{font-size:12px; color:var(--muted); max-width:45%; text-align:right;
+           white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+  .qrow .un{font-size:12px; color:var(--muted);}
+  .qrow .dot{width:10px; height:10px; border-radius:50%; border:1.5px solid var(--muted); flex:none;}
+  .qrow .dot.filled{background:var(--match); border-color:var(--match);}
+</style>
+</head>
+<body>
+  <div class="phone" style="min-height:620px;">
+    <header>
+      <strong>Your answers <a class="qmark" href="draft-04c-faq.html#optional-info" target="_blank" rel="noopener" title="Open the answer in Information">?</a></strong>
+      <nav><a href="draft-04i-menu.html" title="Menu"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></a></nav>
+    </header>
+
+    <div class="body">
+      <div class="card">
+  <div class="sec"><span class="name">Required questions</span><span class="count">16/16</span></div>
+    <div class="qrow"><span class="dot filled"></span><span class="q">Gender</span><span class="a">Woman</span></div>
+    <div class="qrow"><span class="dot filled"></span><span class="q">Age</span><span class="a">30</span></div>
+    <div class="qrow"><span class="dot filled"></span><span class="q">Height</span><span class="a">172 cm</span></div>
+    <div class="qrow"><span class="dot filled"></span><span class="q">Body type</span><span class="a">Average</span></div>
+    <div class="qrow"><span class="dot filled"></span><span class="q">Relationship style</span><span class="a">Long-term</span></div>
+    <div class="qrow"><span class="dot filled"></span><span class="q">Have kids</span><span class="a">No kids</span></div>
+    <div class="qrow"><span class="dot filled"></span><span class="q">Want kids</span><span class="a">Open</span></div>
+    <div class="qrow"><span class="dot filled"></span><span class="q">Smoking</span><span class="a">Non-smoker</span></div>
+    <div class="qrow"><span class="dot filled"></span><span class="q">Religion</span><span class="a">None</span></div>
+    <div class="qrow"><span class="dot filled"></span><span class="q">Location</span><span class="a">Vienna</span></div>
+    <div class="qrow"><span class="dot filled"></span><span class="q">Living</span><span class="a">Alone</span></div>
+    <div class="qrow"><span class="dot filled"></span><span class="q">Work rhythm</span><span class="a">Flexible</span></div>
+    <div class="qrow"><span class="dot filled"></span><span class="q">Pets</span><span class="a">Tolerate</span></div>
+    <div class="qrow"><span class="dot filled"></span><span class="q">Politics</span><span class="a">Center</span></div>
+    <div class="qrow"><span class="dot filled"></span><span class="q">Free time</span><span class="a">Travel</span></div>
+    <div class="qrow"><span class="dot filled"></span><span class="q">Orientation</span><span class="a">Straight</span></div>
+  <div class="sec"><span class="name">Interests</span><span class="count">3 picked</span></div>
+      <div class="qrow" data-href="draft-04e-interests-manual.html"><span class="dot filled"></span><span class="q">Travel</span><span class="a">edit</span></div>
+      <div class="qrow" data-href="draft-04e-interests-manual.html"><span class="dot filled"></span><span class="q">Outdoors</span><span class="a">edit</span></div>
+      <div class="qrow" data-href="draft-04e-interests-manual.html"><span class="dot filled"></span><span class="q">Photography</span><span class="a">edit</span></div>
+      <div class="sec"><span class="name">Personality</span><span class="count">1/3</span></div>
+    <div class="qrow"><span class="dot filled"></span><span class="q">Sun sign</span><span class="a">Taurus</span></div>
+    <div class="qrow"><span class="dot"></span><span class="q">Myers–Briggs Type Indicator</span><span class="un">not answered</span></div>
+    <div class="qrow"><span class="dot"></span><span class="q">Big Five</span><span class="un">not answered</span></div>
+  <div class="sec"><span class="name">Extended questions</span><span class="count">optional</span></div>
+    <div class="qrow" data-href="draft-06c-extended.html"><span class="dot"></span><span class="q">Relationship history</span><span class="un">not answered</span></div>
+    <div class="qrow" data-href="draft-06c-extended.html"><span class="dot"></span><span class="q">Love languages</span><span class="un">not answered</span></div>
+    <div class="qrow" data-href="draft-06c-extended.html"><span class="dot"></span><span class="q">Communication style</span><span class="un">not answered</span></div>
+  <div class="sec"><span class="name">Deep questions</span><span class="count">optional</span></div>
+    <div class="qrow" data-href="draft-06d-deep.html"><span class="dot"></span><span class="q">Attachment style</span><span class="un">not answered</span></div>
+    <div class="qrow" data-href="draft-06d-deep.html"><span class="dot"></span><span class="q">Intimacy needs</span><span class="un">not answered</span></div>
+</div>
+    </div>
+  </div>
+  <script>
+  (function(){
+    // section headers expand / collapse their following rows
+    var secs = document.querySelectorAll('.sec');
+    for (var i = 0; i < secs.length; i++){
+      secs[i].style.cursor = 'pointer';
+      secs[i].addEventListener('click', function(){
+        var collapsed = this.classList.toggle('open') ? false : true;
+        var el = this.nextElementSibling;
+        while (el && !el.classList.contains('sec')){
+          if (el.classList.contains('qrow')) el.style.display = collapsed ? 'none' : '';
+          el = el.nextElementSibling;
+        }
+        var cnt = this.querySelector('.count');
+        if (cnt) cnt.textContent = collapsed ? '—' : cnt.getAttribute('data-full');
+      });
+    }
+    var cs = document.querySelectorAll('.sec .count');
+    for (var j = 0; j < cs.length; j++) cs[j].setAttribute('data-full', cs[j].textContent);
+    // question rows navigate to their question page (edit mode).
+    // Index-mapped rows: required (16) + personality (3), in DOM order — pages[]
+    // has exactly those 19 entries. Understanding that the tail rows (interests /
+    // extended / deep) carry an explicit data-href, the loop binds ONLY the
+    // index-mapped rows by sequential index and lets data-href rows bind once from
+    // their own attribute, so no row has two listeners and nothing maps past 19.
+    var pages = [
+      'draft-02-01-gender.html','draft-02-02-age.html','draft-02-03-height.html',
+      'draft-02-04-body-type.html','draft-02-05-relationship-style.html','draft-02-06-kids-now.html',
+      'draft-02-07-want-kids.html','draft-02-08-smoking.html','draft-02-09-religion.html',
+      'draft-02-10-location.html','draft-02-11-living.html','draft-02-12-work.html',
+      'draft-02-13-pets.html','draft-02-14-politics.html','draft-02-15-freetime.html',
+      'draft-02-16-orientation.html','draft-02-17-sun-sign.html','draft-02-18-four-letter-style.html',
+      'draft-02-19-big-five.html'
+    ];
+    var qrows = document.querySelectorAll('.qrow');
+    var pi = 0;
+    for (var k = 0; k < qrows.length; k++){
+      qrows[k].style.cursor = 'pointer';
+      (function(row){
+        var href = row.getAttribute('data-href');
+        if (href){
+          row.addEventListener('click', function(){ location.href = href; });
+        } else {
+          var dest = pages[pi++];
+          row.addEventListener('click', function(){ location.href = dest; });
+        }
+      })(qrows[k]);
+    }
+  })();
+  </script>
+  <script src="palette-switcher.js"></script>
+<script src="draft-nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PARTNER-002 design draft — Warm-up</title>
+<style>
+  :root{
+    --bg:#FAF6EF; --surface:#F3EBDD; --text:#2E2620; --muted:#6B5D50;
+    --accent:#B0431F; --accent-text:#FFFFFF; --line:#D8CCBA; --exclude:#A63A2B;
+    --match:#3E6B4F; --positive:#3E6B4F; --positive-text:#FFFFFF;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--text); font-family:Georgia,'Times New Roman',serif;
+       min-height:100vh; padding:0;}
+  .phone{width:100%; background:var(--bg);
+         display:flex; flex-direction:column; min-height:100vh;}
+  @media (min-width:600px){
+    .phone{max-width:420px; margin:0 auto; border-radius:24px; overflow:hidden;
+           border:1px solid var(--line); min-height:700px;
+           box-shadow:0 4px 24px rgba(0,0,0,.08);}
+    body{padding:24px;}
+  }
+  header{display:flex; justify-content:space-between; align-items:center; padding:12px 18px;
+         border-bottom:1px solid var(--line);}
+  header strong{font-weight:600;}
+  header a{color:var(--muted); font-size:13px; text-decoration:none;}
+  .dots{display:flex; justify-content:center; gap:10px; padding:8px 0 4px;}
+  .dots button{width:14px; height:14px; min-width:28px; min-height:28px; border-radius:50%;
+        border:2px solid var(--line); background:var(--bg); cursor:pointer; padding:0;
+        display:inline-flex; align-items:center; justify-content:center; position:relative;}
+  .dots button.on{background:var(--accent); border-color:var(--accent);}
+  /* completed pair: full dot filled (owner: the old tiny done-nub was too small) */
+  .dots button.done{background:var(--positive); border-color:var(--positive);}
+  .dots button:disabled{border-color:var(--line); cursor:default; opacity:.4;}
+  .dots button:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+  .hint{text-align:center; font-size:13px; color:var(--muted); padding:0 30px 8px; line-height:1.4;}
+  /* ---------- pair: two images fill ALL remaining space, both fully visible ---------- */
+  /* full-bleed: no side margins (owner 2026-09-16 — left/right was wasted);
+     the gap between the two images stays as the choice boundary */
+  .pair{flex:1; display:flex; flex-direction:column; gap:10px; padding:10px 0 0; min-height:0;}
+  .imgwrap{flex:1 1 0; border-radius:16px; overflow:hidden; border:2px solid var(--line);
+           cursor:pointer; position:relative; background:var(--surface); min-height:0;}
+  .imgwrap img{width:100%; height:100%; object-fit:cover; display:block;}
+  .imgwrap .pickmark{position:absolute; right:8px; top:8px; width:26px; height:26px;
+        border-radius:50%; background:var(--positive); color:#fff; font-size:15px; font-weight:700;
+        display:none; align-items:center; justify-content:center; line-height:1;}
+  .imgwrap.sel{border-color:var(--positive); box-shadow:0 0 0 2px var(--positive);}
+  .imgwrap.sel .pickmark{display:flex;}
+  .imgwrap:active{transform:scale(.99);}
+  /* ---------- footer: no advance without a pick; back walks previous picks ---------- */
+  .demo-note{text-align:center; font-size:11px; color:var(--muted); padding:4px 16px 10px;}
+  .qmark{width:20px; height:20px; border-radius:50%; border:1.5px solid var(--muted);
+         color:var(--muted); font-size:12px; display:inline-flex; align-items:center;
+         justify-content:center; cursor:pointer; background:none; font-family:inherit; text-decoration:none;}
+  .expl{display:none; font-size:12px; color:var(--muted); line-height:1.5;
+        margin:10px 18px 0; border-left:2px solid var(--line); padding:4px 10px;}
+  .expl.show{display:block;}
+</style>
+</head>
+<body>
+  <div class="phone">
+    <header>
+      <strong>Warm-up <a class="qmark" href="draft-04c-faq.html#warm-up" target="_blank" rel="noopener" title="Open the answer in Information">?</a></strong>
+      <a href="#">with brave-lion-4417</a>
+    </header>
+    <div class="dots" id="pairDots" role="group" aria-label="Choose pair">
+      <button class="on" onclick="gotoPair(0)" aria-label="Pair 1 of 5" aria-current="true"></button>
+      <button onclick="gotoPair(1)" aria-label="Pair 2 of 5"></button>
+      <button onclick="gotoPair(2)" aria-label="Pair 3 of 5"></button>
+      <button onclick="gotoPair(3)" aria-label="Pair 4 of 5"></button>
+      <button onclick="gotoPair(4)" aria-label="Pair 5 of 5"></button>
+    </div>
+    <div class="hint">Which one feels more like you?</div>
+
+    <div class="pair" id="pair"></div>
+
+    <div class="demo-note" id="demoNote"></div>
+  </div>
+<script>
+/* ===== warm-up flow: 5 pairs, gated advance, dots navigation =====
+   Impl note (owner): randomize which image shows top vs bottom on every pair.
+   Navigation: can't advance without a pick; dots are the nav — forward dots
+   enable once all earlier pairs are answered, backward dots free (review only);
+   CHOICES ARE PERMANENT once made (owner 2026-09-16).                       */
+var PAIRS = [
+  [ {src:"ib-lake.jpg", alt:"A calm lake with trees along the shore"}, {src:"ib-beach-placeholder.png", alt:"A sandy beach with gentle waves"} ],
+  [ {src:"avatar-sample-1.png", alt:"Stylized avatar of a person with curly hair"}, {src:"avatar-sample-2.png", alt:"Stylized avatar of a person with braided hair"} ],
+  [ {src:"avatar-sample-3.png", alt:"Stylized avatar of an East Asian woman"}, {src:"avatar-sample-1-line.png", alt:"Line-art avatar of a person with curly hair"} ],
+  [ {src:"avatar-sample-2-line.png", alt:"Line-art avatar of a person with braided hair"}, {src:"avatar-sample-3-line.png", alt:"Line-art avatar of an East Asian woman"} ],
+  [ {src:"mannequin-avatar-pixar.png", alt:"White mannequin avatar, 3D style"}, {src:"mannequin-avatar-line.png", alt:"White mannequin avatar, line-art style"} ],
+];
+var cur = 0;                 // current pair index
+// top/bottom order decided ONCE at warm-up start (owner 2026-09-16):
+// every pair's layout is fixed for the whole session, revisits included.
+var ORDERS = PAIRS.map(function () { return Math.random() < 0.5 ? [0, 1] : [1, 0]; });
+var picks = [];              // picks[i] = 0|1 (which image was chosen in pair i), or null
+var TOTAL = PAIRS.length;
+
+function render() {
+  var pair = PAIRS[cur];
+  var order = ORDERS[cur]; // fixed at start; stable on revisits
+  var wrap = document.getElementById('pair');
+  wrap.innerHTML = '';
+  var frozen = picks[cur] != null; // permanent choices: revisits are review-only
+  order.forEach(function (i) {
+    var d = document.createElement('div');
+    d.className = 'imgwrap' + (picks[cur] === i ? ' sel' : '');
+    d.innerHTML = '<img src="' + pair[i].src + '" alt="' + pair[i].alt + '">' +
+                  '<span class="pickmark">&#10003;</span>';
+    d.onclick = frozen ? null : function () { choose(i); };
+    if (frozen) d.title = 'Your choice here is permanent';
+    wrap.appendChild(d);
+  });
+  var dots = document.querySelectorAll('#pairDots button');
+  dots.forEach(function (b, i) {
+    var answered = picks[i] != null;
+    b.classList.toggle('on', i === cur);
+    b.classList.toggle('done', answered && i !== cur);
+    b.setAttribute('aria-current', i === cur ? 'true' : 'false');
+    // gating: forward dots (pairs after the farthest-advanced) stay disabled
+    // until their pair is reachable = every earlier pair answered.
+    var reachable = true;
+    for (var k = 0; k < i; k++) if (picks[k] == null) reachable = false;
+    b.disabled = !reachable;
+  });
+}
+
+function choose(imgIdx) {
+  picks[cur] = imgIdx;
+  var wraps = document.querySelectorAll('#pair .imgwrap');
+  wraps.forEach(function (w, i) { w.classList.toggle('sel', i === imgIdx); });
+  // selecting an image IS the next action (owner): brief flash, then advance
+  document.getElementById('demoNote').textContent =
+    (cur === TOTAL - 1) ? 'Done — your picks are saved' : '';
+  window.setTimeout(function () {
+    if (cur === TOTAL - 1) {
+      document.getElementById('demoNote').textContent =
+        'Demo: results would go to the shared warm-up result page.';
+      return; // stay on final pair, showing the saved state
+    }
+    cur++;
+    render();
+    document.getElementById('demoNote').textContent = '';
+  }, 350);
+}
+
+function gotoPair(i) {
+  if (i < 0 || i >= TOTAL) return;
+  // reachability guard (same as dots' disabled state)
+  for (var k = 0; k < i; k++) if (picks[k] == null) return;
+  document.getElementById('demoNote').textContent = '';
+  cur = i;
+  render();
+}
+render();
+</script>
+  <script src="palette-switcher.js"></script>
+<script src="draft-nav.js"></script>
+</body>
