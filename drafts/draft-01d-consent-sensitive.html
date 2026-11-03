@@ -42,6 +42,7 @@
   .block .tl{font-size:13px; color:var(--muted); line-height:1.5;}
   .block .precise{font-size:12px; color:var(--muted); line-height:1.6; margin-top:8px;
          border-top:1px solid var(--line); padding-top:8px;}
+  .consent-copy{font-size:14px; line-height:1.55; margin-top:10px;}
   .positive{display:block; width:100%; background:var(--positive); color:var(--positive-text);
        border:none; border-radius:999px; padding:13px 0; font-size:15px; cursor:pointer;
        font-family:inherit; margin-top:6px; text-align:center; text-decoration:none;}
@@ -90,33 +91,20 @@
     </div>
     
     <div class="body">
-      <div id="q-wrap">
       <h1>One thing needs your explicit OK</h1>
       <div class="block">
-        <div class="t">The honest version</div>
-        <div class="tl">Dating answers can reveal a lot about you. That's why the law asks
-          for a clear, separate yes.</div>
-        <div class="precise"><a href="draft-legal-consent-sensitive.html">Read the full consent text</a> — one page, the exact wording you are agreeing to.<br><br>I agree that my answers, including potentially sensitive ones,
-          may be used for the purpose of finding compatible users and being found by them.
-          Withdrawal is possible at any time.</div>
+        <div class="t">Sensitive answers</div>
+        <div class="tl">Some required answers, and some optional answers, can reveal sensitive information. Optional questions stay voluntary; without consent, you cannot use paiir.me.</div>
+        <div class="consent-copy">I explicitly consent to paiir.me using my required answers and any optional answers that may reveal sensitive information, such as my religion, political views, sexual orientation or intimacy preferences, so it can find compatible users and let them find me.</div>
+        <div class="precise"><a href="draft-legal-consent-sensitive.html">Read the full consent text</a>.</div>
       </div>
-      <button class="positive" onclick="location.href='draft-01e-consent-avatar.html'">I agree, continue</button>
-        </div>
-        <div id="exit-wrap" style="display:none;">
-          <h1>We can’t create an account for you</h1>
-          <div class="lead">This app works by using your answers to find compatible users — including answers the law treats as sensitive. Without that consent, there is no way to match you. You can close this page and return another time if you change your mind.</div>
-          <button class="neutral" style="margin-top:8px;" onclick="location.href='draft-01a-welcome.html'">Leave</button>
-        </div>
-      <button class="neutral" style="margin-top:10px;" onclick="decline()">No, let me rethink</button>
+      <button class="positive" onclick="location.href='draft-01f-handle.html'">I agree, continue</button>
+      <button class="neutral" onclick="location.href='draft-01c-privacy.html'">Back</button>
+      <button class="negative" onclick="location.href='draft-01h-sorry-consent.html'">I do not agree</button>
     </div>
       <div class="legalfoot"><a href="draft-legal-imprint.html">Imprint</a><span>·</span><a href="draft-legal-privacy.html">Privacy</a><span>·</span><a href="draft-legal-terms.html">Terms</a></div>
 </div>
-<script>
-  function decline(){
-    location.href = 'draft-01h-sorry-consent.html';
-  }
-</script>
-  <script src="palette-switcher.js"></script>
+<script src="palette-switcher.js"></script>
 <script src="draft-nav.js"></script>
 </body>
 </html>

@@ -81,18 +81,19 @@
       <div class="card">
         <div class="row"><span>Color theme<span class="meta">a few curated palettes, dark and light</span></span><button class="neutral min" onclick="toggleTheme()">Choose</button></div>
         <div class="row"><span>Avatar<span class="meta">stylized, optional, on-device</span></span><button class="neutral min" onclick="location.href='draft-04h-avatar-create.html'">Create or edit</button></div>
-<div class="row"><span>Name / handle<span class="meta">changeable once per week; fixed for your existing matches</span></span><button class="neutral min" onclick="location.href='draft-01f-handle.html'">Change</button></div>
+        <div class="row"><span>Consents &amp; permissions<span class="meta">Sensitive answers, avatar</span></span><button class="neutral min" onclick="location.href='draft-04k-consents.html'">Manage</button></div>
+<div class="row"><span>Name / handle<span class="meta">changeable once every 7 days; retired handles are never reused</span></span><button class="neutral min" onclick="location.href='draft-01f-handle.html'">Change</button></div>
       </div>
       <div class="card">
-        <div class="row"><span>Account<span class="meta">provider: Google</span></span><button class="neutral min" onclick="rowNote(this)">Manage</button></div>
-        <div class="row"><span>Payment methods<span class="meta">PayPal, card, SEPA</span></span><button class="neutral min" onclick="location.href='draft-04f-pricing.html'">Manage</button></div>
-        <div class="row"><span>Subscription &amp; bundles<span class="meta">unlimited month or advance packs</span></span><button class="neutral min" onclick="location.href='draft-04f-pricing.html'">View</button></div>
+        <div class="row"><span>Account<span class="meta">provider: Google · state: Active</span></span><button class="neutral min" onclick="rowNote(this)">Manage</button></div>
+        <div class="row"><span>Payment methods<span class="meta">Apple Pay, Google Pay, SEPA, EPS</span></span><button class="neutral min" onclick="location.href='draft-04f-pricing.html'">Manage</button></div>
+        <div class="row"><span>Pairing tickets<span class="meta">ticket balance, monthly free pairings and pricing</span></span><button class="neutral min" onclick="location.href='draft-04f-pricing.html'">View</button></div>
       </div>
       <div class="card">
         <div class="row"><span>Sign out<span class="meta">this device only</span></span><button class="negative filled min" onclick="signOut(this)">Sign out</button></div>
       </div>
       <div class="card">
-        <div class="row"><span>Delete account<span class="meta">all server records, matching, chat — gone</span></span><button class="negative filled min" onclick="delAccount(this)">Delete</button></div>
+        <div class="row"><span>Delete account<span class="meta">Active accounts only; removes server row, Introductions, Pairings and chat</span></span><button class="negative filled min" onclick="delAccount(this)">Delete</button></div>
       </div>
     </div>
   </div>
@@ -100,7 +101,7 @@
   function rowNote(btn){ var o = btn.textContent; btn.textContent = 'demo'; setTimeout(function(){ btn.textContent = o; }, 800); }
   function signOut(btn){ if (btn.dataset.armed){ location.href = 'draft-01a-welcome.html'; return; } btn.dataset.armed = '1'; btn.textContent = 'Tap again to sign out'; }
   function delAccount(btn){
-    if (!confirm('Delete your account? All server records, pairings and chat are permanently erased. This cannot be undone.')) return;
+    if (!confirm('Delete your Active account? Your server row, Introductions, Pairings and chat state are permanently erased, and your handle stays retired. (Suspended accounts cannot be deleted.)')) return;
     location.href = 'draft-01i-sorry-closed.html';
   }
   function toggleTheme(){

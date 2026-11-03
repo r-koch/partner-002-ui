@@ -34,13 +34,30 @@
     <header><strong>Cannot create account</strong></header>
     <div class="body">
       <h1>We can&rsquo;t create an account for you</h1>
-      <div class="lead">This app works by using your answers — including the sensitive ones —
-        to find compatible users and be found by them. Without that consent there is no way
-        to compare your answers, so there is no way to continue. You can come back another time if you
-        change your mind.</div>
-      <button class="negative" onclick="location.href='draft-01a-welcome.html'">Close the app</button>
+      <div class="lead">Some required answers can reveal sensitive information. Without your consent, we cannot create an account or help you find compatible people. You can restart setup if you change your mind.</div>
+      <button class="negative" id="closeBtn" onclick="closeApp()">Close this tab</button>
+      <div id="closeNote" class="lead" style="display:none; margin:10px 0 0;">You can close this tab now.</div>
     </div>
   </div>
+  <script>
+  function isNative() {
+    return !!(window.Capacitor && window.Capacitor.isNativePlatform &&
+              window.Capacitor.isNativePlatform());
+  }
+
+  document.getElementById('closeBtn').textContent = isNative() ? 'Close the app' : 'Close this tab';
+
+  function closeApp() {
+    if (isNative() && window.Capacitor.Plugins && window.Capacitor.Plugins.App) {
+      window.Capacitor.Plugins.App.exitApp();
+      return;
+    }
+    try { window.close(); } catch (e) {}
+    window.setTimeout(function () {
+      document.getElementById('closeNote').style.display = '';
+    }, 150);
+  }
+  </script>
   <script src="palette-switcher.js"></script>
 </body>
 </html>

@@ -137,23 +137,20 @@
   function endInterest(btn){
     var card = btn.closest('.card');
     var handle = card.querySelector('.handle').textContent;
-    if (confirm('End the interest with ' + handle + '? This ends it for both sides.')){
+    if (confirm('End the introduction with ' + handle + '? This ends it for both sides.')){
       location.href = 'draft-04-candidate-list.html';
     }
   }
-  var FLAGS = {};
   var DEFAULT_AVATAR = "data:image/svg+xml;charset=utf-8," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="78" height="78" viewBox="0 0 78 78"><circle cx="39" cy="39" r="37" fill="#F3EBDD" stroke="#6B5D50" stroke-width="2"/><circle cx="39" cy="32" r="11" fill="none" stroke="#6B5D50" stroke-width="2"/><path d="M15 66c5-12 14-18 24-18s19 6 24 18" fill="none" stroke="#6B5D50" stroke-width="2"/></svg>');
   function report(btn){
     var card = btn.closest('.card');
     var handleEl = card.querySelector('.handle');
     var handle = handleEl ? handleEl.textContent : 'this user';
-    var msg = "Report " + handle + "'s avatar?\n\nYour report is anonymous. It adds to their flag count \u2014 at 3 reports an account is permanently closed, with no appeal. This cancels the match and blocks future matches.";
+    var msg = "Report " + handle + "'s avatar?\n\nReporting immediately creates a permanent block between your accounts and sends the report to human review. You will receive a receipt only. If Accepted, the reported person gets the reason, the action taken, and 28 days to submit one appeal.";
     if (!confirm(msg)) return;
-    FLAGS[handle] = (FLAGS[handle] || 0) + 1;
     var img = card.querySelector('.cav');
     if (img) img.src = DEFAULT_AVATAR;
     notify(handle, 'avatar');
-    if (FLAGS[handle] >= 3){ location.href = 'draft-01i-sorry-closed.html'; return; }
     card.remove();
   }
   function notify(handle, type){

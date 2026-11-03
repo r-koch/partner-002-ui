@@ -25,6 +25,9 @@
   header strong{font-weight:600;}
   header nav{display:flex; gap:10px; align-items:center;}
   header a{color:var(--muted); font-size:14px; text-decoration:none;}
+  .subnav{font-size:12px; border:1px solid var(--line); border-radius:999px; padding:5px 9px;}
+  .candidate-status{position:fixed;left:50%;bottom:72px;transform:translateX(-50%);background:var(--text);color:var(--bg);padding:9px 14px;border-radius:999px;font-size:13px;display:none;z-index:10}
+  .candidate-status.visible{display:block}
   .qmark{width:20px; height:20px; border-radius:50%; border:1.5px solid var(--muted);
          color:var(--muted); font-size:12px; display:inline-flex; align-items:center;
          justify-content:center; cursor:pointer; background:none; font-family:inherit;
@@ -65,22 +68,25 @@
   <div class="phone">
     <header>
       <strong>Discover <a class="qmark" href="draft-04c-faq.html#score-made" target="_blank" rel="noopener" title="Open the answer in Information">?</a></strong>
-      <nav><a href="draft-04i-menu.html" title="Menu"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></a></nav>
+      <nav><a class="subnav" href="draft-04d-not-for-me.html">Not for me <span id="not-for-me-count"></span></a><a href="draft-04i-menu.html" title="Menu"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></a></nav>
     </header>
+    <div id="candidate-status" class="candidate-status" role="status" aria-live="polite"></div>
 
     <div class="list">
-      <div class="card" data-handle="brave-lion-4417" data-diff="Smoking,Free time"></div>
+      <div class="card" data-handle="brave-lion-4417" data-diff="Smoking,Free-time style"></div>
       <div class="card" data-handle="quiet-fox-2148" data-diff="Age,Want kids,Smoking"></div>
-      <div class="card" data-handle="steady-owl-8831" data-diff="Relationship style,Kids now,Want kids,Smoking,Religion,Location,Work,Pets,Politics,Free time"></div>
+      <div class="card" data-handle="steady-owl-8831" data-diff="Relationship style,Have kids,Want kids,Smoking,Religion,Location,Work rhythm,Have pets now?,Want pets?,Politics — rough direction,Free-time style"></div>
     </div>
   </div>
 
+  <script src="draft-candidate-state.js"></script>
   <script>
   /* The viewer's importance per basic question — the same for every candidate. */
   var WEIGHTS = {
     "Gender": 3, "Age": 4, "Height": 1, "Body type": 2, "Relationship style": 5,
-    "Kids now": 3, "Want kids": 5, "Smoking": 3, "Religion": 1, "Location": 4,
-    "Living": 2, "Work": 2, "Pets": 3, "Politics": 1, "Free time": 4, "Orientation": 2
+    "Have kids": 3, "Want kids": 5, "Smoking": 3, "Religion": 1, "Location": 4,
+    "Who do you live with?": 2, "Work rhythm": 2, "Have pets now?": 2, "Want pets?": 2,
+    "Politics — rough direction": 1, "Free-time style": 4, "Orientation": 2
   };
   /* the viewer's pips scaled to a 0-100 scale; integers that sum to exactly 100 */
   function scale100(weights) {
@@ -175,8 +181,18 @@
       rowsEl.setAttribute('data-state', collapsed ? 'expanded' : 'collapsed');
     });
 
-    card.querySelector('.positive').addEventListener('click', function () { settle(card); });
-    card.querySelector('.negative').addEventListener('click', function () { settle(card); });
+    card.querySelector('.positive').addEventListener('click', function () {
+      CandidateState.recordInterest(handle);
+      showCandidateStatus("Interest saved privately.");
+      card.remove();
+      updateNotForMeCount();
+    });
+    card.querySelector('.negative').addEventListener('click', function () {
+      CandidateState.recordNotForMe(handle);
+      showCandidateStatus("Moved to Not for me.");
+      card.remove();
+      updateNotForMeCount();
+    });
   }
 
   function settle(card) {
@@ -185,7 +201,28 @@
     setTimeout(function () { if (card.parentElement) card.remove(); }, 260);
   }
 
-  document.querySelectorAll('.card').forEach(build);
+  var candidateStatusTimer = null;
+  function showCandidateStatus(message) {
+    var el = document.getElementById('candidate-status');
+    if (!el) return;
+    el.textContent = message;
+    el.classList.add('visible');
+    clearTimeout(candidateStatusTimer);
+    candidateStatusTimer = setTimeout(function () { el.classList.remove('visible'); }, 1800);
+  }
+  function updateNotForMeCount() {
+    var el = document.getElementById('not-for-me-count');
+    var count = CandidateState.notForMe().length;
+    if (el) el.textContent = count ? '(' + count + ')' : '';
+  }
+  var savedInterest = CandidateState.interested();
+  var notForMe = CandidateState.notForMe();
+  document.querySelectorAll('.card').forEach(function (card) {
+    var handle = card.getAttribute('data-handle');
+    if (savedInterest.indexOf(handle) !== -1 || notForMe.indexOf(handle) !== -1) { card.remove(); return; }
+    build(card);
+  });
+  updateNotForMeCount();
   </script>
   <script src="palette-switcher.js"></script>
 <script src="draft-nav.js"></script>
