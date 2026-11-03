@@ -144,7 +144,8 @@
   }
 
   function rangeSection(id, seek) {
-    var h = '<div class="range-minmax">';
+    var requiredAttr = seek.rangeAnswerRequired ? ' data-range-required="true"' : "";
+    var h = '<div class="range-minmax"' + requiredAttr + '>';
     h += '<input type="number" id="' + escAttr(id) + '-min" name="' + escAttr(id) + '-min"'
       + ' min="' + seek.min + '" max="' + seek.max + '" inputmode="numeric"'
       + (seek.minDefault != null ? ' value="' + seek.minDefault + '"' : '')
@@ -157,6 +158,10 @@
       + (seek.maxPlaceholder ? ' placeholder="' + escAttr(seek.maxPlaceholder) + '"' : '')
       + ' aria-label="' + escAttr(seek.maxAriaLabel) + '">';
     if (seek.unit) h += '<span class="muted">(' + esc(seek.unit) + ')</span>';
+    if (seek.anyValue && seek.anyLabel) {
+      h += '<button class="btn btn--ghost range-any" type="button" data-range-any="' + escAttr(id)
+        + '" data-range-any-value="' + escAttr(seek.anyValue) + '" aria-pressed="false">' + esc(seek.anyLabel) + '</button>';
+    }
     h += rangeFlagButton(id, seek.rangeFlagTitle || FLAG_TITLE);
     h += '</div>';
     if (seek.hint) {
@@ -172,9 +177,10 @@
     // a "-you" suffix; you-only items (freetime, your-age) keep the plain id, which
     // is exactly the name matching.js reads back by.
     var youName = both ? item.id + "-you" : item.id;
-    var attrs = 'class="field-group" data-question="' + escAttr(item.id) + '" data-axis="' + item.axis + '"';
+    var requiredAttr = item.required ? ' data-required="true"' : "";
+    var attrs = 'class="field-group" data-question="' + escAttr(item.id) + '" data-axis="' + item.axis + '"' + requiredAttr;
     if (item.conditional) {
-      attrs = 'class="field-group conditional-q" data-question="' + escAttr(item.id) + '" data-axis="' + item.axis + '"'
+      attrs = 'class="field-group conditional-q" data-question="' + escAttr(item.id) + '" data-axis="' + item.axis + '"' + requiredAttr
         + ' data-conditional="' + escAttr(item.conditional.when) + '"'
         + ' data-show-unless="' + item.conditional.showUnless.join(",") + '"';
     }

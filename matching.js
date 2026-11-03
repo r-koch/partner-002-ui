@@ -39,7 +39,8 @@
     height:    { label: "Height range",       category: "Logistics", range: true },
     living:    { label: "Living arrangement", category: "Lifestyle" },
     work:      { label: "Work rhythm",        category: "Lifestyle" },
-    pets:      { label: "Pets",               category: "Lifestyle" },
+    petsNow:  { label: "Have pets now?",      category: "Lifestyle" },
+    wantPets: { label: "Want pets?",          category: "Lifestyle" },
     politics:  { label: "Politics",           category: "Values" },
     freetime:  { label: "Free-time style",    category: "Lifestyle" }
   };
@@ -50,20 +51,10 @@
      age 18..99, height 120..250 cm. Empty bound = open end = no constraint. */
   var RANGE_BOUNDS = { age: { min: 18, max: 99 }, height: { min: 120, max: 250 } };
 
-  /* Pets "Looking for" is acceptance semantics (owner 2026-08-31): the seek
-     value is what the user ACCEPTS, mapped onto the candidate's pet attribute
-     (love / tolerate / allergic / none). "Doesn't matter" accepts everyone. */
-  var PETS_ACCEPT = {
-    "must-love":     ["love"],
-    "pets-ok":       ["love", "tolerate"],
-    "no-pets":       ["none"],
-    "doesnt-matter": ["love", "tolerate", "allergic", "none"]
-  };
-
   /* Multi-select symmetric items (living, work): the user's Looking-for is a
      SET of acceptable values. A candidate value in the set matches; an empty
      set means "any" (= no preference = skipped from the score). */
-  var MULTI = ["living", "work", "relationshipStyle", "smoking", "religion", "pets", "politics",
+  var MULTI = ["living", "work", "relationshipStyle", "smoking", "religion", "petsNow", "wantPets", "politics",
                "bodyType", "gender", "kidsNow", "wantKids", "freetime", "orientation"];
 
   /* ITEMS keys are camelCase (score registry); the DOM emits kebab-case names
@@ -73,6 +64,8 @@
     relationshipStyle: "relationship-style",
     kidsNow: "kids-now",
     wantKids: "want-kids",
+    petsNow: "pets-now",
+    wantPets: "want-pets",
     bodyType: "body-type"
   };
   function domName(item) { return DOM_NAME[item] || item; }
@@ -96,22 +89,22 @@
     { id: "A", answers: {
         relationshipStyle: ["long-term"], kidsNow: "none", wantKids: "yes", country: "Austria", city: "Vienna", postal: "1140",
         smoking: "never", religion: "none", distance: "city", country: "Austria", city: "Vienna", postal: "1140", age: 29, height: 176,
-        living: "alone", work: "flexible", pets: "love",
+        living: "alone", work: "flexible", petsNow: "has-pets", wantPets: "yes",
         politics: "liberal", freetime: "active-outdoors" } },
     { id: "B", answers: {
         relationshipStyle: ["long-term"], kidsNow: "none", wantKids: "yes", country: "Austria", city: "Vienna", postal: "1140",
         smoking: "socially", religion: "christian", distance: "city", country: "Austria", city: "Vienna", postal: "1120", age: 34, height: 168,
-        living: "alone", work: "flexible", pets: "tolerate",
+        living: "alone", work: "flexible", petsNow: "has-pets", wantPets: "yes",
         politics: "center", freetime: "homebody" } },
     { id: "C", answers: {
         relationshipStyle: ["casual"], kidsNow: "have", wantKids: "open",
         smoking: "socially", religion: "none", distance: "regional", country: "Austria", city: "Graz", postal: "8010", age: 25, height: 158,
-        living: "flatmates", work: "shift", pets: "none",
+        living: "flatmates", work: "shift", petsNow: "no-pets", wantPets: "open",
         politics: "apolitical", freetime: "travel" } },
     { id: "D", answers: {
         relationshipStyle: ["casual"], kidsNow: "have", wantKids: "no",
         smoking: "regularly", religion: "other", distance: "long-distance", country: "Germany", city: "Berlin", postal: "10115", age: 41, height: 193,
-        living: "family", work: "irregular", pets: "allergic",
+        living: "family", work: "irregular", petsNow: "no-pets", wantPets: "no",
         politics: "conservative", freetime: "city-culture" } }
   ];
 
@@ -124,12 +117,12 @@
       smoking: "never", religion: "none", distance: "city",
       ageMin: 27, ageMax: 38,
       heightMin: null, heightMax: null,
-      living: ["alone"], work: ["flexible"], pets: "must-love",
+      living: ["alone"], work: ["flexible"], petsNow: ["has-pets"], wantPets: ["yes"],
       politics: "liberal", freetime: "active-outdoors"
     },
     importance: {
       relationshipStyle: 5, kidsNow: 2, wantKids: 4, smoking: 4, religion: 3,
-      distance: 2, age: 3, height: 3, living: 1, work: 3, pets: 2, politics: 3, freetime: 2
+      distance: 2, age: 3, height: 3, living: 1, work: 3, petsNow: 2, wantPets: 2, politics: 3, freetime: 2
     },
     redFlags: {}
   };
@@ -162,11 +155,6 @@
   function itemMatches(item, candVal, user, cand) {
     if (ITEMS[item] && ITEMS[item].range) {
       return rangeMatches(item, candVal, user);
-    }
-    if (item === "pets") {
-      var acc = user.answers[item];
-      var accSet = PETS_ACCEPT[acc];
-      return accSet ? accSet.indexOf(String(candVal)) !== -1 : false;
     }
     if (item === "distance") {
       // distance is DERIVED from stated location (country/city/postal bands):
@@ -260,11 +248,15 @@
     var el = document.querySelector('input[name="' + domName(item) + '"]:checked');
     return el ? el.value : null;
   }
+  function normalizeMultiSelection(values) {
+    var selected = Array.isArray(values) ? values.slice() : [];
+    return selected.indexOf("any") !== -1 ? [] : selected;
+  }
   function qvals(item) {
     var nodes = document.querySelectorAll('input[name="' + domName(item) + '"]:checked');
     var out = [];
     for (var i = 0; i < nodes.length; i++) out.push(nodes[i].value);
-    return out;
+    return normalizeMultiSelection(out);
   }
   function textval(name) {
     // single free-text field (country/city/postal on the location item): read
@@ -334,40 +326,49 @@
     return n;
   }
 
-  /* DOM-side validation of one free-form range pair (age, height).
-     Returns { valid: bool, errors: [..] } and toggles .is-invalid on the
-     inputs + hint. Empty fields are always fine (no constraint). */
-  function validateRangeInputs(item) {
+  /* Validate a required range answer. The user must choose Any or give both
+     valid inclusive bounds; a blank end is not an answer. */
+  function rangeSelectionState(minRaw, maxRaw, anySelected, lo, hi) {
+    if (anySelected) return { answered: true, valid: true, min: null, max: null, errors: [] };
+    var minText = String(minRaw == null ? "" : minRaw).trim();
+    var maxText = String(maxRaw == null ? "" : maxRaw).trim();
+    if (minText === "" && maxText === "") {
+      return { answered: false, valid: false, min: null, max: null, errors: ["Choose Any or enter both bounds"] };
+    }
+    if (minText === "" || maxText === "") {
+      return { answered: false, valid: false, min: null, max: null, errors: ["Enter both bounds or choose Any"] };
+    }
+    var mn = parseBound(minText, lo, hi), mx = parseBound(maxText, lo, hi);
+    if (mn == null || mx == null) {
+      return { answered: true, valid: false, min: mn, max: mx, errors: ["Bounds must be numbers between " + lo + " and " + hi] };
+    }
+    if (mn > mx) {
+      return { answered: true, valid: false, min: mn, max: mx, errors: ["Minimum must not exceed maximum"] };
+    }
+    return { answered: true, valid: true, min: mn, max: mx, errors: [] };
+  }
+
+  /* DOM-side validation of one free-form range pair (age, height). */
+  function validateRangeInputs(item, force) {
     var minEl = document.getElementById(domName(item) + "-min");
     var maxEl = document.getElementById(domName(item) + "-max");
     var hintEl = document.querySelector('.field-hint[data-hint-for="' + item + '"]');
-    if (!minEl || !maxEl) return { valid: true, errors: [] };
+    var anyBtn = document.querySelector('[data-range-any="' + item + '"]');
+    if (!minEl || !maxEl) return { valid: true, answered: true, errors: [] };
     var b = RANGE_BOUNDS[item];
-    var errors = [];
-    var mn = minEl.value.trim();
-    var mx = maxEl.value.trim();
-    var mnN = mn === "" ? null : parseInt(mn, 10);
-    var mxN = mx === "" ? null : parseInt(mx, 10);
-    if (mn !== "" && (isNaN(mnN) || mnN < b.min || mnN > b.max)) {
-      errors.push("min must be a number between " + b.min + " and " + b.max);
-    }
-    if (mx !== "" && (isNaN(mxN) || mxN < b.min || mxN > b.max)) {
-      errors.push("max must be a number between " + b.min + " and " + b.max);
-    }
-    if (errors.length === 0 && mnN != null && mxN != null && mnN > mxN) {
-      errors.push("min must not be greater than max");
-    }
-    minEl.classList.toggle("is-invalid", errors.length > 0 && mn !== "");
-    maxEl.classList.toggle("is-invalid", errors.length > 0 && mx !== "");
+    var anySelected = !!anyBtn && anyBtn.getAttribute("aria-pressed") === "true";
+    var state = rangeSelectionState(minEl.value, maxEl.value, anySelected, b.min, b.max);
+    var touched = !!force || minEl.getAttribute("data-touched") === "true"
+      || maxEl.getAttribute("data-touched") === "true" || anySelected;
+    var errors = touched ? state.errors : [];
+    minEl.classList.toggle("is-invalid", errors.length > 0 && minEl.value.trim() !== "");
+    maxEl.classList.toggle("is-invalid", errors.length > 0 && maxEl.value.trim() !== "");
     if (hintEl) {
       hintEl.classList.toggle("is-error", errors.length > 0);
-      if (errors.length > 0) {
-        hintEl.textContent = "Check your range: " + errors.join("; ") + ".";
-      } else {
-        hintEl.textContent = hintEl.getAttribute("data-default-text") || hintEl.textContent;
-      }
+      if (errors.length > 0) hintEl.textContent = "Check your range: " + errors.join("; ") + ".";
+      else hintEl.textContent = hintEl.getAttribute("data-default-text") || hintEl.textContent;
     }
-    return { valid: errors.length === 0, errors: errors };
+    return { valid: state.valid, answered: state.answered, errors: errors };
   }
 
   function heightRangeValid() { return validateRangeInputs("height"); }
@@ -478,7 +479,9 @@
     isRedFlagged: isRedFlagged,
     rangeMatches: rangeMatches,
     parseBound: parseBound,
+    rangeSelectionState: rangeSelectionState,
     itemMatches: itemMatches,
+    normalizeMultiSelection: normalizeMultiSelection,
     scoreCandidate: scoreCandidate,
     matchAll: matchAll,
     collectUserState: collectUserState,
@@ -632,18 +635,38 @@
     ok = assert(api.rangeMatches("height", 176, { answers: { heightMin: 180, heightMax: null } }) === false,
       "6h: rangeMatches below min -> false") && ok;
 
-    // 7. pets acceptance semantics (owner 2026-08-31)
-    ok = assert(api.itemMatches("pets", "love", { answers: { pets: "must-love" } }) === true,
-      "7: must-love matches a 'love' candidate") && ok;
-    ok = assert(api.itemMatches("pets", "tolerate", { answers: { pets: "must-love" } }) === false,
-      "7: must-love rejects a 'tolerate' candidate") && ok;
-    ok = assert(api.itemMatches("pets", "tolerate", { answers: { pets: "pets-ok" } }) === true,
-      "7: pets-ok accepts a 'tolerate' candidate") && ok;
-    ok = assert(api.itemMatches("pets", "none", { answers: { pets: "no-pets" } }) === true,
-      "7: no-pets accepts a 'none' candidate") && ok;
-    ok = assert(api.itemMatches("pets", "allergic", { answers: { pets: "doesnt-matter" } }) === true,
-      "7: doesnt-matter accepts any candidate") && ok;
+    // 7. Pets are two independent criteria: current ownership + future intention (owner 2026-11-02)
+    var u7 = { answers: { petsNow: ["has-pets"], wantPets: ["yes", "open"] } };
+    ok = assert(api.itemMatches("petsNow", "has-pets", u7) === true,
+      "7a: selected current-ownership value matches") && ok;
+    ok = assert(api.itemMatches("petsNow", "no-pets", u7) === false,
+      "7a: different current-ownership value misses") && ok;
+    ok = assert(api.itemMatches("wantPets", "yes", u7) === true,
+      "7b: selected future-intention value matches") && ok;
+    ok = assert(api.itemMatches("wantPets", "no", u7) === false,
+      "7b: different future-intention value misses") && ok;
+    ok = assert(api.itemMatches("petsNow", "has-pets", { answers: { petsNow: [], wantPets: ["yes"] } }) === false,
+      "7c: empty ownership seek set is not a specific match") && ok;
 
+    // 8. Selecting Any means no specific compatibility preference.
+    ok = assert(typeof api.normalizeMultiSelection === "function"
+      && JSON.stringify(api.normalizeMultiSelection(["any", "women"])) === "[]"
+      && JSON.stringify(api.normalizeMultiSelection(["women", "non-binary-people"])) === JSON.stringify(["women", "non-binary-people"]),
+      "8: explicit Any clears specific multi-select preferences") && ok;
+
+    // 9. A range requires both bounds or an explicit Any; invalid ranges fail.
+    var rangeState = typeof api.rangeSelectionState === "function" ? api.rangeSelectionState : function () { return null; };
+    var emptyRange = rangeState("", "", false, 18, 99);
+    var anyRange = rangeState("", "", true, 18, 99);
+    var partialRange = rangeState("27", "", false, 18, 99);
+    var validRange = rangeState("27", "38", false, 18, 99);
+    var crossedRange = rangeState("39", "27", false, 18, 99);
+    ok = assert(emptyRange && emptyRange.answered === false && emptyRange.valid === false
+      && anyRange && anyRange.answered === true && anyRange.valid === true
+      && partialRange && partialRange.answered === false && partialRange.valid === false
+      && validRange && validRange.answered === true && validRange.valid === true
+      && crossedRange && crossedRange.answered === true && crossedRange.valid === false,
+      "9: explicit Any or a valid two-bound range is required") && ok;
     // 8. living / work multi-select (value in set; empty = any = skipped)
     ok = assert(api.itemMatches("living", "alone", { answers: { living: ["alone", "flatmates"] } }) === true,
       "8: living in set matches") && ok;
@@ -668,7 +691,7 @@
         var l = heightLine(r); return [r.id, r.score, l ? l.match : "skipped"];
       }),
       height_strict_excluded: d6f.excluded,
-      pets_acceptance: { mustlove_love: true, mustlove_tolerate: false, petsok_tolerate: true },
+      pets_ownership_future: { has_pets_match: true, wants_pets_match: true },
       living_work_multi: { living_set_match: true, living_set_miss: false, work_empty_skipped: true }
     }));
     if (process && process.exitCode !== 1) process.exitCode = 0;

@@ -10,15 +10,18 @@
       "you": "About-you side. type radio (enum answer) or number (your age). options = list of value/label; the option with checked=true is the default. An option with checked omitted defaults to unchecked.",
       "seek": "Looking-for side. type radio (one choice), multi (several choices), or range (free-form min/max numbers). importance=true means it shows the 1-5 importance scale; importanceDefault is which dot is pre-selected. redflag=true means each option gets a private red-flag toggle. For type range, redflag renders a single outside-range flag.",
       "conditional": "null for normal items, or {when, showUnless} for items that hide based on another answer. The item is hidden whenever the When answer's value is in showUnless. Currently only the Kids item is conditional on the Looking-for goal being casual or undecided.",
-      "hint": "Optional extra wording. On a you or seek side it renders right below that side; on the item itself it renders beneath the whole question."
+      "hint": "Optional extra wording. On a you or seek side it renders right below that side; on the item itself it renders beneath the whole question.",
+      "required": "true means the required questionnaire blocks completion until About-you and Looking-for each have an explicit answer."
     },
-    "values_are_stable": "A value (for example woman, lt160, must-love) is a stable identifier. If you relabel an option (change label only), leave value unchanged so existing answers keep working. Change value only if you intend to break old answers.",
-    "relabel_rule": "To relabel, edit the label string only. Labels may contain unicode characters (en-dash -, em-dash -, less-than sign). Keep option values as plain letters/digits/hyphens."
+    "values_are_stable": "A value (for example woman, lt160, marriage-oriented) is a stable identifier. If you relabel an option (change label only), leave value unchanged so existing answers keep working. Change value only if you intend to break old answers.",
+    "relabel_rule": "To relabel, edit the label string only. Labels may contain unicode characters (en-dash -, em-dash -, less-than sign). Keep option values as plain letters/digits/hyphens.",
+    "no_sample_defaults": "Never set checked=true on answer options. Every required answer starts blank; Any and Prefer not to say count only when deliberately selected. The neutral importance default of 3 is not an answer.",
+    "conditional": "Use null unless an item has an explicitly approved visibility condition."
   },
   "_validation": {
     "age_bounds_18_99": "your-age and the age range keep min 18, max 99.",
     "height_bounds_120_250": "the height range keeps min 120, max 250 (centimetres).",
-    "range_min_le_max": "For range items, min must not be greater than max. Empty bounds are allowed (open end). The UI checks this live.",
+    "range_min_le_max": "For age and height ranges, select the explicit Any option or enter both bounds; min must not be greater than max. The UI checks this live.",
     "cannot_flag_all": "A Looking-for item cannot be red-flagged on every option; at least one choice must stay un-flagged. The UI enforces this on click.",
     "importance_1_to_5": "importanceDefault must be an integer from 1 to 5."
   },
@@ -44,8 +47,7 @@
           },
           {
             "value": "prefer-not-to-say",
-            "label": "Prefer not to say",
-            "checked": true
+            "label": "Prefer not to say"
           }
         ]
       },
@@ -67,7 +69,6 @@
           {
             "value": "any",
             "label": "Any",
-            "checked": true,
             "redflag": false
           }
         ],
@@ -76,7 +77,8 @@
         "importanceAriaLabel": "how much this matters",
         "redflag": true
       },
-      "conditional": null
+      "conditional": null,
+      "required": true
     },
     {
       "id": "age",
@@ -103,9 +105,13 @@
         "importanceDefault": 3,
         "importanceAriaLabel": "how much age matters",
         "redflag": true,
-        "rangeFlagTitle": "Red flag — anyone outside this age range never matches. Private."
+        "rangeFlagTitle": "Red flag — anyone outside this age range never matches. Private.",
+        "anyValue": "any",
+        "anyLabel": "Any age",
+        "rangeAnswerRequired": true
       },
-      "conditional": null
+      "conditional": null,
+      "required": true
     },
     {
       "id": "height",
@@ -133,9 +139,13 @@
         "importanceDefault": 3,
         "importanceAriaLabel": "how much height matters",
         "redflag": true,
-        "rangeFlagTitle": "Red flag — anyone outside this height range never matches. Private."
+        "rangeFlagTitle": "Red flag — anyone outside this height range never matches. Private.",
+        "anyValue": "any",
+        "anyLabel": "Any height",
+        "rangeAnswerRequired": true
       },
-      "conditional": null
+      "conditional": null,
+      "required": true
     },
     {
       "id": "body-type",
@@ -162,8 +172,7 @@
           },
           {
             "value": "prefer-not-to-say",
-            "label": "Prefer not to say",
-            "checked": true
+            "label": "Prefer not to say"
           }
         ]
       },
@@ -189,7 +198,6 @@
           {
             "value": "any",
             "label": "Any",
-            "checked": true,
             "redflag": false
           }
         ],
@@ -198,7 +206,8 @@
         "importanceAriaLabel": "how much body type matters",
         "redflag": true
       },
-      "conditional": null
+      "conditional": null,
+      "required": true
     },
     {
       "id": "relationship-style",
@@ -209,12 +218,11 @@
         "options": [
           {
             "value": "long-term",
-            "label": "Long-term",
-            "checked": true
+            "label": "Long-term"
           },
           {
             "value": "marriage-oriented",
-            "label": "Marriage oriented"
+            "label": "Marriage-oriented"
           },
           {
             "value": "casual",
@@ -243,7 +251,7 @@
           },
           {
             "value": "marriage-oriented",
-            "label": "Marriage oriented"
+            "label": "Marriage-oriented"
           },
           {
             "value": "casual",
@@ -260,7 +268,6 @@
           {
             "value": "any",
             "label": "Any",
-            "checked": true,
             "redflag": false
           }
         ],
@@ -269,7 +276,8 @@
         "importanceAriaLabel": "how much this matters",
         "redflag": true
       },
-      "conditional": null
+      "conditional": null,
+      "required": true
     },
     {
       "id": "kids-now",
@@ -288,7 +296,7 @@
           },
           {
             "value": "grown-up",
-            "label": "Grown up"
+            "label": "Adult children"
           }
         ]
       },
@@ -305,12 +313,11 @@
           },
           {
             "value": "grown-up",
-            "label": "Grown up"
+            "label": "Adult children"
           },
           {
             "value": "any",
             "label": "Any",
-            "checked": true,
             "redflag": false
           }
         ],
@@ -319,7 +326,8 @@
         "importanceAriaLabel": "how much having kids now matters",
         "redflag": true
       },
-      "conditional": null
+      "conditional": null,
+      "required": true
     },
     {
       "id": "want-kids",
@@ -355,7 +363,7 @@
           },
           {
             "value": "no",
-            "label": "Doesn't want"
+            "label": "Doesn't want children"
           },
           {
             "value": "open",
@@ -364,7 +372,6 @@
           {
             "value": "any",
             "label": "Any",
-            "checked": true,
             "redflag": false
           }
         ],
@@ -373,7 +380,8 @@
         "importanceAriaLabel": "how much wanting kids matters",
         "redflag": true
       },
-      "conditional": null
+      "conditional": null,
+      "required": true
     },
     {
       "id": "smoking",
@@ -414,7 +422,6 @@
           {
             "value": "any",
             "label": "Any",
-            "checked": true,
             "redflag": false
           }
         ],
@@ -423,7 +430,8 @@
         "importanceAriaLabel": "how much smoking matters",
         "redflag": true
       },
-      "conditional": null
+      "conditional": null,
+      "required": true
     },
     {
       "id": "religion",
@@ -434,7 +442,7 @@
         "options": [
           {
             "value": "none",
-            "label": "None"
+            "label": "No religion"
           },
           {
             "value": "catholic",
@@ -479,6 +487,10 @@
           {
             "value": "other",
             "label": "Other"
+          },
+          {
+            "value": "prefer-not-to-say",
+            "label": "Prefer not to say"
           }
         ]
       },
@@ -487,7 +499,7 @@
         "options": [
           {
             "value": "none",
-            "label": "None"
+            "label": "No religion"
           },
           {
             "value": "catholic",
@@ -532,7 +544,6 @@
           {
             "value": "any",
             "label": "Any",
-            "checked": true,
             "redflag": false
           }
         ],
@@ -541,7 +552,8 @@
         "importanceAriaLabel": "how much religion matters",
         "redflag": true
       },
-      "conditional": null
+      "conditional": null,
+      "required": true
     },
     {
       "id": "location",
@@ -582,21 +594,15 @@
           },
           {
             "value": "city",
-            "label": "Same city",
-            "checked": true
+            "label": "Same city"
           },
           {
             "value": "regional",
             "label": "Regional"
           },
           {
-            "value": "long-distance",
-            "label": "Far is fine"
-          },
-          {
             "value": "any",
-            "label": "Any",
-            "checked": true,
+            "label": "Any distance",
             "redflag": false
           }
         ],
@@ -605,27 +611,27 @@
         "importanceAriaLabel": "how much distance matters",
         "redflag": true
       },
-      "conditional": null
+      "conditional": null,
+      "required": true
     },
     {
       "id": "living",
-      "label": "Where do you live?",
+      "label": "Who do you live with?",
       "axis": "both",
       "you": {
         "type": "radio",
         "options": [
           {
             "value": "alone",
-            "label": "Alone",
-            "checked": true
+            "label": "Alone"
           },
           {
             "value": "flatmates",
-            "label": "Flatmates"
+            "label": "With flatmates"
           },
           {
             "value": "family",
-            "label": "Family"
+            "label": "With family"
           },
           {
             "value": "other",
@@ -638,21 +644,19 @@
         "options": [
           {
             "value": "alone",
-            "label": "Alone",
-            "checked": true
+            "label": "Alone"
           },
           {
             "value": "flatmates",
-            "label": "Flatmates"
+            "label": "With flatmates"
           },
           {
             "value": "family",
-            "label": "Family"
+            "label": "With family"
           },
           {
             "value": "any",
             "label": "Any",
-            "checked": true,
             "redflag": false
           }
         ],
@@ -661,7 +665,8 @@
         "importanceAriaLabel": "how much living matters",
         "redflag": true
       },
-      "conditional": null
+      "conditional": null,
+      "required": true
     },
     {
       "id": "work",
@@ -672,20 +677,23 @@
         "options": [
           {
             "value": "9to5",
-            "label": "9–5"
+            "label": "Regular daytime hours"
           },
           {
             "value": "flexible",
-            "label": "Flexible",
-            "checked": true
-          },
-          {
-            "value": "irregular",
-            "label": "Irregular"
+            "label": "Flexible hours"
           },
           {
             "value": "shift",
-            "label": "Shifts"
+            "label": "Shift work"
+          },
+          {
+            "value": "irregular",
+            "label": "Irregular hours"
+          },
+          {
+            "value": "not-working",
+            "label": "Not currently working"
           }
         ]
       },
@@ -694,25 +702,27 @@
         "options": [
           {
             "value": "9to5",
-            "label": "9–5"
+            "label": "Regular daytime hours"
           },
           {
             "value": "flexible",
-            "label": "Flexible",
-            "checked": true
-          },
-          {
-            "value": "irregular",
-            "label": "Irregular"
+            "label": "Flexible hours"
           },
           {
             "value": "shift",
-            "label": "Shifts"
+            "label": "Shift work"
+          },
+          {
+            "value": "irregular",
+            "label": "Irregular hours"
+          },
+          {
+            "value": "not-working",
+            "label": "Not currently working"
           },
           {
             "value": "any",
             "label": "Any",
-            "checked": true,
             "redflag": false
           }
         ],
@@ -721,31 +731,23 @@
         "importanceAriaLabel": "how much work matters",
         "redflag": true
       },
-      "conditional": null
+      "conditional": null,
+      "required": true
     },
     {
-      "id": "pets",
-      "label": "Pets",
+      "id": "pets-now",
+      "label": "Have pets now?",
       "axis": "both",
       "you": {
         "type": "radio",
         "options": [
           {
-            "value": "love",
-            "label": "Love them",
-            "checked": true
+            "value": "has-pets",
+            "label": "Have pets"
           },
           {
-            "value": "tolerate",
-            "label": "Tolerate"
-          },
-          {
-            "value": "allergic",
-            "label": "Allergic"
-          },
-          {
-            "value": "none",
-            "label": "None"
+            "value": "no-pets",
+            "label": "No pets"
           }
         ]
       },
@@ -753,35 +755,80 @@
         "type": "multi",
         "options": [
           {
-            "value": "must-love",
-            "label": "Must love them",
-            "checked": true
-          },
-          {
-            "value": "pets-ok",
-            "label": "Pets ok"
+            "value": "has-pets",
+            "label": "Has pets"
           },
           {
             "value": "no-pets",
             "label": "No pets"
           },
           {
-            "value": "doesnt-matter",
-            "label": "Doesn't matter"
-          },
-          {
             "value": "any",
             "label": "Any",
-            "checked": true,
             "redflag": false
           }
         ],
         "importance": true,
         "importanceDefault": 3,
-        "importanceAriaLabel": "how much pets matters",
+        "importanceAriaLabel": "how much having pets now matters",
         "redflag": true
       },
-      "conditional": null
+      "conditional": null,
+      "required": true
+    },
+    {
+      "id": "want-pets",
+      "label": "Want pets?",
+      "axis": "both",
+      "you": {
+        "type": "radio",
+        "options": [
+          {
+            "value": "yes",
+            "label": "Yes"
+          },
+          {
+            "value": "no",
+            "label": "No"
+          },
+          {
+            "value": "open",
+            "label": "Open"
+          },
+          {
+            "value": "unsure",
+            "label": "Not sure yet"
+          }
+        ]
+      },
+      "seek": {
+        "type": "multi",
+        "options": [
+          {
+            "value": "yes",
+            "label": "Wants pets"
+          },
+          {
+            "value": "no",
+            "label": "Doesn't want pets"
+          },
+          {
+            "value": "open",
+            "label": "Open"
+          },
+          {
+            "value": "any",
+            "label": "Any",
+            "redflag": false
+          }
+        ],
+        "importance": true,
+        "importanceDefault": 3,
+        "importanceAriaLabel": "how much wanting pets matters",
+        "redflag": true
+      },
+      "conditional": null,
+      "required": true
     },
     {
       "id": "politics",
@@ -792,8 +839,7 @@
         "options": [
           {
             "value": "liberal",
-            "label": "Liberal",
-            "checked": true
+            "label": "Liberal"
           },
           {
             "value": "conservative",
@@ -801,11 +847,11 @@
           },
           {
             "value": "center",
-            "label": "Center"
+            "label": "Centrist"
           },
           {
             "value": "apolitical",
-            "label": "Not into it"
+            "label": "Not interested in politics"
           }
         ]
       },
@@ -814,8 +860,7 @@
         "options": [
           {
             "value": "liberal",
-            "label": "Liberal",
-            "checked": true
+            "label": "Liberal"
           },
           {
             "value": "conservative",
@@ -823,16 +868,15 @@
           },
           {
             "value": "center",
-            "label": "Center"
+            "label": "Centrist"
           },
           {
             "value": "apolitical",
-            "label": "Not into it"
+            "label": "Not interested in politics"
           },
           {
             "value": "any",
             "label": "Any",
-            "checked": true,
             "redflag": false
           }
         ],
@@ -841,7 +885,8 @@
         "importanceAriaLabel": "how much politics matters",
         "redflag": true
       },
-      "conditional": null
+      "conditional": null,
+      "required": true
     },
     {
       "id": "freetime",
@@ -856,12 +901,11 @@
           },
           {
             "value": "active-outdoors",
-            "label": "Active outdoors",
-            "checked": true
+            "label": "Outdoor activities"
           },
           {
             "value": "city-culture",
-            "label": "City culture"
+            "label": "City life & culture"
           },
           {
             "value": "travel",
@@ -869,7 +913,7 @@
           },
           {
             "value": "mixed",
-            "label": "A bit of everything"
+            "label": "A mix of these"
           }
         ]
       },
@@ -887,11 +931,11 @@
           },
           {
             "value": "active-outdoors",
-            "label": "Active outdoors"
+            "label": "Outdoor activities"
           },
           {
             "value": "city-culture",
-            "label": "City culture"
+            "label": "City life & culture"
           },
           {
             "value": "travel",
@@ -899,16 +943,16 @@
           },
           {
             "value": "mixed",
-            "label": "A bit of everything"
+            "label": "A mix of these"
           },
           {
             "value": "any",
             "label": "Any",
-            "checked": true,
             "redflag": false
           }
         ]
-      }
+      },
+      "required": true
     },
     {
       "id": "orientation",
@@ -947,7 +991,6 @@
             "label": "Queer"
           },
           {
-            "checked": true,
             "value": "prefer-not-to-say",
             "label": "Prefer not to say"
           }
@@ -991,11 +1034,11 @@
           {
             "value": "any",
             "label": "Any",
-            "checked": true,
             "redflag": false
           }
         ]
-      }
+      },
+      "required": true
     }
   ]
 }

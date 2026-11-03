@@ -14,8 +14,8 @@
   var FLOW = [
     { id: "welcome",       label: "Welcome",    onboarding: true },
     { id: "questionnaire", label: "Questions",  onboarding: true },
-    { id: "import",        label: "Your data",  onboarding: true },
-    { id: "profile",       label: "Review",     onboarding: true },
+    { id: "import",        label: "Your data" },
+    { id: "profile",       label: "Your answers" },
     { id: "discover",      label: "Discover" },
     { id: "matches",       label: "Matches" },
     { id: "match",         label: "Match" },
@@ -33,6 +33,7 @@
   });
 
   var current = null;
+  var questionnaireReady = false;
 
   /* main-nav item that owns a given view (for highlight + reachability) */
   var NAV_OWNER = {
@@ -103,6 +104,9 @@
     current = id;
     renderProgress(id);
     renderNav(id);
+    var onSetup = ONBOARD.some(function (step) { return step.id === id; });
+    var mainNav = document.querySelector(".main-nav");
+    if (mainNav) mainNav.hidden = onSetup;
     window.scrollTo(0, 0);
     if (id === "safety") populateAuditLog();
     if (id === "discover") { populateExchangeNote(); refreshDiscover(); }
@@ -129,6 +133,11 @@
   document.addEventListener("click", function (e) {
     var el = e.target.closest("[data-nav]");
     if (el) {
+      if (el.id === "questionnaire-done") {
+        e.preventDefault();
+        if (validateQuestionnaire()) show("discover");
+        return;
+      }
       e.preventDefault();
       show(el.getAttribute("data-nav"));
     }
@@ -161,8 +170,51 @@
     });
   }
 
+  function applyAnyExclusivity(input) {
+    if (!input || input.type !== "checkbox" || !input.name) return;
+    var siblings = document.querySelectorAll('input[type="checkbox"]');
+    for (var i = 0; i < siblings.length; i++) {
+      var sibling = siblings[i];
+      if (sibling === input || sibling.name !== input.name) continue;
+      if (input.checked && input.value === "any") sibling.checked = false;
+      else if (input.checked && input.value !== "any" && sibling.value === "any") sibling.checked = false;
+    }
+  }
+
+  function clearRangeAnyFromInput(input) {
+    if (!input || !input.closest) return;
+    var range = input.closest(".range-minmax");
+    if (!range) return;
+    input.setAttribute("data-touched", "true");
+    var anyBtn = range.querySelector("[data-range-any]");
+    if (anyBtn) anyBtn.setAttribute("aria-pressed", "false");
+  }
+
   document.addEventListener("change", function (e) {
+    applyAnyExclusivity(e.target);
+    clearRangeAnyFromInput(e.target);
     if (window.Matching) refreshDiscover();
+  });
+  document.addEventListener("input", function (e) {
+    clearRangeAnyFromInput(e.target);
+  });
+
+  document.addEventListener("click", function (e) {
+    var btn = e.target.closest("[data-range-any]");
+    if (!btn) return;
+    var item = btn.getAttribute("data-range-any");
+    var selected = btn.getAttribute("aria-pressed") === "true";
+    var minEl = document.getElementById(item + "-min");
+    var maxEl = document.getElementById(item + "-max");
+    btn.setAttribute("aria-pressed", selected ? "false" : "true");
+    if (!selected) {
+      if (minEl) { minEl.value = ""; minEl.setAttribute("data-touched", "true"); }
+      if (maxEl) { maxEl.value = ""; maxEl.setAttribute("data-touched", "true"); }
+    }
+    if (window.Matching) {
+      window.Matching.validateRangeInputs(item, true);
+      refreshDiscover();
+    }
   });
 
   /* ---- red-flag toggles (slice 7c) — per-choice, private hard exclusions */
@@ -460,6 +512,62 @@
     if (!qRoot || !window.QuestionnaireRender) return;
     qRoot.innerHTML = window.QuestionnaireRender.build(data.items);
     registerConditionals(data.items);
+    questionnaireReady = true;
+  }
+
+  function validateQuestionnaire() {
+    if (!questionnaireReady || !window.Matching) {
+      toast("The questionnaire is still loading.");
+      return false;
+    }
+    var groups = document.querySelectorAll('#questionnaire-items .field-group[data-required="true"]');
+    if (!groups.length) {
+      toast("The required questions could not be loaded.");
+      return false;
+    }
+    var firstMissing = null;
+    for (var i = 0; i < groups.length && !firstMissing; i++) {
+      var group = groups[i];
+      if (group.hidden) continue;
+      var questionId = group.getAttribute("data-question");
+      var sides = group.querySelectorAll(".axis-side[data-axis]");
+      if (!sides.length) { firstMissing = group.querySelector("input"); break; }
+      for (var j = 0; j < sides.length && !firstMissing; j++) {
+        var side = sides[j];
+        if (side.hidden) continue;
+        var range = side.querySelector('.range-minmax[data-range-required="true"]');
+        if (range) {
+          var minEl = document.getElementById(questionId + "-min");
+          var maxEl = document.getElementById(questionId + "-max");
+          var anyBtn = side.querySelector('[data-range-any="' + questionId + '"]');
+          var bounds = window.Matching.RANGE_BOUNDS[questionId];
+          var state = window.Matching.rangeSelectionState(minEl && minEl.value, maxEl && maxEl.value,
+            !!anyBtn && anyBtn.getAttribute("aria-pressed") === "true", bounds.min, bounds.max);
+          if (!state.valid) {
+            window.Matching.validateRangeInputs(questionId, true);
+            firstMissing = (anyBtn && anyBtn.getAttribute("aria-pressed") !== "true" && !minEl.value) ? anyBtn : (minEl.value ? maxEl : minEl);
+          }
+          continue;
+        }
+        var requiredInputs = side.querySelectorAll("input[required]");
+        for (var k = 0; k < requiredInputs.length; k++) {
+          if (!String(requiredInputs[k].value || "").trim()) { firstMissing = requiredInputs[k]; break; }
+        }
+        if (firstMissing) break;
+        var choices = side.querySelectorAll('input[type="radio"], input[type="checkbox"]');
+        if (choices.length) {
+          var selected = false;
+          for (var c = 0; c < choices.length; c++) if (choices[c].checked) { selected = true; break; }
+          if (!selected) firstMissing = choices[0];
+        }
+      }
+    }
+    if (firstMissing) {
+      toast("Answer both sides of every required question.");
+      if (firstMissing.focus) firstMissing.focus();
+      return false;
+    }
+    return true;
   }
 
   function embeddedQuestionnaire() {

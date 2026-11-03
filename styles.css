@@ -353,6 +353,7 @@ input[type="number"].is-invalid { border-color: var(--bad); color: var(--bad); }
 
 .range-minmax { display: flex; gap: var(--sp-3); align-items: center; flex-wrap: wrap; }
 .range-minmax input[type="number"] { width: 110px; }
+.range-any[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); color: var(--text); }
 
 /* Importance rating */
 .importance { display: flex; align-items: center; gap: var(--sp-2); margin-top: var(--sp-2); }
@@ -598,6 +599,7 @@ input[type="number"].is-invalid { border-color: var(--bad); color: var(--bad); }
   border: 1px solid var(--border);
   border-radius: var(--r-md);
 }
+.main-nav[hidden] { display: none !important; }
 .main-nav__item {
   flex: 1 1 auto;
   text-align: center;
