@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PARTNER-002 design draft — Consents &amp; permissions</title>
+<style>
+  :root{
+    --bg:#FAF6EF; --surface:#F3EBDD; --text:#2E2620; --muted:#6B5D50;
+    --accent:#B0431F; --line:#D8CCBA; --exclude:#A63A2B;
+    --match:#3E6B4F; --positive:#3E6B4F; --positive-text:#FFFFFF;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--text); font-family:Georgia,'Times New Roman',serif; min-height:100vh;}
+  .phone{width:100%; background:var(--bg); display:flex; flex-direction:column; min-height:100vh;}
+  @media (min-width:600px){
+    body{padding:24px;}
+    .phone{max-width:420px; min-height:700px; margin:0 auto; border:1px solid var(--line);
+      border-radius:24px; overflow:hidden; box-shadow:0 4px 24px rgba(0,0,0,.08);}
+  }
+  header{display:flex; justify-content:space-between; align-items:center; padding:16px 18px; border-bottom:1px solid var(--line);}
+  header strong{font-weight:600;}
+  header nav{display:flex; gap:10px; align-items:center;}
+  header a{color:var(--muted); font-size:14px; text-decoration:none;}
+  .settings-link{color:var(--muted); font-size:13px; text-decoration:none;}
+  .qmark{width:20px; height:20px; border-radius:50%; border:1.5px solid var(--muted); color:var(--muted);
+    font-size:12px; display:inline-flex; align-items:center; justify-content:center; background:none; font-family:inherit; text-decoration:none;}
+  .body{flex:1; padding:18px; overflow-y:auto;}
+  h1{font-size:26px; font-weight:600; line-height:1.25; margin-bottom:14px;}
+  .seg{font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; margin:14px 0 8px;}
+  .card{border:1px solid var(--line); border-radius:14px; background:var(--surface); padding:4px 15px; margin-bottom:12px;}
+  .row{display:flex; align-items:center; justify-content:space-between; gap:8px; padding:12px 0; border-bottom:1px solid var(--line); font-size:14px;}
+  .row:last-child{border-bottom:none;}
+  .meta{display:block; font-size:12px; color:var(--muted); margin-top:3px; line-height:1.45;}
+  .status{font-size:12px; color:var(--match); white-space:nowrap;}
+  .withdrawn-status{font-size:12px; color:var(--exclude); white-space:nowrap;}
+  .note{font-size:13px; line-height:1.5; margin:10px 0;}
+  .small-note{font-size:12px; line-height:1.5; color:var(--muted); margin:8px 0;}
+  .consent-copy{font-size:13px; line-height:1.55; border-top:1px solid var(--line); padding-top:10px; margin-top:8px;}
+  .confirm-panel{border-top:1px solid var(--line); padding:10px 0 6px; margin-top:8px;}
+  .actions{display:flex; flex-direction:column; gap:8px; margin:8px 0;}
+  .positive,.negative,.neutral{display:block; width:100%; border-radius:999px; padding:11px 14px; font-size:14px; cursor:pointer; font-family:inherit; text-align:center; text-decoration:none;}
+  .positive{background:var(--positive); color:var(--positive-text); border:none;}
+  .negative{background:var(--surface); color:var(--exclude); border:1.5px solid var(--exclude);}
+  .negative.filled{background:var(--exclude); color:var(--bg);}
+  .neutral{background:var(--surface); color:var(--text); border:1.5px solid var(--line);}
+  .min{width:auto; padding:6px 12px; font-size:13px; flex:0 0 auto;}
+  .doc-link{display:inline-block; color:var(--accent); font-size:12px; text-decoration:none; margin:6px 0;}
+</style>
+</head>
+<body>
+  <div class="phone">
+    <header>
+      <strong>Consents &amp; permissions <a class="qmark" href="draft-04c-faq.html#sensitive-data" target="_blank" rel="noopener" title="Open the answer in Information">?</a></strong>
+      <nav><a class="settings-link" href="draft-04g-settings.html">Settings</a><a href="draft-04i-menu.html" title="Menu"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></a></nav>
+    </header>
+    <div class="body">
+
+      <div class="seg">Sensitive answers</div>
+      <div class="card">
+        <div id="consent-active">
+          <div class="row">
+            <span>Sensitive-answer consent<span class="meta">Required answers and any optional sensitive answers you choose to provide</span></span>
+            <span class="status">On</span>
+          </div>
+          <div class="actions">
+            <button class="negative" onclick="showWithdrawConfirm()">Withdraw consent</button>
+          </div>
+          <div id="withdraw-confirm" class="confirm-panel" style="display:none;">
+            <p class="note">All answers on this device will be deleted immediately. Paiir will be disabled until you consent again. Your account will remain until you delete it.</p>
+            <div class="actions">
+              <button class="negative filled" onclick="withdrawConsent()">Withdraw and delete answers</button>
+              <button class="neutral" onclick="cancelWithdraw()">Keep consent</button>
+            </div>
+          </div>
+          <a class="doc-link" href="draft-legal-consent-sensitive.html">Read the full consent text</a>
+        </div>
+
+        <div id="consent-withdrawn" style="display:none;">
+          <div class="row">
+            <span>Sensitive-answer consent<span class="meta">Paiir is disabled. Your account remains until you delete it.</span></span>
+            <span class="withdrawn-status">Off</span>
+          </div>
+          <p class="note">All answers on this device were deleted. Give consent again and answer the required questions to use Paiir.</p>
+          <div class="consent-copy">I explicitly consent to paiir.me using my required answers and any optional answers that may reveal sensitive information, such as my religion, political views, sexual orientation or intimacy preferences, so it can find compatible users and let them find me.</div>
+          <div class="actions">
+            <button class="positive" onclick="consentAgain()">I consent again and re-answer</button>
+          </div>
+          <a class="doc-link" href="draft-legal-consent-sensitive.html">Read the full consent text</a>
+        </div>
+      </div>
+
+      <div class="seg">Avatar</div>
+      <div class="card">
+        <div class="row">
+          <span>Avatar consent<span class="meta">Optional; choose the default avatar to stop using a photo-derived avatar</span></span>
+        </div>
+        <div class="actions">
+          <button class="neutral" onclick="location.href='draft-04h-avatar-create.html'">Choose a default avatar</button>
+        </div>
+        <a class="doc-link" href="draft-legal-consent-avatar.html">Read the avatar consent</a>
+      </div>
+    </div>
+  </div>
+  <script>
+  (function () {
+    var key = 'paiir-sensitive-consent-demo-state';
+    function readState() {
+      try { return localStorage.getItem(key) || 'active'; }
+      catch (e) { return 'active'; }
+    }
+    function writeState(value) {
+      try { localStorage.setItem(key, value); } catch (e) {}
+    }
+    function render() {
+      var active = readState() !== 'withdrawn';
+      document.getElementById('consent-active').style.display = active ? 'block' : 'none';
+      document.getElementById('consent-withdrawn').style.display = active ? 'none' : 'block';
+    }
+    window.showWithdrawConfirm = function () {
+      document.getElementById('withdraw-confirm').style.display = 'block';
+    };
+    window.cancelWithdraw = function () {
+      document.getElementById('withdraw-confirm').style.display = 'none';
+    };
+    window.withdrawConsent = function () {
+      // This static prototype stores only the consent demo state, not questionnaire answers.
+      writeState('withdrawn');
+      render();
+    };
+    window.consentAgain = function () {
+      writeState('active');
+      location.href = 'draft-02-01-gender.html';
+    };
+    render();
+  })();
+  </script>
+  <script src="palette-switcher.js"></script>
+  <script src="draft-nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Not for me — Discover</title>
+<style>
+  :root{--bg:#FAF6EF;--surface:#F3EBDD;--text:#2E2620;--muted:#6B5D50;--line:#D8CCBA;--positive:#3E6B4F;--positive-text:#fff}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:Georgia,'Times New Roman',serif;min-height:100vh}
+  .phone{width:100%;max-width:440px;min-height:100vh;margin:0 auto;display:flex;flex-direction:column;background:var(--bg)}
+  @media(min-width:600px){body{padding:24px}.phone{min-height:700px;border:1px solid var(--line);border-radius:24px;overflow:hidden}}
+  header{display:flex;justify-content:space-between;align-items:center;padding:15px 18px;border-bottom:1px solid var(--line)}
+  header strong{font-size:15px}header a{color:var(--muted);text-decoration:none;font-size:14px}
+  main{flex:1;padding:18px}.profile{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
+  .handle{font-size:15px;font-weight:600}.restore{border:1.5px solid var(--line);border-radius:999px;padding:8px 14px;background:var(--surface);color:var(--text);font:14px Georgia,serif;cursor:pointer}
+  .empty{padding:24px 0;color:var(--muted);font-size:14px}.footer{padding:14px 18px;border-top:1px solid var(--line)}.back-to-discover{display:block;text-align:center;border-radius:999px;padding:12px 18px;background:var(--positive);color:var(--positive-text);text-decoration:none;font-size:15px}
+  .status{position:fixed;left:50%;bottom:72px;transform:translateX(-50%);display:none;padding:9px 14px;border-radius:999px;background:var(--text);color:var(--bg);font-size:13px}.status.visible{display:block}
+</style>
+</head>
+<body>
+<div class="phone">
+<header><strong>Not for me</strong><nav><a href="draft-04i-menu.html" aria-label="Menu">Menu</a></nav></header>
+<main><div id="profiles"></div><div id="empty" class="empty" hidden>No profiles here.</div></main>
+<div id="status" class="status" role="status" aria-live="polite"></div>
+<footer class="footer"><a class="back-to-discover" href="draft-04-candidate-list.html">Back to Discover</a></footer>
+</div>
+<script src="draft-candidate-state.js"></script>
+<script>
+(function(){
+  var root=document.getElementById('profiles'), empty=document.getElementById('empty'), status=document.getElementById('status'), timer;
+  function show(message){status.textContent=message;status.classList.add('visible');clearTimeout(timer);timer=setTimeout(function(){status.classList.remove('visible')},1600)}
+  function render(){
+    root.textContent='';
+    var handles=CandidateState.notForMe();
+    empty.hidden=handles.length>0;
+    handles.forEach(function(handle){
+      var row=document.createElement('div');row.className='profile';
+      var name=document.createElement('span');name.className='handle';name.textContent=handle;
+      var button=document.createElement('button');button.type='button';button.className='restore';button.textContent='Restore';
+      button.addEventListener('click',function(){CandidateState.restore(handle);render();show('Restored to Discover.')});
+      row.appendChild(name);row.appendChild(button);root.appendChild(row);
+    });
+  }
+  render();
+})();
+</script>
+<script src="palette-switcher.js"></script>
+<script src="draft-nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PARTNER-002 design draft — Discover</title>
+<style>
+  :root{
+    --bg:#FAF6EF; --surface:#F3EBDD; --text:#2E2620; --muted:#6B5D50;
+    --accent:#B0431F; --accent-text:#FFFFFF; --line:#D8CCBA; --exclude:#A63A2B;
+    --match:#3E6B4F; --positive:#3E6B4F; --positive-text:#FFFFFF;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--text); font-family:Georgia,'Times New Roman',serif;
+       min-height:100vh; padding:0;}
+  .phone{width:100%; background:var(--bg); display:flex; flex-direction:column; min-height:100vh;}
+  @media (min-width:600px){
+    .phone{max-width:420px; margin:0 auto; border-radius:24px; overflow:hidden;
+           border:1px solid var(--line); min-height:700px;
+           box-shadow:0 4px 24px rgba(0,0,0,.08);}
+    body{padding:24px;}
+  }
+  header{display:flex; justify-content:space-between; align-items:center; padding:16px 18px;
+         border-bottom:1px solid var(--line);}
+  header strong{font-weight:600;}
+  header nav{display:flex; gap:10px; align-items:center;}
+  header a{color:var(--muted); font-size:14px; text-decoration:none;}
+  .subnav{font-size:12px; border:1px solid var(--line); border-radius:999px; padding:5px 9px;}
+  .candidate-status{position:fixed;left:50%;bottom:72px;transform:translateX(-50%);background:var(--text);color:var(--bg);padding:9px 14px;border-radius:999px;font-size:13px;display:none;z-index:10}
+  .candidate-status.visible{display:block}
+  .qmark{width:20px; height:20px; border-radius:50%; border:1.5px solid var(--muted);
+         color:var(--muted); font-size:12px; display:inline-flex; align-items:center;
+         justify-content:center; cursor:pointer; background:none; font-family:inherit;
+         text-decoration:none;}
+  .list{flex:1; padding:16px; display:flex; flex-direction:column; gap:14px; overflow-y:auto;}
+
+  /* ---- candidate card: the score sheet itself, decision buttons underneath ---- */
+  .card{border:1px solid var(--line); border-radius:16px; background:var(--surface); padding:13px 14px 12px;}
+  .head{display:flex; align-items:center; gap:12px;}
+  .handle{font-size:14px; font-weight:600; color:var(--text);}
+  .bar{flex:1; display:flex; height:8px; border-radius:999px; overflow:hidden; background:var(--line);}
+  .bar-same{background:var(--positive);}
+  .total{font-size:19px; font-weight:700; letter-spacing:-.01em; min-width:56px; text-align:right;}
+
+  .qrow{display:flex; align-items:center; gap:9px; padding:8px 0;
+        border-bottom:1px solid var(--line); font-size:13.5px;}
+  .qrow:last-child{border-bottom:none;}
+  .mark{width:8px; height:8px; border-radius:50%; flex:none;}
+  .mark.same{background:var(--positive);}
+  .mark.diff{border:1.5px solid var(--muted);}
+  .qlabel{flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+  .dots{display:flex; gap:3px; flex:none;}
+  .d{width:5px; height:5px; border-radius:50%; background:var(--line);}
+  .d.on{background:var(--muted);}
+  .qval{width:30px; text-align:right; font-size:13px; flex:none;}
+  .qrow.sum .qlabel,.qrow.sum .qval{color:var(--muted);}
+
+  .trow{cursor:pointer;}
+  .trow .qlabel{color:var(--accent);}
+  .actrow{display:flex; gap:10px; margin-top:8px;}
+  .actrow button{flex:1; font-family:inherit; font-size:14px; padding:10px 0; border-radius:999px;
+                 cursor:pointer;}
+  .positive{background:var(--positive); color:var(--positive-text); border:1px solid var(--positive);}
+  .negative{background:transparent; color:var(--exclude); border:1px solid var(--exclude);}
+</style>
+</head>
+<body>
+  <div class="phone">
+    <header>
+      <strong>Discover <a class="qmark" href="draft-04c-faq.html#score-made" target="_blank" rel="noopener" title="Open the answer in Information">?</a></strong>
+      <nav><a class="subnav" href="draft-04d-not-for-me.html">Not for me <span id="not-for-me-count"></span></a><a href="draft-04i-menu.html" title="Menu"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></a></nav>
+    </header>
+    <div id="candidate-status" class="candidate-status" role="status" aria-live="polite"></div>
+
+    <div class="list">
+      <div class="card" data-handle="brave-lion-4417" data-diff="Smoking,Free-time style"></div>
+      <div class="card" data-handle="quiet-fox-2148" data-diff="Age,Want kids,Smoking"></div>
+      <div class="card" data-handle="steady-owl-8831" data-diff="Relationship style,Have kids,Want kids,Smoking,Religion,Location,Work rhythm,Have pets now?,Want pets?,Politics — rough direction,Free-time style"></div>
+    </div>
+  </div>
+
+  <script src="draft-candidate-state.js"></script>
+  <script>
+  /* The viewer's importance per basic question — the same for every candidate. */
+  var WEIGHTS = {
+    "Gender": 3, "Age": 4, "Height": 1, "Body type": 2, "Relationship style": 5,
+    "Have kids": 3, "Want kids": 5, "Smoking": 3, "Religion": 1, "Location": 4,
+    "Who do you live with?": 2, "Work rhythm": 2, "Have pets now?": 2, "Want pets?": 2,
+    "Politics — rough direction": 1, "Free-time style": 4, "Orientation": 2
+  };
+  /* the viewer's pips scaled to a 0-100 scale; integers that sum to exactly 100 */
+  function scale100(weights) {
+    var keys = Object.keys(weights);
+    var total = keys.reduce(function (a, k) { return a + weights[k]; }, 0);
+    var raw = keys.map(function (k) { return weights[k] / total * 100; });
+    var out = raw.map(Math.floor);
+    var rem = raw.map(function (v, i) { return v - out[i]; });
+    var need = 100 - out.reduce(function (a, b) { return a + b; }, 0);
+    var order = keys.map(function (k, i) { return i; })
+      .sort(function (a, b) { return rem[b] - rem[a] || a - b; });
+    for (var j = 0; j < need; j++) out[order[j]] += 1;
+    var scaled = {};
+    keys.forEach(function (k, i) { scaled[k] = out[i]; });
+    return scaled;
+  }
+  var POINTS = scale100(WEIGHTS);
+
+  var COLLAPSED_ROWS = 4;   /* plus the "Other" summary row */
+
+  function pips(n) {
+    var out = "";
+    for (var i = 0; i < 5; i++) out += '<span class="d' + (i < n ? ' on' : '') + '"></span>';
+    return out;
+  }
+
+  function rowHTML(r) {
+    return '<div class="qrow"><span class="mark ' + (r.same ? 'same' : 'diff') + '"></span>' +
+           '<span class="qlabel">' + r.label + '</span>' +
+           '<span class="dots">' + pips(r.w) + '</span>' +
+           '<span class="qval">' + r.earned + '</span></div>';
+  }
+
+  function sumRowHTML(sameCount, diffCount, sum) {
+    return '<div class="qrow sum trow"><span class="mark" style="visibility:hidden"></span>' +
+           '<span class="qlabel">Show other (' + sameCount + ' same · ' + diffCount + ' different)</span>' +
+           '<span class="dots"></span><span class="qval">' + sum + '</span></div>';
+  }
+
+  function lessRowHTML() {
+    return '<div class="qrow sum trow"><span class="mark" style="visibility:hidden"></span>' +
+           '<span class="qlabel">Show less</span>' +
+           '<span class="dots"></span><span class="qval"></span></div>';
+  }
+
+  function build(card) {
+    var handle = card.getAttribute('data-handle');
+    var diff = card.getAttribute('data-diff').split(',').map(function (s) { return s.trim(); });
+
+    var rows = Object.keys(WEIGHTS).map(function (label) {
+      var same = diff.indexOf(label) === -1;
+      return {label: label, w: WEIGHTS[label], same: same, earned: same ? POINTS[label] : 0};
+    });
+    var earned = rows.reduce(function (a, r) { return a + r.earned; }, 0);
+    var sameCount = rows.filter(function (r) { return r.same; }).length;
+
+    /* collapsed: heaviest first, differing rows preferred */
+    var pref = rows.slice().sort(function (a, b) {
+      if (a.same !== b.same) return a.same ? 1 : -1;
+      if (b.w !== a.w) return b.w - a.w;
+      return a.label.localeCompare(b.label);
+    });
+    var top = pref.slice(0, COLLAPSED_ROWS);
+    var hidden = rows.filter(function (r) { return top.indexOf(r) === -1; });
+    var hiddenSum = hidden.reduce(function (a, r) { return a + r.earned; }, 0);
+
+    /* expanded: weight descending, then label */
+    var byWeight = rows.slice().sort(function (a, b) {
+      if (b.w !== a.w) return b.w - a.w;
+      return a.label.localeCompare(b.label);
+    });
+
+    var collapsedHTML = sumRowHTML(sameCount, rows.length - sameCount, hiddenSum) + top.map(rowHTML).join('');
+
+    card.innerHTML =
+      '<div class="head">' +
+        '<span class="handle">' + handle + '</span>' +
+        '<div class="bar"><span class="bar-same" style="width:' + earned + '%"></span></div>' +
+        '<span class="total">' + earned + '</span>' +
+      '</div>' +
+      '<div class="rows" data-state="collapsed">' + collapsedHTML + '</div>' +
+      '<div class="actrow">' +
+        '<button class="positive">Interested</button>' +
+        '<button class="negative">Not for me</button>' +
+      '</div>';
+
+    var rowsEl = card.querySelector('.rows');
+    rowsEl.addEventListener('click', function (ev) {
+      if (!ev.target.closest('.trow')) return;
+      var collapsed = rowsEl.getAttribute('data-state') === 'collapsed';
+      rowsEl.innerHTML = collapsed ? lessRowHTML() + byWeight.map(rowHTML).join('') : collapsedHTML;
+      rowsEl.setAttribute('data-state', collapsed ? 'expanded' : 'collapsed');
+    });
+
+    card.querySelector('.positive').addEventListener('click', function () {
+      CandidateState.recordInterest(handle);
+      showCandidateStatus("Interest saved privately.");
+      card.remove();
+      updateNotForMeCount();
+    });
+    card.querySelector('.negative').addEventListener('click', function () {
+      CandidateState.recordNotForMe(handle);
+      showCandidateStatus("Moved to Not for me.");
+      card.remove();
+      updateNotForMeCount();
+    });
+  }
+
+  function settle(card) {
+    card.style.transition = 'opacity .25s ease';
+    card.style.opacity = '0';
+    setTimeout(function () { if (card.parentElement) card.remove(); }, 260);
+  }
+
+  var candidateStatusTimer = null;
+  function showCandidateStatus(message) {
+    var el = document.getElementById('candidate-status');
+    if (!el) return;
+    el.textContent = message;
+    el.classList.add('visible');
+    clearTimeout(candidateStatusTimer);
+    candidateStatusTimer = setTimeout(function () { el.classList.remove('visible'); }, 1800);
+  }
+  function updateNotForMeCount() {
+    var el = document.getElementById('not-for-me-count');
+    var count = CandidateState.notForMe().length;
+    if (el) el.textContent = count ? '(' + count + ')' : '';
+  }
+  var savedInterest = CandidateState.interested();
+  var notForMe = CandidateState.notForMe();
+  document.querySelectorAll('.card').forEach(function (card) {
+    var handle = card.getAttribute('data-handle');
+    if (savedInterest.indexOf(handle) !== -1 || notForMe.indexOf(handle) !== -1) { card.remove(); return; }
+    build(card);
+  });
+  updateNotForMeCount();
+  </script>
+  <script src="palette-switcher.js"></script>
+<script src="draft-nav.js"></script>
+</body>
+</html>
