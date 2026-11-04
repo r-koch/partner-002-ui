@@ -24,31 +24,32 @@
   }
 
   /* brand zone — the wordmark stands in for the logo until the real mark exists */
-  header{padding:34px 24px 0;}
+  header{padding:24px 20px 14px; border-bottom:1px solid var(--line);}
   .wordmark{font-size:20px; font-weight:600; letter-spacing:-.01em; color:var(--text);}
   .wordmark-tld{color:var(--accent);}
 
   /* statement zone */
   .stage{flex:1; display:flex; flex-direction:column; justify-content:center;
-         padding:18px 24px;}
-  h1{font-size:26px; font-weight:600; line-height:1.25; color:var(--text);}
+         padding:18px 20px 10px;}
+  h1{font-size:25px; font-weight:600; line-height:1.25; color:var(--text); margin-bottom:8px;}
+  .lead{font-size:14.5px; color:var(--muted); line-height:1.45;}
 
-  /* action zone — four equal doors; no provider is promoted over another */
-  .signins{display:flex; flex-direction:column; gap:14px;
-           padding:26px 24px 12px; border-top:1px solid var(--line);}
-  .neutral{width:100%; min-height:58px; font-family:inherit; font-size:16px;
+  /* action zone — six equal OIDC doors in a 2x3 grid; no provider is promoted over another */
+  .signins{display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:12px;
+           padding:18px 20px 12px; border-top:1px solid var(--line);}
+  .neutral{width:100%; min-height:54px; font-family:inherit; font-size:15.5px;
            color:var(--text); background:var(--surface); border:1px solid var(--line);
-           border-radius:16px; cursor:pointer;}
+           border-radius:14px; cursor:pointer;}
   .neutral:hover{border-color:var(--muted);}
   .neutral:active{background:var(--bg);}
   .neutral:focus-visible,.legalfoot a:focus-visible{outline:2px solid var(--accent);
            outline-offset:2px;}
 
-  .footer{padding:6px 24px 0; display:flex; justify-content:flex-start; align-items:center;}
-  .back-btn{min-height:42px; width:auto; padding:10px 20px; border-radius:999px; font-size:15px;}
+  .footer{padding:6px 20px 0; display:flex; align-items:center;}
+  .back-btn{width:100%; min-height:46px; padding:11px 0; border-radius:999px; font-size:15px;}
 
   .legalfoot{display:flex; justify-content:center; align-items:center; gap:8px;
-             padding:20px 24px 10px; font-size:11px; color:var(--muted);}
+             padding:14px 20px 14px; font-size:11px; color:var(--muted);}
   .legalfoot a{color:var(--muted); text-decoration:none;}
   .legalfoot a:hover{text-decoration:underline;}
   .legalfoot span{opacity:.5;}
@@ -61,14 +62,17 @@
     </header>
 
     <div class="stage">
-      <h1>Sign in to continue</h1>
+      <h1>Choose an identity provider</h1>
+      <div class="lead">No accounts here — we don't want your data. We only receive an anonymous ID from your provider, never your name or email.</div>
     </div>
 
     <div class="signins">
-      <button class="neutral" onclick="location.href='draft-01-signup-18plus.html'">Sign in with Google</button>
-      <button class="neutral" onclick="location.href='draft-01-signup-18plus.html'">Sign in with Apple</button>
-      <button class="neutral" onclick="location.href='draft-01-signup-18plus.html'">Sign in with Microsoft</button>
-      <button class="neutral" onclick="location.href='draft-01-signup-18plus.html'">Sign in with LinkedIn</button>
+      <button class="neutral" onclick="location.href='draft-01-signup-18plus.html'">Google</button>
+      <button class="neutral" onclick="location.href='draft-01-signup-18plus.html'">Apple</button>
+      <button class="neutral" onclick="location.href='draft-01-signup-18plus.html'">Microsoft</button>
+      <button class="neutral" onclick="location.href='draft-01-signup-18plus.html'">Facebook</button>
+      <button class="neutral" onclick="location.href='draft-01-signup-18plus.html'">LinkedIn</button>
+      <button class="neutral" onclick="location.href='draft-01-signup-18plus.html'">PayPal</button>
     </div>
 
     <div class="footer">
