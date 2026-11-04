@@ -3,6 +3,7 @@ flowchart TD
   00-buttons["00-buttons"]
   00-palettes["00-palettes"]
   01-signup-18plus["01-signup-18plus"]
+  01a-intro["01a-intro"]
   01a-welcome["01a-welcome"]
   01b-terms["01b-terms"]
   01c-privacy["01c-privacy"]
@@ -62,7 +63,12 @@ flowchart TD
   01-signup-18plus --> legal-imprint
   01-signup-18plus --> legal-privacy
   01-signup-18plus --> legal-terms
+  01a-intro ==> 01a-welcome
+  01a-intro --> legal-imprint
+  01a-intro --> legal-privacy
+  01a-intro --> legal-terms
   01a-welcome ==> 01-signup-18plus
+  01a-welcome --> 01a-intro
   01a-welcome --> legal-imprint
   01a-welcome --> legal-privacy
   01a-welcome --> legal-terms
@@ -86,7 +92,7 @@ flowchart TD
   01f-handle ==> 01g-avatar-setup
   01g-avatar-setup ==> 02-01-gender
   01h-sorry-consent ==> 01i-sorry-closed
-  01i-sorry-closed --> 01a-welcome
+  01i-sorry-closed --> 01a-intro
   02-01-gender ==> 02-02-age
   02-02-age ==> 02-03-height
   02-03-height ==> 02-04-body-type

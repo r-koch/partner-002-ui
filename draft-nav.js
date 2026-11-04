@@ -2,6 +2,7 @@
    Injects a fixed bottom bar with left/right arrows + a page counter. No emojis. */
 (function () {
   var SEQUENCE = [
+    "draft-01a-intro.html",
     "draft-01a-welcome.html",
     "draft-01-signup-18plus.html",
     "draft-01b-terms.html",
@@ -52,7 +53,7 @@
     "draft-01h-sorry-consent.html",
     "draft-01i-sorry-closed.html"
   ];
-  var here = location.pathname.split("/").pop() || "draft-01a-welcome.html";
+  var here = location.pathname.split("/").pop() || "draft-01a-intro.html";
   var idx = SEQUENCE.indexOf(here);
   if (idx < 0) return; // not a draft page — do nothing
 
