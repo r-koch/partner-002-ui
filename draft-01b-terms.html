@@ -29,16 +29,18 @@
   .qmark{width:20px; height:20px; border-radius:50%; border:1.5px solid var(--muted);
          color:var(--muted); font-size:12px; display:inline-flex; align-items:center;
          justify-content:center; cursor:pointer; background:none; font-family:inherit;}
-  .body{flex:1; padding:18px; overflow-y:auto;}
+  .body{flex:1; padding:18px; display:flex; flex-direction:column; justify-content:center;}
   .step{font-size:13px; color:var(--muted); margin-bottom:12px;}
-  h1{font-size:26px; font-weight:600; margin-bottom:8px; line-height:1.25;}
+  h1{font-size:25px; font-weight:600; margin-bottom:12px; line-height:1.25;}
   .lead{font-size:15px; color:var(--muted); margin-bottom:22px; line-height:1.5;}
   .block{border:1px solid var(--line); border-radius:14px; background:var(--surface);
-         padding:14px 16px; margin-bottom:12px;}
-  .block .t{font-size:14px; font-weight:600; margin-bottom:6px;}
-  .block .tl{font-size:13px; color:var(--muted); line-height:1.5;}
-  .block .precise{font-size:12px; color:var(--muted); line-height:1.6; margin-top:8px;
-         border-top:1px solid var(--line); padding-top:8px;}
+         padding:15px 16px; margin-bottom:4px;}
+  .block .t{font-size:14px; font-weight:600; margin-bottom:10px; line-height:1.4;}
+  .block .t:last-of-type{margin-bottom:0;}
+  .block .precise{font-size:12.5px; color:var(--muted); line-height:1.5; margin-top:12px;
+         border-top:1px solid var(--line); padding-top:10px;}
+  .block .precise a{color:var(--accent); text-decoration:none;}
+  .block .precise a:hover{text-decoration:underline;}
   .positive{display:block; width:100%; background:var(--positive); color:var(--positive-text);
        border:none; border-radius:999px; padding:13px 0; font-size:15px; cursor:pointer;
        font-family:inherit; margin-top:6px; text-align:center; text-decoration:none;}
@@ -94,23 +96,10 @@
       <h1>Terms of use — key points</h1>
       <div class="block">
         <div class="t">1. Minimal server data</div>
-        <div class="tl">We store only the absolute minimum on our servers: your sign-in provider ID, handle, creation date, account state, ticket balance, and report counters.</div>
-      </div>
-      <div class="block">
         <div class="t">2. Your personal info stays on this device</div>
-        <div class="tl">Your personal answers live only on this device (no server copy, no backup) and are shared peer-to-peer only with users you choose.</div>
-      </div>
-      <div class="block">
         <div class="t">3. Free discovery &amp; introductions; paid pairings</div>
-        <div class="tl">Browsing Candidates and getting to know someone in Introductions (asking optional questions, sharing avatars, starting a Warm-up) is always free. Unlocking a Pairing (free-text chat) requires one ticket per side (3 free tickets per month while you have 0 Confirmed reports; EUR 0.99 base ticket otherwise).</div>
-      </div>
-      <div class="block">
         <div class="t">4. No photos — only photo-derived or default avatars</div>
-        <div class="tl">Real photos are never uploaded or sent. You use either our default avatar or an avatar generated on your device from a portrait photo that never leaves your device.</div>
-      </div>
-      <div class="block">
-        <div class="t">5. Reports and consequences</div>
-        <div class="tl">Every report permanently blocks that pair and goes to human review. If a report is Accepted against you, you get the reason, the action taken, and 28 days to appeal. Confirmed reports stay on your lifetime count, end free pairings, raise ticket prices (up to EUR 49.99), and can suspend or close your account.</div>
+        <div class="t">5. Confirmed violations are visible to others and increase ticket costs</div>
         <div class="precise"><a href="draft-legal-terms.html" target="_blank" rel="noopener">Read the full Terms of Use</a> — one page, written in plain language.</div>
       </div>
       <label class="accept" for="acceptBox">
